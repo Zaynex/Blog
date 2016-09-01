@@ -4,8 +4,17 @@
   
     
     <entry>
+      <title><![CDATA[关于我]]></title>
+      <url>https://zaynex.github.io/2016/09/01/%E5%85%B3%E4%BA%8E%E6%88%91/</url>
+      <content type="html"><![CDATA[<p>2016.04.13——网易实习（运营岗）<br>2016.07.05——主动申请辞职<br>至今——自学前端</p>
+<hr>
+<h3 id="为什么离职？"><a href="#为什么离职？" class="headerlink" title="为什么离职？"></a>为什么离职？</h3><p>我看好前端的未来，所以我愿意付出时间精力去投资它。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[表单操作之autocomplete中off失效问题]]></title>
-      <url>https://zaynex.github.io/2016/08/29/2016-08-29-%E8%A1%A8%E5%8D%95%E6%93%8D%E4%BD%9C/</url>
+      <url>https://zaynex.github.io/2016/08/29/%E8%A1%A8%E5%8D%95%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p><img src="http://img.blog.csdn.net/20160805155838408?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="iamge"><br>还是网易大法好！<br><a id="more"></a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们在表单输入框中输入信息，提交表单后，当我们再次进入表单页面，双击输入框时，会出现之前提交的信息，这是因为浏览器一般会记录下输入框之前提交表单的信息。这就是这篇文章要讲的autocomplete.</p>
 <p>AutoComplete控件就是指用户在文本框输入前几个字母或是汉字的时候，该控件就能从存放数据的文本或是数据库里将所有以这些字母开头的数据提升给用户，供用户选择，提供方便。</p>
@@ -23,7 +32,7 @@
     
     <entry>
       <title><![CDATA[JavaScript面向对象编程读书笔记一]]></title>
-      <url>https://zaynex.github.io/2016/08/28/2016-08-28-JavaScript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B8%80/</url>
+      <url>https://zaynex.github.io/2016/08/28/JavaScript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B8%80/</url>
       <content type="html"><![CDATA[<p><img src="http://pic.baike.soso.com/p/20140126/20140126154707-1231041852.jpg" alt="image"><br><a id="more"></a></p>
 <h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>没有块级作用域，只有函数作用域，所以for循环或者是if后这样的代码块中的变量，在代码块之外依然是可以见的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	local = <span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//console.log(local);//local is not defined</span></div><div class="line">f();</div><div class="line"><span class="built_in">console</span>.log(local); <span class="comment">// 10</span></div></pre></td></tr></table></figure></p>
 <p>在这段代码中，f函数调用之前，<code>local</code>变量是不存在的，该变量会在函数首次被调用时创建，并赋予全局作用域。</p>
@@ -98,7 +107,7 @@
     
     <entry>
       <title><![CDATA[给你两块表，你还能清楚现在是几点吗？]]></title>
-      <url>https://zaynex.github.io/2016/08/27/2016-08-27-%E7%BB%99%E4%BD%A0%E4%B8%A4%E5%9D%97%E8%A1%A8%EF%BC%8C%E4%BD%A0%E8%BF%98%E8%83%BD%E6%B8%85%E6%A5%9A%E7%8E%B0%E5%9C%A8%E6%98%AF%E5%87%A0%E7%82%B9%E5%90%97%EF%BC%9F/</url>
+      <url>https://zaynex.github.io/2016/08/27/%E7%BB%99%E4%BD%A0%E4%B8%A4%E5%9D%97%E8%A1%A8%EF%BC%8C%E4%BD%A0%E8%BF%98%E8%83%BD%E6%B8%85%E6%A5%9A%E7%8E%B0%E5%9C%A8%E6%98%AF%E5%87%A0%E7%82%B9%E5%90%97%EF%BC%9F/</url>
       <content type="html"><![CDATA[<p>最近在学习上有所懈怠。每次学一段时间总会有一种质疑的心态，这样学习的方式是否正确？是否还有更好的学习方法？是否还有捷径可走？是否…</p>
 <p>一千个人有一千个哈姆雷特。每当心中疑惑的时候，询问他人的意见是正确的，但找得过多反而越来越迷失自己，因为你会发现，每个人的答案都那么得给人光明，而答案背后，你又是否真正看到了些什么？</p>
 <p>往往大多数，不是我们不知道该怎么做，而是花了太多时间在苦苦追寻一个答案：自己做的是否是有意义的，有前途的。</p>
@@ -116,7 +125,7 @@
     
     <entry>
       <title><![CDATA[你真的懂margin:0 auto吗]]></title>
-      <url>https://zaynex.github.io/2016/08/27/2016-08-27-%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82margin-0-auto%E5%90%97/</url>
+      <url>https://zaynex.github.io/2016/08/27/%E4%BD%A0%E7%9C%9F%E7%9A%84%E6%87%82margin-0-auto%E5%90%97/</url>
       <content type="html"><![CDATA[<p>转自玉伯曾经<a href="https://github.com/lifesinger/blog/issues/105" target="_blank" rel="external">博客</a>。<br><a id="more"></a><br>而关于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">width:980px;</div><div class="line">margin:0 atuo;</div></pre></td></tr></table></figure></p>
 <p>以及<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">width: 980px;</div><div class="line">margin-left: auto;</div><div class="line">margin-right: auto;</div></pre></td></tr></table></figure></p>
 <p>区别的灵感来自<a href="www.imooc.com">慕课网</a>的学习。</p>
@@ -153,7 +162,7 @@
     
     <entry>
       <title><![CDATA[PHPGD库图形图像操作]]></title>
-      <url>https://zaynex.github.io/2016/08/23/2016-08-23-PHPGD%E5%BA%93%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F%E6%93%8D%E4%BD%9C/</url>
+      <url>https://zaynex.github.io/2016/08/23/PHPGD%E5%BA%93%E5%9B%BE%E5%BD%A2%E5%9B%BE%E5%83%8F%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p><img src="http://note.youdao.com/yws/public/resource/4d20c8e7a27b0ceb585cae1a70ae6c98/xmlnote/WEBRESOURCEe2b617a36828bc602a60b45534e1b255/35157" alt="iamge"><br><a id="more"></a></p>
 <h2 id="GD库简介"><a href="#GD库简介" class="headerlink" title="GD库简介"></a>GD库简介</h2><p>GD指的是Graphic Device，PHP的GD库是用来处理图形的扩展库，通过GD库提供的一系列API，可以对图像进行处理或者直接生成新的图片。<br>PHP除了能进行文本处理以外，通过GD库，可以对JPG、PNG、GIF、SWF等图片进行处理。GD库常用在图片加水印，验证码生成等方面。<br>PHP默认已经集成了GD库，只需要在安装的时候开启就行。</p>
 <p>查看你的gd库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print_r(gd_info());</div></pre></td></tr></table></figure></p>
@@ -179,7 +188,7 @@
     
     <entry>
       <title><![CDATA[MySQL数据操作与约束]]></title>
-      <url>https://zaynex.github.io/2016/08/22/2016-08-22-MySQL%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%93%8D%E4%BD%9C/</url>
+      <url>https://zaynex.github.io/2016/08/22/MySQL%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8E%E6%93%8D%E4%BD%9C/</url>
       <content type="html"><![CDATA[<p><img src="http://note.youdao.com/yws/public/resource/7d33ba2e58727f9063d9732ffe069a4a/xmlnote/DC419B38AE7647C19E67F1C5FA1C1C60/34970" alt="iamge"><br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">show tables;//查看数据表</div><div class="line">create table name(</div><div class="line">username varchar(20), </div><div class="line">age TINYINT UNSIGNED,</div><div class="line">salary FLOAT(8,2) UNSIGNED</div><div class="line">);</div><div class="line"></div><div class="line">INSERT tb1 VALUES(&apos;ZAYNEX&apos;, 20, 5455.88);</div><div class="line">INSERT tb1(username, salary) VALUES(&apos;ZAYNEX&apos;,6755.44);</div><div class="line">对于默认字段自动填充为null;</div><div class="line">SHOW COLUMNS FORM name;//显示 数据表的分类</div><div class="line">SELECT * from tb1; // 显示整个数据表的数据</div></pre></td></tr></table></figure></p>
 <h3 id="空值与非空"><a href="#空值与非空" class="headerlink" title="空值与非空"></a>空值与非空</h3><ul>
 <li>NULL，字段值可以为空</li>
@@ -230,7 +239,7 @@
     
     <entry>
       <title><![CDATA[MySQL环境配置]]></title>
-      <url>https://zaynex.github.io/2016/08/20/2016-08-20-MYSQL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+      <url>https://zaynex.github.io/2016/08/20/MYSQL%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
       <content type="html"><![CDATA[<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><p><img src="http://note.youdao.com/yws/public/resource/591675023b0f315e221678acb176978a/xmlnote/A5F5DB2443C2481A86601BD8444347B9/34836" alt="image"><br><a id="more"></a><br>出现excute的就都点这个。<br><img src="http://note.youdao.com/yws/public/resource/591675023b0f315e221678acb176978a/xmlnote/63EA5CFCAEA7473CB2C914604120949F/34519" alt="image"><br>这张图片告诉我们还需要下载一些组件，点击EXCUTE即可。有些组件不是必须的，比如MySQL for vs1.2.6。</p>
 <h3 id="新建配置文件my-ini"><a href="#新建配置文件my-ini" class="headerlink" title="新建配置文件my.ini"></a>新建配置文件my.ini</h3><p>在安装的目录盘下有个my-default.ini。你复制一份该文件命名为my.ini。<br><img src="http://note.youdao.com/yws/public/resource/591675023b0f315e221678acb176978a/xmlnote/4D4683FAC97C40B98243C3875528B461/34830" alt="image"><br>然后修改文件。<br><img src="http://note.youdao.com/yws/public/resource/591675023b0f315e221678acb176978a/xmlnote/F973DB2EC3554732A9BD0D362302E593/34832" alt="image"><br>注意后面的两个目录是你安装MySQL的目录。还有data目录也是需要你新建的。（系统没有默认生成）</p>
 <h3 id="初始化和启动MySQL服务"><a href="#初始化和启动MySQL服务" class="headerlink" title="初始化和启动MySQL服务"></a>初始化和启动MySQL服务</h3><ol>
@@ -269,7 +278,7 @@
     
     <entry>
       <title><![CDATA[开启神秘的后端之路]]></title>
-      <url>https://zaynex.github.io/2016/08/18/2016-08-18-%E5%BC%80%E5%90%AF%E7%A5%9E%E7%A7%98%E7%9A%84%E5%90%8E%E7%AB%AF%E4%B9%8B%E8%B7%AF/</url>
+      <url>https://zaynex.github.io/2016/08/18/%E5%BC%80%E5%90%AF%E7%A5%9E%E7%A7%98%E7%9A%84%E5%90%8E%E7%AB%AF%E4%B9%8B%E8%B7%AF/</url>
       <content type="html"><![CDATA[<h2 id="PHP初探"><a href="#PHP初探" class="headerlink" title="PHP初探"></a>PHP初探</h2><p>安装WampServer。(window + Apche + mySQL + PHP)<br><a id="more"></a></p>
 <h3 id="修改根目录"><a href="#修改根目录" class="headerlink" title="修改根目录"></a>修改根目录</h3><p>设置Apache的httpconfig文件找到<code>DocumentRoot</code>以及<code>&lt;Directory  &quot;D:/codelife/php/&quot;&gt;</code>(改成你想要的站点)可以修改根目录。</p>
 <p><strong>这样的好处就是可以让系统配置文件和你的网站分离。</strong></p>
@@ -294,7 +303,7 @@
     
     <entry>
       <title><![CDATA[JavaScript面向对象之数据基本判断]]></title>
-      <url>https://zaynex.github.io/2016/08/18/2016-08-18-JavaScript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E5%88%A4%E6%96%AD/</url>
+      <url>https://zaynex.github.io/2016/08/18/JavaScript%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E4%B9%8B%E6%95%B0%E6%8D%AE%E5%9F%BA%E6%9C%AC%E5%88%A4%E6%96%AD/</url>
       <content type="html"><![CDATA[<p>虽然都是些很简单的东西， 但是看起来很容易就出错了。<br><a id="more"></a><br>还有|| 是有惰性的，如果前面的是true后面的就不执行了。（这和引擎有关）</p>
 <pre><code>var s = &apos;ls&apos;;
 s++;
@@ -322,7 +331,7 @@ console.log(v);// 10
     
     <entry>
       <title><![CDATA[啊哈算法之链表]]></title>
-      <url>https://zaynex.github.io/2016/08/17/2016-08-17-%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E9%93%BE%E8%A1%A8/</url>
+      <url>https://zaynex.github.io/2016/08/17/%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E9%93%BE%E8%A1%A8/</url>
       <content type="html"><![CDATA[<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>后面有个尾巴指向下个数<br><a id="more"></a><br>指针<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	int *p;</div><div class="line">	p = (int *)malloc(sizeof(int));</div><div class="line">	// malloc动态分配内存，因为默认返回void*类型指针，所以需要强制转换为int类型指针 </div><div class="line">	*p = 10; </div><div class="line">	printf(&quot;%d&quot;, *p);</div><div class="line">	</div><div class="line">	getchar();</div><div class="line">	return 0; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>动态分配内存的好处就是方便扩展</p>
 <h3 id="结构体链表"><a href="#结构体链表" class="headerlink" title="结构体链表"></a>结构体链表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt; </div><div class="line"></div><div class="line">struct node&#123;</div><div class="line">	int data;</div><div class="line"> 	struct node *next;</div><div class="line">	 //因为下一个节点类型也是 struct node，所以指针也必须是 struct node* 类型的指针 </div><div class="line">&#125;;</div><div class="line">int main()&#123;</div><div class="line">	struct node *head,*p,*q,*t; </div><div class="line">	int i,n,a;</div><div class="line">	head = NULL;</div><div class="line">	scanf(&quot;%d&quot;, &amp;n);</div><div class="line"></div><div class="line">	//头指针为null</div><div class="line">	</div><div class="line">	for(i=1;i&lt;=n;i++)&#123;</div><div class="line">		scanf(&quot;%d&quot;, &amp;a);</div><div class="line">		//d动态申请一个空间，存放一个结点，并用临时指针p指向该节点</div><div class="line">		p = (struct node *)malloc(sizeof(struct node));</div><div class="line">		p-&gt;data= a;// 将数据存储到当前节点的data域中</div><div class="line">		p-&gt;next= NULL;//设置当前节点的后继指针为空，也就是当前结点的下一个节点为空</div><div class="line">		// -&gt; 叫结构体指针运算符 </div><div class="line">		if(head== NULL) &#123;</div><div class="line">			head = p;//如果这是第一个创建的结点，则将头指针指向该结点 </div><div class="line">		&#125;else&#123;</div><div class="line">			q-&gt;next = p;//如果创建的不是第一个结点，则将上一个结点的后继节点指向当前结点 </div><div class="line">		&#125;</div><div class="line">		q=p;	 </div><div class="line">	&#125;	</div><div class="line">	t = head;</div><div class="line">	scanf(&quot;%d&quot;, &amp;a);//读入一个待插入的数 </div><div class="line">	while(t!=NULL)&#123;//当还没有达到链表尾部的时候循环 </div><div class="line">		if(t-&gt;next-&gt;data&gt; a)&#123; //如果当前结点的下一个结点的值大于待插入数，将数插入到中间 </div><div class="line">			p=(struct node*)malloc(sizeof(struct node));</div><div class="line">			p-&gt;data= a;</div><div class="line">			p-&gt;next= t-&gt;next;//新增结点的后继指针指向当前结点的后继指针所指向的结点</div><div class="line">			t-&gt;next=p;</div><div class="line">			</div><div class="line">			//t的下一个结点大于a时，就将t后继指针指向a,而a的后继指针就指向原先t的后继指针的结点  </div><div class="line">			break; </div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		t=t-&gt;next;//继续下一个结点 </div><div class="line">		printf(&quot;%d &quot;, t-&gt;data);</div><div class="line">		t = t-&gt;next;//继续下一个结点 </div><div class="line">	&#125; </div><div class="line">	</div><div class="line">	 </div><div class="line">	getchar();</div><div class="line">	return 0; </div><div class="line">&#125;</div><div class="line"></div><div class="line">![iamge](http://note.youdao.com/yws/public/resource/4eeedf8824102a1750093326f70662a0/xmlnote/CF936A9F5047483EB12F6D6DC184D0E7/34315)</div><div class="line">![image](http://note.youdao.com/yws/public/resource/4eeedf8824102a1750093326f70662a0/xmlnote/B2D6D0426A1743EBA5318DFE1A326963/34319)</div></pre></td></tr></table></figure>
@@ -332,7 +341,7 @@ console.log(v);// 10
     
     <entry>
       <title><![CDATA[啊哈算法之队列和栈]]></title>
-      <url>https://zaynex.github.io/2016/08/16/2016-08-16-%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/</url>
+      <url>https://zaynex.github.io/2016/08/16/%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E9%98%9F%E5%88%97%E5%92%8C%E6%A0%88/</url>
       <content type="html"><![CDATA[<p>队列。<br>第一个数出来，第二个数排到队尾。<br>第一个指针指向的是队首，第二个指针指向的是队尾的下一位，不给它设定为队尾是避免当队列为空时队首和队尾重合带来的麻烦。<br><a id="more"></a></p>
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">int main()&#123;</div><div class="line">	int q[102] = &#123;0, 6, 3, 1, 7, 5, 8, 9, 2, 4&#125;,head,tail;</div><div class="line">	int i;</div><div class="line">	//初始化队列 </div><div class="line">	 head = 1;</div><div class="line">	 tail = 10; //队列一共有9个元素，tail指向队尾的最后一个位置</div><div class="line">	 while(head &lt; tail)&#123;</div><div class="line"> 		//打印队首并将队首出队</div><div class="line">		 printf(&quot;%d &quot;, q[head] );</div><div class="line">		 head++;</div><div class="line">		 </div><div class="line">		 //先将新队首的数添加到队尾</div><div class="line">		 q[tail] = q[head];</div><div class="line">		 tail++;</div><div class="line">		 //再将队首出队</div><div class="line">		 head++; </div><div class="line"> 	&#125; </div><div class="line">	getchar();</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>队列遵从先进先出的概念，跟排队一样，先到的人先享受服务，再出去。</p>
@@ -346,7 +355,7 @@ console.log(v);// 10
     
     <entry>
       <title><![CDATA[JavaScript语言精粹之继承]]></title>
-      <url>https://zaynex.github.io/2016/08/16/2016-08-16-JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9%E4%B9%8B%E7%BB%A7%E6%89%BF/</url>
+      <url>https://zaynex.github.io/2016/08/16/JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9%E4%B9%8B%E7%BB%A7%E6%89%BF/</url>
       <content type="html"><![CDATA[<p>往往会把一件完整的东西化为无数的形象。就像凹凸镜一般，从正面望去，只见一片模糊。<br><a id="more"></a></p>
 <h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>当一个对象被创建时，Function构造器产生的函数对象会运行类似这样的一些代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.prototype = &#123;constructor: this&#125;;</div></pre></td></tr></table></figure></p>
 <p>新函数对象被赋予一个prototype属性，其值包含一个constructor属性且属性值为该新函数对象。<br>因为JS语言没有提供一种方法确定哪个函数打算用来做构造器的，所以每个函数都会得到一个prototype对象。</p>
@@ -385,7 +394,7 @@ console.log(v);// 10
     
     <entry>
       <title><![CDATA[啊哈算法之排序]]></title>
-      <url>https://zaynex.github.io/2016/08/15/2016-08-15-%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
+      <url>https://zaynex.github.io/2016/08/15/%E5%95%8A%E5%93%88%E7%AE%97%E6%B3%95%E4%B9%8B%E6%8E%92%E5%BA%8F/</url>
       <content type="html"><![CDATA[<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>今天学了桶排序（简化版）、冒泡和快排。想不到桶排序是时间复杂度最低的，但花费内存大， 不过也符合计算机时间换空间的概念。<br>快速排序其实就是冒泡排序升级版，采用了<strong>分治</strong>的思想。<br>总的来说，还是很满意的。<br><a id="more"></a></p>
 <h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">int main(int argc, char *argv[])</div><div class="line">&#123;</div><div class="line">	int a[11], i, j, t;</div><div class="line">	for(i=0; i&lt;=10;i++)&#123;</div><div class="line">		a[i]= 0;</div><div class="line">	&#125;</div><div class="line">	for(j=1;j&lt;=5;j++)&#123;</div><div class="line">		scanf(&quot;%d&quot;, &amp;t);</div><div class="line">		a[t]++;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	for(i=0; i&lt;=10;i++) &#123;</div><div class="line">		for(j=1; j&lt;=a[i]; j++)&#123; // 桶内出现几次就打印几次 </div><div class="line">			printf(&quot;%d &quot;, i );</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	getchar(); </div><div class="line">	return 0;</div><div class="line">	//桶排序的方式是将所有可能的情况都列入数组内，借助数组序号分别读取（数组序号本身就是排序了） </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">struct student&#123;</div><div class="line">	char name[21];</div><div class="line">	char score;</div><div class="line">&#125;;</div><div class="line">//结构体保存姓名和分数 </div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	struct student a[100], t; </div><div class="line">	int i,j,n;</div><div class="line">	scanf(&quot;%d&quot;, &amp;n);</div><div class="line">	for(i=1; i&lt;=n; i++)</div><div class="line">		scanf(&quot;%s %d&quot;,&amp;a[i].name, &amp;a[i].score);</div><div class="line">	//最好是1开头，原因未知 </div><div class="line">	for(i=1; i&lt;=n-1; i++)&#123;</div><div class="line">		for(j=1; j&lt;=n-i; j++)&#123;</div><div class="line">			if(a[j].score &lt; a[j+1].score)&#123;</div><div class="line">				t = a[j];</div><div class="line">				a[j] = a[j+1];</div><div class="line">				a[j+1] = t;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">			</div><div class="line">	for(i=1; i&lt;=n ;i++)&#123;</div><div class="line">		printf(&quot;%s %d\n &quot;, a[i].name,a[i].score);</div><div class="line">	&#125;	</div><div class="line">	getchar();</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -443,7 +452,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第十三章事件]]></title>
-      <url>https://zaynex.github.io/2016/08/15/2016-08-15-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%E4%BA%8B%E4%BB%B6/</url>
+      <url>https://zaynex.github.io/2016/08/15/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%E4%BA%8B%E4%BB%B6/</url>
       <content type="html"><![CDATA[<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>###　DOM0级事件处理程序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var btn = document.getElementById(&quot;div&quot;);</div><div class="line">btn.onclick = function()&#123;</div><div class="line">	//code</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="DOM2级事件处理程序"><a href="#DOM2级事件处理程序" class="headerlink" title="DOM2级事件处理程序"></a>DOM2级事件处理程序</h3><p>好处是可以添加多个事件，false表示冒泡阶段触发<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var btn= document.getElementById(&apos;button&apos;);</div><div class="line">btn.addEventListener(&quot;click&quot;, function()&#123;</div><div class="line">	alert(&quot;hello!&quot;);</div><div class="line">&#125;, false);</div><div class="line">btn.addEventListener(&quot;click&quot;, function()&#123;</div><div class="line">	alert(&quot;world&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
@@ -481,7 +490,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第十一章DOM扩展]]></title>
-      <url>https://zaynex.github.io/2016/08/14/2016-08-14-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC11%E7%AB%A0DOM%E6%89%A9%E5%B1%95/</url>
+      <url>https://zaynex.github.io/2016/08/14/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC11%E7%AB%A0DOM%E6%89%A9%E5%B1%95/</url>
       <content type="html"><![CDATA[<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h3 id="H5拓展方法遍历元素"><a href="#H5拓展方法遍历元素" class="headerlink" title="H5拓展方法遍历元素"></a>H5拓展方法遍历元素</h3><p>（1）childElementCount：返回子元素（不包括文本节点和注释）的个数。<br>（2）firstElementChild：指向第一个子元素；<br>（3）lastElementChild：指向最后一个子元素；<br>（4）previousElementSibling：指向前一个同辈元素；<br>（5）nextElementSibling：指向后一个同辈元素；<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var i,len,	</div><div class="line">child = element.firstChild;</div><div class="line">while(child != element.lastChild)&#123;</div><div class="line">	if(child.nodeType == 1)&#123;  //检查是否为元素，避免文本节点干扰</div><div class="line">		processChild(child);</div><div class="line">	&#125;</div><div class="line">	child = child.nextSibling;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//使用 Element Traversal</div><div class="line">var i,len,</div><div class="line">child = element.firstElementChild;</div><div class="line">while(child != element.lastElementChild)&#123;</div><div class="line">	processChild(child);</div><div class="line">	child = child.nextElementSibing;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>支持该Element Traversal 规范的浏览器 IE9+。</p>
 <h2 id="HTML5-1"><a href="#HTML5-1" class="headerlink" title="HTML5"></a>HTML5</h2><h3 id="getElementsByClassName"><a href="#getElementsByClassName" class="headerlink" title="getElementsByClassName"></a>getElementsByClassName</h3><p>在IE9+的版本可以使用该方法直接添加calss名。</p>
@@ -498,7 +507,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三DOM操作（含微专业）]]></title>
-      <url>https://zaynex.github.io/2016/08/12/2016-08-12-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89DOM%E6%93%8D%E4%BD%9C%EF%BC%88%E5%90%AB%E5%BE%AE%E4%B8%93%E4%B8%9A%EF%BC%89/</url>
+      <url>https://zaynex.github.io/2016/08/12/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89DOM%E6%93%8D%E4%BD%9C%EF%BC%88%E5%90%AB%E5%BE%AE%E4%B8%93%E4%B8%9A%EF%BC%89/</url>
       <content type="html"><![CDATA[<h2 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h2><p>querySelectorAll获取的是静态的列表，当时获取的是多少就是多少。<br><a id="more"></a><br>返回的是动态的列表有（NodeList）：</p>
 <ul>
 <li>getElementsByTagName</li>
@@ -548,7 +557,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第七章闭包及私有变量]]></title>
-      <url>https://zaynex.github.io/2016/08/11/2016-08-11-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%83%E7%AB%A0%E9%97%AD%E5%8C%85%E5%8F%8A%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F/</url>
+      <url>https://zaynex.github.io/2016/08/11/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%83%E7%AB%A0%E9%97%AD%E5%8C%85%E5%8F%8A%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>有权访问另一个函数作用域中的变量的函数。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function createComparisonFunction (propertyName) &#123;</div><div class="line">	// body...</div><div class="line">	return function(object1, object2)&#123;</div><div class="line">		var value1 = object1[propertyName];</div><div class="line">		var value2 = object2[propertyName];</div><div class="line"></div><div class="line">		if(value1 &lt; value2) &#123;</div><div class="line">			return -1;</div><div class="line">		&#125;  else if (value2 &lt; value1)&#123;</div><div class="line">			return 1;</div><div class="line">		&#125; else &#123;</div><div class="line">			return 0;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>当函数被调用的时候，会创建一个执行环境及相应的作用域链。然后使用arguments和其他命名参数来初始化活动对象。但在作用域链中，<br>外部函数的活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位……直至作为作用域链重点的全局执行环境</p>
 <p>有了匿名函数调用后，活动对象不会被销毁。作用域链仍然引用这个活动对象。因此当函数执行完后，其执行环境的作用域链会被销毁，<br>但它的活动对象仍留在内存中。</p>
@@ -588,7 +597,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第七章函数表达式]]></title>
-      <url>https://zaynex.github.io/2016/08/11/2016-08-11-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%83%E7%AB%A0%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+      <url>https://zaynex.github.io/2016/08/11/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%83%E7%AB%A0%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
       <content type="html"><![CDATA[<p>函数声明提升<br>在执行代码之前会读取函数声明。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// 函数声明</div><div class="line">function foo() &#123;&#125;</div><div class="line"></div><div class="line">// 函数表达式</div><div class="line">(function bar() &#123;&#125;)</div><div class="line"></div><div class="line">// 函数表达式</div><div class="line">x = function hello() &#123;&#125;</div><div class="line"></div><div class="line">if (x) &#123;</div><div class="line">   // 函数表达式</div><div class="line">   function world() &#123;&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 函数声明</div><div class="line">function a() &#123;</div><div class="line">   // 函数声明</div><div class="line">   function b() &#123;&#125;</div><div class="line">   if (0) &#123;</div><div class="line">      //函数表达式</div><div class="line">      function c() &#123;&#125;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">sayHi();</div><div class="line">function sayHi () &#123;</div><div class="line">	alert(&quot;hi&quot;);</div><div class="line">&#125;;</div><div class="line">//hi</div><div class="line">var functionName = function  (arg0, arg1, arg2) &#123;</div><div class="line">	//函数体</div><div class="line">&#125;</div><div class="line"></div><div class="line">//匿名函数</div><div class="line"></div><div class="line">sayHi();</div><div class="line"></div><div class="line">var sayHi = function  () &#123;</div><div class="line">	alert(&quot;hi&quot;);</div><div class="line">&#125;;</div><div class="line">//错误</div></pre></td></tr></table></figure>
 <p>函数表达式和其他表达式一样，使用前必须先赋值。</p>
@@ -629,7 +638,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript语言精粹之函数]]></title>
-      <url>https://zaynex.github.io/2016/08/10/2016-08-10-JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9%E4%B9%8B%E5%87%BD%E6%95%B0/</url>
+      <url>https://zaynex.github.io/2016/08/10/JavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9%E4%B9%8B%E5%87%BD%E6%95%B0/</url>
       <content type="html"><![CDATA[<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>所有的过失在未犯之前，都已定下应处的惩罚。<br><a id="more"></a></p>
 <h3 id="对象字面量"><a href="#对象字面量" class="headerlink" title="对象字面量"></a>对象字面量</h3><p>对象字面量产生的对象连接到Object.prototype。函数对象连接到Function.prototype(该原型对象本身连接到 Object.prototype)。</p>
 <p>每个 函数对象 创建时带有prototype属性，它的值是一个拥有constructor属性且值就是该函数的对象。这和隐藏连接到Function.prototype完全不同。</p>
@@ -685,7 +694,7 @@ return 0;
     
     <entry>
       <title><![CDATA[闭包]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-%E9%97%AD%E5%8C%85/</url>
+      <url>https://zaynex.github.io/2016/08/09/%E9%97%AD%E5%8C%85/</url>
       <content type="html"><![CDATA[<p>前面提到的上下文环境和作用域的知识，除了了解这些知识之外，还是理解闭包的基础。</p>
 <p>至于“闭包”这个词的概念的文字描述，确实不好解释，我看过很多遍，但是现在还是记不住。<br><a id="more"></a><br><strong>但是你只需要知道应用的两种情况即可————函数作为返回值，函数作为参数传递。</strong></p>
 <h3 id="函数作为返回值"><a href="#函数作为返回值" class="headerlink" title="函数作为返回值"></a>函数作为返回值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function fn()&#123;</div><div class="line">	var max = 10;</div><div class="line"></div><div class="line">	return function bar(x) &#123;</div><div class="line">		if (x &gt; max) &#123;</div><div class="line">			console.log(x);//15</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f1 = fn();</div><div class="line">f1(15);</div></pre></td></tr></table></figure>
@@ -719,7 +728,7 @@ return 0;
     
     <entry>
       <title><![CDATA[从自由变量到作用域栈]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-%E4%BB%8E%E8%87%AA%E7%94%B1%E5%8F%98%E9%87%8F%E5%88%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%A0%88/</url>
+      <url>https://zaynex.github.io/2016/08/09/%E4%BB%8E%E8%87%AA%E7%94%B1%E5%8F%98%E9%87%8F%E5%88%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%A0%88/</url>
       <content type="html"><![CDATA[<p>先解释下什么是”自由变量”。<br><a id="more"></a><br>在A作用域中使用的变量x，却没有在A作用域中声明（即在其他作用域中声明的），对于A作用域来说，x就是一个自由变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var x = 10;</div><div class="line">function fn()&#123;</div><div class="line">	var b =20;</div><div class="line">	console.log(x + b);</div><div class="line">&#125;</div><div class="line">fn();</div></pre></td></tr></table></figure></p>
 <p>如上程序中，在调用fn()函数时，函数体中第6行。取b的值就直接可以在fn作用域中取，因为b就是在这里定义的。而取x的值时，就需要到另一个作用域中取。到哪个作用域中取呢？</p>
 <p>有人说过要到父作用域中取，其实有时候这种解释会产生歧义。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var x = 10;</div><div class="line">function fn()&#123;</div><div class="line">	console.log(x);</div><div class="line">&#125;</div><div class="line">function show(f) &#123;</div><div class="line">	var x =20;</div><div class="line">	(function()&#123;</div><div class="line">		f(); // 10;</div><div class="line">	&#125;)();</div><div class="line">&#125;</div><div class="line"></div><div class="line">show(fn);</div></pre></td></tr></table></figure></p>
@@ -745,7 +754,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JS作用域和上下文环境]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-JS%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
+      <url>https://zaynex.github.io/2016/08/09/JS%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
       <content type="html"><![CDATA[<p>上文简单介绍了作用域，本文把作用域和上下文环境结合起来说一下，会理解的更深一些。<br><a id="more"></a><br><img src="http://images.cnitblog.com/blog/138012/201409/250813253577626.png" alt="image"><br>如上图，我们在上文中已经介绍了，除了全局作用域之外，每个函数都会创建自己的作用域，作用域在函数定义时就已经确定了。而不是在函数调用时确定。</p>
 <p>下面我们将按照程序执行的顺序，一步一步把各个上下文环境加上。</p>
 <p>第一步，在加载程序时，已经确定了全局上下文环境，并随着程序的执行而对变量就行赋值。<br><img src="http://images.cnitblog.com/blog/138012/201409/250814158269779.png" alt="image"></p>
@@ -757,7 +766,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JS作用域]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-JS%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
+      <url>https://zaynex.github.io/2016/08/09/JS%E4%BD%9C%E7%94%A8%E5%9F%9F/</url>
       <content type="html"><![CDATA[<p>提到作用域，我们最熟悉的一句话就是”JS中没有块级作用域”。块级作用域就是{…}里面的语句。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var i = 10;</div><div class="line">if (i &gt; 1) &#123;</div><div class="line">	var name = &quot;Zaynex&quot;;</div><div class="line">&#125;</div><div class="line">console.log(name); // Zaynex</div></pre></td></tr></table></figure></p>
 <p>再比如for语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for(var i=0; i&lt;10; i++) &#123;</div><div class="line">	//....</div><div class="line">&#125;</div><div class="line">console.log(i); // 10</div></pre></td></tr></table></figure></p>
 <p>所以，我们在编写代码的时候，不要在“块”里面声明变量，要在代码的一开始就声明好了。以避免发生歧义。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var i;</div><div class="line">for(i=0; i&lt;10; i++) &#123;</div><div class="line">	//....</div><div class="line">&#125;</div><div class="line">console.log(i); // 10</div></pre></td></tr></table></figure></p>
@@ -776,7 +785,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JS中的执行上下文环境（二）]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
+      <url>https://zaynex.github.io/2016/08/09/JS%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
       <content type="html"><![CDATA[<p>执行全局代码时，会产生一个执行上下文环境，每次调用函数都又会产生执行上下文环境。当函数调用完成时，这个上下文环境以及其中的数据都会被消除，再重新回到全局上下文环境。<strong>处于活动状态的执行上下文环境只有一个。</strong><br><a id="more"></a><br><img src="http://images.cnitblog.com/blog/138012/201409/232122300768665.png" alt="iamge"><br>可根据以下代码来详细介绍上下文栈的压栈、出栈过程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = 10, // 1.进入全局上下文环境</div><div class="line">	fn,</div><div class="line">	bar = function(x) &#123;</div><div class="line">		var b = 5;</div><div class="line">		fn(x + b);  //3.进入fn函数上下文环境</div><div class="line">	&#125;;</div><div class="line">fn = function(y) &#123;</div><div class="line">	var c = 5;</div><div class="line">	console.log(y + c); </div><div class="line">&#125;;</div><div class="line"></div><div class="line">bar(10);  // 2.进入bar函数上下文环境</div></pre></td></tr></table></figure></p>
 <p>在执行代码之前，首先将创建全局上下文环境。<br>按照图片标准<br><img src="http://note.youdao.com/yws/res/34054/WEBRESOURCE6bc31b440e87df96ea235a5726db4fad" alt="image">我们得到的结果就是<br>因此我们可以得到全局上下文环境<br><img src="http://images.cnitblog.com/blog/138012/201409/232123126545539.png" alt="iamge"><br>然后是代码执行。代码执行到第12行之前，上下文环境中的变量都在执行过程中被赋值。<br><img src="http://images.cnitblog.com/blog/138012/201409/232123436078861.png" alt="iamge"><br>执行到第13行，调用bar函数。<br>跳转到bar函数内部，执行函数体语句之前，会创建一个新的执行上下文环境。<br><img src="http://images.cnitblog.com/blog/138012/201409/232124103579967.png" alt="image"><br>并将这个执行上下文环境压栈，设置为活动状态。<br><img src="http://images.cnitblog.com/blog/138012/201409/232124277955196.png" alt="iamge"><br>执行到第5行，又调用了fn函数。进入fn函数，在执行函数体语句之前，会创建fn函数的执行上下文环境，并压栈，设置为活动状态。<br><img src="http://note.youdao.com/yws/res/34056/WEBRESOURCEe3547001a84e6ff1bdefee39df26b152" alt="image"><br><img src="http://images.cnitblog.com/blog/138012/201409/232124478267882.png" alt="image"><br>待第5行执行完毕，即fn函数执行完毕后，此次调用fn所生成的上下文环境出栈，并且被销毁（已经用完了，就要及时销毁，释放内存）。<br><img src="http://images.cnitblog.com/blog/138012/201409/232125095291412.png" alt="iamge"><br>同理，待第13行执行完毕，即bar函数执行完毕后，调用bar函数所生成的上下文环境出栈，并且被销毁（已经用完了，就要及时销毁，释放内存）。<br><img src="http://images.cnitblog.com/blog/138012/201409/232125295149083.png" alt="iamge"><br>好了，我很耐心的给大家介绍了一段简短代码的执行上下文环境的变化过程，一个完整的闭环。其中上下文环境的变量赋值过程我省略了许多，因为那些并不难，一看就知道。</p>
 <p>讲到这里，我不得不很遗憾的跟大家说：其实以上我们所演示的是一种比较理想的情况。有一种情况，而且是很常用的一种情况，无法做到这样干净利落的说销毁就销毁。这种情况就是伟大的——闭包。</p>
@@ -786,7 +795,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript中的this到底指向谁？]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-JS%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/</url>
+      <url>https://zaynex.github.io/2016/08/09/JS%E4%B8%AD%E7%9A%84this%E6%8C%87%E5%90%91/</url>
       <content type="html"><![CDATA[<p>接着上一节讲的话，应该轮到“执行上下文栈”了，但是这里不得不插入一节，把this说一下。因为this很重要，js的面试题如果不出几个与this有关的，那出题者都不合格。其实，this的取值，分四种情况。我们来挨个看一下。<br><a id="more"></a><br>用一句话概括this就是：this指向调用该函数的对象。</p>
 <p>在此再强调一遍一个非常重要的知识点：在函数中this到底取何值，是在函数真正被调用执行的时候确定的，函数定义的时候确定不了。因为this的取值是执行上下文环境的一部分，每次调用函数，都会产生一个新的执行上下文环境。</p>
 <h3 id="场景1：构造函数"><a href="#场景1：构造函数" class="headerlink" title="场景1：构造函数"></a>场景1：构造函数</h3><p>所谓构造函数就是用来new对象的函数。其实严格来说，所有的函数都可以new一个对象，但是有些函数的定义是为了new一个对象，而有些函数则不是。另外注意，构造函数的函数名第一个字母大写（规则约定）。例如：Object、Array、Function等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Foo()&#123;</div><div class="line">	this.name = &apos;Zaynex&apos;;</div><div class="line">	this.age = 1995;</div><div class="line">	console.log(this);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var f1 = new Foo();</div><div class="line">console.log(f1.name);//Zaynex</div><div class="line">console.log(f1.age);// 1995</div></pre></td></tr></table></figure></p>
@@ -821,7 +830,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JS中的执行上下文环境（一）]]></title>
-      <url>https://zaynex.github.io/2016/08/09/2016-08-09-JS%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
+      <url>https://zaynex.github.io/2016/08/09/JS%E4%B8%AD%E7%9A%84%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E7%8E%AF%E5%A2%83/</url>
       <content type="html"><![CDATA[<p>什么是“执行上下文”（也叫做“执行上下文环境”）？暂且不下定义，先看一段代码：<br><img src="http://images.cnitblog.com/blog/138012/201409/221743466231490.png" alt="image"><br><a id="more"></a><br>第一句报错，a未定义，很正常。第二句、第三句输出都是undefined，说明浏览器在执行console.log(a)时，已经知道了a是undefined，但却不知道a是10（第三句中）。</p>
 <p>在一段js代码拿过来真正一句一句运行之前，浏览器已经做了一些“准备工作”，其中就包括对变量的声明，而不是赋值。变量赋值是在赋值语句执行的时候进行的。可用下图模拟：<br><img src="http://images.cnitblog.com/blog/138012/201409/221744084828533.png" alt="image"><br>这是第一种情况。</p>
 <p>下面还有。先来个简单的。<br><img src="http://images.cnitblog.com/blog/138012/201409/221744319354566.png" alt="image"><br>有js开发经验的朋友应该都知道，你无论在哪个位置获取this，都是有值的。至于this的取值情况，比较复杂，会专门拿出一篇文章来讲解。</p>
@@ -853,7 +862,7 @@ return 0;
     
     <entry>
       <title><![CDATA[致我辞职后的第一个月]]></title>
-      <url>https://zaynex.github.io/2016/08/08/2016-08-08-%E8%87%B4%E6%88%91%E8%BE%9E%E8%81%8C%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%88/</url>
+      <url>https://zaynex.github.io/2016/08/08/%E8%87%B4%E6%88%91%E8%BE%9E%E8%81%8C%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%9C%88/</url>
       <content type="html"><![CDATA[<p>身边很多朋友都不理解，甚至是惊讶：你不就是想做产品么？在网易待得不是挺好吗？这么好的机会怎么又放弃了。</p>
 <p>我想跟身边的人解释些什么，但总感觉有些说辞有些冠冕堂皇，可能当你真正想明白了一件事情，无须向他人解释些什么，自己尽管做就好了。<br>还是切入正题，太多抒情的话题，要把合理的作息调整回来。</p>
 <p>这一个月勉强算是掌握了JS的基础吧。<br>但是闭包还是没有理解。明天再撰写下闭包的笔记。书中关于活动对象的介绍不多，之前看了博客园的王福朋的博客，当时看懂了，看来还需要自己码一码字，搬到博客上来印象才深刻。（<a href="http://www.cnblogs.com/wangfupeng1988/p/3977987.html）" target="_blank" rel="external">http://www.cnblogs.com/wangfupeng1988/p/3977987.html）</a><br>还是得按照ife上再好好梳理一下。<a href="https://github.com/baidu-ife/ife/tree/master/2015_spring/task/task0003" target="_blank" rel="external">https://github.com/baidu-ife/ife/tree/master/2015_spring/task/task0003</a></p>
@@ -862,7 +871,7 @@ return 0;
     
     <entry>
       <title><![CDATA[《锋利的jQuery》第四章读书笔记]]></title>
-      <url>https://zaynex.github.io/2016/08/08/2016-08-08-%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/08/08/%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E5%9B%9B%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="加载DOM"><a href="#加载DOM" class="headerlink" title="加载DOM"></a>加载DOM</h2><p>window.onload是在页面所有元素包括关联元素加载完毕才执行，此时的JS可以访问网页中的任何元素。</p>
 <p>$(document).ready()方法注册事件处理程序只需在DOM就绪时就可以被调用。此时JQ可以访问网页所有元素，但并不一定元素关联的文件都已经下载完毕。<br><a id="more"></a><br>当然，如果希望在所有元素加载完全后再注册事件可以采用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(window).load(function()&#123;&#125;);</div></pre></td></tr></table></figure></p>
 <p>window.onload 事件值一次只能保存对一个函数的引用，会自动覆盖前面的函数。</p>
@@ -910,7 +919,7 @@ return 0;
     
     <entry>
       <title><![CDATA[《锋利的jQuery二》第三章读书笔记]]></title>
-      <url>https://zaynex.github.io/2016/08/08/2016-08-08-%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/08/08/%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h2><h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var $li_1 = $(&quot;&lt;li title=&apos;我是title啊&apos;&gt;香蕉&lt;/li&gt;&quot;);</div><div class="line">var $li_2 = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);</div><div class="line">$(&quot;ul&quot;).append($li_1);</div><div class="line">$(&quot;ul&quot;).append($li_2);</div><div class="line">//也可以是下面这样</div><div class="line">$(&quot;ul&quot;).append(&apos;&lt;li title=&quot;我是title啊&quot;&gt;柠檬&lt;/li&gt;&apos;)</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> $(function()&#123;</div><div class="line"> /*</div><div class="line"> 	var $li = $(&quot;ul li:eq(2)&quot;);</div><div class="line"> 	var li_txt = $li.text();</div><div class="line"> 	alert(li_txt);</div><div class="line"> 	var $para = $(&quot;p&quot;);</div><div class="line"> 	var p_txt = $para.attr(&quot;title&quot;);</div><div class="line"> 	alert(p_txt);</div><div class="line"> */</div><div class="line">var $li_1 = $(&quot;&lt;li title=&apos;我是title啊&apos;&gt;香蕉&lt;/li&gt;&quot;);</div><div class="line">var $li_2 = $(&quot;&lt;li title=&apos;titile&apos;&gt;柠檬&lt;/li&gt;&quot;);</div><div class="line">var $li_3 = $(&quot;&lt;li title=&apos;title&apos;&gt;其他&lt;/li&gt;&quot;)</div><div class="line"></div><div class="line">var $parent = $(&quot;ul&quot;);</div><div class="line">var $two_li = $(&quot;ul li:eq(1)&quot;); //(index从0开始)</div><div class="line">$parent.append($li_1);</div><div class="line">$parent.prepend($li_2);</div><div class="line">$li_3.insertAfter($two_li); //执行这段代码的时候保存最初的状态，不会因为后来的插入而影响</div><div class="line"></div><div class="line"> &#125;)</div><div class="line"> &lt;/script&gt;</div><div class="line">	&lt;p title=&quot;选择你最喜欢的水果.&quot; &gt;你最喜欢的水果是?&lt;/p&gt;</div><div class="line">	&lt;ul&gt;</div><div class="line">	  &lt;li title=&apos;苹果&apos;&gt;苹果&lt;/li&gt;</div><div class="line">	  &lt;li title=&apos;橘子&apos;&gt;橘子&lt;/li&gt;</div><div class="line">	  &lt;li title=&apos;菠萝&apos;&gt;菠萝&lt;/li&gt;</div><div class="line">	&lt;/ul&gt;</div></pre></td></tr></table></figure>
@@ -953,7 +962,7 @@ return 0;
     
     <entry>
       <title><![CDATA[《锋利的jQuery二》第二章读书笔记]]></title>
-      <url>https://zaynex.github.io/2016/08/08/2016-08-08-%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/08/08/%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%BA%8C%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="JQ处理预留机制"><a href="#JQ处理预留机制" class="headerlink" title="JQ处理预留机制"></a>JQ处理预留机制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.getElementById(&quot;tt&quot;).style.color=&quot;red&quot;;</div></pre></td></tr></table></figure>
 <p>如果没有id为tt的元素，那么浏览器会报错。<br>在DOM中需要加一个判断：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(document.getElementById(&quot;tt&quot;))&#123;</div><div class="line">    document.getElementById(&quot;tt&quot;).style.color=&quot;red&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
@@ -984,7 +993,7 @@ return 0;
     
     <entry>
       <title><![CDATA[《锋利的jQuery二》第一章读书笔记]]></title>
-      <url>https://zaynex.github.io/2016/08/08/2016-08-08-%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/08/08/%E3%80%8A%E9%94%8B%E5%88%A9%E7%9A%84jQuery%E4%BA%8C%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p><img src="http://note.youdao.com/yws/res/33300/WEBRESOURCEb10ebb06f73ecff138036011c409145c" alt="image"><br><a id="more"></a><br>JQuery获取的对象不能使用任何DOM的对象方法，DOM也不能使用jQuery里的任何方法。</p>
 <p>JQuery对象转化成DOM对象</p>
 <ol>
@@ -1003,7 +1012,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JS变量作用域解析方式]]></title>
-      <url>https://zaynex.github.io/2016/08/06/2016-08-06-JS%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E8%A7%A3%E6%9E%90%E6%96%B9%E5%BC%8F/</url>
+      <url>https://zaynex.github.io/2016/08/06/JS%E5%8F%98%E9%87%8F%E4%BD%9C%E7%94%A8%E5%9F%9F%E8%A7%A3%E6%9E%90%E6%96%B9%E5%BC%8F/</url>
       <content type="html"><![CDATA[<h2 id="变量作用域解析方式"><a href="#变量作用域解析方式" class="headerlink" title="变量作用域解析方式"></a>变量作用域解析方式</h2><ol>
 <li>静态作用域</li>
 <li>动态作用域<h3 id="静态作用域"><a href="#静态作用域" class="headerlink" title="静态作用域"></a>静态作用域</h3></li>
@@ -1043,7 +1052,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaSript高级程序设计三第六章学习笔记二]]></title>
-      <url>https://zaynex.github.io/2016/08/04/2016-08-04-JavaSript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%BB%A7%E6%89%BF/</url>
+      <url>https://zaynex.github.io/2016/08/04/JavaSript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%BB%A7%E6%89%BF/</url>
       <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>大部分OO语言都有接口继承和实现继承。 接口继承指继承函数方法签名，实现继承指继承实际的方法，由于JS中函数没有签名，因此ECMAScript中无法实现接口继承。ECMAScript只支持实现继承，并且实现继承主要依靠原型链来实现。<br><a id="more"></a></p>
 <h3 id="构造函数原型实例关系"><a href="#构造函数原型实例关系" class="headerlink" title="构造函数原型实例关系"></a>构造函数原型实例关系</h3><p>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例包含指向一个原型对象的内部指针。<br>如果让原型对象等于另一个类型的实例，那么此时原型对象将包含一个指向另一个原型的指针，另一个原型对象中也包含一个指向另一个构造函数的指针。<br>如果让另一个原型对象又等于另一个类型的实例，那么上述关系依然成立。</p>
 <h3 id="实现原型链基本模式"><a href="#实现原型链基本模式" class="headerlink" title="实现原型链基本模式"></a>实现原型链基本模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function SuperType()&#123;</div><div class="line">  this.prototype = true;</div><div class="line">&#125;</div><div class="line"></div><div class="line">SuperType.prototype.getSuperValue = function()&#123;</div><div class="line">  return this.prototype;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function SubType() &#123;</div><div class="line">  this.subproperty = false;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">SubType.prototype = new SuperType(); //subType 继承了 SuperType</div><div class="line"></div><div class="line">SubType.prototype.getSuperValue = function() &#123;</div><div class="line">  return this.subproperty;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var instance = new SubType();</div><div class="line">alert(instance.getSuperValue());//false;</div></pre></td></tr></table></figure>
@@ -1091,7 +1100,7 @@ return 0;
     
     <entry>
       <title><![CDATA[淘宝双飞翼圣杯布局详解]]></title>
-      <url>https://zaynex.github.io/2016/08/01/2016-08-01-%E6%B7%98%E5%AE%9D%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E8%AF%A6%E8%A7%A3/</url>
+      <url>https://zaynex.github.io/2016/08/01/%E6%B7%98%E5%AE%9D%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E8%AF%A6%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>因为中间部分内容对用户来说是最要紧的，我们把中间的部分放到DOM结构前最先解析。<br><a id="more"></a></p>
 <h2 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">		*&#123;</div><div class="line">			padding: 0;margin: 0;</div><div class="line">		&#125;</div><div class="line">		#hd,#foot&#123;</div><div class="line">			width: 100%;background: #666;clear: both;height: 30px;</div><div class="line">		&#125;</div><div class="line">		.main,.sub,.extra&#123;</div><div class="line">			height: 300px;</div><div class="line">			float: left;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		.main&#123;</div><div class="line">			width: 100%;</div><div class="line">			background: red;</div><div class="line">		&#125;</div><div class="line">		.sub&#123;</div><div class="line">			width: 190px;</div><div class="line">			background: yellow;</div><div class="line">		&#125;</div><div class="line">		.extra&#123;</div><div class="line">			width: 190px;</div><div class="line">			background: pink;</div><div class="line">		&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=&quot;page&quot;&gt;</div><div class="line">		&lt;div id=&quot;hd&quot;&gt;我是头部&lt;/div&gt;</div><div class="line">		&lt;div id=&quot;bd&quot;&gt;</div><div class="line">			&lt;div class=&quot;main&quot;&gt;我是中间&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;sub&quot;&gt;我是左边&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;extra&quot;&gt;我是右边&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;div id=&quot;foot&quot;&gt;我是底部&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
 <p><img src="http://note.youdao.com/yws/res/32095/WEBRESOURCEaf26b1d50d40bc30d6fe39ec8ea22b4d" alt="image"></p>
@@ -1139,7 +1148,7 @@ return 0;
     
     <entry>
       <title><![CDATA[Flex布局2]]></title>
-      <url>https://zaynex.github.io/2016/08/01/2016-08-01-flex%E5%B8%83%E5%B1%802/</url>
+      <url>https://zaynex.github.io/2016/08/01/flex%E5%B8%83%E5%B1%802/</url>
       <content type="html"><![CDATA[<p>一张麻将牌筒子最多有9个点。<br><img src="https://davidwalsh.name/demo/flexbox-dice.png" alt="image"><br><a id="more"></a><br>图为1,2,3,4筒</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
 <p>上面代码中，div元素（代表筒子的一个面）是Flex容器，span元素（代表一个点）是Flex项目。如果有多个项目，就要添加多个span元素，以此类推。</p>
@@ -1204,7 +1213,7 @@ return 0;
     
     <entry>
       <title><![CDATA[Flex布局1]]></title>
-      <url>https://zaynex.github.io/2016/08/01/2016-08-01-flex%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/</url>
+      <url>https://zaynex.github.io/2016/08/01/flex%E5%B8%83%E5%B1%80%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h2 id="Flex术语及模型"><a href="#Flex术语及模型" class="headerlink" title="Flex术语及模型"></a>Flex术语及模型</h2><p>flex布局模型不同于块和内联模型布局，块和内联模型的布局计算依赖于块和内联的流方向，而flex布局依赖于flex directions.简单的说：Flexbox是布局模块，而不是一个简单的属性，它包含父元素(flex container)和子元素(flex items)的属性。<br><a id="more"></a></p>
 <ul>
 <li>主轴、主轴方向(main axis |main dimension)：用户代理沿着一个伸缩容器的主轴配置伸缩项目，主轴是主轴方向的延伸。</li>
@@ -1298,7 +1307,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计第六章学习笔记对象]]></title>
-      <url>https://zaynex.github.io/2016/07/31/2016-07-31-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%AF%B9%E8%B1%A1/</url>
+      <url>https://zaynex.github.io/2016/07/31/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E7%AC%AC%E5%85%AD%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%AF%B9%E8%B1%A1/</url>
       <content type="html"><![CDATA[<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><p>使用对象字面量的形式一个接口会创建很多对象， 会产生大量的重复代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">peroson1 = &#123;</div><div class="line">	name: &quot;Nicholas&quot;,</div><div class="line">	age: 29,</div><div class="line">	job: &quot;software Engineer&quot;,</div><div class="line"></div><div class="line">	sayName: function()&#123;</div><div class="line">		alert(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">peroson2 = &#123;</div><div class="line">	name: &quot;Zaynex&quot;,</div><div class="line">	age: 22,</div><div class="line">	job: &quot;Doctor&quot;,</div><div class="line"></div><div class="line">	sayName: function()&#123;</div><div class="line">		alert(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>如果要创建一个name叫”Zaynex”的person，又要重新定义一段大量重复的代码，于是有了工厂模式。<br><a id="more"></a></p>
 <h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><ul>
@@ -1412,7 +1421,7 @@ return 0;
     
     <entry>
       <title><![CDATA[如果生命只剩下最后一天]]></title>
-      <url>https://zaynex.github.io/2016/07/28/2016-07-28-%E5%A6%82%E6%9E%9C%E7%94%9F%E5%91%BD%E5%8F%AA%E5%89%A9%E4%B8%8B%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
+      <url>https://zaynex.github.io/2016/07/28/%E5%A6%82%E6%9E%9C%E7%94%9F%E5%91%BD%E5%8F%AA%E5%89%A9%E4%B8%8B%E6%9C%80%E5%90%8E%E4%B8%80%E5%A4%A9/</url>
       <content type="html"><![CDATA[<p>如果生命只剩下最后一天，<br>我会把床上和桌子上的杂物整理干净，好让人们知道我是个爱干净的人。<br>我会穿上整洁的衣服，洗干净头发，我想在这个世界留下更多的自信。</p>
 <p>如果生命只剩下最后一天，<br>我会对每个在路上碰到的行人微笑，<br>因为我希望听到：虽不曾相识，但我依然待人友好。</p>
 <p>如果生命只剩下最后一天，<br>我会耐心得看完一本书，然后用文字的力量让我的思想在这世界停留得更久远。</p>
@@ -1425,7 +1434,7 @@ return 0;
     
     <entry>
       <title><![CDATA[在家]]></title>
-      <url>https://zaynex.github.io/2016/07/28/2016-07-28-%E5%9C%A8%E5%AE%B6/</url>
+      <url>https://zaynex.github.io/2016/07/28/%E5%9C%A8%E5%AE%B6/</url>
       <content type="html"><![CDATA[<p>最近没有怎么看书，老是在看技术书。写不出一点东西来。但是希望自己挤点时间可以好好回顾以一下今天。<br>今天家里的网不能用了。似乎也刚好指引我该怎么学习——看书记笔记。</p>
 <p>我还是第一个阶段，在量上面需要把握好，把基础的东西给学好。至少要理解这个是什么，那个是什么。<br>至于demo，继续按照百度上面的来做。多练练JS。把第七章给结束了，再去看前端微专业后面的题目。前面的布局作业还没有完成，周日找个时间解决掉。（如果空的话）</p>
 <a id="more"></a>
@@ -1442,7 +1451,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第五章学习笔记]]></title>
-      <url>https://zaynex.github.io/2016/07/27/2016-07-27-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/07/27/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var person = new Obejct()；</div></pre></td></tr></table></figure></p>
 <p>这段代码创建了Object引用类型的实例，然后把该实例保存在变量person中。使用的构造函数是Obejct,它只为新对象定义了默认的属性和方法。<br>ECMAScript提供了很多原生引用类型(如Obejct)，供开发人员使用。<br><a id="more"></a></p>
 <h2 id="Object类型"><a href="#Object类型" class="headerlink" title="Object类型"></a>Object类型</h2><p>我们看到的大多数引用类型值都是Object类型的实例。虽然Obejct的实例不具备多少功能，但对于在应用程序中存储和传输数据，是理想的选择方式。</p>
@@ -1652,7 +1661,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第四章学习笔记]]></title>
-      <url>https://zaynex.github.io/2016/07/27/2016-07-27-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%9B%9B%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/07/27/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E5%9B%9B%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>ECMAScript 变量包含两种不同数据类型的值：基本类型值和引用类型值。<br>第三章讨论了基本5种数据类型 Undefined、Null、Boolean、Number、String。<br><a id="more"></a></p>
 <h2 id="基本类型和引用类型值"><a href="#基本类型和引用类型值" class="headerlink" title="基本类型和引用类型值"></a>基本类型和引用类型值</h2><p>这5种基本数据类型是按值访问的。引用类型值是指可能由多个值构成的对象。在将一个值赋值时，解析器必须确定这个值是基本类型还是引用类型值。</p>
 <p>引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。</p>
@@ -1709,7 +1718,7 @@ return 0;
     
     <entry>
       <title><![CDATA[JavaScript高级程序设计三第三章学习笔记]]></title>
-      <url>https://zaynex.github.io/2016/07/27/2016-07-27-JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%89%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      <url>https://zaynex.github.io/2016/07/27/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E7%AC%AC%E4%B8%89%E7%AB%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<h2 id="数据类型和操作符"><a href="#数据类型和操作符" class="headerlink" title="数据类型和操作符"></a>数据类型和操作符</h2><h3 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h3><p>typeof是字符串。<br>调用typeof null 会返回 “object”，因为特殊值null被认为是一个空的对象引用。<br>typeof也可以检测”function”<br>Safari5及之前版本、Chrome7及之前在对正则表达式调用typeof会返回 “function”</p>
 <p>对未初始化的变量执行typeof操作符会返回undefined，对已初始化但未声明的变量执行typeof也会返回undefined.因此，建议显式初始化变量。</p>
 <p>undefined 是派生自 null 的，因此ECMA-262规定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(null == undefined);//true;</div></pre></td></tr></table></figure></p>
@@ -1786,7 +1795,7 @@ return 0;
     
     <entry>
       <title><![CDATA[函数进阶]]></title>
-      <url>https://zaynex.github.io/2016/07/26/2016-07-26-%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/</url>
+      <url>https://zaynex.github.io/2016/07/26/%E5%87%BD%E6%95%B0%E8%BF%9B%E9%98%B6/</url>
       <content type="html"><![CDATA[<h2 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h2><h3 id="函数声明定义函数的特点"><a href="#函数声明定义函数的特点" class="headerlink" title="函数声明定义函数的特点"></a>函数声明定义函数的特点</h3><p>函数定义会被前置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	add1(1);</div><div class="line">	function add1(i)&#123;</div><div class="line">		console.log(&quot;函数声明：&quot; +(i+1));</div><div class="line">	&#125;</div><div class="line">	//函数声明：2</div><div class="line">	var add2 = function(i)&#123;</div><div class="line">		console.log(&quot;函数表达式：&quot; +(i+2));</div><div class="line">	&#125;</div><div class="line">	add2(1);</div><div class="line">	//demo.html:13 Uncaught TypeError: add2 is not a function</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>重新定义函数时，最后一次定义才有效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">	add1(1);</div><div class="line">	function add1(i)&#123;</div><div class="line">		console.log(&quot;函数声明：&quot; +(i+1));</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	function add1(i)&#123;</div><div class="line">		console.log(&quot;函数声明：&quot; +(i+10));</div><div class="line">	&#125;</div><div class="line">	add1(1);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>

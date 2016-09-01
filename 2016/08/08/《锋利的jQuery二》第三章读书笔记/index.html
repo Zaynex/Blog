@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery,锋利的jQuery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="节点操作创建节点123456var $li_1 = $(&amp;quot;&amp;lt;li title=&amp;apos;我是title啊&amp;apos;&amp;gt;香蕉&amp;lt;/li&amp;gt;&amp;quot;);var $li_2 = $(&amp;quot;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;quot;);$(&amp;quot;ul&amp;quot;).append($li_1);$(&amp;quot;ul&amp;quot;).append($l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《锋利的jQuery二》第三章读书笔记">
+<meta property="og:url" content="https://zaynex.github.io/2016/08/08/《锋利的jQuery二》第三章读书笔记/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="节点操作创建节点123456var $li_1 = $(&amp;quot;&amp;lt;li title=&amp;apos;我是title啊&amp;apos;&amp;gt;香蕉&amp;lt;/li&amp;gt;&amp;quot;);var $li_2 = $(&amp;quot;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;quot;);$(&amp;quot;ul&amp;quot;).append($li_1);$(&amp;quot;ul&amp;quot;).append($l">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33463/WEBRESOURCEc1c3fd684a05f91cf15b4ca2814d51df">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33466/WEBRESOURCE5bb9146b4a6650ccbc6f3a309101ff9f">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33470/WEBRESOURCEdb394827528ec1f285280618e2ceea8d">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33513/WEBRESOURCE7ff72928f06398352dbcdc71eef691a6">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33561/WEBRESOURCEa6889b3faea43f6066a42a29a245af85">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33564/WEBRESOURCEbd8c0e5a02db7233ec80303bd24bf19a">
+<meta property="og:updated_time" content="2016-08-08T14:35:36.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《锋利的jQuery二》第三章读书笔记">
+<meta name="twitter:description" content="节点操作创建节点123456var $li_1 = $(&amp;quot;&amp;lt;li title=&amp;apos;我是title啊&amp;apos;&amp;gt;香蕉&amp;lt;/li&amp;gt;&amp;quot;);var $li_2 = $(&amp;quot;&amp;lt;li&amp;gt;&amp;lt;/li&amp;gt;&amp;quot;);$(&amp;quot;ul&amp;quot;).append($li_1);$(&amp;quot;ul&amp;quot;).append($l">
+<meta name="twitter:image" content="http://note.youdao.com/yws/res/33463/WEBRESOURCEc1c3fd684a05f91cf15b4ca2814d51df">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/08/08/《锋利的jQuery二》第三章读书笔记/"/>
+
+  <title> 《锋利的jQuery二》第三章读书笔记 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《锋利的jQuery二》第三章读书笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-08T22:30:29+08:00" content="2016-08-08">
+              2016-08-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h2><h3 id="创建节点"><a href="#创建节点" class="headerlink" title="创建节点"></a>创建节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var $li_1 = $(&quot;&lt;li title=&apos;我是title啊&apos;&gt;香蕉&lt;/li&gt;&quot;);</div><div class="line">var $li_2 = $(&quot;&lt;li&gt;&lt;/li&gt;&quot;);</div><div class="line">$(&quot;ul&quot;).append($li_1);</div><div class="line">$(&quot;ul&quot;).append($li_2);</div><div class="line">//也可以是下面这样</div><div class="line">$(&quot;ul&quot;).append(&apos;&lt;li title=&quot;我是title啊&quot;&gt;柠檬&lt;/li&gt;&apos;)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="插入节点"><a href="#插入节点" class="headerlink" title="插入节点"></a>插入节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> $(function()&#123;</div><div class="line"> /*</div><div class="line"> 	var $li = $(&quot;ul li:eq(2)&quot;);</div><div class="line"> 	var li_txt = $li.text();</div><div class="line"> 	alert(li_txt);</div><div class="line"> 	var $para = $(&quot;p&quot;);</div><div class="line"> 	var p_txt = $para.attr(&quot;title&quot;);</div><div class="line"> 	alert(p_txt);</div><div class="line"> */</div><div class="line">var $li_1 = $(&quot;&lt;li title=&apos;我是title啊&apos;&gt;香蕉&lt;/li&gt;&quot;);</div><div class="line">var $li_2 = $(&quot;&lt;li title=&apos;titile&apos;&gt;柠檬&lt;/li&gt;&quot;);</div><div class="line">var $li_3 = $(&quot;&lt;li title=&apos;title&apos;&gt;其他&lt;/li&gt;&quot;)</div><div class="line"></div><div class="line">var $parent = $(&quot;ul&quot;);</div><div class="line">var $two_li = $(&quot;ul li:eq(1)&quot;); //(index从0开始)</div><div class="line">$parent.append($li_1);</div><div class="line">$parent.prepend($li_2);</div><div class="line">$li_3.insertAfter($two_li); //执行这段代码的时候保存最初的状态，不会因为后来的插入而影响</div><div class="line"></div><div class="line"> &#125;)</div><div class="line"> &lt;/script&gt;</div><div class="line">	&lt;p title=&quot;选择你最喜欢的水果.&quot; &gt;你最喜欢的水果是?&lt;/p&gt;</div><div class="line">	&lt;ul&gt;</div><div class="line">	  &lt;li title=&apos;苹果&apos;&gt;苹果&lt;/li&gt;</div><div class="line">	  &lt;li title=&apos;橘子&apos;&gt;橘子&lt;/li&gt;</div><div class="line">	  &lt;li title=&apos;菠萝&apos;&gt;菠萝&lt;/li&gt;</div><div class="line">	&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33463/WEBRESOURCEc1c3fd684a05f91cf15b4ca2814d51df" alt="image"></p>
+<h4 id="节点交换"><a href="#节点交换" class="headerlink" title="节点交换"></a>节点交换</h4><p><img src="http://note.youdao.com/yws/res/33466/WEBRESOURCE5bb9146b4a6650ccbc6f3a309101ff9f" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var $one_li = $(&quot;ul li:eq(1)&quot;);</div><div class="line">var $two_li = $(&quot;ul li:eq(2)&quot;);</div><div class="line">$two_li.insertBefore($one_li);</div></pre></td></tr></table></figure></p>
+<p><img src="http://note.youdao.com/yws/res/33470/WEBRESOURCEdb394827528ec1f285280618e2ceea8d" alt="image"></p>
+<h3 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var $li = $(&quot;ul li:eq(1)&quot;).remove();</div><div class="line">$li.appendTo(&apos;ul&apos;);//与append()的使用相反</div><div class="line">，结果相同;</div></pre></td></tr></table></figure>
+<h4 id="detach-与remove-差异"><a href="#detach-与remove-差异" class="headerlink" title="detach()与remove()差异"></a>detach()与remove()差异</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$(&quot;ul li&quot;).click(function() &#123;</div><div class="line">	alert($(this).html());</div><div class="line">&#125;);</div><div class="line">var $li = $(&quot;ul li:eq(1)&quot;).detach();</div><div class="line">$li.appendTo(&apos;ul&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>remove()后再重新插入节点后的事件将失效，但是detach()会保留</p>
+<h4 id="empty"><a href="#empty" class="headerlink" title="empty()"></a>empty()</h4><p>清空节点内容。</p>
+<h3 id="复制节点"><a href="#复制节点" class="headerlink" title="复制节点"></a>复制节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;ul li&quot;).click(function() &#123;</div><div class="line">	$(this).clone().appendTo(&apos;ul&apos;);</div><div class="line">	//如果是clone(true)则复制事件</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="替换节点"><a href="#替换节点" class="headerlink" title="替换节点"></a>替换节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(&quot;p&quot;).replaceWith(&apos;&lt;strong&gt;你最不喜欢的水果是&lt;/strong&gt;&apos;);</div></pre></td></tr></table></figure>
+<p>替换前的事件都将取消，需要重新绑定事件。</p>
+<h3 id="包裹节点"><a href="#包裹节点" class="headerlink" title="包裹节点"></a>包裹节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;strong&quot;).wrap(&quot;&lt;b&gt;&lt;/b&gt;&quot;);//用p标签把strong包括起来</div><div class="line"></div><div class="line"></div><div class="line">$(&quot;strong&quot;).wrapInner(&apos;&lt;b&gt;&lt;/b&gt;&apos;);</div><div class="line">&#125;);</div><div class="line">//将匹配的元素的innerTHML加b标签</div></pre></td></tr></table></figure>
+<h3 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h3><p>JQ中有很多方法都实现了同一个函数实现getter和setter属性。比如<br>attr()、html()、text()、height()、width()方法等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:eq(1)&quot;).click(function()&#123;</div><div class="line">		alert( $(&quot;p&quot;).attr(&quot;title&quot;) );</div><div class="line">  &#125;);</div><div class="line">     //删除&lt;p&gt;元素的属性&apos;title&apos;</div><div class="line">  $(&quot;input:eq(2)&quot;).click(function()&#123;</div><div class="line">		$(&quot;p&quot;).removeAttr(&quot;title&quot;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="样式操作"><a href="#样式操作" class="headerlink" title="样式操作"></a>样式操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:eq(1)&quot;).click(function()&#123;</div><div class="line">			$(&quot;p&quot;).attr(&quot;class&quot;,&quot;high&quot;);</div><div class="line">	  &#125;);</div></pre></td></tr></table></figure>
+<p>会将原来的class属性覆盖，设置成新的</p>
+<h4 id="追加样式"><a href="#追加样式" class="headerlink" title="追加样式"></a>追加样式</h4><p>addClass()会保留原有class</p>
+<p><img src="http://note.youdao.com/yws/res/33513/WEBRESOURCE7ff72928f06398352dbcdc71eef691a6" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//重复切换样式</div><div class="line">$(&quot;input:eq(5)&quot;).click(function()&#123;</div><div class="line">	$(&quot;p&quot;).toggleClass(&quot;another&quot;);</div><div class="line">&#125;);</div><div class="line">//判断是否含有该样式</div><div class="line">$(&quot;input:eq(6)&quot;).click(function()&#123;</div><div class="line">	alert( $(&quot;p&quot;).hasClass(&quot;another&quot;) )</div><div class="line">	alert( $(&quot;p&quot;).is(&quot;.another&quot;) )</div><div class="line">	//hasClass()增强代码可读性。</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="读取内容"><a href="#读取内容" class="headerlink" title="读取内容"></a>读取内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:eq(0)&quot;).click(function()&#123;</div><div class="line">	alert(  $(&quot;p&quot;).html() );</div><div class="line">&#125;);</div><div class="line">//获取&lt;p&gt;元素的文本</div><div class="line">$(&quot;input:eq(1)&quot;).click(function()&#123;</div><div class="line">	alert(  $(&quot;p&quot;).text() );</div><div class="line">&#125;);</div><div class="line">//设置&lt;p&gt;元素的HTML代码</div><div class="line">$(&quot;input:eq(2)&quot;).click(function()&#123;</div><div class="line">	 $(&quot;p&quot;).html(&quot;&lt;strong&gt;你最喜欢的水果是?&lt;/strong&gt;&quot;);</div><div class="line">&#125;); </div><div class="line">//设置&lt;p&gt;元素的文本</div><div class="line">$(&quot;input:eq(3)&quot;).click(function()&#123;</div><div class="line">	 $(&quot;p&quot;).text(&quot;你最喜欢的水果是?&quot;);</div><div class="line">&#125;);</div><div class="line">//设置&lt;p&gt;元素的文本</div><div class="line">$(&quot;input:eq(4)&quot;).click(function()&#123;</div><div class="line">	 $(&quot;p&quot;).text(&quot;&lt;strong&gt;你最喜欢的水果是?&lt;/strong&gt;&quot;);</div><div class="line">&#125;);</div><div class="line">//获取按钮的value值</div><div class="line">$(&quot;input:eq(5)&quot;).click(function()&#123;</div><div class="line">	 alert( $(this).val() );</div><div class="line">&#125;);</div><div class="line">//设置按钮的value值</div><div class="line">$(&quot;input:eq(6)&quot;).click(function()&#123;</div><div class="line">    $(this).val(&quot;我被点击了!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>表单元素defalutValue属性表示表单的初始值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;#password&quot;).blur(function()&#123;</div><div class="line">      var txt_value =  $(this).val();</div><div class="line">	if(txt_value==&quot;&quot;)&#123;</div><div class="line">        $(this).val(this.defaultValue);</div><div class="line">	&#125; </div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>使用val()可以设置表单元素选中情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:eq(0)&quot;).click(function()&#123;</div><div class="line">	$(&quot;#single&quot;).val(&quot;选择2号&quot;);</div><div class="line">&#125;);</div><div class="line">//设置多选下拉框选中</div><div class="line">$(&quot;input:eq(1)&quot;).click(function()&#123;</div><div class="line">    $(&quot;#multiple&quot;).val([&quot;选择2号&quot;, &quot;选择3号&quot;]);</div><div class="line">&#125;);</div><div class="line">//设置单选框和多选框选中</div><div class="line">$(&quot;input:eq(2)&quot;).click(function()&#123;</div><div class="line"> 	$(&quot;:checkbox&quot;).val([&quot;check2&quot;,&quot;check3&quot;]);</div><div class="line">	$(&quot;:radio&quot;).val([&quot;radio2&quot;]);</div><div class="line">&#125;);  </div><div class="line">$(&quot;input:eq(0)&quot;).click(function()&#123;</div><div class="line">    $(&quot;#single option&quot;).removeAttr(&quot;selected&quot;);  //移除属性selected</div><div class="line">	$(&quot;#single option:eq(1)&quot;).attr(&quot;selected&quot;,true); //设置属性selected</div><div class="line">&#125;);</div><div class="line">//设置多选下拉框选中</div><div class="line">$(&quot;input:eq(1)&quot;).click(function()&#123;</div><div class="line">    $(&quot;#multiple option&quot;).removeAttr(&quot;selected&quot;);  //移除属性selected</div><div class="line">	$(&quot;#multiple option:eq(2)&quot;).attr(&quot;selected&quot;,true);//设置属性selected</div><div class="line">	$(&quot;#multiple option:eq(3)&quot;).attr(&quot;selected&quot;,true);//设置属性selected</div><div class="line">&#125;);</div><div class="line">//设置单选框和多选框选中</div><div class="line">$(&quot;input:eq(2)&quot;).click(function()&#123;</div><div class="line">	$(&quot;:checkbox&quot;).removeAttr(&quot;checked&quot;); //移除属性checked</div><div class="line">	$(&quot;:radio&quot;).removeAttr(&quot;checked&quot;); //移除属性checked</div><div class="line">	$(&quot;[value=check2]:checkbox&quot;).attr(&quot;checked&quot;,true);//设置属性checked</div><div class="line">	$(&quot;[value=check3]:checkbox&quot;).attr(&quot;checked&quot;,true);//设置属性checked</div><div class="line">	$(&quot;[value=radio2]:radio&quot;).attr(&quot;checked&quot;,true);//设置属性checked</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="遍历节点"><a href="#遍历节点" class="headerlink" title="遍历节点"></a>遍历节点</h3><p>children()只获取子元素的个数，不包括后代元素。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var $body = $(&quot;body&quot;).children();</div><div class="line"> var $p = $(&quot;p&quot;).children();</div><div class="line"> var $ul = $(&quot;ul&quot;).children();</div><div class="line"> alert( $body.length );  // &lt;body&gt;元素下有2个子元素</div><div class="line"> alert( $p.length );     // &lt;p&gt;元素下有0个子元素</div><div class="line"> alert( $ul.length );    // &lt;p&gt;元素下有3个子元素</div><div class="line"> for(var i=0;i&lt; $ul.length;i++)&#123;</div><div class="line">     alert( $ul[i].innerHTML );</div><div class="line"> &#125;</div><div class="line">&lt;p title=&quot;选择你最喜欢的水果.&quot; &gt;你最喜欢的水果是?&lt;/p&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li title=&apos;苹果&apos;&gt;苹果&lt;/li&gt;</div><div class="line">  &lt;li title=&apos;橘子&apos;&gt;橘子&lt;/li&gt;</div><div class="line">  &lt;li title=&apos;菠萝&apos;&gt;菠萝&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="获取邻近节点"><a href="#获取邻近节点" class="headerlink" title="获取邻近节点"></a>获取邻近节点</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var $p1 = $(&quot;p&quot;).next();</div><div class="line">alert( $p1.html() );  //  紧邻&lt;p&gt;元素后的同辈元素</div><div class="line">var $ul = $(&quot;ul&quot;).prev();</div><div class="line">alert( $ul.html() );  //  紧邻&lt;ul&gt;元素前的同辈元素</div><div class="line">var $p2 = $(&quot;p&quot;).siblings();</div><div class="line">alert( $p2.html() );  //  紧邻&lt;p&gt;元素的唯一同辈元素</div><div class="line">&lt;p title=&quot;选择你最喜欢的水果.&quot; &gt;你最喜欢的水果是?&lt;/p&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li title=&apos;苹果&apos;&gt;苹果&lt;/li&gt;</div><div class="line">  &lt;li title=&apos;橘子&apos;&gt;橘子&lt;/li&gt;</div><div class="line">  &lt;li title=&apos;菠萝&apos;&gt;菠萝&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<p>注意:Siblings()方法会优先获取前面的元素，如果没有前面的元素，则获取后面相邻的元素（包括该元素的后代元素）。</p>
+<h3 id="closest"><a href="#closest" class="headerlink" title="closest()"></a>closest()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(document).bind(&quot;click&quot;, function (e) &#123;</div><div class="line">	$(e.target).closest(&quot;li&quot;).css(&quot;color&quot;,&quot;red&quot;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>JQ的bind() 方法为被选元素添加一个或多个事件处理程序，并规定事件发生时运行的函数。</p>
+<p>closest()方法用于取得最近的匹配元素，包括自身。</p>
+<h4 id="closest-于其他方法"><a href="#closest-于其他方法" class="headerlink" title="closest()于其他方法"></a>closest()于其他方法</h4><p><img src="http://note.youdao.com/yws/res/33561/WEBRESOURCEa6889b3faea43f6066a42a29a245af85" alt="image"></p>
+<h3 id="CSS-DOM"><a href="#CSS-DOM" class="headerlink" title="CSS-DOM"></a>CSS-DOM</h3><p><img src="http://note.youdao.com/yws/res/33564/WEBRESOURCEbd8c0e5a02db7233ec80303bd24bf19a" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$(&quot;input:eq(3)&quot;).click(function()&#123;</div><div class="line">	  alert( $(&quot;p&quot;).height() );//带px</div><div class="line">&#125;);</div><div class="line">alert(  $(&quot;p&quot;).css(&quot;height&quot;) );//不带px</div></pre></td></tr></table></figure>
+<h3 id="视窗"><a href="#视窗" class="headerlink" title="视窗"></a>视窗</h3><p>offset()——获取元素在当前视窗的相对偏移。</p>
+<p>scrollTop()——获取元素的滚动条距离顶端的距离。</p>
+<p>解决mouseover时出现自带的title属性，这里在移出时再给它加上title是因为防止下次移入时title为空。<br>增加10px和20px距离，不会遮挡文字。<br>增加mousemove鼠标在移动时依然显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$(function()&#123;</div><div class="line">    var x = 10;</div><div class="line">	var y = 20;</div><div class="line">	$(&quot;a.tooltip&quot;).mouseover(function(e)&#123;</div><div class="line">       	this.myTitle = this.title;</div><div class="line">		this.title = &quot;&quot;;	</div><div class="line">	    var tooltip = &quot;&lt;div id=&apos;tooltip&apos;&gt;&quot;+ this.myTitle +&quot;&lt;\/div&gt;&quot;; //创建 div 元素</div><div class="line">		$(&quot;body&quot;).append(tooltip);	//把它追加到文档中</div><div class="line">		$(&quot;#tooltip&quot;)</div><div class="line">			.css(&#123;</div><div class="line">				&quot;top&quot;: (e.pageY+y) + &quot;px&quot;,</div><div class="line">				&quot;left&quot;: (e.pageX+x)  + &quot;px&quot;</div><div class="line">			&#125;).show(&quot;fast&quot;);	  //设置x坐标和y坐标，并且显示</div><div class="line">    &#125;).mouseout(function()&#123;		</div><div class="line">		this.title = this.myTitle;</div><div class="line">		$(&quot;#tooltip&quot;).remove();   //移除 </div><div class="line">    &#125;).mousemove(function(e)&#123;</div><div class="line">		$(&quot;#tooltip&quot;)</div><div class="line">			.css(&#123;</div><div class="line">				&quot;top&quot;: (e.pageY+y) + &quot;px&quot;,</div><div class="line">				&quot;left&quot;: (e.pageX+x)  + &quot;px&quot;</div><div class="line">			&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>从一个title显示可以改进为</p>
+<h4 id="图片提示效果"><a href="#图片提示效果" class="headerlink" title="图片提示效果"></a>图片提示效果</h4><p>要点：给放大的图片容器设定样式<br>display:none;<br>position:absolute;<br>left和right为鼠标点击的位置。<br>利用show()来做动画播放<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">$(function()&#123;</div><div class="line">	var x = 10;</div><div class="line">	var y = 20;</div><div class="line">	$(&quot;a.tooltip&quot;).mouseover(function(e)&#123;</div><div class="line">		this.myTitle = this.title;</div><div class="line">		this.title = &quot;&quot;;	</div><div class="line">		var imgTitle = this.myTitle? &quot;&lt;br/&gt;&quot; + this.myTitle : &quot;&quot;;</div><div class="line">		var tooltip = &quot;&lt;div id=&apos;tooltip&apos;&gt;&lt;img src=&apos;&quot;+ this.href +&quot;&apos; alt=&apos;产品预览图&apos;/&gt;&quot;+imgTitle+&quot;&lt;\/div&gt;&quot;; //创建 div 元素</div><div class="line">		$(&quot;body&quot;).append(tooltip);	//把它追加到文档中						 </div><div class="line">		$(&quot;#tooltip&quot;)</div><div class="line">			.css(&#123;</div><div class="line">				&quot;top&quot;: (e.pageY+y) + &quot;px&quot;,</div><div class="line">				&quot;left&quot;:  (e.pageX+x)  + &quot;px&quot;</div><div class="line">			&#125;).show(&quot;fast&quot;);	  //设置x坐标和y坐标，并且显示</div><div class="line">    &#125;).mouseout(function()&#123;</div><div class="line">		this.title = this.myTitle;	</div><div class="line">		$(&quot;#tooltip&quot;).remove();	 //移除 </div><div class="line">    &#125;).mousemove(function(e)&#123;</div><div class="line">		$(&quot;#tooltip&quot;)</div><div class="line">			.css(&#123;</div><div class="line">				&quot;top&quot;: (e.pageY+y) + &quot;px&quot;,</div><div class="line">				&quot;left&quot;:  (e.pageX+x)  + &quot;px&quot;</div><div class="line">			&#125;);</div><div class="line">	&#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag">#jQuery</a>
+          
+            <a href="/tags/锋利的jQuery/" rel="tag">#锋利的jQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/《锋利的jQuery二》第二章读书笔记/" rel="next" title="《锋利的jQuery二》第二章读书笔记">
+                <i class="fa fa-chevron-left"></i> 《锋利的jQuery二》第二章读书笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/08/《锋利的jQuery二》第四章读书笔记/" rel="prev" title="《锋利的jQuery》第四章读书笔记">
+                《锋利的jQuery》第四章读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zaynexnew"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#节点操作"><span class="nav-number">1.</span> <span class="nav-text">节点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建节点"><span class="nav-number">1.1.</span> <span class="nav-text">创建节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入节点"><span class="nav-number">1.2.</span> <span class="nav-text">插入节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#节点交换"><span class="nav-number">1.2.1.</span> <span class="nav-text">节点交换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除节点"><span class="nav-number">1.3.</span> <span class="nav-text">删除节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#detach-与remove-差异"><span class="nav-number">1.3.1.</span> <span class="nav-text">detach()与remove()差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#empty"><span class="nav-number">1.3.2.</span> <span class="nav-text">empty()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制节点"><span class="nav-number">1.4.</span> <span class="nav-text">复制节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#替换节点"><span class="nav-number">1.5.</span> <span class="nav-text">替换节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包裹节点"><span class="nav-number">1.6.</span> <span class="nav-text">包裹节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性操作"><span class="nav-number">1.7.</span> <span class="nav-text">属性操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式操作"><span class="nav-number">1.8.</span> <span class="nav-text">样式操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#追加样式"><span class="nav-number">1.8.1.</span> <span class="nav-text">追加样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取内容"><span class="nav-number">1.8.2.</span> <span class="nav-text">读取内容</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遍历节点"><span class="nav-number">1.9.</span> <span class="nav-text">遍历节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取邻近节点"><span class="nav-number">1.10.</span> <span class="nav-text">获取邻近节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#closest"><span class="nav-number">1.11.</span> <span class="nav-text">closest()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#closest-于其他方法"><span class="nav-number">1.11.1.</span> <span class="nav-text">closest()于其他方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-DOM"><span class="nav-number">1.12.</span> <span class="nav-text">CSS-DOM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视窗"><span class="nav-number">1.13.</span> <span class="nav-text">视窗</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图片提示效果"><span class="nav-number">1.13.1.</span> <span class="nav-text">图片提示效果</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

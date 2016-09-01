@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,继承,JavaScript语言精粹," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="往往会把一件完整的东西化为无数的形象。就像凹凸镜一般，从正面望去，只见一片模糊。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript语言精粹之继承">
+<meta property="og:url" content="https://zaynex.github.io/2016/08/16/JavaScript语言精粹之继承/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="往往会把一件完整的东西化为无数的形象。就像凹凸镜一般，从正面望去，只见一片模糊。">
+<meta property="og:updated_time" content="2016-08-16T15:01:56.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript语言精粹之继承">
+<meta name="twitter:description" content="往往会把一件完整的东西化为无数的形象。就像凹凸镜一般，从正面望去，只见一片模糊。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/08/16/JavaScript语言精粹之继承/"/>
+
+  <title> JavaScript语言精粹之继承 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript语言精粹之继承
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T16:34:27+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>往往会把一件完整的东西化为无数的形象。就像凹凸镜一般，从正面望去，只见一片模糊。<br><a id="more"></a></p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><p>当一个对象被创建时，Function构造器产生的函数对象会运行类似这样的一些代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.prototype = &#123;constructor: this&#125;;</div></pre></td></tr></table></figure></p>
+<p>新函数对象被赋予一个prototype属性，其值包含一个constructor属性且属性值为该新函数对象。<br>因为JS语言没有提供一种方法确定哪个函数打算用来做构造器的，所以每个函数都会得到一个prototype对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">Function.method(&quot;new&quot;, function()&#123;</div><div class="line">	//创建一个新对象，它继承自构造函数的原型对象</div><div class="line">	var that= Object.beget(this.prototype);</div><div class="line">	//调用构造函数，绑定this到新对象上</div><div class="line">	var other= this.apply(that, arguments);</div><div class="line">	//如果它的返回值不是一个对象，就返回该新对象</div><div class="line">	return (typeof other === &apos;object&apos; &amp;&amp; other) || that;</div><div class="line">&#125;);</div><div class="line">//定义个构造器并扩充它的原型</div><div class="line">var Mammal = function(name) &#123;</div><div class="line">	this.name = name;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Mammal.prototype.get_name = function()&#123;</div><div class="line">	return this.name;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Mammal.prototype.says = function()&#123;</div><div class="line">	return this.saying || &apos;&apos;;</div><div class="line">&#125;;</div><div class="line">//我们构造一个实例</div><div class="line">var myMammal = new Mammal(&quot;Herb the Mammal&quot;);</div><div class="line">var name = myMammal.get_name();</div><div class="line">console.log(name);//Herb the Mammal</div></pre></td></tr></table></figure>
+<p>我们可以构造另一个伪类来继承Mammal，通过定义它的constructor函数并替换它的prototype为一个Mammal的实例来实现的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">var Cat = function(name)&#123;</div><div class="line">	this.name= name;</div><div class="line">	this.saying = &quot;meow&quot;;</div><div class="line">&#125;</div><div class="line">//替换Cat.prototype为一个新的Mammal实例</div><div class="line">Cat.prototype = new Mammal();</div><div class="line">//扩充原型对象，增加purr 和 get_name方法</div><div class="line"></div><div class="line">Cat.prototype.purr = function(n) &#123;</div><div class="line">	var i, s= &quot;&quot;;</div><div class="line">	for(i = 0; i &lt; n; i += 1)&#123;</div><div class="line">		if(s) &#123;</div><div class="line">			s += &apos;-&apos;;</div><div class="line">		&#125;</div><div class="line">		s += &apos;r&apos;;</div><div class="line">	&#125;</div><div class="line">	return s;</div><div class="line">&#125;;</div><div class="line">Cat.prototype.get_name = function()&#123;</div><div class="line">	return this.says() + &apos; &apos; + this.name + &apos; &apos; + this.says();</div><div class="line">&#125;;		</div><div class="line"></div><div class="line">var myCat = new Cat(&quot;Henmrimg&quot;);</div><div class="line">var says = myCat.says();</div><div class="line">var purr = myCat.purr(5);</div><div class="line">var name = myCat.get_name();</div><div class="line">console.log(name);//meow Henmrimg meow</div></pre></td></tr></table></figure>
+<h3 id="隐藏prototype"><a href="#隐藏prototype" class="headerlink" title="隐藏prototype"></a>隐藏prototype</h3><p>伪类模式本意是向面向对象靠拢，但看起来格格不入。我们可以隐藏一些细节。通过method方法定义个inherits方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Function.method(&apos;inherits&apos;, function(Parent)&#123;</div><div class="line">	this.prototype = new Parent();</div><div class="line">	return this;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>inherits和method都访问this，这将允许我们可以以级联的样式编程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var Cat = function(name)&#123;</div><div class="line">	this.name = name;</div><div class="line">	this.saying = &apos;meow&apos;;</div><div class="line">&#125;.</div><div class="line">	inherits(Mammal).method(&apos;purr&apos;, function(n)&#123;</div><div class="line">	var i , s= &quot;&quot;;</div><div class="line">	for(i=0; i&lt; n; i+=1)&#123;</div><div class="line">		if(s)&#123;</div><div class="line">			s+= &apos;-&apos;;</div><div class="line">		&#125;</div><div class="line">		s += &apos;r&apos;;</div><div class="line">	&#125;</div><div class="line">	return s;</div><div class="line">	&#125;).</div><div class="line">	method(&apos;get_name&apos;, function()&#123;</div><div class="line">		return this.says() + &apos; &apos; + this.name + &quot; &quot; + this.says();</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">var myCat = new Cat(&quot;Henmrimg&quot;);</div><div class="line">var says = myCat.says();</div><div class="line">var purr = myCat.purr(5);</div><div class="line">var name = myCat.get_name();</div><div class="line">console.log(name);</div></pre></td></tr></table></figure></p>
+<p>这样就隐藏了prototype操作细节。但问题是：<br><strong>没有私有环境，所有属性都是公开的。无法访问 super(父类)的方法。</strong></p>
+<p>使用构造函数存在一个严重的危害就是如果在调用构造函数时 忘记了在前面加一个new前缀，那么this将不会绑定到一个新对象上。它会被绑定到全局对象上。</p>
+<p>为了降低这个问题带来的风险，所有的构造函数都约定命名成首字母大写的形式。这样就可以方便检查是否少了new前缀，但是更好的方案就是根本不使用new。</p>
+<h2 id="对象说明符"><a href="#对象说明符" class="headerlink" title="对象说明符"></a>对象说明符</h2><p>在编写构造器时使其接受一个简单的对象说明符会使得构造器参数更加友好。对那个对象包含了将要构建的对象的规格说明。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var myObject = maker(f, l, m, c, s);</div><div class="line">var myObject = maker(&#123;</div><div class="line">	first: f,</div><div class="line">	last: l,</div><div class="line">	state: s,</div><div class="line">	city: c</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var myMammal = &#123;</div><div class="line">	name: &apos;Herb the mamal&apos;,</div><div class="line">	get_name: function()&#123;</div><div class="line">		return this.name;</div><div class="line">	&#125;,</div><div class="line">	says: function()&#123;</div><div class="line">		return this.saying || &apos;&apos;;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>我们先创建一个对象，一旦有了这个对象，我们就可以利用Object.beget()方法构造出更多的实例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var myCat = Object.beget(myMammal);</div><div class="line">myCat.name = &quot;Henrietta&quot;;</div><div class="line">myCat.saying = &quot;meow&quot;;</div><div class="line">myCat.purr = function(n)&#123;</div><div class="line">	var i, s = &apos;&apos;;</div><div class="line">	for(i = 0; i &lt; n; i+=1)&#123;</div><div class="line">		if(s)&#123;</div><div class="line">			s += &apos;-&apos;;</div><div class="line">		&#125;</div><div class="line">		s += &apos;r&apos;;</div><div class="line">	&#125;</div><div class="line">	return s;</div><div class="line">&#125;;</div><div class="line">myCat.get_name = function()&#123;</div><div class="line">	return this.says + &apos; &apos; + this.name + &apos; &apos; + this.says;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这种方式叫“差异化继承”。通过制定一个新的对象，指明了它与所基于的基本对象的区别。<br>其实就是原型继承，但要注意的是基础原型上的属性和方法是共享的。如果新对象修改了基础原型的属性或方法，原对象也会得到相应的呈现。</p>
+<h2 id="函数化"><a href="#函数化" class="headerlink" title="函数化"></a>函数化</h2><p>构造私有的属性。</p>
+<ol>
+<li>创建一个新对象。</li>
+<li>选择性地定义私有实例变量和方法。这些都是在函数中通过var语句定义的普通变量。</li>
+<li>给这个心对象扩充方法。这些方法将拥有特权去访问参数以及在第二部中通过var语句定义的变量。</li>
+<li>它返回那个新对象。</li>
+</ol>
+<p>函数化构造器的伪代码模板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var constructor = function(spec, my)&#123;</div><div class="line">	var that,其他私有的实例变量;</div><div class="line">	my = my || &#123;&#125;;</div><div class="line">    把共享的变量和函数添加到my中</div><div class="line">	that = 一个新对象</div><div class="line"></div><div class="line">	添加给that 的特权方法</div><div class="line">	return that;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>spec对象包含构造器需要构造一个新实例的所有信息。spec的内容可能会被复制到私有变量胡总恶化是其他函数中。或者方法可以在需要的时候访问spec的信息。<br>my对象是一个为继承链中的构造器提供秘密共享的容器。如果没有传入my对象，那就创建一个my对象。</p>
+<p>接下来扩充that。比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var methodcal = function()&#123;</div><div class="line">	...</div><div class="line">&#125;;</div><div class="line">that.methodcal = methodcal;</div></pre></td></tr></table></figure></p>
+<p>分两步定义methodcal的好处是如果其他方法想调用methodcal就可以直接调用methodcal()而不是that.methodcal()。如果该实例被破坏或篡改，甚至被that.methodcal替换掉，调用methodcal()的方法同样会继续工作，因为它们私有的methodcal不受该实例修改的影响。</p>
+<p>最后返回that。</p>
+<p>name 和 saying 属性现在是完全私有的。只有通过get_name和says两个特权方法才能访问。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var mammal = function(spec)&#123;</div><div class="line">	var that = &#123;&#125;;</div><div class="line">	that.get_name = function()&#123;</div><div class="line">		return spec.name;</div><div class="line">	&#125;;</div><div class="line">	that.says = function()&#123;</div><div class="line">		return spec.saying || &apos;&apos;;</div><div class="line">	&#125;;</div><div class="line">	return that;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var myMammal = mammal(&#123;name: &apos;Herb&apos;&#125;);</div></pre></td></tr></table></figure></p>
+<p>其实就是JS高级程序设计三中的<strong>稳妥构造函数模式。</strong></p>
+<p>在伪类模式中，构造器函数Cat不得不重复构造Mammal已经完成的工作。<br>在函数化模式中就不再需要了。因为构造器Cat将会调用构造器Mammal，让Mammal去做对象创建中的大部分工作，所以Cat只需关注自身的差异即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var cat = function(spec)&#123;</div><div class="line">	spec.saying = spec.saying || &apos;meow&apos;;</div><div class="line">	var that = mammal(spec);</div><div class="line">	that.purr = function(n)&#123;</div><div class="line">		var i, s = &apos;&apos;;</div><div class="line">		for(i=0; i &lt; n; i+=1)&#123;</div><div class="line">			if(s) &#123;</div><div class="line">				s += &apos;-&apos;;</div><div class="line">			&#125;</div><div class="line">			s += &apos;r&apos;;</div><div class="line">		&#125;</div><div class="line">		return s;</div><div class="line">	&#125;;</div><div class="line">	that.get_name = function()&#123;</div><div class="line">		return that.says() + &apos; &apos; + spec.name + &quot; &quot; + that.says();</div><div class="line">	&#125;</div><div class="line">	return that;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var myCat = cat(&#123;name: &apos;Henrietta&apos;&#125;);</div></pre></td></tr></table></figure></p>
+<p>函数化模式提供一个处理父类方法的方法。构造一个superior方法，取得一个方法名并返回调用那个方法的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">Object.method(&quot;superior&quot;, function(name)&#123;</div><div class="line">	var that = this,</div><div class="line">		method = that[name];</div><div class="line">	return function()&#123;</div><div class="line">		return method.apply(that, arguments);</div><div class="line">	&#125;;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var coolcat = function(spec)&#123;</div><div class="line">	var that = cat(spec),</div><div class="line">		super_get_name = that.superior(&quot;get_name&quot;);</div><div class="line">		that.get_name = function(n)&#123;</div><div class="line">			return &quot;like &quot; + super_get_name() + &quot; baby&quot;;</div><div class="line">		&#125;;</div><div class="line">	return that;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var myCoolCat = coolcat(&#123;name: &quot;Bix&quot;&#125;);</div><div class="line">var name = myCoolCat.get_name();</div><div class="line">console.log(name);</div></pre></td></tr></table></figure></p>
+<p>函数模块化有很多的灵活性。它不仅不像伪类模式那样需要很多功夫，还让我们更好的封装和信息隐藏，以及访问父类的方法的能力。</p>
+<h2 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h2><p>我们可以从一套部件中组合出对象来。例如构造一个能添加简单事件处理特性到任何对象上的函数。它会给对象添加一个on方法，一个fire方法和一个私有的时间注册表对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">var eventuality = function(that)&#123;</div><div class="line">	var registry = &#123;&#125;;</div><div class="line">	that.fire = function(event)&#123;</div><div class="line">	//在一个对象上触发一个事件，该事件可以是一个包含事件名称的字符串，或者是一个拥有抱哈事件名称的type属性的对象。</div><div class="line">	//通过on方法注册是事件处理程序中匹配事件名称的函数将被调用。</div><div class="line">	//</div><div class="line">		var array,</div><div class="line">			func,</div><div class="line">			handler,</div><div class="line">			i,</div><div class="line">			type = typeof event === &apos;string&apos; ? event : event.type;</div><div class="line">			//如果这个事件存在一组事件处理程序，那么遍历它们并按顺序依次执行</div><div class="line">			if（registry.hasOwnProperty(type) &#123;</div><div class="line">				array = registry[type];</div><div class="line">				for(i = 0; i &lt; array.length ;i ++)&#123;</div><div class="line">					handler = array[i];</div><div class="line"></div><div class="line">					func = handler.method;</div><div class="line">					if (typeof func === &apos;string&apos;) &#123;</div><div class="line">						func = this[func];</div><div class="line">					&#125;</div><div class="line"></div><div class="line">					//调用一个处理程序。如果该条目包含参数，那么传递它们过去，否则传递该事件对象。</div><div class="line">					//</div><div class="line">					func.apply(this,handler.parameters || [event]);</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		return this;</div><div class="line">	&#125;;</div><div class="line">	that.on = function(type ,method, parameters)&#123;</div><div class="line">		var handler = &#123;</div><div class="line">			method: method,</div><div class="line">			parameters: parameters</div><div class="line">		&#125;;</div><div class="line">		if (registry.hasOwnProperty(type)) &#123;</div><div class="line">			registry[type].push(handler);</div><div class="line">		&#125; else &#123;</div><div class="line">			registry[type] = [handler]</div><div class="line">		&#125;</div><div class="line">		return this;</div><div class="line">	&#125;;</div><div class="line">	return that;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/继承/" rel="tag">#继承</a>
+          
+            <a href="/tags/JavaScript语言精粹/" rel="tag">#JavaScript语言精粹</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/15/啊哈算法之排序/" rel="next" title="啊哈算法之排序">
+                <i class="fa fa-chevron-left"></i> 啊哈算法之排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/16/啊哈算法之队列和栈/" rel="prev" title="啊哈算法之队列和栈">
+                啊哈算法之队列和栈 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+
+<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="请将此处替换成文章在你的站点中的ID" data-title="请替换成文章的标题" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zaynexnew"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类"><span class="nav-number">1.</span> <span class="nav-text">伪类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏prototype"><span class="nav-number">1.1.</span> <span class="nav-text">隐藏prototype</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象说明符"><span class="nav-number">2.</span> <span class="nav-text">对象说明符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型"><span class="nav-number">3.</span> <span class="nav-text">原型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数化"><span class="nav-number">4.</span> <span class="nav-text">函数化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部件"><span class="nav-number">5.</span> <span class="nav-text">部件</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
