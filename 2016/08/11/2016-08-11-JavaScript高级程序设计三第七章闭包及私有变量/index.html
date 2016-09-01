@@ -1,0 +1,821 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,JavaScript高级程序设计三,闭包,模块模式,单例,私有变量," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="闭包有权访问另一个函数作用域中的变量的函数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计三第七章闭包及私有变量">
+<meta property="og:url" content="http://yoursite.com/2016/08/11/2016-08-11-JavaScript高级程序设计三第七章闭包及私有变量/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="闭包有权访问另一个函数作用域中的变量的函数。">
+<meta property="og:updated_time" content="2016-08-11T03:25:02.109Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计三第七章闭包及私有变量">
+<meta name="twitter:description" content="闭包有权访问另一个函数作用域中的变量的函数。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/11/2016-08-11-JavaScript高级程序设计三第七章闭包及私有变量/"/>
+
+  <title> JavaScript高级程序设计三第七章闭包及私有变量 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计三第七章闭包及私有变量
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T11:19:58+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>有权访问另一个函数作用域中的变量的函数。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function createComparisonFunction (propertyName) &#123;</div><div class="line">	// body...</div><div class="line">	return function(object1, object2)&#123;</div><div class="line">		var value1 = object1[propertyName];</div><div class="line">		var value2 = object2[propertyName];</div><div class="line"></div><div class="line">		if(value1 &lt; value2) &#123;</div><div class="line">			return -1;</div><div class="line">		&#125;  else if (value2 &lt; value1)&#123;</div><div class="line">			return 1;</div><div class="line">		&#125; else &#123;</div><div class="line">			return 0;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当函数被调用的时候，会创建一个执行环境及相应的作用域链。然后使用arguments和其他命名参数来初始化活动对象。但在作用域链中，<br>外部函数的活动对象始终处于第二位，外部函数的外部函数的活动对象处于第三位……直至作为作用域链重点的全局执行环境</p>
+<p>有了匿名函数调用后，活动对象不会被销毁。作用域链仍然引用这个活动对象。因此当函数执行完后，其执行环境的作用域链会被销毁，<br>但它的活动对象仍留在内存中。</p>
+<p>闭包会占用较多的内存，所以要慎重使用</p>
+<h3 id="闭包与变量"><a href="#闭包与变量" class="headerlink" title="闭包与变量"></a>闭包与变量</h3><p>作用域链的这种配置机制引出了一个值得注意的副作用，即闭包只能取得包含函数中任何变量的最后一个值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function createFunctions() &#123;</div><div class="line">	var result = new Array();</div><div class="line"></div><div class="line">	for(var i=0; i &lt; 0;i++) &#123;</div><div class="line">		result[i] = function()&#123;</div><div class="line">			return i;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>变量i的值为10.返回的都是10.</p>
+<p>通过匿名函数强制让闭包行为符合预期<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function createFunctions()&#123;</div><div class="line">	var result = new Array();</div><div class="line"></div><div class="line">	for(var i=0;i &lt; 10; i++) &#123;</div><div class="line">		result[i] = function(num) &#123;</div><div class="line">			return  function()&#123;</div><div class="line">				return num;</div><div class="line">			&#125;;</div><div class="line">		&#125;(i);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>将匿名函数的结果返回给数组。在调用匿名函数时，我们传入变量i.由于函数时按值传递，所以就会将变量i的当前值复制给参数num,<br>在这个匿名函数内部，又创建并返回了一个访问 num 的闭包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function assignHandle()	&#123;</div><div class="line">	var element = document.getElementById(&quot;someElement&quot;);</div><div class="line">	element.onclick = function()&#123;</div><div class="line">		alert(element.id);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建了一个作为element 元素事件处理邓旭的闭包。闭包又创建另一个循环引用。<br>由于匿名函数保存了一个队 assignHandle() 的活动对象的引用。因此就会导致无法减少element的引用数<br>element 的引用数至少为1，因此它占用的内存就不会被回收。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function assignHandle()&#123;</div><div class="line">	var element = document.getElementById(&quot;someElement&quot;);</div><div class="line">	var id = element.id;</div><div class="line"></div><div class="line">	element.onlick = function()&#123;</div><div class="line">		alert(id);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	element = null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>把 element.id 的一个副本保存在一个变量中。并且在闭包中引用该变量消除循环引用。仅仅做到这一步还无法解决内存泄漏问题</p>
+<p>闭包会引用包含函数的整个活动对象，而其中包含着element。<br>因此有必要将 element  设置为 null;</p>
+<h2 id="模仿块级作用域"><a href="#模仿块级作用域" class="headerlink" title="模仿块级作用域"></a>模仿块级作用域</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function  outPutNumbers(court) &#123;</div><div class="line">	for (var i=0; i&lt;court; i++)&#123;</div><div class="line">		alert(i);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	var i;</div><div class="line">	alert(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在其他语言中，由于块级作用域的存在，i变量出了for循环之后就被销毁了。但JS不会，以为他没有块级作用域。</p>
+<p>JS不会告诉你是否多次声明了同一变量，它只会对后续的声明视而不见，但会执行声明中的变量初始化。 匿名函数可以模仿块级作用域解决这个问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">	//块级作用域</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p><strong>函数声明后面不能跟原括号，但是函数表达式可以</strong>，所以将函数声明转化为函数表达式，只要加() 即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function outPutNumbers(court) &#123;</div><div class="line">		(function()&#123;</div><div class="line">			for (var i=0; i &lt; court; i++) &#123;</div><div class="line">				alert(i);</div><div class="line">			&#125;</div><div class="line">		&#125;)();</div><div class="line"></div><div class="line">		alert(i); //错误</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在for循环外部插入一二私有作用域，在匿名函数中定义的任何变量，都会在执行结束后被销毁。 i只能在循环中使用。</p>
+<h2 id="私有变量"><a href="#私有变量" class="headerlink" title="私有变量"></a>私有变量</h2><p>在函数中定义的变量都可以认为是私有变量。（包括函数参数、局部变量、以及在函数内部定义的其他函数。</p>
+<h3 id="创建访问私有变量的公共方法"><a href="#创建访问私有变量的公共方法" class="headerlink" title="创建访问私有变量的公共方法"></a>创建访问私有变量的公共方法</h3><p>有权访问私有变量和私有函数的公共方法称为特权函数，因为外部函数无法访问内部函数，我们就借助闭包返回函数得以访问。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function MyObject() &#123;</div><div class="line">	var privateVariable = 10;</div><div class="line"></div><div class="line">	function privateFunction()&#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	this.publicMethod = function() &#123;</div><div class="line">		privateVariable++;</div><div class="line">		return privateFunction();</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">var new1 = new MyObject();</div><div class="line">document.writeln(new1.publicMethod());</div></pre></td></tr></table></figure></p>
+<p>在创建MyObject的实例new1后，除了使用publicMethod方法外，没有任何办法可以直接访问 privateVariable和privateFunction()。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">	this.getName = function() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;;</div><div class="line">	this.setName = function(value)&#123;</div><div class="line">		name = value;</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var person1 = new Person(&quot;Zaynex&quot;); </div><div class="line">alert(person1.getName()); //Zaynex</div><div class="line">person1.setName(&quot;Greg&quot;);</div><div class="line">alert(person1.getName());//Greg</div></pre></td></tr></table></figure></p>
+<p>两个方法都在构造函数内部定义，它们作为闭包能够通过作用域链访问name。私有变量name在Person的不同实例中都不相同，因为每次调用构造和桉树都会重新创建这两个方法。<br>构造函数模式也有缺点：针对每个实例都会创建同一组新方法，而使用静态私有变量可以避免这个问题。</p>
+<h3 id="静态私有变量"><a href="#静态私有变量" class="headerlink" title="静态私有变量"></a>静态私有变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">	var privateVariable = 10;</div><div class="line">	function privateFunction() &#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//构造函数</div><div class="line">	MyObject = function()&#123;</div><div class="line">	&#125;;</div><div class="line">	//公有/特权方法</div><div class="line">	MyObject.prototype.publicMethod = function()&#123;</div><div class="line">		privateVariable++;</div><div class="line">		return privateFunction();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>这个模式创建了私有作用域。定义了私有变量和私有函数，以及构造函数。公有方法是定义在原型上的（原型模式）。<br>需要注意的是，这个模式在定义构造函数时并没有使用函数声明，如果使用函数声明那么 MyObject构造函数就成了局部变量。所以没有使用var关键字去声明。</p>
+<p><strong>初始化未经声明的变量，总是会创建一个全局变量</strong>。<br>但在严格模式下，给未经声明的变量赋值会导致错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;use strict&quot;;</div><div class="line">//...这里放原先的代码</div><div class="line">//Uncaught ReferenceError: MyObject is not defined</div></pre></td></tr></table></figure></p>
+<p>这个模式与构造函数定义特权方法最主要的区别就是私有变量和函数都是由实例共享的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">	var name = &quot;&quot;;</div><div class="line">	Person = function(value) &#123;</div><div class="line">		name = value;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Person.prototype.getName = function()&#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line">	Person.prototype.setName = function(value) &#123;</div><div class="line">		name = value;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;)();</div><div class="line"></div><div class="line">var person1 = new Person(&quot;Zaynex&quot;);</div><div class="line">document.writeln(person1.getName());</div><div class="line">//Zaynex</div><div class="line">person1.setName(&quot;Simon&quot;);</div><div class="line">document.writeln(person1.getName());</div><div class="line">//Simon</div><div class="line"></div><div class="line">var person2 = new Person(&quot;Michael&quot;);</div><div class="line">document.writeln(person1.getName());</div><div class="line">document.writeln(person2.getName());</div><div class="line">//Michael </div><div class="line">//Michael</div></pre></td></tr></table></figure></p>
+<p>这种方式创建私有变量会因为使用原型而增进代码的复用，但每个实例都没有自己的私有变量。</p>
+<h3 id="模块模式"><a href="#模块模式" class="headerlink" title="模块模式"></a>模块模式</h3><p>模块模式是为单例模式创建私有变量和特权方法。<strong>所谓单例，指的就是只有一个实例的对象。</strong><br>通过JS是以对象字面量的方式创建单例的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var singleton = &#123;</div><div class="line">	name : value,</div><div class="line">	method: function()&#123;</div><div class="line">		//code...</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>模块模式为单例添加自由变量和特权方法使其得到增强。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var singleton = function()&#123;</div><div class="line">	//私有方法</div><div class="line">	var privateVariable = 10;</div><div class="line">	function privateFunction()&#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	//特权、公有方法</div><div class="line">	return &#123;</div><div class="line">		publicProperty: true,</div><div class="line">		publicMethod: function()&#123;</div><div class="line">			privateVariable++;</div><div class="line">			return privateFunction();</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+<p>在模块模式章使用了一个返回对象的匿名函数。首先定义了私有变量和函数，然后将一个对象字面量作为函数的值返回，返回的对象字面量只包含可以公开的属性和方法。<br>由于这个对象是在匿名函数内部定义的，因此它的公有方法有权访问私有变量和函数。</p>
+<p>从本质上讲，这个对象字面量定义的是单例的公共接口。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var application = function()&#123;</div><div class="line">	//私有变量和函数</div><div class="line">	var components = new Array();</div><div class="line"></div><div class="line">	//初始化</div><div class="line">	components.push(new BaseComponent());</div><div class="line"></div><div class="line">	//公共</div><div class="line">	return &#123;</div><div class="line">		getComponentCount: function()&#123;</div><div class="line">			return components.length;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		registerComponent: function(component) &#123;</div><div class="line">			if (typeof component === &apos;object&apos;) &#123;</div><div class="line">				components.push(component);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<p><strong>如果必须创建一个对象并以某些数据对其进行初始化，同时还要公开一些能够访问这些私有变量数据的方法，那么就可以使用模块模式</strong><br>以这种模式创建的每个单例都是Object的实例。所以使用instanceof检测对象类型就没必要了。</p>
+<h3 id="增强的模块模式"><a href="#增强的模块模式" class="headerlink" title="增强的模块模式"></a>增强的模块模式</h3><p>在返回对象之前加入对其增强的代码。这种增强的模块模式适合那些单例必须是某种类型的实例，同时还必须添加某些属性或方法对其加以增强的情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var singleton = function()&#123;</div><div class="line">	//私有方法、变量</div><div class="line">	var privateVariable = 10;</div><div class="line">	function privateFunction()&#123;</div><div class="line">		return false;</div><div class="line">	&#125;</div><div class="line">	//创建对象</div><div class="line">	var object = new CustomType();</div><div class="line">	//特权、公有方法</div><div class="line">	object.publicProperty = true;</div><div class="line">	object.publicMethod = function()&#123;</div><div class="line">		privateVariable++;</div><div class="line">		return privateFunction();</div><div class="line">	&#125;</div><div class="line">	return object;</div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+<p>如果前面的模块模式的例子中的application对象必须是BaseComponent的实例，那么就可以使用以下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var application = function()&#123;</div><div class="line">	//私有变量和函数</div><div class="line">	var components = new Array();</div><div class="line"></div><div class="line">	//初始化</div><div class="line">	components.push(new BaseComponent());</div><div class="line"></div><div class="line">	//创建application的一个副本</div><div class="line">	var app = new BaseComponent();</div><div class="line">	</div><div class="line"></div><div class="line">	//公共方法</div><div class="line">	app.getComponentCount = function()&#123;</div><div class="line">		return components.length;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	app.registerComponent = function(component) &#123;</div><div class="line">		if (typeof component === &apos;object&apos;) &#123;</div><div class="line">			components.push(component);</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	return app;</div><div class="line">&#125;();</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/JavaScript高级程序设计三/" rel="tag">#JavaScript高级程序设计三</a>
+          
+            <a href="/tags/闭包/" rel="tag">#闭包</a>
+          
+            <a href="/tags/模块模式/" rel="tag">#模块模式</a>
+          
+            <a href="/tags/单例/" rel="tag">#单例</a>
+          
+            <a href="/tags/私有变量/" rel="tag">#私有变量</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/11/2016-08-11-JavaScript高级程序设计三第七章函数表达式/" rel="next" title="JavaScript高级程序设计三第七章函数表达式">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计三第七章函数表达式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/2016-08-12-JavaScript高级程序设计三DOM操作（含微专业）/" rel="prev" title="JavaScript高级程序设计三DOM操作（含微专业）">
+                JavaScript高级程序设计三DOM操作（含微专业） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包"><span class="nav-number">1.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包与变量"><span class="nav-number">1.1.</span> <span class="nav-text">闭包与变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模仿块级作用域"><span class="nav-number">2.</span> <span class="nav-text">模仿块级作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有变量"><span class="nav-number">3.</span> <span class="nav-text">私有变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建访问私有变量的公共方法"><span class="nav-number">3.1.</span> <span class="nav-text">创建访问私有变量的公共方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态私有变量"><span class="nav-number">3.2.</span> <span class="nav-text">静态私有变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块模式"><span class="nav-number">3.3.</span> <span class="nav-text">模块模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增强的模块模式"><span class="nav-number">3.4.</span> <span class="nav-text">增强的模块模式</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

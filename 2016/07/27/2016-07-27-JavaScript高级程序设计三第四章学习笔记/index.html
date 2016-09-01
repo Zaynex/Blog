@@ -1,0 +1,830 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,JavaScript高级程序设计三," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="ECMAScript 变量包含两种不同数据类型的值：基本类型值和引用类型值。第三章讨论了基本5种数据类型 Undefined、Null、Boolean、Number、String。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript高级程序设计三第四章学习笔记">
+<meta property="og:url" content="http://yoursite.com/2016/07/27/2016-07-27-JavaScript高级程序设计三第四章学习笔记/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="ECMAScript 变量包含两种不同数据类型的值：基本类型值和引用类型值。第三章讨论了基本5种数据类型 Undefined、Null、Boolean、Number、String。">
+<meta property="og:updated_time" content="2016-08-08T14:25:44.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript高级程序设计三第四章学习笔记">
+<meta name="twitter:description" content="ECMAScript 变量包含两种不同数据类型的值：基本类型值和引用类型值。第三章讨论了基本5种数据类型 Undefined、Null、Boolean、Number、String。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/27/2016-07-27-JavaScript高级程序设计三第四章学习笔记/"/>
+
+  <title> JavaScript高级程序设计三第四章学习笔记 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript高级程序设计三第四章学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-27T15:57:07+08:00" content="2016-07-27">
+              2016-07-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ECMAScript 变量包含两种不同数据类型的值：基本类型值和引用类型值。<br>第三章讨论了基本5种数据类型 Undefined、Null、Boolean、Number、String。<br><a id="more"></a></p>
+<h2 id="基本类型和引用类型值"><a href="#基本类型和引用类型值" class="headerlink" title="基本类型和引用类型值"></a>基本类型和引用类型值</h2><p>这5种基本数据类型是按值访问的。引用类型值是指可能由多个值构成的对象。在将一个值赋值时，解析器必须确定这个值是基本类型还是引用类型值。</p>
+<p>引用类型的值是保存在内存中的对象。与其他语言不同，JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。</p>
+<p>当复制保存着对象的某个变量时，操作的是对象的引用。但在为对象添加属性时，操作的是实际的对象。<br>在很多语言中，字符串以对象的形式来表示，因此被认为是引用类型的，但ECMAScript抛弃了这一传统。</p>
+<h3 id="动态的属性"><a href="#动态的属性" class="headerlink" title="动态的属性"></a>动态的属性</h3><p>对于引用类型的值，我们可动态的添加属性和方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person = new Object();</div><div class="line">person.name = &quot;Zaynex&quot;;</div><div class="line">alert(person.name);</div></pre></td></tr></table></figure></p>
+<p>对于基本类型值，则不可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var name = &quot;Zaynex&quot;;</div><div class="line">name.age = &quot;29&quot;;</div><div class="line">alert(name.age);  //undefined</div></pre></td></tr></table></figure></p>
+<p>在给基本类型赋值时，两个变量不会相互影响；<br>var num1 = 5;<br>var num2 = num1;<br>num1 和 num2的值相互独立，num2的值只是num1中5的一个副本。</p>
+<p>当从一个变量向另一个变量复制引用类型的值时，同样也会将存储在变量对象中的值复制一份放到新变量分配的空间中。不同的是，这个值的副本实际是一个指针，而这个指针指存储在堆中的一个 对象。</p>
+<h3 id="复制变量值"><a href="#复制变量值" class="headerlink" title="复制变量值"></a>复制变量值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var obj1 = new Object();</div><div class="line">var obj2 = obj1;</div><div class="line">obj1.name = &quot;Zaynex&quot;;</div><div class="line">alert(obj2.name);</div></pre></td></tr></table></figure>
+<p>复制引用类型的值时，同时也会将存储在变量对象中的值也复制一份放到新变量分配的空间中。<br>不过这个值的副本实际上是一个指针，指向存储在堆中的一个对象。复制操作结束后，两个变量实际上引用同一个对象。</p>
+<h3 id="函数传参"><a href="#函数传参" class="headerlink" title="函数传参"></a>函数传参</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var count = &#123;a:1,b:1&#125;;</div><div class="line">var addOne = function(obj) &#123;</div><div class="line">  obj.a += 1;</div><div class="line">  obj.b += 1;</div><div class="line">  return obj;</div><div class="line"> &#125;</div><div class="line"> var ret = addOne(count);</div><div class="line"> console.log(ret); // a:2,b:2</div><div class="line"> console.log(count); // a:2,b:2</div></pre></td></tr></table></figure>
+<p>因为ret和count共享的是同一个堆内存，<strong> 所以他们是按共享传递的。（注意，不是按引用传递） </strong></p>
+<p>为什么不是按引用传递?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var count = &#123;a:1,b:1&#125;;</div><div class="line">var addOne = function(obj) &#123;</div><div class="line"> obj = &#123;a:2, b:2&#125;;</div><div class="line"> return obj;</div><div class="line">&#125;</div><div class="line">var ret = addOne(count);</div><div class="line">console.log(ret); // a:2,b:2</div><div class="line">console.log(count); // a:1,b:1</div></pre></td></tr></table></figure></p>
+<p> 如果count是按引用传递的，那么count会自动被修改为obj的新对象。</p>
+<p> 这说明在函数内部修改了参数的值，但原始的引用任然保持不变。<br> 实际上，在重写obj的时候，这个变量引用的就是一个局部对象了。而这个局部对象会在函数执行完毕后立即销毁。</p>
+<p> <strong> 我们可以把ECMAScript函数的参数想象成局部变量。</strong></p>
+<h3 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h3><p>这一章节在原先的笔记中有详细的记录。<br>基本类型值在内存中占据固定大小的空间，因此保存在栈内存中。<br>引用类型值是对象，保存在堆内存中。</p>
+<h2 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h2><p>执行环境（execution context)</p>
+<ul>
+<li>定义了变量或函数有权访问的其他数据，决定了他们各自的行为。</li>
+<li>每个执行环境都有一个与之关联的变量对象(variable object),环境中定义的所有变量和函数都保存在这个对象中，解析器在处理数据时会在后台使用它。</li>
+</ul>
+<p><strong> 每个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入到一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。 </strong><br>（这段话太重要了！）</p>
+<h3 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h3><p>当代码在一个环境执行时，会创建变量对象的一个作用域链(scope chain)。<br>用途：保证对执行环境有权访问的所有变量和函数的有序访问（是有序访问，说明是有顺序的）</p>
+<p>作用域链的前端，始终都是当前执行的代码所在环境的变量对象。<br>如果这个环境是函数，则将其活动对象（activation object）作为变量对象。活动对象一开始只包含一个变量，arguments对象（在全局环境中不存在）。</p>
+<p>作用域链中的下一个变量对象来自包含（外部）环境，再下一个变量对象来自下一个包含环境。这样，一直延续到全局执行环境；全局执行环境的变量对象始终都是作用域链中的最后一个对象。</p>
+<h3 id="标识符解析"><a href="#标识符解析" class="headerlink" title="标识符解析"></a>标识符解析</h3><p>沿着作用域链以及一级地搜索标识符的过程。搜索过程从作用域链的前端开始，然后逐级向后回溯。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var person = &#123;name:&quot;刘德华&quot;, age:50&#125;;</div><div class="line">(function()&#123;</div><div class="line">	var person = &#123;name:&quot;刘德华&quot;, age:30&#125;;</div><div class="line">	(function()&#123;</div><div class="line">		//var person = &#123;name:&quot;刘德华&quot;, age:10&#125;;</div><div class="line">		console.log(person.name + person.age + &quot;岁&quot;);</div><div class="line">	&#125;)()</div><div class="line">&#125;)();</div><div class="line">//刘德华30岁</div></pre></td></tr></table></figure></p>
+<p>以上是一个匿名函数里还有匿名函数，它的好处就是可以立即执行，并且匿名函数中的作用域在函数执行完之后就销毁，不会影响到外部作用域。所以你不至于给每个函数都要取a-z各种变量名生怕重复定义了。<br>根据标识符解析，先看看内部环境是否有person，如果没有，再进行到外部，外部有一个30岁的刘德华，如果外部没有，那么就访问到全局变量刘德华。</p>
+<p>有意思的是，内部环境可以通过作用域链访问外部环境，但是外部环境不能通过作用域链访问内部环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var person = &#123;name:&quot;刘德华&quot;, age:50&#125;;</div><div class="line">(function()&#123;</div><div class="line">  var person = &#123;name:&quot;刘德华&quot;, age:30&#125;;</div><div class="line">  console.log(person2.name + person2.age + &quot;岁&quot;);</div><div class="line">  //Uncaught ReferenceError: person2 is not defined</div><div class="line">  (function()&#123;</div><div class="line">    var person2 = &#123;name:&quot;Zaynex&quot;,age:22&#125;;</div><div class="line">    //var person = &#123;name:&quot;刘德华&quot;, age:10&#125;;</div><div class="line">    console.log(person.name + person.age + &quot;岁&quot;);</div><div class="line">  &#125;)()</div><div class="line">&#125;)();</div><div class="line">//刘德华30岁</div></pre></td></tr></table></figure></p>
+<p>我们在第一个匿名函数中调用person2，但是person2是定义在第二个匿名函数内的。根据上述原则，外部匿名函数无法访问内部匿名函数，因此person2找不到，系统自然就报错啦。</p>
+<h3 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h3><ol>
+<li>try-catch语句中的 catch语句块</li>
+<li>with语句</li>
+</ol>
+<p>对于with来说，会将制定的对象添加到作用域链中。<br>对于catch来说，会创建一个新的变量对象，其中包含的是被抛出错误对象的声明。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function buildUrl() &#123;</div><div class="line">	var qs = &quot;?debug=true&quot;;</div><div class="line"></div><div class="line">	with(location) &#123;</div><div class="line">		var url = href + qs;</div><div class="line">	&#125;</div><div class="line">	return url;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>with接受的是location对象，因此其变量对象就包含了location的所有属性和方法。代码就类似于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var url = location.href + location.qs</div></pre></td></tr></table></figure></p>
+<p>但在严格模式下不允许有with语句，否则视为语法错误。<br>因为with会降低性能，with中的代码块内部，每个变量被认为是局部变量，如果在局部环境中找不到该变量的定义，就会查找location对象中是否含有同名属性。也会给调试代码增加困难。</p>
+<h3 id="没有块级作用域"><a href="#没有块级作用域" class="headerlink" title="没有块级作用域"></a>没有块级作用域</h3><p>块级作用域就是{…}花括号里面的作用域。<br>一般而言，我们会以为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if(true)&#123;</div><div class="line">	var color = &quot;blue&quot;;</div><div class="line">&#125;</div><div class="line">alert(color);</div></pre></td></tr></table></figure></p>
+<p>在类C语言中，if内的{}执行完毕后会被立即销毁，但JavaScript中，if语句变量声明会将变量添加到当前的执行环境（在这里是全局环境）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for(var i=0;i&lt;10;i++)&#123;</div><div class="line">	doSomething(i);</div><div class="line">&#125;</div><div class="line">alert(i); // 10;</div></pre></td></tr></table></figure></p>
+<p><strong> 对于有块级作用域的语言来说，for语句总初始化变量的表达式所定义的变量，只会存在循环中，但是对于JS，即使 i循环结束后，依然存在循环外部的执行环境. </strong></p>
+<h4 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h4><p>使用var 声明的变量会自动被添加到最接近的环境中。在函数内部，最接近的就是函数环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function add(num1, num2)&#123;</div><div class="line">	var sum = num1 + num2;</div><div class="line">	return sum;</div><div class="line">&#125;</div><div class="line">var result = add(1,2); // 3</div><div class="line">alert(sum); // 由于sum不是有效变量，因此会导致错误</div></pre></td></tr></table></figure></p>
+<p>如果你想要访问sum，那么你就需要在函数外部定义 sum,或者在函数内部不用var，把sum当作全局变量。但并不推荐设置为全局变量。<br>建议在初始化变量之前，一定要先声明。此外，在严格模式下，初始化未经声明的变量会导致错误。</p>
+<h4 id="查询标识符"><a href="#查询标识符" class="headerlink" title="查询标识符"></a>查询标识符</h4><p>访问局部变量要比访问全局变量快，因为不用向上搜索作用域链。</p>
+<h2 id="垃圾收集"><a href="#垃圾收集" class="headerlink" title="垃圾收集"></a>垃圾收集</h2><p>函数中的局部变量都有正常的生命周期。局部变量只在函数执行时存在。而这个过程，会为局部变量在栈（或堆）上分配相应的空间，以便存储他们的值。在函数执行完毕，释放它们的内存，功德圆满。</p>
+<h3 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h3><p>垃圾收集器在运行时给存储在内存中的所有变量加上标记。然后去掉环境中的变量以及被环境中的变量引用的变量的标记。而在之后再被加上标记的变量被认为准备删除的变量。</p>
+<h3 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h3><p>跟踪记录每个值被引用的次数。声明一个变量并将一个引用类型复制给变量时，这个值的引用次数为1。如果同一个值又被赋值给另一个变量，则该值引用次数+1。相反，<br>如果包含对这个值的引用的变量又取得了另外一个值，则这个值的引用次数-1。当引用次数为0时，没办法再访问这个值，于是清除引用次数为0的值所占用的内存。</p>
+<h4 id="引用计数的坑"><a href="#引用计数的坑" class="headerlink" title="引用计数的坑"></a>引用计数的坑</h4><p>循环引用——是指对象A包含一个指向对象B的指针，对象B中也包含一个指向对象A的引用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function problem()&#123;</div><div class="line">	var objectA = new Object();</div><div class="line">	var objectB = new Object();</div><div class="line">	objectA.someOtherObject = objectB;</div><div class="line">	objectB.someOtherObject = objectA;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>他们之间相互引用，引用次数都是2，永远不会被清除内存。</p>
+<p>为了避免循环引用问题，我们要手工断开他们之间的链接,解除引用。<br>objectA.someOtherObject = null;<br>objectB.someOtherObject = null;</p>
+<p><strong> 解除一个值的引用并不意味着自动回收该值占用的内存，而是让值脱离执行环境，以便垃圾收集器下次运行时回收内存。
+</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
+          
+            <a href="/tags/JavaScript高级程序设计三/" rel="tag">#JavaScript高级程序设计三</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/2016-07-27-JavaScript高级程序设计三第三章学习笔记/" rel="next" title="JavaScript高级程序设计三第三章学习笔记">
+                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计三第三章学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/27/2016-07-27-JavaScript高级程序设计三第五章学习笔记/" rel="prev" title="JavaScript高级程序设计三第五章学习笔记">
+                JavaScript高级程序设计三第五章学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型和引用类型值"><span class="nav-number">1.</span> <span class="nav-text">基本类型和引用类型值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态的属性"><span class="nav-number">1.1.</span> <span class="nav-text">动态的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制变量值"><span class="nav-number">1.2.</span> <span class="nav-text">复制变量值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数传参"><span class="nav-number">1.3.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检测类型"><span class="nav-number">1.4.</span> <span class="nav-text">检测类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行环境及作用域"><span class="nav-number">2.</span> <span class="nav-text">执行环境及作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链"><span class="nav-number">2.1.</span> <span class="nav-text">作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符解析"><span class="nav-number">2.2.</span> <span class="nav-text">标识符解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延长作用域链"><span class="nav-number">2.3.</span> <span class="nav-text">延长作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有块级作用域"><span class="nav-number">2.4.</span> <span class="nav-text">没有块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#声明变量"><span class="nav-number">2.4.1.</span> <span class="nav-text">声明变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询标识符"><span class="nav-number">2.4.2.</span> <span class="nav-text">查询标识符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标记清除"><span class="nav-number">3.1.</span> <span class="nav-text">标记清除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数"><span class="nav-number">3.2.</span> <span class="nav-text">引用计数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数的坑"><span class="nav-number">3.2.1.</span> <span class="nav-text">引用计数的坑</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

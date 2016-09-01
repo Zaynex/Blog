@@ -1,0 +1,865 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="flex,CSS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一张麻将牌筒子最多有9个点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flex布局2">
+<meta property="og:url" content="http://yoursite.com/2016/08/01/2016-08-01-flex布局2/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="一张麻将牌筒子最多有9个点。">
+<meta property="og:image" content="https://davidwalsh.name/demo/flexbox-dice.png">
+<meta property="og:image" content="http://note.youdao.com/yws/res/32995/WEBRESOURCE9456e7808c8c1dfa53c86d12a9b097e3">
+<meta property="og:image" content="https://davidwalsh.name/demo/dicey-flexbox-images/face-1-1-axes.png">
+<meta property="og:image" content="http://note.youdao.com/yws/res/32999/WEBRESOURCE3eb87f15a18ba5b03039aead0aecab28">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33003/WEBRESOURCEc1f038b075c3cb2436be1d4cc4a7b93d">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33011/WEBRESOURCE079d49f8ff30a53db531cc28eca8393c">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33014/WEBRESOURCE685d6181c2bbb7e68c97aaa264b57749">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33019/WEBRESOURCE61b29677bc2e0b6f76227a4e21837183">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33021/WEBRESOURCE7060583391a431902b02f12dabd0d927">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33027/WEBRESOURCEb29946583d5a9a35775b14e045f942e3">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33031/WEBRESOURCE6406666ceb308032197adf50e16e3e3e">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33037/WEBRESOURCEae56a7302cfee483d86d2e83ef82d03e">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33040/WEBRESOURCE55f12297726fd16df76e149192e83481">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33045/WEBRESOURCEe99bf7dbcbe6589a48c354d772c1b6e5">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33049/WEBRESOURCE9396f7b9c13273eb829c88a0ffe82365">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33052/WEBRESOURCE9a974ece047d3171964315837e83f7cf">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33065/WEBRESOURCE3310d9683f9825c2dca660d573aae233">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33059/WEBRESOURCE71053a2fc48e92ff8b01a8bca780ba44">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33075/WEBRESOURCEf35b7a27dd4b8c4eab2351774824f1b0">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33082/WEBRESOURCE2f368b8fc05d6256fb2ed3446efe3ca7">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33092/WEBRESOURCE677e80ac3a38f0119925eeb8d989f213">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33103/WEBRESOURCEba353fc26f9c68b7285a0d429ca3f3bc">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33107/WEBRESOURCE492920012503aa5ba466401898612421">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33114/WEBRESOURCE18f83d29028e5e30b707491c0168d11d">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33123/WEBRESOURCEd098a8914d5bb5954c842b106dca1ce2">
+<meta property="og:image" content="http://note.youdao.com/yws/res/33133/WEBRESOURCE17f5c4bee32f7fe82d09ce73e7e1ae5d">
+<meta property="og:updated_time" content="2016-08-08T14:28:16.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flex布局2">
+<meta name="twitter:description" content="一张麻将牌筒子最多有9个点。">
+<meta name="twitter:image" content="https://davidwalsh.name/demo/flexbox-dice.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/01/2016-08-01-flex布局2/"/>
+
+  <title> Flex布局2 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Flex布局2
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-01T20:32:20+08:00" content="2016-08-01">
+              2016-08-01
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTML-5-CSS-3/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML(5)/CSS(3)</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一张麻将牌筒子最多有9个点。<br><img src="https://davidwalsh.name/demo/flexbox-dice.png" alt="image"><br><a id="more"></a><br>图为1,2,3,4筒</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>上面代码中，div元素（代表筒子的一个面）是Flex容器，span元素（代表一个点）是Flex项目。如果有多个项目，就要添加多个span元素，以此类推。</p>
+<h3 id="单项目"><a href="#单项目" class="headerlink" title="单项目"></a>单项目</h3><p>首先，只有左上角1个点的情况。Flex布局默认就是首行左对齐，所以一行代码就够了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/32995/WEBRESOURCE9456e7808c8c1dfa53c86d12a9b097e3" alt="image"><br><img src="https://davidwalsh.name/demo/dicey-flexbox-images/face-1-1-axes.png" alt="image"></p>
+<p>设置项目的对齐方式，就能实现居中对齐和右对齐。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/32999/WEBRESOURCE3eb87f15a18ba5b03039aead0aecab28" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  justify-content: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33003/WEBRESOURCEc1f038b075c3cb2436be1d4cc4a7b93d" alt="image"></p>
+<p>设置交叉轴对齐方式，可以垂直移动主轴。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  align-items: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33011/WEBRESOURCE079d49f8ff30a53db531cc28eca8393c" alt="image"></p>
+<p>把两者结合在一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  align-items: center;</div><div class="line">  justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33014/WEBRESOURCE685d6181c2bbb7e68c97aaa264b57749" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  align-items: center;</div><div class="line">  justify-content: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33019/WEBRESOURCE61b29677bc2e0b6f76227a4e21837183" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  align-items: flex-end;</div><div class="line">  justify-content: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33021/WEBRESOURCE7060583391a431902b02f12dabd0d927" alt="image"></p>
+<h3 id="双项目"><a href="#双项目" class="headerlink" title="双项目"></a>双项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  justify-content: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33027/WEBRESOURCEb29946583d5a9a35775b14e045f942e3" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-direction: column;</div><div class="line">  justify-content: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33031/WEBRESOURCE6406666ceb308032197adf50e16e3e3e" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-direction: column;</div><div class="line">  justify-content: space-between;</div><div class="line">  align-items: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33037/WEBRESOURCEae56a7302cfee483d86d2e83ef82d03e" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-direction: column;</div><div class="line">  justify-content: space-between;</div><div class="line">  align-items: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33040/WEBRESOURCE55f12297726fd16df76e149192e83481" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">.first-face .pip:nth-child(2)&#123;</div><div class="line">  align-self: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33045/WEBRESOURCEe99bf7dbcbe6589a48c354d772c1b6e5" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  justify-content: space-between;</div><div class="line">&#125;</div><div class="line">.first-face .pip:nth-child(2)&#123;</div><div class="line">  align-self: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33049/WEBRESOURCE9396f7b9c13273eb829c88a0ffe82365" alt="image"></p>
+<h3 id="三项目"><a href="#三项目" class="headerlink" title="三项目"></a>三项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">.first-face .pip:nth-child(2)&#123;</div><div class="line">  align-self: center;</div><div class="line">&#125;</div><div class="line">.pip:nth-child(3)&#123;</div><div class="line">  align-self: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33052/WEBRESOURCE9a974ece047d3171964315837e83f7cf" alt="image"></p>
+<h3 id="四项目"><a href="#四项目" class="headerlink" title="四项目"></a>四项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">  justify-content: flex-end;</div><div class="line">  align-content: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33065/WEBRESOURCE3310d9683f9825c2dca660d573aae233" alt="image"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">  align-content: space-between;</div><div class="line">&#125;</div><div class="line">.column&#123;</div><div class="line">  flex-basis: 100%;</div><div class="line">  display: flex;</div><div class="line">  justify-content: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="http://note.youdao.com/yws/res/33059/WEBRESOURCE71053a2fc48e92ff8b01a8bca780ba44" alt="image"></p>
+<h3 id="六项目"><a href="#六项目" class="headerlink" title="六项目"></a>六项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">  align-content: space-between;</div><div class="line">&#125;</div><div class="line">.column&#123;</div><div class="line">  flex-basis: 100%;</div><div class="line">  display: flex;</div><div class="line">  justify-content: space-between;</div><div class="line">&#125;</div><div class="line">	&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">		&lt;div class=&quot;column&quot;&gt;</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;			</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;div class=&quot;column&quot;&gt;</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;			</div><div class="line">			&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">		&lt;/div&gt;	</div><div class="line">    &lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>当然，其实也不需要那么复杂。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">  align-content: space-between;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>我们再试试竖的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">  flex-direction: column;</div><div class="line">  align-content: space-between;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33075/WEBRESOURCEf35b7a27dd4b8c4eab2351774824f1b0" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">&#125;</div><div class="line">.row&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-basis: 100%;</div><div class="line">&#125;</div><div class="line">.row:nth-child(2)&#123;</div><div class="line">  justify-center: center;</div><div class="line">&#125;</div><div class="line">.row:nth-child(3)&#123;</div><div class="line">  justify-center: space-between;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">	&lt;div class=&quot;row&quot;&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div class=&quot;row&quot;&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">	&lt;div class=&quot;row&quot;&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">		&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33082/WEBRESOURCE2f368b8fc05d6256fb2ed3446efe3ca7" alt="image"></p>
+<h3 id="九筒"><a href="#九筒" class="headerlink" title="九筒"></a>九筒</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.first-face&#123;</div><div class="line">  display: flex;</div><div class="line">  flex-wrap: wrap;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;first-face&quot;&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">	&lt;span class=&quot;pip&quot;&gt;&lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="基本网格布局"><a href="#基本网格布局" class="headerlink" title="基本网格布局"></a>基本网格布局</h3><p>最简单的网格布局，就是平均分布。在容器里面平均分配空间，跟上面的骰子布局很像，但是需要设置项目的自动缩放。<br><img src="http://note.youdao.com/yws/res/33092/WEBRESOURCE677e80ac3a38f0119925eeb8d989f213" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.Grid&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">.Grid-cell&#123;</div><div class="line">  flex: 1;</div><div class="line">  width: 300px;</div><div class="line">  height: 300px;</div><div class="line">  margin: 20px;</div><div class="line">  background: black;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;Grid&quot;&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell&quot;&gt;...&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="百分比布局"><a href="#百分比布局" class="headerlink" title="百分比布局"></a>百分比布局</h3><p>某个网格的宽度为固定的百分比，其余网格平均分配剩余的空间。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">.Grid&#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line">.Grid-cell&#123;</div><div class="line">  flex: 1;</div><div class="line">&#125;</div><div class="line">.Grid-cell.u-full&#123;</div><div class="line">  flex: 0 0 100%;</div><div class="line">&#125;</div><div class="line">.Grid-cell.u-full2&#123;</div><div class="line">  flex: 0 0 50%;</div><div class="line">&#125;</div><div class="line">.Grid-cell.u-full3&#123;</div><div class="line">  flex: 0 0 33.333%;</div><div class="line">&#125;</div><div class="line">.Grid-cell.u-full4&#123;</div><div class="line">  flex: 0 0 25%;</div><div class="line">&#125;</div><div class="line">&lt;div class=&quot;Grid&quot;&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell u-1of4&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell&quot;&gt;...&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;Grid-cell u-1of3&quot;&gt;...&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://note.youdao.com/yws/res/33103/WEBRESOURCEba353fc26f9c68b7285a0d429ca3f3bc" alt="image"></p>
+<h3 id="输入框的布局"><a href="#输入框的布局" class="headerlink" title="输入框的布局"></a>输入框的布局</h3><p>我们常常需要在输入框的前方添加提示，后方添加按钮。<br><img src="http://note.youdao.com/yws/res/33107/WEBRESOURCE492920012503aa5ba466401898612421" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">.InputAddOn &#123;</div><div class="line">  display: flex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.InputAddOn-field &#123;</div><div class="line">  flex: 1;</div><div class="line">  /* field styles */</div><div class="line">&#125;</div><div class="line">&lt;!-- both --&gt;</div><div class="line">&lt;div class=&quot;InputAddOn&quot;&gt;</div><div class="line">  &lt;span class=&quot;InputAddOn-item&quot;&gt;…&lt;/span&gt;</div><div class="line">  &lt;input class=&quot;InputAddOn-field&quot;&gt;</div><div class="line">  &lt;button class=&quot;InputAddOn-item&quot;&gt;…&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="悬挂式布局"><a href="#悬挂式布局" class="headerlink" title="悬挂式布局"></a>悬挂式布局</h3><p>有时，主栏的左侧或右侧，需要添加一个图片栏。<br><img src="http://note.youdao.com/yws/res/33114/WEBRESOURCE18f83d29028e5e30b707491c0168d11d" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">.Media&#123;</div><div class="line">  display: flex;</div><div class="line">  align-items: flex-start;</div><div class="line">&#125;</div><div class="line">.Media-figure&#123;</div><div class="line">  margin-right: 1em;</div><div class="line">&#125;</div><div class="line">.Media-body&#123;</div><div class="line">  flex: 1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div class=&quot;Media&quot;&gt;</div><div class="line">  &lt;img class=&quot;Media-figure&quot; src=&quot;&quot; alt=&quot;&quot;&gt;</div><div class="line">  &lt;p class=&quot;Media-body&quot;&gt;…&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="固定栏布局"><a href="#固定栏布局" class="headerlink" title="固定栏布局"></a>固定栏布局</h3><p>有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用Flex布局，让底栏总是出现在页面的底部。<br><img src="http://note.youdao.com/yws/res/33123/WEBRESOURCEd098a8914d5bb5954c842b106dca1ce2" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.Site&#123;</div><div class="line">  display: flex;</div><div class="line">  min-height: 100vh;</div><div class="line">  flex-content: column;</div><div class="line">&#125;</div><div class="line">.Site-content&#123;</div><div class="line">  flex: 1;</div><div class="line">&#125;</div><div class="line">&lt;body class=&quot;Site&quot;&gt;</div><div class="line">  &lt;header&gt;…&lt;/header&gt;</div><div class="line">  &lt;main class=&quot;Site-content&quot;&gt;…&lt;/main&gt;</div><div class="line">  &lt;footer&gt;…&lt;/footer&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p>相对于浏览器内部可视区的高度。视口被均分为100单位的vh。这样的话最小高度就刚好是一个浏览器视口大小了。<br><img src="http://note.youdao.com/yws/res/33133/WEBRESOURCE17f5c4bee32f7fe82d09ce73e7e1ae5d" alt="image"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flex/" rel="tag">#flex</a>
+          
+            <a href="/tags/CSS/" rel="tag">#CSS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/2016-08-01-flex布局入门/" rel="next" title="Flex布局1">
+                <i class="fa fa-chevron-left"></i> Flex布局1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/01/2016-08-01-淘宝双飞翼圣杯布局详解/" rel="prev" title="淘宝双飞翼圣杯布局详解">
+                淘宝双飞翼圣杯布局详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单项目"><span class="nav-number">1.</span> <span class="nav-text">单项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双项目"><span class="nav-number">2.</span> <span class="nav-text">双项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三项目"><span class="nav-number">3.</span> <span class="nav-text">三项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四项目"><span class="nav-number">4.</span> <span class="nav-text">四项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六项目"><span class="nav-number">5.</span> <span class="nav-text">六项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九筒"><span class="nav-number">6.</span> <span class="nav-text">九筒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本网格布局"><span class="nav-number">7.</span> <span class="nav-text">基本网格布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分比布局"><span class="nav-number">8.</span> <span class="nav-text">百分比布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入框的布局"><span class="nav-number">9.</span> <span class="nav-text">输入框的布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#悬挂式布局"><span class="nav-number">10.</span> <span class="nav-text">悬挂式布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#固定栏布局"><span class="nav-number">11.</span> <span class="nav-text">固定栏布局</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

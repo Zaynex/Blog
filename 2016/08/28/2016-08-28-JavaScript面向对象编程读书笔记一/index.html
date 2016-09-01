@@ -1,0 +1,849 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面向对象,变量作用域,JavaScript面向对象编程指南," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript面向对象编程读书笔记一">
+<meta property="og:url" content="http://yoursite.com/2016/08/28/2016-08-28-JavaScript面向对象编程读书笔记一/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:image" content="http://pic.baike.soso.com/p/20140126/20140126154707-1231041852.jpg">
+<meta property="og:updated_time" content="2016-08-29T02:33:58.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript面向对象编程读书笔记一">
+<meta name="twitter:image" content="http://pic.baike.soso.com/p/20140126/20140126154707-1231041852.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/28/2016-08-28-JavaScript面向对象编程读书笔记一/"/>
+
+  <title> JavaScript面向对象编程读书笔记一 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript面向对象编程读书笔记一
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T21:20:17+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS/jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://pic.baike.soso.com/p/20140126/20140126154707-1231041852.jpg" alt="image"><br><a id="more"></a></p>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>没有块级作用域，只有函数作用域，所以for循环或者是if后这样的代码块中的变量，在代码块之外依然是可以见的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	local = <span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//console.log(local);//local is not defined</span></div><div class="line">f();</div><div class="line"><span class="built_in">console</span>.log(local); <span class="comment">// 10</span></div></pre></td></tr></table></figure></p>
+<p>在这段代码中，f函数调用之前，<code>local</code>变量是不存在的，该变量会在函数首次被调用时创建，并赋予全局作用域。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(a);<span class="comment">//undefined</span></div><div class="line">	<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">	alert(a);<span class="comment">//1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">f();</div></pre></td></tr></table></figure>
+<p>函数域优于全局域，所以局部变量<code>a</code>会覆盖掉所有与它同名的全局变量，尽管<code>alert()</code>第一次被调用时，<code>a</code>还没有被正式定义。但该变量本身已经存在于本地空间了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(a);<span class="comment">//123</span></div><div class="line">	a = <span class="number">1</span>;</div><div class="line">	alert(a);<span class="comment">//1</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">f();</div></pre></td></tr></table></figure></p>
+<p>当<code>a</code>都定义全局变量时，正常解析。</p>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><ul>
+<li>可以将匿名函数作为参数传递完成其他函数，接受放函数就嫩利用我们所传递的函数完成一些事情</li>
+<li>定义某个匿名函数来执行某些一次性任务</li>
+</ul>
+<h4 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">invoke_and_add</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a() + b();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">one</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">two</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line">invoke_and_add(one, two);</div><div class="line"></div><div class="line"><span class="comment">//也可以使用匿名函数来代替</span></div><div class="line"><span class="built_in">console</span>.log(invoke_and_add(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">1</span>;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">2</span>&#125;))</div></pre></td></tr></table></figure>
+<h4 id="回调函数的优势"><a href="#回调函数的优势" class="headerlink" title="回调函数的优势"></a>回调函数的优势</h4><ul>
+<li>在不做命名的情况下传递函数</li>
+<li>将一个函数调用操作委托给另一个函数</li>
+</ul>
+<h4 id="回调实例"><a href="#回调实例" class="headerlink" title="回调实例"></a>回调实例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//不用回调函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyByTwo</span>(<span class="params">a, b, c</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i,ar = [];</div><div class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">		ar[i] = <span class="built_in">arguments</span>[i] * <span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ar;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addOne</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> a + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> myarr = [];</div><div class="line">myarr = multiplyByTwo(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">	myarr[i]  = addOne(myarr[i]);</div><div class="line">&#125;</div><div class="line">myarr;</div><div class="line"><span class="comment">//21,41,61;</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//使用回调函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">multiplyByTwoCall</span>(<span class="params">a, b, c, callback</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i, ar = [];</div><div class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)&#123;</div><div class="line">		ar[i] = callback(<span class="built_in">arguments</span>[i] * <span class="number">2</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> ar;</div><div class="line">&#125;</div><div class="line">myarr = multiplyByTwoCall(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, addOne);</div><div class="line">myarr;</div><div class="line"><span class="comment">//21,41,61;</span></div></pre></td></tr></table></figure>
+<p>还可以使用匿名函数代替<code>addOne()</code>，这样做可以省去额外的全局变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myarr = multiplyByTwoCall(<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;	<span class="keyword">return</span> a + <span class="number">1</span>;&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="自调函数"><a href="#自调函数" class="headerlink" title="自调函数"></a>自调函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">	alert(<span class="string">'Hi '</span> + name + <span class="string">'!'</span>);</div><div class="line">&#125;)(<span class="string">'Zaynex'</span>);</div></pre></td></tr></table></figure>
+<p>这种方式会立即执行，并且不会产生任何全局变量，适合执行某些<code>一次性或初始化的任务</code>。</p>
+<h3 id="私有函数"><a href="#私有函数" class="headerlink" title="私有函数"></a>私有函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params">parm</span>)</span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params">theinput</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> theinput*<span class="number">2</span>;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">return</span> <span class="string">'The result is:'</span> + b(parm);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">a(<span class="number">2</span>);<span class="comment">//4</span></div><div class="line">b(<span class="number">2</span>);<span class="comment">//b is not defined</span></div></pre></td></tr></table></figure>
+<p>当调用全局函数<code>a()</code>时，本地函数<code>b()</code>也会在其内部被调用，但由于<code>b()</code>是本地函数，它在<code>a()</code>以外的地方是不可见的，称之为私有函数。</p>
+<ul>
+<li>有助于保存全局名字空间的纯净性</li>
+<li>私有性，避免暴露给外界使用。</li>
+</ul>
+<h3 id="返回函数的函数"><a href="#返回函数的函数" class="headerlink" title="返回函数的函数"></a>返回函数的函数</h3><p>函数始终都有返回值，隐式返回<code>undefined</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'A'</span>);</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		alert(<span class="string">'B'</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> newFunc = a();</div><div class="line">newFunc();</div></pre></td></tr></table></figure>
+<p>如果您希望返回的函数立即执行，可以不用将它赋值给变量，直接在该调用后加一对括号即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a()();</div></pre></td></tr></table></figure></p>
+<h3 id="重写自己的函数"><a href="#重写自己的函数" class="headerlink" title="重写自己的函数"></a>重写自己的函数</h3><p>第一次调用函数后重写自己，避免每次重复调用不必要的操作，对于某些一次性初始化工作的函数非常有用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	alert(<span class="string">'A'</span>);</div><div class="line">	a = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		alert(<span class="string">"B"</span>);</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">a();<span class="comment">//A</span></div><div class="line">a();<span class="comment">//B</span></div><div class="line">a();<span class="comment">//B</span></div></pre></td></tr></table></figure></p>
+<p>第一次执行 A；<br>第二次调用时a被重新定义 执行B<br>（这个在javascript高级程序设计中也有提到，当存在多个if语句来判断函数执行代码段时可以利用这种方式，以后再次调用该函数时就不需要再判断了）</p>
+<h4 id="组合应用"><a href="#组合应用" class="headerlink" title="组合应用"></a>组合应用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var a = function()&#123;</div><div class="line">	function someSetup()&#123;</div><div class="line">		var setup = &apos;done&apos;;</div><div class="line">	&#125;</div><div class="line">	function actualWork()&#123;</div><div class="line">		alert(&quot;Worky-worky&quot;);</div><div class="line">	&#125;</div><div class="line">	someSetup();</div><div class="line">	return actualWork;</div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<p>自调函数、私有函数、返回函数的引用（注意，不是产生函数调用）、重写函数。<br>这就是<code>浏览器特性探测</code>技术的核心代码。</p>
+<h3 id="词法作用域"><a href="#词法作用域" class="headerlink" title="词法作用域"></a>词法作用域</h3><p>每个函数在定义时（非执行时）都会创建一个属于自己的环境（作用域）。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">	f2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line">f1(); <span class="comment">//  a is not defined</span></div></pre></td></tr></table></figure></p>
+<p>虽然f2函数在f1中，但是因为在定义的时候，f2中的变量a是不可见的，而f1只能访问自身作用域以及全局作用域，与f2之间不存在共享的词法作用域。</p>
+<p>尽管当函数被定义时，它会记录自身所在的环境和相关的作用域链，但并不意味着函数也会对其作用域中个的每一个变量进行记录，函数只会看到变量的最终状态。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a =<span class="number">100</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line">	f2();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div><div class="line">f1();</div><div class="line"><span class="comment">// 100</span></div></pre></td></tr></table></figure>
+<p>在f2中a变量来自全局作用域，它记录的a的最终状态为100。这里有个奇怪的地方，如果是var a,那么delete无效，如果是直接a = 10.那么delete有效。</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>一个函数需要在其父级函数返回之后留住对父级作用域的链接，就必须要使用闭包。</p>
+<h4 id="闭包1"><a href="#闭包1" class="headerlink" title="闭包1"></a>闭包1</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> b = <span class="string">"b"</span>;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> b;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">b;<span class="comment">//b is not defined</span></div><div class="line"><span class="keyword">var</span> n = f();</div><div class="line">f();</div><div class="line">n(); <span class="comment">// "b"</span></div></pre></td></tr></table></figure>
+<p>因为b是局部变量，所以在外部是无法访问到的。<br>我们将f()函数返回的结果保存给一个全局变量n，就可以生成一个可以访问f()私有空间的新全局函数了。</p>
+<h4 id="闭包2"><a href="#闭包2" class="headerlink" title="闭包2"></a>闭包2</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> b = <span class="string">"b"</span>;</div><div class="line">	n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> b;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">n();<span class="comment">//"b"</span></div></pre></td></tr></table></figure>
+<p>由于n()是在f()内部定义的，它可以访问f()的作用域。该函数成了全局函数之后，依然保存着对f()作用域的访问权。</p>
+<h4 id="闭包3"><a href="#闭包3" class="headerlink" title="闭包3"></a>闭包3</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">arg</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> n = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> arg;</div><div class="line">	&#125;</div><div class="line">	arg++;</div><div class="line">	<span class="keyword">return</span> n;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> m = f(<span class="number">123</span>);</div><div class="line">m();<span class="comment">//124</span></div></pre></td></tr></table></figure>
+<p>请注意，当我们的函数n被调用时，arg++已经经过一次递增操作了。所以M返回的是更新后的值。由此看出：<br><strong>函数绑定的是作用域本身，而不是该作用域中的变量或变量当前所返回的值。</strong></p>
+<h4 id="循环中的闭包"><a href="#循环中的闭包" class="headerlink" title="循环中的闭包"></a>循环中的闭包</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a = [];</div><div class="line">	<span class="keyword">var</span> i;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) &#123;</div><div class="line">		a[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> i;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = f();</div><div class="line">a[<span class="number">0</span>]();</div><div class="line">a[<span class="number">1</span>]();</div><div class="line">a[<span class="number">2</span>]();</div></pre></td></tr></table></figure>
+<p>我们所创建的3个闭包都指向了同一个i。但是闭包不会记录它们的值，它们所拥有的都是一个i的链接，因此只能返回i的当前值。由于循环结束后i的值时3.所以三个函数都指向了一个共同值。</p>
+<h4 id="优雅的解决方案"><a href="#优雅的解决方案" class="headerlink" title="优雅的解决方案"></a>优雅的解决方案</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> a = [];</div><div class="line">	<span class="keyword">var</span> i;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">3</span>; i++) &#123;</div><div class="line">		a[i] = <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">				<span class="keyword">return</span> x;</div><div class="line">			&#125;</div><div class="line">		&#125;(i)</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> a;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们将i传递给了一个自调函数，i就被赋值给了局部变量x。</p>
+<p>当然还有其他方式，通过内部函数来实现，关键是在每次爹迭代操作中，要在中间函数内将i的值<code>本地化</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">makeClosure</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> x;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> a = [];</div><div class="line">	<span class="keyword">var</span> i;</div><div class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</div><div class="line">		a[i] = makeClosure(i);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> a = f();</div><div class="line">a[<span class="number">0</span>]();</div></pre></td></tr></table></figure></p>
+<h3 id="闭包应用"><a href="#闭包应用" class="headerlink" title="闭包应用"></a>闭包应用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getValue, setValue;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> secret = <span class="number">0</span>;</div><div class="line">	getValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> secret;</div><div class="line">	&#125;</div><div class="line">	setValue = <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</div><div class="line">		secret = v;</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>定义全局变量来确保布局变量secret的不可直接访问性。</p>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setup</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> x[i++];</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> next = setup([<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]);</div><div class="line">next();</div></pre></td></tr></table></figure>
+<p>定义一个私有指针，该指针始终指向下一个元素。</p>
+<h3 id="一些demo"><a href="#一些demo" class="headerlink" title="一些demo"></a>一些demo</h3><p>/<em><br>编写一个将16进制转换为颜色的函数。
+ </em>/<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRBG</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(str.length!=<span class="number">7</span>) &#123;</div><div class="line">		alert(<span class="string">"write right as #000000"</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(<span class="regexp">/#(..)(..)(..)/g</span>.test(str)) &#123;</div><div class="line">		rgb = [<span class="built_in">parseInt</span>(<span class="built_in">RegExp</span>.$<span class="number">1</span>, <span class="number">16</span>),<span class="built_in">parseInt</span>(<span class="built_in">RegExp</span>.$<span class="number">2</span>, <span class="number">16</span>),<span class="built_in">parseInt</span>(<span class="built_in">RegExp</span>.$<span class="number">3</span>, <span class="number">16</span>)];</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">return</span> <span class="string">'rgb('</span>+ rgb.join(<span class="string">","</span>) +<span class="string">')'</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> a = getRBG(<span class="string">"#00ff00"</span>);</div><div class="line">a;</div><div class="line"><span class="comment">//"rgb(0,255,0)"</span></div></pre></td></tr></table></figure></p>
+<h3 id="构造器函数"><a href="#构造器函数" class="headerlink" title="构造器函数"></a>构造器函数</h3><p>在创建对象同时也给对象赋予一种特殊的属性——构造器属性，该属性指向一个用于创建该对象的构造器函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hero</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.occupation = <span class="string">'Ninja'</span>;</div><div class="line">	<span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> h2 = <span class="keyword">new</span> Hero(<span class="string">"Zaynex"</span>);</div><div class="line">h2.name;<span class="comment">//Zaynex</span></div><div class="line">h2.constructor; <span class="comment">//Hero(name)</span></div><div class="line"><span class="keyword">var</span> h3 = <span class="keyword">new</span> h2.constructor(<span class="string">"Rafaaello"</span>);</div><div class="line">h3.name;<span class="comment">//Rafaaello</span></div><div class="line"></div><div class="line"><span class="keyword">typeof</span> h2.constructor</div><div class="line"><span class="comment">//function</span></div></pre></td></tr></table></figure></p>
+<h3 id="返回对象的函数"><a href="#返回对象的函数" class="headerlink" title="返回对象的函数"></a>返回对象的函数</h3><p>除了new操作符来调用构造器函数以外，也可以抛开new操作符，只用一般函数来创建对象，这就需要一个能执行预备工作并以对象为返回值的函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function factory(name) &#123;</div><div class="line">	return &#123;</div><div class="line">		name: name</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line">var o = factory(&apos;Zaynex&apos;);</div><div class="line">o.name;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">C</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> C():</div><div class="line">c.a;<span class="comment">// 1;</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">C2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.a = <span class="number">1</span>;</div><div class="line">	<span class="keyword">return</span> &#123;b:<span class="number">2</span>&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> c2 = <span class="keyword">new</span> C2();</div><div class="line">c2.a;<span class="comment">// undefined</span></div><div class="line">c2.b;</div></pre></td></tr></table></figure>
+<p>这里的构造器返回的不是包含属性a的this对象，而是另一个包含属性b的对象。<br>在函数的返回值是一个对象时才会发生这种情况。当我们企图返回一个<code>非对象类型</code>时，该构造器会照常返回this。</p>
+<h3 id="传递对象"><a href="#传递对象" class="headerlink" title="传递对象"></a>传递对象</h3><p>当我们拷贝某个对象或者将它传递给某个函数时，传递的往往是对象的一个引用。因此在引用上做任何的修改都会影响所引用的原对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> original = &#123;hotway:<span class="number">1</span>&#125;;</div><div class="line"><span class="keyword">var</span> copy = original;</div><div class="line">copy.hotway;<span class="comment">//1</span></div><div class="line">copy.hotway = <span class="number">100</span>;</div><div class="line">original.hotway;<span class="comment">//100;</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> nullify = <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123;o.hotway = <span class="number">0</span>&#125;</div><div class="line">nullify(original);</div><div class="line">original.hotway;<span class="comment">//0</span></div></pre></td></tr></table></figure></p>
+<h3 id="对象比较"><a href="#对象比较" class="headerlink" title="对象比较"></a>对象比较</h3><p>当且仅当两个引用指向同一个对象时为true。</p>
+<h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [];</div><div class="line"><span class="keyword">typeof</span> a; <span class="comment">//object</span></div><div class="line">a.constructor; <span class="comment">// function Array();</span></div><div class="line">a.constructor();<span class="comment">//Array[];</span></div></pre></td></tr></table></figure>
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunc</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> a;</div><div class="line">&#125;</div><div class="line">myFunc.constructor;<span class="comment">//function Function();</span></div><div class="line">myFunc.constructor();<span class="comment">// function() anonymous()</span></div></pre></td></tr></table></figure>
+<h4 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> A.caller&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> A();&#125;;</div><div class="line">B();</div><div class="line"><span class="comment">//function B();</span></div></pre></td></tr></table></figure>
+<p>这个属性会返回一个调用该函数对象的外层函数引用。<br>如果是在全局作用域调用A().(也就是说没有任何外层函数) 就会返回null<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A();//null</div></pre></td></tr></table></figure></p>
+<h3 id="Function对象方法"><a href="#Function对象方法" class="headerlink" title="Function对象方法"></a>Function对象方法</h3><p>所有Function对象方法都继承自父级对象Object的。</p>
+<h3 id="argument-callee"><a href="#argument-callee" class="headerlink" title="argument.callee"></a>argument.callee</h3><p>该属性引用的是当前辈调用的函数对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(</div><div class="line">	<span class="function"><span class="keyword">function</span> (<span class="params">count</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(count &lt; <span class="number">5</span>)&#123;</div><div class="line">			alert(count);</div><div class="line">			<span class="built_in">arguments</span>.callee(++count);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">)(<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>alert()窗口显示1-2-3-4</p>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> b1 = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);</div><div class="line">b1.valueOf();<span class="comment">//true</span></div><div class="line"><span class="keyword">var</span> b2 = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);</div><div class="line">b2.valueOf();<span class="comment">//false</span></div><div class="line"><span class="built_in">Boolean</span>(b1);</div><div class="line"><span class="built_in">Boolean</span>(b2);<span class="comment">//true</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面向对象/" rel="tag">#面向对象</a>
+          
+            <a href="/tags/变量作用域/" rel="tag">#变量作用域</a>
+          
+            <a href="/tags/JavaScript面向对象编程指南/" rel="tag">#JavaScript面向对象编程指南</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/27/2016-08-27-给你两块表，你还能清楚现在是几点吗？/" rel="next" title="给你两块表，你还能清楚现在是几点吗？">
+                <i class="fa fa-chevron-left"></i> 给你两块表，你还能清楚现在是几点吗？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/29/2016-08-29-表单操作/" rel="prev" title="表单操作之autocomplete中off失效问题">
+                表单操作之autocomplete中off失效问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.</span> <span class="nav-text">变量作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数"><span class="nav-number">2.</span> <span class="nav-text">匿名函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数"><span class="nav-number">2.1.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回调函数的优势"><span class="nav-number">2.2.</span> <span class="nav-text">回调函数的优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回调实例"><span class="nav-number">2.3.</span> <span class="nav-text">回调实例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自调函数"><span class="nav-number">3.</span> <span class="nav-text">自调函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#私有函数"><span class="nav-number">4.</span> <span class="nav-text">私有函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回函数的函数"><span class="nav-number">5.</span> <span class="nav-text">返回函数的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写自己的函数"><span class="nav-number">6.</span> <span class="nav-text">重写自己的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组合应用"><span class="nav-number">6.1.</span> <span class="nav-text">组合应用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词法作用域"><span class="nav-number">7.</span> <span class="nav-text">词法作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包"><span class="nav-number">8.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包1"><span class="nav-number">8.1.</span> <span class="nav-text">闭包1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包2"><span class="nav-number">8.2.</span> <span class="nav-text">闭包2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包3"><span class="nav-number">8.3.</span> <span class="nav-text">闭包3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环中的闭包"><span class="nav-number">8.4.</span> <span class="nav-text">循环中的闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优雅的解决方案"><span class="nav-number">8.5.</span> <span class="nav-text">优雅的解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包应用"><span class="nav-number">9.</span> <span class="nav-text">闭包应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-number">10.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些demo"><span class="nav-number">11.</span> <span class="nav-text">一些demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器函数"><span class="nav-number">12.</span> <span class="nav-text">构造器函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回对象的函数"><span class="nav-number">13.</span> <span class="nav-text">返回对象的函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传递对象"><span class="nav-number">14.</span> <span class="nav-text">传递对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象比较"><span class="nav-number">15.</span> <span class="nav-text">对象比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array"><span class="nav-number">16.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function"><span class="nav-number">17.</span> <span class="nav-text">Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#caller"><span class="nav-number">17.1.</span> <span class="nav-text">caller</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Function对象方法"><span class="nav-number">18.</span> <span class="nav-text">Function对象方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#argument-callee"><span class="nav-number">19.</span> <span class="nav-text">argument.callee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boolean"><span class="nav-number">20.</span> <span class="nav-text">Boolean</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

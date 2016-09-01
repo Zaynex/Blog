@@ -1,0 +1,783 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PHP,GD库,验证码,生成水印," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHPGD库图形图像操作">
+<meta property="og:url" content="http://yoursite.com/2016/08/23/2016-08-23-PHPGD库图形图像操作/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/4d20c8e7a27b0ceb585cae1a70ae6c98/xmlnote/WEBRESOURCEe2b617a36828bc602a60b45534e1b255/35157">
+<meta property="og:updated_time" content="2016-08-23T14:55:08.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHPGD库图形图像操作">
+<meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/4d20c8e7a27b0ceb585cae1a70ae6c98/xmlnote/WEBRESOURCEe2b617a36828bc602a60b45534e1b255/35157">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/23/2016-08-23-PHPGD库图形图像操作/"/>
+
+  <title> PHPGD库图形图像操作 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHPGD库图形图像操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T22:26:42+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://note.youdao.com/yws/public/resource/4d20c8e7a27b0ceb585cae1a70ae6c98/xmlnote/WEBRESOURCEe2b617a36828bc602a60b45534e1b255/35157" alt="iamge"><br><a id="more"></a></p>
+<h2 id="GD库简介"><a href="#GD库简介" class="headerlink" title="GD库简介"></a>GD库简介</h2><p>GD指的是Graphic Device，PHP的GD库是用来处理图形的扩展库，通过GD库提供的一系列API，可以对图像进行处理或者直接生成新的图片。<br>PHP除了能进行文本处理以外，通过GD库，可以对JPG、PNG、GIF、SWF等图片进行处理。GD库常用在图片加水印，验证码生成等方面。<br>PHP默认已经集成了GD库，只需要在安装的时候开启就行。</p>
+<p>查看你的gd库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">print_r(gd_info());</div></pre></td></tr></table></figure></p>
+<h2 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h2><p>1、创建画布<br>2、创建各种颜料<br>3、绘画（如写字，画线，画矩形等形状）<br>4、保存成图片<br>5、清理战场，销毁画布</p>
+<h3 id="创建画布"><a href="#创建画布" class="headerlink" title="创建画布"></a>创建画布</h3><p>创建画布我们使用imagecreatetruecolor()函数，函数的返回值为一个句柄或者称为资源，类似连接myslq数据库的返回值。<br>这个函数需要两个参数，x_size和y_size。用白话来讲就是画布的长和宽！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$width = 300;</div><div class="line">$height = 200;</div><div class="line">$im = imagecreatetruecolor($width,$height);</div></pre></td></tr></table></figure></p>
+<h3 id="创建各种颜料"><a href="#创建各种颜料" class="headerlink" title="创建各种颜料"></a>创建各种颜料</h3><p>有了画布，我们就开始第二步，创建颜料。<br>创建颜料使用imagecolorallocate()函数，这个函数需要4个参数。第一个参数就是画布（资源型），剩下的三个就是三基色，RGB的值，从0-255。所有的颜色，都可以使用RGB三种颜色来调配出来，这里也可以使用十六进制的颜色来表示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$red=imagecolorallocate($img, 0xFF,  0x00, 0x00);</div></pre></td></tr></table></figure></p>
+<p>上面的例子，创建了一个红色的颜料。</p>
+<h3 id="绘画"><a href="#绘画" class="headerlink" title="绘画"></a>绘画</h3><p>有了颜料，有了画布，就可以开始画图了。我们先从最简单的开始，直接用颜料涂满整个画布。<br>imagefill() 函数可以帮助我们来完成涂颜料的工作<br>我们也通过调用绘制线段函数imageline进行线条的绘制，通过指定起点跟终点来最终得到线条。<br>imagefill($img, 0, 0, $red);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">imageline($img, 0, 0, 100, 100, $red);</div><div class="line">imagestring($img,5,0,0,&apos;helloworld&apos;,$red);//绘制文字</div></pre></td></tr></table></figure></p>
+<h3 id="保存成图片"><a href="#保存成图片" class="headerlink" title="保存成图片"></a>保存成图片</h3><p>填充完颜色，就可以把结果保存下来了。保存的函数有imagepng，表示保存为png格式，imagejpeg、imagegif，分别保存为不同的格式。<br>第一个参数是画布，第二个参数是要保存的位置，如果第二个参数不给，会直接输出给浏览器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">​imagejpeg($img, $filename, 80);</div></pre></td></tr></table></figure></p>
+<p>输出图像文件<br>前面我们已经了解到，通过imagepng可以直接输出图像到浏览器，但是很多时候，我们希望将处理好的图像保存到文件，以便可以多次使用。通过指定路径参数将图像保存到文件中。</p>
+<h3 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h3><p>文件保存完之后，最后要销毁创建的画布，不然会很占资源。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">imagedestroy($img);</div></pre></td></tr></table></figure></p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">header(&quot;content-type: image/png&quot;);</div><div class="line">$img=imagecreatetruecolor(100, 100);</div><div class="line">$red=imagecolorallocate($img, 0xFF, 0x00, 0x00);</div><div class="line">//$red后面的三个参数是就rgb值。题目中给的是16进制。颜色是ff,00,00。也就是对应10进制的255, 0，0。是红色。你可以改这三个参数。16进制只要在0到ff之间都可以。比如ff,ff,ff就是白色；00,00,00就是黑色；00ff00就是绿色；0000ff就是蓝色。</div><div class="line">imagefill($img, 0, 0, $red);</div><div class="line">imagepng($img);</div><div class="line">imagedestroy($img);</div></pre></td></tr></table></figure>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="简单的验证码"><a href="#简单的验证码" class="headerlink" title="简单的验证码"></a>简单的验证码</h3><p>简单的验证码其实就是在图片中输出了几个字符，通过我们前面章节讲到的imagestring函数就能实现。</p>
+<p>但是在处理上，为了使验证码更加的安全，防止其他程序自动识别，因此常常需要对验证码进行一些干扰处理，通常会采用绘制一些噪点，干扰线段，对输出的字符进行倾斜、扭曲等操作。</p>
+<p>可以使用imagesetpixel绘制点来实现噪点干扰，但是只绘制一个点的作用不大，因此这里常常会使用循环进行随机绘制。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">for($i=0;$i&lt;50;$i++) &#123;</div><div class="line">  imagesetpixel($im, rand(0, 100) , rand(0, 100) , $black); </div><div class="line">  imagesetpixel($im, rand(0, 100) , rand(0, 100) , $green);</div><div class="line">&#125; </div><div class="line"></div><div class="line">$img = imagecreatetruecolor(100, 40);</div><div class="line">$black = imagecolorallocate($img, 0x00, 0x00, 0x00);</div><div class="line">$green = imagecolorallocate($img, 0x00, 0xFF, 0x00);</div><div class="line">$white = imagecolorallocate($img, 0xFF, 0xFF, 0xFF);</div><div class="line">imagefill($img,0,0,$white);</div><div class="line">//生成随机的验证码</div><div class="line">$code = &apos;&apos;;</div><div class="line">for($i = 0; $i &lt; 4; $i++) &#123;</div><div class="line">    $code .= rand(0, 9);</div><div class="line">&#125;</div><div class="line">imagestring($img, 5, 10, 10, $code, $black);</div><div class="line">//加入噪点干扰</div><div class="line">for($i=0;$i&lt;50;$i++) &#123;</div><div class="line">  imagesetpixel($img, rand(0, 100) , rand(0, 100) , $black); </div><div class="line">  imagesetpixel($img, rand(0, 100) , rand(0, 100) , $green);</div><div class="line">&#125;</div><div class="line">//输出验证码</div><div class="line">header(&quot;content-type: image/png&quot;);</div><div class="line">imagepng($img);</div><div class="line">imagedestroy($img);</div></pre></td></tr></table></figure>
+<h3 id="给图片添加水印"><a href="#给图片添加水印" class="headerlink" title="给图片添加水印"></a>给图片添加水印</h3><p>给图片添加水印的方法一般有两种，一种是在图片上面加上一个字符串，另一种是在图片上加上一个logo或者其他的图片。</p>
+<p>因为这里处理的是已经存在的图片，所以可以直接从已存在的图片建立画布，通过imagecreatefromjpeg可以直接从图片文件创建图像。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$im = imagecreatefromjpeg($filename);</div></pre></td></tr></table></figure></p>
+<p>创建图像对象以后，我们就可以通过前面的GD函数，绘制字符串到图像上。如果要加的水印是一个logo图片，那么就需要再建立一个图像对象，然后通过GD函数imagecopy将logo的图像复制到源图像中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$logo = imagecreatefrompng($filename);</div><div class="line">imagecopy($im, $logo, 15, 15, 0, 0, $width, $height);</div></pre></td></tr></table></figure></p>
+<p>当将logo图片复制到原图片上以后，将加水印后的图片输出保存就完成了加水印处理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">imagejpeg($im, $filename);</div></pre></td></tr></table></figure></p>
+<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$filename = &apos;./tmp.jpg&apos;;</div><div class="line">$im = imagecreatefromjpeg($filename);</div><div class="line">$logo = imagecreatefrompng(&apos;./red.png&apos;);//从当前文件位置下取得该图片</div><div class="line">$size = getimagesize(&apos;./red.png&apos;);</div><div class="line">imagecopy($im, $logo, 15, 15, 0, 0, $size[0], $size[1]); </div><div class="line">header(&quot;content-type:image/jpeg&quot;);</div><div class="line">imagejpeg($im);</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
+          
+            <a href="/tags/GD库/" rel="tag">#GD库</a>
+          
+            <a href="/tags/验证码/" rel="tag">#验证码</a>
+          
+            <a href="/tags/生成水印/" rel="tag">#生成水印</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/22/2016-08-22-MySQL数据类型与操作/" rel="next" title="MySQL数据操作与约束">
+                <i class="fa fa-chevron-left"></i> MySQL数据操作与约束
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/27/2016-08-27-你真的懂margin-0-auto吗/" rel="prev" title="你真的懂margin:0 auto吗">
+                你真的懂margin:0 auto吗 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GD库简介"><span class="nav-number">1.</span> <span class="nav-text">GD库简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用流程"><span class="nav-number">2.</span> <span class="nav-text">使用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建画布"><span class="nav-number">2.1.</span> <span class="nav-text">创建画布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建各种颜料"><span class="nav-number">2.2.</span> <span class="nav-text">创建各种颜料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘画"><span class="nav-number">2.3.</span> <span class="nav-text">绘画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#保存成图片"><span class="nav-number">2.4.</span> <span class="nav-text">保存成图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#释放资源"><span class="nav-number">2.5.</span> <span class="nav-text">释放资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">2.6.</span> <span class="nav-text">完整代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">3.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的验证码"><span class="nav-number">3.1.</span> <span class="nav-text">简单的验证码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给图片添加水印"><span class="nav-number">3.2.</span> <span class="nav-text">给图片添加水印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码-1"><span class="nav-number">3.3.</span> <span class="nav-text">完整代码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

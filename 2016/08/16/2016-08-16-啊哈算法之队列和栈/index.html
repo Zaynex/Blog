@@ -1,0 +1,791 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="啊哈算法,队列,栈," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="队列。第一个数出来，第二个数排到队尾。第一个指针指向的是队首，第二个指针指向的是队尾的下一位，不给它设定为队尾是避免当队列为空时队首和队尾重合带来的麻烦。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="啊哈算法之队列和栈">
+<meta property="og:url" content="http://yoursite.com/2016/08/16/2016-08-16-啊哈算法之队列和栈/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="队列。第一个数出来，第二个数排到队尾。第一个指针指向的是队首，第二个指针指向的是队尾的下一位，不给它设定为队尾是避免当队列为空时队首和队尾重合带来的麻烦。">
+<meta property="og:image" content="http://note.youdao.com/yws/public/resource/5dd6d2fe577dbe51e443337c4b6f6f44/xmlnote/WEBRESOURCE94a6fd4147906f5a26b45be2981fb0c5/34297">
+<meta property="og:updated_time" content="2016-08-16T15:00:55.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="啊哈算法之队列和栈">
+<meta name="twitter:description" content="队列。第一个数出来，第二个数排到队尾。第一个指针指向的是队首，第二个指针指向的是队尾的下一位，不给它设定为队尾是避免当队列为空时队首和队尾重合带来的麻烦。">
+<meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/5dd6d2fe577dbe51e443337c4b6f6f44/xmlnote/WEBRESOURCE94a6fd4147906f5a26b45be2981fb0c5/34297">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/16/2016-08-16-啊哈算法之队列和栈/"/>
+
+  <title> 啊哈算法之队列和栈 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                啊哈算法之队列和栈
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-16T22:55:02+08:00" content="2016-08-16">
+              2016-08-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>队列。<br>第一个数出来，第二个数排到队尾。<br>第一个指针指向的是队首，第二个指针指向的是队尾的下一位，不给它设定为队尾是避免当队列为空时队首和队尾重合带来的麻烦。<br><a id="more"></a></p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">int main()&#123;</div><div class="line">	int q[102] = &#123;0, 6, 3, 1, 7, 5, 8, 9, 2, 4&#125;,head,tail;</div><div class="line">	int i;</div><div class="line">	//初始化队列 </div><div class="line">	 head = 1;</div><div class="line">	 tail = 10; //队列一共有9个元素，tail指向队尾的最后一个位置</div><div class="line">	 while(head &lt; tail)&#123;</div><div class="line"> 		//打印队首并将队首出队</div><div class="line">		 printf(&quot;%d &quot;, q[head] );</div><div class="line">		 head++;</div><div class="line">		 </div><div class="line">		 //先将新队首的数添加到队尾</div><div class="line">		 q[tail] = q[head];</div><div class="line">		 tail++;</div><div class="line">		 //再将队首出队</div><div class="line">		 head++; </div><div class="line"> 	&#125; </div><div class="line">	getchar();</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>队列遵从先进先出的概念，跟排队一样，先到的人先享受服务，再出去。</p>
+<h3 id="结构体队列"><a href="#结构体队列" class="headerlink" title="结构体队列"></a>结构体队列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">struct queue&#123;</div><div class="line">	int data[100];</div><div class="line">	int head;</div><div class="line">	int tail;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">int main()&#123;</div><div class="line">	struct queue q;</div><div class="line">	int i;</div><div class="line">	//初始化队列 </div><div class="line">	q.head = 1;</div><div class="line">	q.tail = 1;</div><div class="line">	for(i=1;i&lt;=9;i++)&#123;</div><div class="line">		//依次向队列插入9个数 </div><div class="line">		scanf(&quot;%d&quot;,&amp;q.data[q.tail]);</div><div class="line">		q.tail++;</div><div class="line">		//后面的数当然是插到末尾啦 </div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	while(q.head &lt; q.tail)&#123;//当队列不为空时循环 </div><div class="line">		//打印队首并将队首出队 </div><div class="line">		printf(&quot;%d &quot;, q.data[q.head]);</div><div class="line">		q.head++;</div><div class="line">		</div><div class="line">		//将新队首的数添加到队尾</div><div class="line">		q.data[q.tail] = q.data[q.head];</div><div class="line">		q.tail++;</div><div class="line">		</div><div class="line">		q.head++; </div><div class="line">	&#125; </div><div class="line"></div><div class="line">	getchar();</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>栈很好理解，就好像古时候的大炮一样，第一个放进去的总是最后才放出来。<br><img src="http://note.youdao.com/yws/public/resource/5dd6d2fe577dbe51e443337c4b6f6f44/xmlnote/WEBRESOURCE94a6fd4147906f5a26b45be2981fb0c5/34297" alt="image"><br>一图胜前言</p>
+<h3 id="回文字符"><a href="#回文字符" class="headerlink" title="回文字符"></a>回文字符</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">#include &lt;string.h&gt;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char a[101], s[101] ;</div><div class="line">	int len , i , mid , next , top ;</div><div class="line">	</div><div class="line">	printf(&quot;enter a string : \n&quot;);</div><div class="line">	gets(a);</div><div class="line">	len= strlen(a);</div><div class="line">	mid = len / 2 -1;</div><div class="line"></div><div class="line">	top = 0 ;</div><div class="line">	//将mid前的字符入栈</div><div class="line">	for(i = 0 ; i &lt;= mid ; i++)</div><div class="line">	&#123;</div><div class="line">		s[++top] = a[i];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if (len % 2 == 0)</div><div class="line">		next = mid +1 ;</div><div class="line">	else </div><div class="line">		next = mid +2 ;</div><div class="line"></div><div class="line">	//开始匹配</div><div class="line">	for(i = next ; i &lt;=len - 1 ; i++)</div><div class="line">	&#123;</div><div class="line">		if (a[i]!= s[top])</div><div class="line">			break;</div><div class="line">		top--;</div><div class="line">	&#125;</div><div class="line">	//如果top的值为0 ， 则说明栈内数据已全部被匹配</div><div class="line">	printf(&quot;the result is :\n&quot;);</div><div class="line">	if (top == 0 )</div><div class="line">	&#123;</div><div class="line">		printf(&quot;Yes \n&quot;);</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">		printf(&quot;NO\n&quot;);</div><div class="line">	return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="小猫钓鱼"><a href="#小猫钓鱼" class="headerlink" title="小猫钓鱼"></a>小猫钓鱼</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">struct queue &#123;</div><div class="line">	int data [1000];</div><div class="line">	int head ;</div><div class="line">	int tail ;</div><div class="line">&#125;;</div><div class="line">struct stack&#123;</div><div class="line">	int data[10];</div><div class="line">	int top ;</div><div class="line">&#125;;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	struct queue q1 , q2 ;</div><div class="line">	struct stack s ;</div><div class="line">	int book[10];</div><div class="line">	int i , t ;</div><div class="line">//initialize the array </div><div class="line">	q1.head = 1 ;</div><div class="line">	q1.tail = 1 ;</div><div class="line"></div><div class="line">	q2.head = 1 ;</div><div class="line">	q2.tail = 1 ;</div><div class="line">// initialize the stack </div><div class="line">	s.top = 0 ;</div><div class="line">//初始化用来标记的数组，用来标记哪些牌在桌子上</div><div class="line">	for (i = 0 ; i &lt;= 9 ; i++)</div><div class="line">		book[i] = 0 ;</div><div class="line"></div><div class="line">//初始化Q1，小哼手中的牌</div><div class="line">	printf(&quot;输入小哼手中的牌&quot;);</div><div class="line">	for (i = 1 ; i &lt;= 6 ;i++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%d&quot;,&amp;q1.data[q1.tail]);</div><div class="line">		q1.tail++;</div><div class="line">	&#125;</div><div class="line">	//初始化Q2，小哈手中的牌</div><div class="line">	printf(&quot;输入小哈手中的牌&quot;);</div><div class="line">	for (i = 1 ; i &lt;= 6 ;i++)</div><div class="line">	&#123;</div><div class="line">		scanf(&quot;%d&quot;,&amp;q2.data[q2.tail]);</div><div class="line">		q2.tail++;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	while(q1.head &lt; q1.tail &amp;&amp; q2.head &lt; q2.tail)</div><div class="line">	&#123;</div><div class="line">		t= q1.data[q1.head];//小哼出的第一张牌</div><div class="line">		if (book[t] == 0)//桌上没牌</div><div class="line">		&#123;</div><div class="line">			q1.head++;</div><div class="line">			s.top++;</div><div class="line">			s.data[s.top] = t ;</div><div class="line">			book[t] = 1 ;</div><div class="line">		&#125;</div><div class="line">		else</div><div class="line">		&#123;</div><div class="line">			q1.head++;</div><div class="line">			q1.data[q1.tail] = t ;</div><div class="line">			q1.tail++;</div><div class="line"></div><div class="line">			while(s.data[s.top] != t )</div><div class="line">			&#123;</div><div class="line">				book[s.data[s.top]] = 0 ;</div><div class="line">				q1.data[q1.tail] = s.data[s.top];</div><div class="line">				q1.tail++;</div><div class="line">				s.top--;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		t = q2.data[q2.head];//小哈出一张牌</div><div class="line">			if (book[t] == 0 )</div><div class="line">			&#123;//小哈此轮未赢牌</div><div class="line">				q2.head++;</div><div class="line">				s.top++;</div><div class="line">				s.data[s.top] = t ;</div><div class="line">				book[t] = 1 ;</div><div class="line">			&#125;</div><div class="line">			else </div><div class="line">			&#123;//小哈此轮赢牌</div><div class="line">				q2.head++;</div><div class="line">				q2.data[q2.tail] = t;</div><div class="line">				q2.tail++;</div><div class="line">				while(s.data[s.top] != t )</div><div class="line">				&#123;</div><div class="line">					book[s.data[s.top]] = 0 ;</div><div class="line">					q2.data[q2.tail] = s.data[s.top] ;</div><div class="line">					q2.tail++;</div><div class="line">					s.top--;</div><div class="line">				&#125;</div><div class="line"></div><div class="line">			&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	if (q2.head == q2.tail)</div><div class="line">	&#123;</div><div class="line">		printf(&quot;小哼win\n&quot;);</div><div class="line">		printf(&quot;小哼现在手中的牌是\n&quot;);</div><div class="line">		for(i = q1.head ;i &lt;= q1.tail - 1 ; i++)</div><div class="line">			printf(&quot; %d &quot;, q1.data[i]);</div><div class="line"></div><div class="line">		if (s.top&gt;0)</div><div class="line">		&#123;</div><div class="line">			printf(&quot;桌面上的牌是\n&quot;);</div><div class="line">			for(i = 1 ; i &lt;= s.top ; i++)</div><div class="line">				printf(&quot; %d &quot;, s.data[i]);</div><div class="line">		&#125;</div><div class="line">		else</div><div class="line">			printf(&quot;桌面上没牌了\n&quot;);</div><div class="line">	&#125;</div><div class="line">	else</div><div class="line">	&#123;</div><div class="line">		printf(&quot;小哈win\n&quot;);</div><div class="line">		printf(&quot;小哈现在手中的牌是\n&quot;);</div><div class="line">		for(i = q2.head ;i &lt;= q2.tail - 1 ;i++)</div><div class="line">			printf(&quot; %d &quot;, q2.data[i]);</div><div class="line">		</div><div class="line">		if (s.top&gt;0)</div><div class="line">		&#123;</div><div class="line">			printf(&quot;桌面上的牌是\n&quot;);</div><div class="line">			for(i = 1 ; i &lt;= s.top ; i++)</div><div class="line">				printf(&quot; %d &quot;, s.data[i]);</div><div class="line">		&#125;</div><div class="line">		else</div><div class="line">			printf(&quot;\n桌面上没牌了\n&quot;);</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>栈和队列的操作每次都需要把指针移到相应的位置。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/啊哈算法/" rel="tag">#啊哈算法</a>
+          
+            <a href="/tags/队列/" rel="tag">#队列</a>
+          
+            <a href="/tags/栈/" rel="tag">#栈</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/2016-08-16-JavaScript语言精粹之继承/" rel="next" title="JavaScript语言精粹之继承">
+                <i class="fa fa-chevron-left"></i> JavaScript语言精粹之继承
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/17/2016-08-17-啊哈算法之链表/" rel="prev" title="啊哈算法之链表">
+                啊哈算法之链表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">1.</span> <span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构体队列"><span class="nav-number">1.1.</span> <span class="nav-text">结构体队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">2.</span> <span class="nav-text">栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回文字符"><span class="nav-number">2.1.</span> <span class="nav-text">回文字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小猫钓鱼"><span class="nav-number">2.2.</span> <span class="nav-text">小猫钓鱼</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
