@@ -291,6 +291,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/05/PHP留言板功能以及正则动态修改表单实现/" itemprop="url">
+                  PHP留言板功能以及正则动态修改表单实现
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T21:41:38+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="PHP留言功能"><a href="#PHP留言功能" class="headerlink" title="PHP留言功能"></a>PHP留言功能</h2><h3 id="处理逻辑"><a href="#处理逻辑" class="headerlink" title="处理逻辑"></a>处理逻辑</h3><p>将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。<br>查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。<br>删除表单中的数据逻辑在del.php，使用<code>$_GET[id]</code>，再给每个url末尾加上id值，删除。</p>
+<h3 id="需要的知识点"><a href="#需要的知识点" class="headerlink" title="需要的知识点"></a>需要的知识点</h3><ol>
+<li>文件操作：<br>  <code>file_put_contents</code>(文件名,内容);文件的写入函数(覆盖原有数据)<br>  <code>file_get_contents</code>(文件名);文件内容的读取函数</li>
+<li><p>字符串的处理函数<br>  返回数组 <code>explode</code>(分割符，字符串); 将字串拆分成数组的函数<br>  返回字串 <code>implode</code>(分割符，数组); 将数组以指定分割符合并成子串的函数<br>  返回字符串 <code>rtrim(tring $str [, string $character_mask ])</code> ; 删除字符串末端的空白字符（或者其他字符）</p>
+</li>
+<li><p>数组：<br>  foreach() 遍历数组的<br>  unset（）销毁变量。<br>  $_POST[] 获取传递的form表单<br>  $_SERVER[“REMOTE_ADDR”];获取客户端的ip地址<br>  time(); //获取当前系统的时间戳<br>  date(); 日期转换函数</p>
+</li>
+</ol>
+<h3 id="示例的目录结构"><a href="#示例的目录结构" class="headerlink" title="示例的目录结构"></a>示例的目录结构</h3><p>===================<br>    |–index.php 添加留言信息界面<br>    |<br>    |–doAdd.php 获取留言信息，并执行添加操作的php文件<br>    |<br>    |–show.php  显示留言信息的界面<br>    |<br>    |–del.php     执行删除留言信息的php文件<br>    |<br>    |–liuyan.txt 用于储存留言信息的文件<br>    |<br>    |–menu.php  留言信息的导航栏</p>
+<h2 id="正则匹配动态修改表单"><a href="#正则匹配动态修改表单" class="headerlink" title="正则匹配动态修改表单"></a>正则匹配动态修改表单</h2><h3 id="相关的知识点"><a href="#相关的知识点" class="headerlink" title="相关的知识点"></a>相关的知识点</h3><pre><code>正表达式：
+    preg_match_all -- 进行全局正则表达式匹配
+    preg_replace -- 执行正则表达式的搜索和替换
+
+文件的读和写
+    file_put_contents--文件写入函数
+    file_get_contents()--文件读取信息函数
+</code></pre><h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><pre><code>1.准备好一个配置文件：dbconfig.php
+
+2. 定义一个edit.php，配置文件信息的编辑界面
+    a 读取配置文件的信息
+    b 使用正则表达式解析配置文件的信息
+    c 遍历解析后的信息，并输出到修改表单中
+
+3. 定义一个doupdate.php执行配置文件信息的修改操作
+    （使用正则替换方式）
+</code></pre><h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//doupdae.php逻辑</span></div><div class="line"></div><div class="line"><span class="comment">//1. 读取配置文件的信息</span></div><div class="line">$info = file_get_contents(<span class="string">"dbconfig.php"</span>);</div><div class="line"><span class="comment">//2.对POST遍历，并对配置文件信息进行正则替换</span></div><div class="line"><span class="keyword">foreach</span>($_POST <span class="keyword">as</span> $k=&gt;$v)&#123;</div><div class="line">	$info = preg_replace(<span class="string">"/define\(\"&#123;$k&#125;\",\".*?\"\)/"</span>,<span class="string">"define(\"&#123;$k&#125;\",\"&#123;$v&#125;\")"</span>,$info);</div><div class="line">&#125;</div><div class="line"><span class="comment">//3. 将替换后的信息写回到配置文件中</span></div><div class="line">file_put_contents(<span class="string">"dbconfig.php"</span>,$info);</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;h2&gt;修改成功！&lt;/h2&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;a href='edit.php'&gt;返回&lt;/a&gt;"</span>;</div></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>edit.php从文件中读取数据呈现，用户在表单上修改的数据传递给doupdate.php。doupdate.php进行匹配，将读取中的数据利用正则表达式进行修改到原先的文件中。（先读取原文本，正则匹配后将新数据写入该文本）<br>对于删除部分的ID，是自己在url末尾添加再获取进行删除的。<br>对于正则匹配，<code>.*?</code>是贪婪匹配，匹配到最小项就结束。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/29/表单操作/" itemprop="url">
                   表单操作之autocomplete中off失效问题
                 </a>
@@ -1314,102 +1453,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/17/啊哈算法之链表/" itemprop="url">
-                  啊哈算法之链表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T22:03:26+08:00" content="2016-08-17">
-              2016-08-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>后面有个尾巴指向下个数<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/17/啊哈算法之链表/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1471,7 +1514,7 @@ var duoshuoQuery = {short_name:"zaynexnew"};
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-count">44</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1479,7 +1522,7 @@ var duoshuoQuery = {short_name:"zaynexnew"};
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

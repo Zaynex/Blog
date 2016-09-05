@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="表单," />
 
 
 
@@ -84,15 +84,22 @@
 
 
 
-<meta name="description" content="但行好事，莫问前程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="如是而已">
-<meta property="og:url" content="https://zaynex.github.io/archives/2016/08/page/3/index.html">
+<meta name="description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
+需要的知识点
+文件操作：  file_put_contents">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP留言板功能以及正则动态修改表单实现">
+<meta property="og:url" content="https://zaynex.github.io/2016/09/05/PHP留言板功能以及正则动态修改表单实现/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="但行好事，莫问前程">
+<meta property="og:description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
+需要的知识点
+文件操作：  file_put_contents">
+<meta property="og:updated_time" content="2016-09-05T14:21:46.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如是而已">
-<meta name="twitter:description" content="但行好事，莫问前程">
+<meta name="twitter:title" content="PHP留言板功能以及正则动态修改表单实现">
+<meta name="twitter:description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
+需要的知识点
+文件操作：  file_put_contents">
 
 
 
@@ -113,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="https://zaynex.github.io/archives/2016/08/page/3/"/>
+  <link rel="canonical" href="https://zaynex.github.io/2016/09/05/PHP留言板功能以及正则动态修改表单实现/"/>
 
-  <title> 归档 | 如是而已 </title>
+  <title> PHP留言板功能以及正则动态修改表单实现 | 如是而已 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -146,7 +153,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,402 +274,167 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 目前共计 44 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/从自由变量到作用域栈/" itemprop="url">
-              
-                <span itemprop="name">从自由变量到作用域栈</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T12:49:48+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/JS作用域和上下文环境/" itemprop="url">
-              
-                <span itemprop="name">JS作用域和上下文环境</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T12:34:47+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/JS作用域/" itemprop="url">
-              
-                <span itemprop="name">JS作用域</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T12:18:17+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/JS执行上下文环境/" itemprop="url">
-              
-                <span itemprop="name">JS中的执行上下文环境（二）</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T11:24:31+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/JS中的this指向/" itemprop="url">
-              
-                <span itemprop="name">JavaScript中的this到底指向谁？</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T11:03:07+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/09/JS中的执行上下文环境/" itemprop="url">
-              
-                <span itemprop="name">JS中的执行上下文环境（一）</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-09T10:14:08+08:00"
-              content="2016-08-09" >
-          08-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/08/致我辞职后的第一个月/" itemprop="url">
-              
-                <span itemprop="name">致我辞职后的第一个月</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-08T22:43:44+08:00"
-              content="2016-08-08" >
-          08-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/08/《锋利的jQuery二》第四章读书笔记/" itemprop="url">
-              
-                <span itemprop="name">《锋利的jQuery》第四章读书笔记</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-08T22:30:45+08:00"
-              content="2016-08-08" >
-          08-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/08/《锋利的jQuery二》第三章读书笔记/" itemprop="url">
-              
-                <span itemprop="name">《锋利的jQuery二》第三章读书笔记</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-08T22:30:29+08:00"
-              content="2016-08-08" >
-          08-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/08/《锋利的jQuery二》第二章读书笔记/" itemprop="url">
-              
-                <span itemprop="name">《锋利的jQuery二》第二章读书笔记</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-08T22:30:05+08:00"
-              content="2016-08-08" >
-          08-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2016/08/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2016/08/">1</a><a class="page-number" href="/archives/2016/08/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2016/08/page/4/">4</a><a class="extend next" rel="next" href="/archives/2016/08/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                PHP留言板功能以及正则动态修改表单实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-05T21:41:38+08:00" content="2016-09-05">
+              2016-09-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
 
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="PHP留言功能"><a href="#PHP留言功能" class="headerlink" title="PHP留言功能"></a>PHP留言功能</h2><h3 id="处理逻辑"><a href="#处理逻辑" class="headerlink" title="处理逻辑"></a>处理逻辑</h3><p>将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。<br>查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。<br>删除表单中的数据逻辑在del.php，使用<code>$_GET[id]</code>，再给每个url末尾加上id值，删除。</p>
+<h3 id="需要的知识点"><a href="#需要的知识点" class="headerlink" title="需要的知识点"></a>需要的知识点</h3><ol>
+<li>文件操作：<br>  <code>file_put_contents</code>(文件名,内容);文件的写入函数(覆盖原有数据)<br>  <code>file_get_contents</code>(文件名);文件内容的读取函数</li>
+<li><p>字符串的处理函数<br>  返回数组 <code>explode</code>(分割符，字符串); 将字串拆分成数组的函数<br>  返回字串 <code>implode</code>(分割符，数组); 将数组以指定分割符合并成子串的函数<br>  返回字符串 <code>rtrim(tring $str [, string $character_mask ])</code> ; 删除字符串末端的空白字符（或者其他字符）</p>
+</li>
+<li><p>数组：<br>  foreach() 遍历数组的<br>  unset（）销毁变量。<br>  $_POST[] 获取传递的form表单<br>  $_SERVER[“REMOTE_ADDR”];获取客户端的ip地址<br>  time(); //获取当前系统的时间戳<br>  date(); 日期转换函数</p>
+</li>
+</ol>
+<h3 id="示例的目录结构"><a href="#示例的目录结构" class="headerlink" title="示例的目录结构"></a>示例的目录结构</h3><p>===================<br>    |–index.php 添加留言信息界面<br>    |<br>    |–doAdd.php 获取留言信息，并执行添加操作的php文件<br>    |<br>    |–show.php  显示留言信息的界面<br>    |<br>    |–del.php     执行删除留言信息的php文件<br>    |<br>    |–liuyan.txt 用于储存留言信息的文件<br>    |<br>    |–menu.php  留言信息的导航栏</p>
+<h2 id="正则匹配动态修改表单"><a href="#正则匹配动态修改表单" class="headerlink" title="正则匹配动态修改表单"></a>正则匹配动态修改表单</h2><h3 id="相关的知识点"><a href="#相关的知识点" class="headerlink" title="相关的知识点"></a>相关的知识点</h3><pre><code>正表达式：
+    preg_match_all -- 进行全局正则表达式匹配
+    preg_replace -- 执行正则表达式的搜索和替换
+
+文件的读和写
+    file_put_contents--文件写入函数
+    file_get_contents()--文件读取信息函数
+</code></pre><h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><pre><code>1.准备好一个配置文件：dbconfig.php
+
+2. 定义一个edit.php，配置文件信息的编辑界面
+    a 读取配置文件的信息
+    b 使用正则表达式解析配置文件的信息
+    c 遍历解析后的信息，并输出到修改表单中
+
+3. 定义一个doupdate.php执行配置文件信息的修改操作
+    （使用正则替换方式）
+</code></pre><h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//doupdae.php逻辑</span></div><div class="line"></div><div class="line"><span class="comment">//1. 读取配置文件的信息</span></div><div class="line">$info = file_get_contents(<span class="string">"dbconfig.php"</span>);</div><div class="line"><span class="comment">//2.对POST遍历，并对配置文件信息进行正则替换</span></div><div class="line"><span class="keyword">foreach</span>($_POST <span class="keyword">as</span> $k=&gt;$v)&#123;</div><div class="line">	$info = preg_replace(<span class="string">"/define\(\"&#123;$k&#125;\",\".*?\"\)/"</span>,<span class="string">"define(\"&#123;$k&#125;\",\"&#123;$v&#125;\")"</span>,$info);</div><div class="line">&#125;</div><div class="line"><span class="comment">//3. 将替换后的信息写回到配置文件中</span></div><div class="line">file_put_contents(<span class="string">"dbconfig.php"</span>,$info);</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;h2&gt;修改成功！&lt;/h2&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;a href='edit.php'&gt;返回&lt;/a&gt;"</span>;</div></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>edit.php从文件中读取数据呈现，用户在表单上修改的数据传递给doupdate.php。doupdate.php进行匹配，将读取中的数据利用正则表达式进行修改到原先的文件中。（先读取原文本，正则匹配后将新数据写入该文本）<br>对于删除部分的ID，是自己在url末尾添加再获取进行删除的。<br>对于正则匹配，<code>.*?</code>是贪婪匹配，匹配到最小项就结束。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/表单/" rel="tag">#表单</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/29/表单操作/" rel="next" title="表单操作之autocomplete中off失效问题">
+                <i class="fa fa-chevron-left"></i> 表单操作之autocomplete中off失效问题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -687,6 +459,10 @@ var duoshuoQuery = {short_name:"zaynexnew"};
 	</script>
 <!-- 多说公共JS代码 end -->
           
+  <div class="comments" id="comments">
+    
+  </div>
+
         </div>
         
           
@@ -705,8 +481,17 @@ var duoshuoQuery = {short_name:"zaynexnew"};
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -776,6 +561,17 @@ var duoshuoQuery = {short_name:"zaynexnew"};
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP留言功能"><span class="nav-number">1.</span> <span class="nav-text">PHP留言功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理逻辑"><span class="nav-number">1.1.</span> <span class="nav-text">处理逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的知识点"><span class="nav-number">1.2.</span> <span class="nav-text">需要的知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例的目录结构"><span class="nav-number">1.3.</span> <span class="nav-text">示例的目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则匹配动态修改表单"><span class="nav-number">2.</span> <span class="nav-text">正则匹配动态修改表单</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关的知识点"><span class="nav-number">2.1.</span> <span class="nav-text">相关的知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现步骤"><span class="nav-number">2.2.</span> <span class="nav-text">实现步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心代码"><span class="nav-number">2.3.</span> <span class="nav-text">核心代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -873,11 +669,9 @@ var duoshuoQuery = {short_name:"zaynexnew"};
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
