@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
-需要的知识点
-文件操作：  file_put_contents">
+<meta name="description" content="PHP留言功能虽然简单，但是总有你不熟悉的地方。再次感受正则的魅力。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP留言板功能以及正则动态修改表单实现">
 <meta property="og:url" content="https://zaynex.github.io/2016/09/05/PHP留言板功能以及正则动态修改表单实现/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
-需要的知识点
-文件操作：  file_put_contents">
-<meta property="og:updated_time" content="2016-09-05T14:21:46.590Z">
+<meta property="og:description" content="PHP留言功能虽然简单，但是总有你不熟悉的地方。再次感受正则的魅力。">
+<meta property="og:updated_time" content="2016-09-05T14:25:01.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP留言板功能以及正则动态修改表单实现">
-<meta name="twitter:description" content="PHP留言功能处理逻辑将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。删除表单中的数据逻辑在del.php，使用$_GET[id]，再给每个url末尾加上id值，删除。
-需要的知识点
-文件操作：  file_put_contents">
+<meta name="twitter:description" content="PHP留言功能虽然简单，但是总有你不熟悉的地方。再次感受正则的魅力。">
 
 
 
@@ -354,7 +348,8 @@
       
 
       
-        <h2 id="PHP留言功能"><a href="#PHP留言功能" class="headerlink" title="PHP留言功能"></a>PHP留言功能</h2><h3 id="处理逻辑"><a href="#处理逻辑" class="headerlink" title="处理逻辑"></a>处理逻辑</h3><p>将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。<br>查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。<br>删除表单中的数据逻辑在del.php，使用<code>$_GET[id]</code>，再给每个url末尾加上id值，删除。</p>
+        <h2 id="PHP留言功能"><a href="#PHP留言功能" class="headerlink" title="PHP留言功能"></a>PHP留言功能</h2><p>虽然简单，但是总有你不熟悉的地方。再次感受正则的魅力。<br><a id="more"></a></p>
+<h3 id="处理逻辑"><a href="#处理逻辑" class="headerlink" title="处理逻辑"></a>处理逻辑</h3><p>将form表单中的数据传递给doAdd.php进行处理，包括获取表单中不同字段的值并写入到相应的文本中。<br>查看新添加的数据需要用到show.php，读取新写入的文本中的各项值。利用foreach循环遍历数组，呈现数据。<br>删除表单中的数据逻辑在del.php，使用<code>$_GET[id]</code>，再给每个url末尾加上id值，删除。</p>
 <h3 id="需要的知识点"><a href="#需要的知识点" class="headerlink" title="需要的知识点"></a>需要的知识点</h3><ol>
 <li>文件操作：<br>  <code>file_put_contents</code>(文件名,内容);文件的写入函数(覆盖原有数据)<br>  <code>file_get_contents</code>(文件名);文件内容的读取函数</li>
 <li><p>字符串的处理函数<br>  返回数组 <code>explode</code>(分割符，字符串); 将字串拆分成数组的函数<br>  返回字串 <code>implode</code>(分割符，数组); 将数组以指定分割符合并成子串的函数<br>  返回字符串 <code>rtrim(tring $str [, string $character_mask ])</code> ; 删除字符串末端的空白字符（或者其他字符）</p>
@@ -419,6 +414,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/07/JavaScript高级程序设计三之AJAX/" rel="prev" title="JavaScript高级程序设计三之AJAX">
+                JavaScript高级程序设计三之AJAX <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -502,7 +501,7 @@ var duoshuoQuery = {short_name:"zaynexnew"};
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">44</span>
+              <span class="site-state-item-count">45</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -519,7 +518,7 @@ var duoshuoQuery = {short_name:"zaynexnew"};
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-count">61</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
