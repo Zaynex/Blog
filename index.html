@@ -291,6 +291,1768 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/15/提升JavaScript性能/" itemprop="url">
+                  提升JavaScript性能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T20:30:18+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/15/提升JavaScript性能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/15/提升JavaScript性能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="服务器中使用Gzip编码"><a href="#服务器中使用Gzip编码" class="headerlink" title="服务器中使用Gzip编码"></a>服务器中使用Gzip编码</h3><p>发送之前，进行压缩，当数据到达浏览器后再进行解压缩，这样一来路线传输的数据更少文件到达浏览器事件更快。</p>
+<h3 id="利用工具缩小JavaScript文件"><a href="#利用工具缩小JavaScript文件" class="headerlink" title="利用工具缩小JavaScript文件"></a>利用工具缩小JavaScript文件</h3><ul>
+<li>缩编 (JSMIN)</li>
+<li>混淆 (UglifyJS)</li>
+<li>编译 (Google Closure Compiler)</li>
+</ul>
+<h3 id="匿名函数、自执行的函数闭包减少全局变量的使用"><a href="#匿名函数、自执行的函数闭包减少全局变量的使用" class="headerlink" title="匿名函数、自执行的函数闭包减少全局变量的使用"></a>匿名函数、自执行的函数闭包减少全局变量的使用</h3><p>哈哈，贴个复杂点的代码，这段代码很有意思的！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">var Class = (function()&#123;</div><div class="line">	function create(classDefinition, parentPrototype) &#123;</div><div class="line">		var _NewClass = function()&#123;</div><div class="line">			if(this.initializa &amp;&amp; typeof this.initializa === &apos;function&apos;)&#123;</div><div class="line">				this.initializa.apply(this, arguments);</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		_name;</div><div class="line">		if(parentPrototype) &#123;</div><div class="line">			//如果传入父类原型，则子类继承父类的所有方法和属性，利用constructor传递</div><div class="line">			_NewClass.prototype = new parentPrototype.constructor();</div><div class="line">			for(_name in parentPrototype) &#123;</div><div class="line">				if(parentPrototype.hasOwnProperty(_name)) &#123;</div><div class="line">					_NewClass.prototype[_name] = parentPrototype[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//创建一个闭包，在闭包中返回另一个函数替代传入的函数</div><div class="line">		//将传入的函数包装起来，并为当前对象提供一个_parent()方法</div><div class="line">		//以支持父类中同名的方法的访问，就实现了对多态的继承</div><div class="line">		function ploymorph(thisFunction, parentFunction)&#123;</div><div class="line">			return function()&#123;</div><div class="line">				var output;</div><div class="line">				this._parent = parentFunction;</div><div class="line">				output = thisFunction.apply(this, arguments);</div><div class="line">				delete this._parent;</div><div class="line">				return output;</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//将作为参数传递的类定义 应用到新创建的类中</div><div class="line">		//覆盖所有parentPrototype中已存在的属性和方法</div><div class="line">		for(_name in classDefinition) &#123;</div><div class="line">			if(classDefinition.hasOwnProperty(_name)) &#123;</div><div class="line">				//如果正在利用多态，即创建和父类方法同名的新方法</div><div class="line">				//我们希望提供一种在子类方法中调用父类方法的简单方式</div><div class="line">				if(parentPrototype &amp;&amp; parentPrototype[_name] &amp;&amp; typeof classDefinition[_name] === &apos;function&apos;) &#123;</div><div class="line">					_NewClass.prototype[_name] = ploymorph(classDefinition[name], parentPrototype[_name]);</div><div class="line">				&#125;else &#123;</div><div class="line">					//如果不需要多态，则直接将classDefinition对象直接量中的项映射到新类的原型即可</div><div class="line">					_NewClass.prototype[_name] = classDefinition[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		_NewClass.prototype.constructor = _NewClass;</div><div class="line"></div><div class="line">		//为新创建的类自身定义个extend方法，指向私有的extend函数，这个函数定义在下面，我们通过此方法可以将当前类作为父类来创建一个子类</div><div class="line">		_NewClass.extend = extend;</div><div class="line">		return _NewClass;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	//extend和create方法相同，不过隐藏额外的参数，用来继承父类的原型</div><div class="line">	function extend(classDefinition) &#123;</div><div class="line">		return create(classDefinition, this.prototype);</div><div class="line">	&#125;</div><div class="line">	//用相同的名字将私有的create方法暴露</div><div class="line">	return &#123;</div><div class="line">		create: create</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<h3 id="动态加载JavaScript文件"><a href="#动态加载JavaScript文件" class="headerlink" title="动态加载JavaScript文件"></a>动态加载JavaScript文件</h3><p>请求时加载javascript文件，从而不阻塞浏览器，后期可以使用Require.js实现文件延时加载，以及利用标准化格式实现代码文件的依赖管理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function loadScript(src, onLoad) &#123;</div><div class="line">	var scriptTag = document.createElemen(&quot;script&quot;);</div><div class="line">	scriptTag.src = src;</div><div class="line"></div><div class="line">	if(typeof onLoad === &apos;function&apos;)&#123;</div><div class="line">		scriptTag.onload = onLoad;</div><div class="line">		scciptTag.onreadstatechange = function()&#123;</div><div class="line">			if(scriptTag.readState == 4) &#123;</div><div class="line">				onLoad();</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">	&#125;</div><div class="line">	document.body.appendChild(scriptTag);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//加载完后弹出提示框，也可以不传入这个方法</div><div class="line">loadScript(&quot;my-script.js&quot;, function()&#123;</div><div class="line">	alert(&quot;script loaded and aviable!&quot;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="优化文档对象操作"><a href="#优化文档对象操作" class="headerlink" title="优化文档对象操作"></a>优化文档对象操作</h3><h4 id="保存变量并通过单独父元素的引用访问子DOM元素"><a href="#保存变量并通过单独父元素的引用访问子DOM元素" class="headerlink" title="保存变量并通过单独父元素的引用访问子DOM元素"></a>保存变量并通过单独父元素的引用访问子DOM元素</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> wrapper = <span class="built_in">document</span>.getElementById(<span class="string">"wrapper"</span>),</div><div class="line">	header = wrapper.getElementsByTagName(<span class="string">"header"</span>)[<span class="number">0</span>],</div><div class="line">	nav = wrapper.getElementsByTagName(<span class="string">"nav"</span>)[<span class="number">0</span>];</div><div class="line"></div><div class="line">header.className += <span class="string">' '</span> + nav.className;</div></pre></td></tr></table></figure>
+<h4 id="对新建元素实施DOM修改操作后才将其添加至当前实时页面"><a href="#对新建元素实施DOM修改操作后才将其添加至当前实时页面" class="headerlink" title="对新建元素实施DOM修改操作后才将其添加至当前实时页面"></a>对新建元素实施DOM修改操作后才将其添加至当前实时页面</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> list = <span class="built_in">document</span>.createElement(<span class="string">"ul"</span>),</div><div class="line">	listItem = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);</div><div class="line">listItem.innerHTML = <span class="string">"I am a list item"</span>;</div><div class="line">list.appendChild(listItem);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.body.appendChild(list);</div></pre></td></tr></table></figure>
+<h4 id="复制已有的元素提高性能"><a href="#复制已有的元素提高性能" class="headerlink" title="复制已有的元素提高性能"></a>复制已有的元素提高性能</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> list1 = <span class="built_in">document</span>.createElement(<span class="string">"ul"</span>),</div><div class="line">	list2,</div><div class="line">	listItem1 = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>),</div><div class="line">	listItem2,</div><div class="line">	listItem3;</div><div class="line">listItem1.className = <span class="string">"list-item"</span>;</div><div class="line">listItem1.innerHTML = <span class="string">"I am a list item"</span>;</div><div class="line"></div><div class="line"><span class="comment">//使用cloneNode复制元素，设置参数为true则可以复制该元素下所有子元素，包括相关对象和属性</span></div><div class="line"></div><div class="line">listItem2 = listItem1.cloneNode(<span class="literal">true</span>);</div><div class="line">listItem3 = listItem1.cloneNode(<span class="literal">true</span>);</div><div class="line"></div><div class="line">list1.appendChild(listItem1);</div><div class="line">list1.appendChild(listItem2);</div><div class="line">list1.appendChild(listItem3);</div><div class="line"></div><div class="line"><span class="comment">//复制整个无序列表</span></div><div class="line">list2 = list1.cloneNode(<span class="literal">true</span>);</div><div class="line"></div><div class="line"><span class="comment">//把这两个一模一样的无序列表元素添加至实时页面</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(list1);</div><div class="line"><span class="built_in">document</span>.body.appendChild(list2);</div></pre></td></tr></table></figure>
+<h4 id="利用css而非javascript设置页面样式"><a href="#利用css而非javascript设置页面样式" class="headerlink" title="利用css而非javascript设置页面样式"></a>利用css而非javascript设置页面样式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//为重新渲染部分或整个页面，浏览器会重新计算页面元素位置和几何结构的进程叫重排（reflow)</span></div><div class="line"><span class="comment">//更新DOM元素的style属性会引发浏览器重排</span></div><div class="line"><span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'nav'</span>)[<span class="number">0</span>];</div><div class="line">nav.style.backgroundColor = <span class="string">"red"</span>;</div><div class="line">nav.style.color = <span class="string">"#fff"</span>;</div><div class="line"><span class="comment">//好的方式</span></div><div class="line"><span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'nav'</span>)[<span class="number">0</span>];</div><div class="line">nav.className += <span class="string">" selected"</span>; <span class="comment">//名称为selected的css类包含着多项样式设定</span></div><div class="line"></div><div class="line"><span class="comment">//如果这种方式不能用，我们可以通过隐藏元素并修改元素的style属性，减少重排的发生</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> nav = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"nav"</span>)[<span class="number">0</span>];</div><div class="line">nav.style.display = <span class="string">"none"</span>;<span class="comment">//引发一次重排</span></div><div class="line">nav.style.backgroundColor = <span class="string">"red"</span>;<span class="comment">//不引发重排</span></div><div class="line">nav.style.color = <span class="string">"#fff"</span>;<span class="comment">//不引发重排</span></div><div class="line">nav.style.display = <span class="string">"block"</span>; <span class="comment">//引发一次重排</span></div></pre></td></tr></table></figure>
+<h4 id="提升DOM事件性能"><a href="#提升DOM事件性能" class="headerlink" title="提升DOM事件性能"></a>提升DOM事件性能</h4><h4 id="利用事件冒泡"><a href="#利用事件冒泡" class="headerlink" title="利用事件冒泡"></a>利用事件冒泡</h4><p>给多个子元素<code>对应的父元素</code>上应用该事件处理函数即可，就可以统一管理事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;ul id=&quot;list&quot;&gt;</div><div class="line">	&lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</div><div class="line">	&lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;News&lt;/a&gt;&lt;/li&gt;</div><div class="line">	&lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;Eevent&lt;/a&gt;&lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line"></div><div class="line">var list = document.getElementById(&apos;list&apos;);</div><div class="line">function onClick(event)&#123;</div><div class="line">	//target属性表示获取对所点击的实际元素的引用</div><div class="line">	var clickedElem = event.target;</div><div class="line">	tagNameSought = &quot;a&quot;;</div><div class="line">	//检查是否为a标签</div><div class="line">	if(clickedElem &amp;&amp; clickedElem.tagName === tagNameSought) &#123;</div><div class="line">		window.open(clickedElem.href);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="使用框架化处理频繁发出的事件"><a href="#使用框架化处理频繁发出的事件" class="headerlink" title="使用框架化处理频繁发出的事件"></a>使用框架化处理频繁发出的事件</h4><p>某些事件会在连续状态下频繁发出，比如页面更改时浏览器出现的resize事件，使用鼠标或触屏所触发的mousemove和touchmove事件，或者是滚动页面时所出现的scroll事件。<br>把需要执行大量代码或潜在的计算密集型操作的时间处理函数直接关联在这些事件上会引发性能问题。</p>
+<p>如果某事件处理代码正在执行而此时又有另一个事件发出，则事件调用会被积压。只有到事件的代码执行完毕后，后续的第二个事件才能执行。如果很多事件不断快速发出，就会出现卡顿等现象。<br>针对这个问题的解决办法是：<br><strong>让事件处理函数只负责把时间的当前值保存在变量中。把计算密集型的代码转移至单独的函数中，此函数按照计时器间隔运行代码，所使用的是保存在变量中的数据而不是直接取自于事件处理函数。</strong>这一原则被称为事件框架化。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var scrollTopPosition = 0,</div><div class="line">	scrollLeftPosition = 0,</div><div class="line">	body = document.body,</div><div class="line">	header = document.createElement(&quot;header&quot;);</div><div class="line"></div><div class="line"></div><div class="line">//事件处理函数，只负责保存当前的滚动位置</div><div class="line">function onScroll() &#123;</div><div class="line">	scrollTopPosition = body.scrollTop;</div><div class="line">	scrollLeftPosition = body.scrollLeft;</div><div class="line">&#125;</div><div class="line">//增加更加一个函数，把当前的滚动位置显示在页面中id为header的元素中</div><div class="line">function writeScrollPosition()&#123;</div><div class="line">	console.log(scrollTopPosition + &quot;px, &quot; + scrollLeftPosition + &quot;px&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//像往常一样关联事件至事件处理函数</div><div class="line">document.addEventListener(&quot;scroll&quot;, onScroll, false);</div><div class="line"></div><div class="line">//每隔500ms执行一次 writeScrollTop函数，而不是每次scoll事件发出时都执行，从而提升性能</div><div class="line"></div><div class="line">window.setInterval(writeScrollPosition, 500);</div></pre></td></tr></table></figure></p>
+<h3 id="提升函数性能"><a href="#提升函数性能" class="headerlink" title="提升函数性能"></a>提升函数性能</h3><h4 id="记忆函数"><a href="#记忆函数" class="headerlink" title="记忆函数"></a>记忆函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">funtion getFactorial(num) &#123;</div><div class="line">	var result = 1,</div><div class="line">		index = 1;</div><div class="line">	for(; index &lt;= num; index++) &#123;</div><div class="line">		result *= index;</div><div class="line">	&#125;</div><div class="line">	return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(getFactorial(3));</div><div class="line">alert(getFactorial(4));</div><div class="line">alert(getFactorial(10));</div><div class="line"></div><div class="line">//4-19</div><div class="line">function getFactorial(num) &#123;</div><div class="line">	var result = 1,</div><div class="line">		index = 1;</div><div class="line">	if(!getFactorial.storage) &#123;</div><div class="line">		getFactorial.storage = &#123;&#125;;</div><div class="line">	&#125;else if (getFactorial.storage[num]) &#123;</div><div class="line">		return getFactorial[num];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	for(; index &lt;= num; index++) &#123;</div><div class="line">		result *= index;</div><div class="line">	&#125;</div><div class="line">	getFactorial.storage[num] = result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(getFactorial(50));//执行函数里的全部内容</div><div class="line">alert(getFactorial(50));//返回一个保存的值。避免执行函数里的全部内容</div></pre></td></tr></table></figure>
+<p>我们也可以直接封装一个<code>记忆函数</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">function memoize(fn) &#123;</div><div class="line">	return function()&#123;</div><div class="line">		var propertyName;</div><div class="line">		//如果这个函数还没有用作记忆的对象属性，则为其添加一个</div><div class="line">		fn.storage = fn.storage || &#123;&#125;;</div><div class="line"></div><div class="line">		//属性名称应该基于传给函数所设定的参数，以确保属性名称是唯一的，基于所有可能性输入参数组合的。</div><div class="line">		propertyName = Array.property.join.call(arguments, &quot;|&quot;);</div><div class="line"></div><div class="line">		if(propertyName in fn.storage) &#123;</div><div class="line">			return fn.storage[propertyName];</div><div class="line">		&#125;else &#123;</div><div class="line">			//如果不存在，执行相关函数并将结果保存在用作记忆的对象中</div><div class="line">			fn.storage[propertyName] = fn.apply(this, arguments);</div><div class="line">			return fn.storage[propertyName];</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function getFactorial(num) &#123;</div><div class="line">	var result = 1,</div><div class="line">		index = 1;</div><div class="line">	for(; index &lt;= num; index++) &#123;</div><div class="line">		result *= index;</div><div class="line">	&#125;</div><div class="line">	return result;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//添加一般性记忆功能至函数</div><div class="line">var getFactorialMemoized = memoize(getFactorial);</div><div class="line"></div><div class="line">alert(getFactorialMemoized(50));</div><div class="line">alert(getFactorialMemoized(50));</div></pre></td></tr></table></figure></p>
+<h4 id="定义好数组长度后再循环"><a href="#定义好数组长度后再循环" class="headerlink" title="定义好数组长度后再循环"></a>定义好数组长度后再循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">在for循环中，先保存数值的长度</div><div class="line">for(var i = 0; i &lt; arr.length; i++) &#123;</div><div class="line">	//bad</div><div class="line">&#125;</div><div class="line">for(var i=0, len = arr.length; i &lt; len; i++)&#123;</div><div class="line">	//good	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="while反向循环"><a href="#while反向循环" class="headerlink" title="while反向循环"></a>while反向循环</h4><p>还有更快的方式，利用反向while循环，这种方式比for循环快的原因是每次for循环中，JavaScript解释器都需要运行一次比较。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var zerototen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],</div><div class="line">	len = zerototen.length,</div><div class="line">	index = len,</div><div class="line">	tentozero = [];</div><div class="line"></div><div class="line">while(index--) &#123;</div><div class="line">	tentozero.push(zerototen[index]);</div><div class="line">&#125;</div><div class="line">alert(index);</div></pre></td></tr></table></figure>
+<h4 id="Web-Worker"><a href="#Web-Worker" class="headerlink" title="Web Worker"></a>Web Worker</h4><p>由于JavaScript是单线程的，有时候难免在处理大量计算时，会出现用户界面锁定。<br>Web Worker允许加速一个运行特定密集代码的新进程，使得原来的进程不会锁定浏览器，其实就是在后台运行。<br>简单来说，就是又开启了一个全新的线程，把复杂的计算交给了这个新线程去处理。</p>
+<h4 id="整体处理逻辑"><a href="#整体处理逻辑" class="headerlink" title="整体处理逻辑"></a>整体处理逻辑</h4><p>我们以利用Web Worker处理图像来说明<br>以下代码发生了如下事情：</p>
+<ul>
+<li>等待原始图片加载完毕</li>
+<li>利用canvas复制原始图片数据（像素、宽高）</li>
+<li>将原始图片数据传递给 web worker(listing.js)线程处理</li>
+<li>web worker(listing.js)监听到有数据传入，处理图片后返回数据</li>
+<li>webwork.js接受到线程传入的数据后，将图片数据填入到canvas</li>
+<li>将canvas添加到页面中</li>
+</ul>
+<h5 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">	&lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;img src=&quot;demo.jpg&quot; alt=&quot;&quot; id=&quot;image&quot;&gt;</div><div class="line">&lt;script src=&quot;webwork.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h5 id="webwork-js代码部分"><a href="#webwork-js代码部分" class="headerlink" title="webwork.js代码部分"></a>webwork.js代码部分</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var canvas = document.createElement(&quot;canvas&quot;),</div><div class="line">	context = canvas.getContext(&quot;2d&quot;),</div><div class="line">	img = document.getElementById(&quot;image&quot;);</div><div class="line"></div><div class="line">function processImage()&#123;</div><div class="line">	var imgWidth = img.width,</div><div class="line">		imgHeight = img.height;</div><div class="line">		if(window.Worker)&#123;</div><div class="line">			//定义一个新的Web Worker</div><div class="line">			workerThread = new Worker(&quot;listing.js&quot;);</div><div class="line">		&#125;</div><div class="line">		canvas.width = imgWidth;</div><div class="line">		canvas.height = imgHeight;</div><div class="line">		//复制原图像至canvas，左上角开始对齐</div><div class="line">		context.drawImage(img, 0, 0, imgWidth, imgHeight);</div><div class="line">		//一旦从Web Worker接受到消息（即图片处理完成后），就执行</div><div class="line">		workerThread.addEventListener(&quot;message&quot;, function(e)&#123;</div><div class="line">			var imageData = e.data;</div><div class="line">			//把新处理所得的图片像素填充至Canvas，从左上角开始</div><div class="line">			context.putImageData(imageData, 0, 0);</div><div class="line">			document.body.appendChild(canvas);</div><div class="line">		&#125;, false);</div><div class="line"></div><div class="line">		//向Web Worker线程发送canvas中所显示的原始图像数据，使该线程启动</div><div class="line">		workerThread.postMessage(context.getImageData(0, 0, imgWidth, imgHeight));</div><div class="line">&#125;</div><div class="line">//原始图片加载完成后，立即执行processImage</div><div class="line">img.addEventListener(&quot;load&quot;, processImage, false);</div></pre></td></tr></table></figure>
+<h5 id="listing-js代码部分"><a href="#listing-js代码部分" class="headerlink" title="listing.js代码部分"></a>listing.js代码部分</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">self.addEventListener(&quot;message&quot;, invertImage, false);</div><div class="line"></div><div class="line">function invertImage(e) &#123;</div><div class="line">	var message = e.data,</div><div class="line">		imagePixels = message.data,</div><div class="line">		x = 0,</div><div class="line">		len = imagePixels.length;</div><div class="line"></div><div class="line"></div><div class="line">	for(; x &lt; len; x += 4) &#123;</div><div class="line">		imagePixels[x] = 255 - imagePixels[x];</div><div class="line">		imagePixels[x + 1] = 255 - imagePixels[x + 1];</div><div class="line">		imagePixels[x + 2] = 255 - imagePixels[x + 2];</div><div class="line">	&#125;</div><div class="line">	self.postMessage(message);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>感兴趣的同学可以试下最后的图像处理代码。记得要开启服务器哦！</p>
+<h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var startTime,</div><div class="line">	endTime,</div><div class="line">	duration;</div><div class="line"></div><div class="line">function doSomething()&#123;</div><div class="line">	var index = 0,</div><div class="line">		length = 10000000,</div><div class="line">		counter = 0;</div><div class="line">	for(; index &lt; length; index++) &#123;</div><div class="line">		counter += index;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">startTime = new Date();</div><div class="line">doSomething();</div><div class="line"></div><div class="line">endTime = new Date();</div><div class="line">duration = endTime.getTime() - startTime.getTime();</div><div class="line"></div><div class="line">alert(duration);</div></pre></td></tr></table></figure>
+<p>其实我们还可以利用<code>console</code>控制台让时间更精确</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">	function doSomething(length) &#123;</div><div class="line">	var counter = 0,</div><div class="line">		index = 0;</div><div class="line">		console.time(&quot;Loop Timer &quot; + length);</div><div class="line"></div><div class="line">	for(; index &lt; length; index++) &#123;</div><div class="line">		counter += index;</div><div class="line">	&#125;</div><div class="line">	console.timeEnd(&quot;Loop Timer &quot; + length);</div><div class="line">&#125;</div><div class="line">doSomething(101100)</div></pre></td></tr></table></figure>
+<p>千万要注意，这里的<code>Loop Timer</code>字符串一定要保持一致，不然会开启不同的计时器，不信你试试哈！</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>关于文档碎片<code>(document.createDocumentFragment)</code>在有些浏览器下并没有提高性能。<br>关于性能还有正则表达式没有介绍，想要写好一手正则确实不容易，下次再介绍正则相关的内容吧！</p>
+<p>最后，推荐<code>《Pro JavaScript Development》</code>。以上的例子全是来自这本书的！进阶的同学可千万不要错过了哟！</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/15/《Pro-JavaScript》对象笔记/" itemprop="url">
+                  《Pro JavaScript》对象笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T20:20:10+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/15/《Pro-JavaScript》对象笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/15/《Pro-JavaScript》对象笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>创建一个类，其子类也可以作为一个类被继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">var Class = (function()&#123;</div><div class="line">	function create(classDefinition, parentPrototype) &#123;</div><div class="line">		var _NewClass = function()&#123;</div><div class="line">			if(this.initializa &amp;&amp; typeof this.initializa === &apos;function&apos;)&#123;</div><div class="line">				this.initializa.apply(this, arguments);</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		_name;</div><div class="line">		if(parentPrototype) &#123;</div><div class="line">			//如果传入父类原型，则子类继承父类的所有方法和属性，利用constructor传递</div><div class="line">			_NewClass.prototype = new parentPrototype.constructor();</div><div class="line">			for(_name in parentPrototype) &#123;</div><div class="line">				if(parentPrototype.hasOwnProperty(_name)) &#123;</div><div class="line">					_NewClass.prototype[_name] = parentPrototype[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//创建一个闭包，在闭包中返回另一个函数替代传入的函数</div><div class="line">		//将传入的函数包装起来，并为当前对象提供一个_parent()方法</div><div class="line">		//以支持父类中同名的方法的访问，就实现了对多态的继承</div><div class="line">		function ploymorph(thisFunction, parentFunction)&#123;</div><div class="line">			return function()&#123;</div><div class="line">				var output;</div><div class="line">				this._parent = parentFunction;</div><div class="line">				output = thisFunction.apply(this, arguments);</div><div class="line">				delete this._parent;</div><div class="line">				return output;</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//将作为参数传递的类定义 应用到新创建的类中</div><div class="line">		//覆盖所有parentPrototype中已存在的属性和方法</div><div class="line">		for(_name in classDefinition) &#123;</div><div class="line">			if(classDefinition.hasOwnProperty(_name)) &#123;</div><div class="line">				//如果正在利用多态，即创建和父类方法同名的新方法</div><div class="line">				//我们希望提供一种在子类方法中调用父类方法的简单方式</div><div class="line">				if(parentPrototype &amp;&amp; parentPrototype[_name] &amp;&amp; typeof classDefinition[_name] === &apos;function&apos;) &#123;</div><div class="line">					_NewClass.prototype[_name] = ploymorph(classDefinition[name], parentPrototype[_name]);</div><div class="line">				&#125;else &#123;</div><div class="line">					//如果不需要多态，则直接将classDefinition对象直接量中的项映射到新类的原型即可</div><div class="line">					_NewClass.prototype[_name] = classDefinition[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		_NewClass.prototype.constructor = _NewClass;</div><div class="line"></div><div class="line">		//为新创建的类自身定义个extend方法，指向私有的extend函数，这个函数定义在下面，我们通过此方法可以将当前类作为父类来创建一个子类</div><div class="line">		_NewClass.extend = extend;</div><div class="line">		return _NewClass;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	//extend和create方法相同，不过隐藏额外的参数，用来继承父类的原型</div><div class="line">	function extend(classDefinition) &#123;</div><div class="line">		return create(classDefinition, this.prototype);</div><div class="line">	&#125;</div><div class="line">	//用相同的名字将私有的create方法暴露</div><div class="line">	return &#123;</div><div class="line">		create: create</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">//initialize方法将成为新类的构造函数</div><div class="line">var Accomodation = Class.create(&#123;</div><div class="line">	isLocked: true,</div><div class="line">	isAlarmed: true,</div><div class="line">	lock: function()&#123;</div><div class="line">		this.isLocked = true;</div><div class="line">	&#125;</div><div class="line">	unlock: function()&#123;</div><div class="line">		this.isLocked = false;</div><div class="line">	&#125;</div><div class="line">	initialize: function()&#123;</div><div class="line">		this.unlock();</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var House = Accomodation.extend(&#123;</div><div class="line">	floor: 2,</div><div class="line">	lock: function()&#123;</div><div class="line">		//虽然正在用多态替换父类方法，但仍可以用该方法访问被替换的父类方法</div><div class="line">		this_parent();</div><div class="line">		alert(&quot;Number of floors is locked: &quot; + this.floors);</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var myAccommodation = new Accomodation();</div><div class="line">alert(myAccommodation instanceof Accomodation);//true</div><div class="line">alert(myAccommodation instanceof House);//false</div><div class="line"></div><div class="line">var myHouse = new House();</div><div class="line">alert(myHouse.isLocked);//false,由于父类中的initalize方法所设置，该方法被House继承</div><div class="line">alert(myHouse.lock()); //Number of floors is locked: 2;</div><div class="line">alert(myHouse instanceof House);//true</div><div class="line">alert(myHouse instanceof Accomodation);//true4</div></pre></td></tr></table></figure></p>
+<h3 id="ES5的新特性"><a href="#ES5的新特性" class="headerlink" title="ES5的新特性"></a>ES5的新特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">Object.preventExtensions();//禁止拓展对象属性方法，但可以修改原属性方法</div><div class="line">Object.isExtensible();//查看对象是否被锁定</div><div class="line">Object.freeze();//进一步锁定，使其原有属性方法都无法被修改</div><div class="line">Object.isFrozen();//对象是否被冻结</div><div class="line"></div><div class="line"></div><div class="line">var personDetails = &#123;</div><div class="line">	name: &apos;Den Oddle&apos;,</div><div class="line">	email: &quot;ok@ok.com&quot;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Object.getOwnPropertyDescriptor(personDetails, &quot;name&quot;);</div><div class="line">/*</div><div class="line">configurable:true</div><div class="line">enumerable:true</div><div class="line">value:&quot;Den Oddle&quot;</div><div class="line">writable:true</div><div class="line">__proto__:Object</div><div class="line">*/</div><div class="line"></div><div class="line">Object.defineProperty(personDetails,&quot;age&quot;, &#123;</div><div class="line">	value: 35,</div><div class="line">	writable: false,</div><div class="line">	enumerable: true,</div><div class="line">	configurable: true</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Object.defineProperties(personDetails,&#123;</div><div class="line">	ChildAge: &#123;</div><div class="line">	value: 5,</div><div class="line">	writable: false,</div><div class="line">	enumerable: true,</div><div class="line">	configurable: true</div><div class="line">	&#125;,</div><div class="line">	ChildHobby: &#123;</div><div class="line">	value: &quot;basketball&quot;,</div><div class="line">	writable: true</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//包含某个对象上所有属性名的数组Object.keys()</div><div class="line">keys = Object.keys(personDetails);</div><div class="line">console.log(keys.join(&quot;,&quot;));//name,email,age,ChildAge</div><div class="line"></div><div class="line">fathersDetails = Object.create(personDetails);</div><div class="line"></div><div class="line">fathersDetails.newName = &apos;Zaynex&apos;;</div><div class="line">console.log(fathersDetails.name);//Den Oddle</div><div class="line">console.log(fathersDetails.newName);//Zaynex</div></pre></td></tr></table></figure>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>在构造一个新的子类来继承并扩展一个类的时候，可能需要将某个方法替换为同名的新方法，新方法和原方法功类似，但仅针对子类做改变，着就是多态。在JS中，只需重写一个函数并给它一个和原方法同样的方法即可实现多态。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>通过集成对已有的类进行改变或特殊化时，父类的所有属性和方法都对子类是可用的，在子类中不需要额外声明或定义任何东西就能使用所有父类的属性和方法。这种特性称为封装，子类只需要定义那些在父类的基础上新增的属性和方法即可。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>虽然没什么营养，但是代码看着还是很过瘾，日后可以回顾下。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/15/提升JavaScript性能/" itemprop="url">
+                  未命名
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T00:00:00+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/15/提升JavaScript性能/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/15/提升JavaScript性能/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="date" content="2016-09-15 20:30:18">
+<meta name="tags" content=""><style>body {
+  width: 45em;
+  border: 1px solid #ddd;
+  outline: 1300px solid #fff;
+  margin: 16px auto;
+}
+
+body .markdown-body
+{
+  padding: 30px;
+}
+
+@font-face {
+  font-family: fontawesome-mini;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+@font-face {
+  font-family: octicons-anchor;
+  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+
+.markdown-body {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body mark {
+  background: #ff0;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+.markdown-body sup {
+  top: -0.5em;
+}
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body .codehilitetable {
+  border: 0;
+  border-spacing: 0;
+}
+
+.markdown-body .codehilitetable tr {
+  border: 0;
+}
+
+.markdown-body .codehilitetable pre,
+.markdown-body .codehilitetable div.codehilite {
+  margin: 0;
+}
+
+.markdown-body .linenos,
+.markdown-body .code,
+.markdown-body .codehilitetable td {
+  border: 0;
+  padding: 0;
+}
+
+.markdown-body td:not(.linenos) .linenodiv {
+  padding: 0 !important;
+}
+
+.markdown-body .code {
+  width: 100%;
+}
+
+.markdown-body .linenos div pre,
+.markdown-body .linenodiv pre,
+.markdown-body .linenodiv {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.markdown-body .code div pre,
+.markdown-body .code div {
+  border: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.4;
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before,
+.markdown-body hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown-body hr:after {
+  clear: both;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .headeranchor-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .headeranchor-link:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .headeranchor,
+.markdown-body h2 .headeranchor,
+.markdown-body h3 .headeranchor,
+.markdown-body h4 .headeranchor,
+.markdown-body h5 .headeranchor,
+.markdown-body h6 .headeranchor {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .headeranchor-link,
+.markdown-body h2:hover .headeranchor-link,
+.markdown-body h3:hover .headeranchor-link,
+.markdown-body h4:hover .headeranchor-link,
+.markdown-body h5:hover .headeranchor-link,
+.markdown-body h6:hover .headeranchor-link {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .headeranchor-link .headeranchor,
+.markdown-body h2:hover .headeranchor-link .headeranchor,
+.markdown-body h3:hover .headeranchor-link .headeranchor,
+.markdown-body h4:hover .headeranchor-link .headeranchor,
+.markdown-body h5:hover .headeranchor-link .headeranchor,
+.markdown-body h6:hover .headeranchor-link .headeranchor {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body .admonition {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code,
+.markdown-body samp {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .codehilite {
+  margin-bottom: 16px;
+}
+
+.markdown-body .codehilite pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .codehilite pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+/* Admonition */
+.markdown-body .admonition {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  border-left: 6px solid #333;
+  padding: 10px 10px 10px 30px;
+}
+
+.markdown-body .admonition table {
+  color: #333;
+}
+
+.markdown-body .admonition p {
+  padding: 0;
+}
+
+.markdown-body .admonition-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.markdown-body .admonition>.admonition-title {
+  color: #333;
+}
+
+.markdown-body .attention>.admonition-title {
+  color: #a6d796;
+}
+
+.markdown-body .caution>.admonition-title {
+  color: #d7a796;
+}
+
+.markdown-body .hint>.admonition-title {
+  color: #96c6d7;
+}
+
+.markdown-body .danger>.admonition-title {
+  color: #c25f77;
+}
+
+.markdown-body .question>.admonition-title {
+  color: #96a6d7;
+}
+
+.markdown-body .note>.admonition-title {
+  color: #d7c896;
+}
+
+.markdown-body .admonition:before,
+.markdown-body .attention:before,
+.markdown-body .caution:before,
+.markdown-body .hint:before,
+.markdown-body .danger:before,
+.markdown-body .question:before,
+.markdown-body .note:before {
+  font: normal normal 16px fontawesome-mini;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1.5;
+  color: #333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.markdown-body .admonition:before {
+  content: "\f056\00a0";
+  color: 333;
+}
+
+.markdown-body .attention:before {
+  content: "\f058\00a0";
+  color: #a6d796;
+}
+
+.markdown-body .caution:before {
+  content: "\f06a\00a0";
+  color: #d7a796;
+}
+
+.markdown-body .hint:before {
+  content: "\f05a\00a0";
+  color: #96c6d7;
+}
+
+.markdown-body .danger:before {
+  content: "\f057\00a0";
+  color: #c25f77;
+}
+
+.markdown-body .question:before {
+  content: "\f059\00a0";
+  color: #96a6d7;
+}
+
+.markdown-body .note:before {
+  content: "\f040\00a0";
+  color: #d7c896;
+}
+
+.markdown-body .admonition::after {
+  content: normal;
+}
+
+.markdown-body .attention {
+  border-left: 6px solid #a6d796;
+}
+
+.markdown-body .caution {
+  border-left: 6px solid #d7a796;
+}
+
+.markdown-body .hint {
+  border-left: 6px solid #96c6d7;
+}
+
+.markdown-body .danger {
+  border-left: 6px solid #c25f77;
+}
+
+.markdown-body .question {
+  border-left: 6px solid #96a6d7;
+}
+
+.markdown-body .note {
+  border-left: 6px solid #d7c896;
+}
+
+.markdown-body .admonition>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body .admonition>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* progress bar*/
+.markdown-body .progress {
+  display: block;
+  width: 300px;
+  margin: 10px 0;
+  height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #ededed;
+  position: relative;
+  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
+}
+
+.markdown-body .progress-label {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  width: 100%; margin: 0;
+  line-height: 24px;
+  color: #333;
+  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
+  -webkit-font-smoothing: antialiased !important;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.markdown-body .progress-bar {
+  height: 24px;
+  float: left;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #96c6d7;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
+  background-size: 30px 30px;
+  background-image: -webkit-linear-gradient(
+    135deg, rgba(255, 255, 255, .4) 27%,
+    transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%,
+    transparent 77%, transparent
+  );
+  background-image: -moz-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -ms-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: -o-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, .4) 27%, transparent 27%,
+    transparent 52%, rgba(255, 255, 255, .4) 52%,
+    rgba(255, 255, 255, .4) 77%, transparent 77%,
+    transparent
+  );
+}
+
+.markdown-body .progress-100plus .progress-bar {
+  background-color: #a6d796;
+}
+
+.markdown-body .progress-80plus .progress-bar {
+  background-color: #c6d796;
+}
+
+.markdown-body .progress-60plus .progress-bar {
+  background-color: #d7c896;
+}
+
+.markdown-body .progress-40plus .progress-bar {
+  background-color: #d7a796;
+}
+
+.markdown-body .progress-20plus .progress-bar {
+  background-color: #d796a6;
+}
+
+.markdown-body .progress-0plus .progress-bar {
+  background-color: #c25f77;
+}
+
+.markdown-body .candystripe-animate .progress-bar{
+  -webkit-animation: animate-stripes 3s linear infinite;
+  -moz-animation: animate-stripes 3s linear infinite;
+  animation: animate-stripes 3s linear infinite;
+}
+
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 60px 0;
+  }
+}
+
+.markdown-body .gloss .progress-bar {
+  box-shadow:
+    inset 0 4px 12px rgba(255, 255, 255, .7),
+    inset 0 -12px 0 rgba(0, 0, 0, .05);
+}
+
+/* Multimarkdown Critic Blocks */
+.markdown-body .critic_mark {
+  background: #ff0;
+}
+
+.markdown-body .critic_delete {
+  color: #c82829;
+  text-decoration: line-through;
+}
+
+.markdown-body .critic_insert {
+  color: #718c00 ;
+  text-decoration: underline;
+}
+
+.markdown-body .critic_comment {
+  color: #8e908c;
+  font-style: italic;
+}
+
+.markdown-body .headeranchor {
+  font: normal normal 16px octicons-anchor;
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.headeranchor:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  margin: 0 4px 0.25em -20px;
+  vertical-align: middle;
+}
+
+/* Media */
+@media only screen and (min-width: 480px) {
+  .markdown-body {
+    font-size:14px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .markdown-body {
+    font-size:16px;
+  }
+}
+
+@media print {
+  .markdown-body * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+    -ms-filter: none !important;
+  }
+
+  .markdown-body {
+    font-size:12pt;
+    max-width:100%;
+    outline:none;
+    border: 0;
+  }
+
+  .markdown-body a,
+  .markdown-body a:visited {
+    text-decoration: underline;
+  }
+
+  .markdown-body .headeranchor-link {
+    display: none;
+  }
+
+  .markdown-body a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  .markdown-body abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .markdown-body .ir a:after,
+  .markdown-body a[href^="javascript:"]:after,
+  .markdown-body a[href^="#"]:after {
+    content: "";
+  }
+
+  .markdown-body pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-body pre,
+  .markdown-body blockquote {
+    border: 1px solid #999;
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+
+  .markdown-body .progress,
+  .markdown-body .progress-bar {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .markdown-body .progress {
+    border: 1px solid #ddd;
+  }
+
+  .markdown-body .progress-bar {
+    height: 22px;
+    border-right: 1px solid #ddd;
+  }
+
+  .markdown-body tr,
+  .markdown-body img {
+    page-break-inside: avoid;
+  }
+
+  .markdown-body img {
+    max-width: 100% !important;
+  }
+
+  .markdown-body p,
+  .markdown-body h2,
+  .markdown-body h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-body h2,
+  .markdown-body h3 {
+    page-break-after: avoid;
+  }
+}
+</style><title>提升JavaScript性能</title></head><body><article class="markdown-body"><ul>
+<li>JavaScript<br>
+categories:</li>
+<li>JS\jQuery</li>
+</ul>
+<hr>
+<h3 id="gzip"><a name="user-content-gzip" href="#gzip" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>服务器中使用Gzip编码</h3>
+<p>发送之前，进行压缩，当数据到达浏览器后再进行解压缩，这样一来路线传输的数据更少文件到达浏览器事件更快。</p>
+<h3 id="javascript"><a name="user-content-javascript" href="#javascript" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>利用工具缩小JavaScript文件</h3>
+<ul>
+<li>缩编 (JSMIN)</li>
+<li>混淆 (UglifyJS)</li>
+<li>编译 (Google Closure Compiler)</li>
+</ul>
+<h3 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>匿名函数、自执行的函数闭包减少全局变量的使用</h3>
+<h3 id="javascript_1"><a name="user-content-javascript_1" href="#javascript_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>动态加载JavaScript文件</h3>
+<p>请求时加载javascript文件，从而不阻塞浏览器，后期可以使用Require.js实现文件延时加载，以及利用标准化格式实现代码文件的依赖管理。<br>
+<pre><code>function loadScript(src, onLoad) {
+    var scriptTag = document.createElemen(&quot;script&quot;);
+    scriptTag.src = src;
+
+    if(typeof onLoad === 'function'){
+        scriptTag.onload = onLoad;
+        scciptTag.onreadstatechange = function(){
+            if(scriptTag.readState == 4) {
+                onLoad();
+            }
+        };
+    }
+    document.body.appendChild(scriptTag);
+}
+
+//加载完后弹出提示框，也可以不传入这个方法
+loadScript(&quot;my-script.js&quot;, function(){
+    alert(&quot;script loaded and aviable!&quot;);
+});
+</code></pre></p>
+<h3 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>优化文档对象操作</h3>
+<h4 id="dom"><a name="user-content-dom" href="#dom" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>保存变量并通过单独父元素的引用访问子DOM元素</h4>
+<pre><code class="javascript">var wrapper = document.getElementById(&quot;wrapper&quot;),
+    header = wrapper.getElementsByTagName(&quot;header&quot;)[0],
+    nav = wrapper.getElementsByTagName(&quot;nav&quot;)[0];
+
+header.className += ' ' + nav.className;
+</code></pre>
+
+<h4 id="dom_1"><a name="user-content-dom_1" href="#dom_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>对新建元素实施DOM修改操作后才将其添加至当前实时页面</h4>
+<pre><code class="javascript">var list = document.createElement(&quot;ul&quot;),
+    listItem = document.createElement(&quot;li&quot;);
+listItem.innerHTML = &quot;I am a list item&quot;;
+list.appendChild(listItem);
+
+document.body.appendChild(list);
+</code></pre>
+
+<h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>复制已有的元素提高性能</h4>
+<pre><code class="javascript">var list1 = document.createElement(&quot;ul&quot;),
+    list2,
+    listItem1 = document.createElement(&quot;li&quot;),
+    listItem2,
+    listItem3;
+listItem1.className = &quot;list-item&quot;;
+listItem1.innerHTML = &quot;I am a list item&quot;;
+
+//使用cloneNode复制元素，设置参数为true则可以复制该元素下所有子元素，包括相关对象和属性
+
+listItem2 = listItem1.cloneNode(true);
+listItem3 = listItem1.cloneNode(true);
+
+list1.appendChild(listItem1);
+list1.appendChild(listItem2);
+list1.appendChild(listItem3);
+
+//复制整个无序列表
+list2 = list1.cloneNode(true);
+
+//把这两个一模一样的无序列表元素添加至实时页面
+document.body.appendChild(list1);
+document.body.appendChild(list2);
+</code></pre>
+
+<h4 id="cssjavascript"><a name="user-content-cssjavascript" href="#cssjavascript" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>利用css而非javascript设置页面样式</h4>
+<pre><code class="javascript">//为重新渲染部分或整个页面，浏览器会重新计算页面元素位置和几何结构的进程叫重排（reflow)
+//更新DOM元素的style属性会引发浏览器重排
+var nav = document.getElementsByTagName('nav')[0];
+nav.style.backgroundColor = &quot;red&quot;;
+nav.style.color = &quot;#fff&quot;;
+//好的方式
+var nav = document.getElementsByTagName('nav')[0];
+nav.className += &quot; selected&quot;; //名称为selected的css类包含着多项样式设定
+
+//如果这种方式不能用，我们可以通过隐藏元素并修改元素的style属性，减少重排的发生
+
+var nav = document.getElementsByTagName(&quot;nav&quot;)[0];
+nav.style.display = &quot;none&quot;;//引发一次重排
+nav.style.backgroundColor = &quot;red&quot;;//不引发重排
+nav.style.color = &quot;#fff&quot;;//不引发重排
+nav.style.display = &quot;block&quot;; //引发一次重排
+</code></pre>
+
+<h4 id="dom_2"><a name="user-content-dom_2" href="#dom_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>提升DOM事件性能</h4>
+<h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>利用事件冒泡</h4>
+<p>给多个子元素<code>对应的父元素</code>上应用该事件处理函数即可，就可以统一管理事件<br>
+<pre><code>&lt;ul id=&quot;list&quot;&gt;
+    &lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;News&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;list-item&quot;&gt;&lt;a href=&quot;/&quot; class=&quot;list-item-link&quot;&gt;Eevent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+var list = document.getElementById('list');
+function onClick(event){
+    //target属性表示获取对所点击的实际元素的引用
+    var clickedElem = event.target;
+    tagNameSought = &quot;a&quot;;
+    //检查是否为a标签
+    if(clickedElem &amp;&amp; clickedElem.tagName === tagNameSought) {
+        window.open(clickedElem.href);
+    }
+}
+</code></pre></p>
+<h4 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用框架化处理频繁发出的事件</h4>
+<p>某些事件会在连续状态下频繁发出，比如页面更改时浏览器出现的resize事件，使用鼠标或触屏所触发的mousemove和touchmove事件，或者是滚动页面时所出现的scroll事件。<br>
+把需要执行大量代码或潜在的计算密集型操作的时间处理函数直接关联在这些事件上会引发性能问题。</p>
+<p>如果某事件处理代码正在执行而此时又有另一个事件发出，则事件调用会被积压。只有到事件的代码执行完毕后，后续的第二个事件才能执行。如果很多事件不断快速发出，就会出现卡顿等现象。<br>
+针对这个问题的解决办法是：<br>
+<strong>让事件处理函数只负责把时间的当前值保存在变量中。把计算密集型的代码转移至单独的函数中，此函数按照计时器间隔运行代码，所使用的是保存在变量中的数据而不是直接取自于事件处理函数。</strong>这一原则被称为事件框架化。<br>
+<pre><code>
+var scrollTopPosition = 0,
+    scrollLeftPosition = 0,
+    body = document.body,
+    header = document.createElement(&quot;header&quot;);
+
+
+//事件处理函数，只负责保存当前的滚动位置
+function onScroll() {
+    scrollTopPosition = body.scrollTop;
+    scrollLeftPosition = body.scrollLeft;
+}
+//增加更加一个函数，把当前的滚动位置显示在页面中id为header的元素中
+function writeScrollPosition(){
+    console.log(scrollTopPosition + &quot;px, &quot; + scrollLeftPosition + &quot;px&quot;);
+}
+
+//像往常一样关联事件至事件处理函数
+document.addEventListener(&quot;scroll&quot;, onScroll, false);
+
+//每隔500ms执行一次 writeScrollTop函数，而不是每次scoll事件发出时都执行，从而提升性能
+
+window.setInterval(writeScrollPosition, 500);
+</code></pre></p>
+<h3 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>提升函数性能</h3>
+<h4 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>记忆函数</h4>
+<p><pre><code>funtion getFactorial(num) {
+    var result = 1,
+        index = 1;
+    for(; index &lt;= num; index++) {
+        result *= index;
+    }
+    return result;
+}
+
+alert(getFactorial(3));
+alert(getFactorial(4));
+alert(getFactorial(10));
+
+//4-19
+function getFactorial(num) {
+    var result = 1,
+        index = 1;
+    if(!getFactorial.storage) {
+        getFactorial.storage = {};
+    }else if (getFactorial.storage[num]) {
+        return getFactorial[num];
+    }
+
+    for(; index &lt;= num; index++) {
+        result *= index;
+    }
+    getFactorial.storage[num] = result;
+}
+
+alert(getFactorial(50));//执行函数里的全部内容
+alert(getFactorial(50));//返回一个保存的值。避免执行函数里的全部内容
+</code></pre><br>
+我们也可以直接封装一个<code>记忆函数</code>。<br>
+<pre><code>function memoize(fn) {
+    return function(){
+        var propertyName;
+        //如果这个函数还没有用作记忆的对象属性，则为其添加一个
+        fn.storage = fn.storage || {};
+
+        //属性名称应该基于传给函数所设定的参数，以确保属性名称是唯一的，基于所有可能性输入参数组合的。
+        propertyName = Array.property.join.call(arguments, &quot;|&quot;);
+
+        if(propertyName in fn.storage) {
+            return fn.storage[propertyName];
+        }else {
+            //如果不存在，执行相关函数并将结果保存在用作记忆的对象中
+            fn.storage[propertyName] = fn.apply(this, arguments);
+            return fn.storage[propertyName];
+        }
+    }
+}
+
+function getFactorial(num) {
+    var result = 1,
+        index = 1;
+    for(; index &lt;= num; index++) {
+        result *= index;
+    }
+    return result;
+}
+
+//添加一般性记忆功能至函数
+var getFactorialMemoized = memoize(getFactorial);
+
+alert(getFactorialMemoized(50));
+alert(getFactorialMemoized(50));
+</code></pre></p>
+<h4 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义好数组长度后再循环</h4>
+<pre><code>在for循环中，先保存数值的长度
+for(var i = 0; i &lt; arr.length; i++) {
+    //bad
+}
+for(var i=0, len = arr.length; i &lt; len; i++){
+    //good  
+}
+
+</code></pre>
+
+<h4 id="while"><a name="user-content-while" href="#while" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>while反向循环</h4>
+<p>还有更快的方式，利用反向while循环，这种方式比for循环快的原因是每次for循环中，JavaScript解释器都需要运行一次比较。</p>
+<pre><code>var zerototen = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    len = zerototen.length,
+    index = len,
+    tentozero = [];
+
+while(index--) {
+    tentozero.push(zerototen[index]);
+}
+alert(index);
+</code></pre>
+
+<h4 id="web-worker"><a name="user-content-web-worker" href="#web-worker" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Web Worker</h4>
+<p>由于JavaScript是单线程的，有时候难免在处理大量计算时，会出现用户界面锁定。<br>
+Web Worker允许加速一个运行特定密集代码的新进程，使得原来的进程不会锁定浏览器，其实就是在后台运行。<br>
+简单来说，就是又开启了一个全新的线程，把复杂的计算交给了这个新线程去处理。</p>
+<h4 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>整体处理逻辑</h4>
+<p>我们以利用Web Worker处理图像来说明<br>
+以下代码发生了如下事情：<br>
+<em> 等待原始图片加载完毕<br>
+</em> 利用canvas复制原始图片数据（像素、宽高）<br>
+<em> 将原始图片数据传递给 web worker(listing.js)线程处理<br>
+</em> web worker(listing.js)监听到有数据传入，处理图片后返回数据<br>
+<em> webwork.js接受到线程传入的数据后，将图片数据填入到canvas<br>
+</em> 将canvas添加到页面中</p>
+<h5 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>页面</h5>
+<pre><code>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;img src=&quot;demo.jpg&quot; alt=&quot;&quot; id=&quot;image&quot;&gt;
+&lt;script src=&quot;webwork.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h5 id="webworkjs"><a name="user-content-webworkjs" href="#webworkjs" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>webwork.js代码部分</h5>
+<pre><code>var canvas = document.createElement(&quot;canvas&quot;),
+    context = canvas.getContext(&quot;2d&quot;),
+    img = document.getElementById(&quot;image&quot;);
+
+function processImage(){
+    var imgWidth = img.width,
+        imgHeight = img.height;
+        if(window.Worker){
+            //定义一个新的Web Worker
+            workerThread = new Worker(&quot;listing.js&quot;);
+        }
+        canvas.width = imgWidth;
+        canvas.height = imgHeight;
+        //复制原图像至canvas，左上角开始对齐
+        context.drawImage(img, 0, 0, imgWidth, imgHeight);
+        //一旦从Web Worker接受到消息（即图片处理完成后），就执行
+        workerThread.addEventListener(&quot;message&quot;, function(e){
+            var imageData = e.data;
+            //把新处理所得的图片像素填充至Canvas，从左上角开始
+            context.putImageData(imageData, 0, 0);
+            document.body.appendChild(canvas);
+        }, false);
+
+        //向Web Worker线程发送canvas中所显示的原始图像数据，使该线程启动
+        workerThread.postMessage(context.getImageData(0, 0, imgWidth, imgHeight));
+}
+//原始图片加载完成后，立即执行processImage
+img.addEventListener(&quot;load&quot;, processImage, false);
+
+</code></pre>
+
+<h5 id="listingjs"><a name="user-content-listingjs" href="#listingjs" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>listing.js代码部分</h5>
+<pre><code>self.addEventListener(&quot;message&quot;, invertImage, false);
+
+function invertImage(e) {
+    var message = e.data,
+        imagePixels = message.data,
+        x = 0,
+        len = imagePixels.length;
+
+
+    for(; x &lt; len; x += 4) {
+        imagePixels[x] = 255 - imagePixels[x];
+        imagePixels[x + 1] = 255 - imagePixels[x + 1];
+        imagePixels[x + 2] = 255 - imagePixels[x + 2];
+    }
+    self.postMessage(message);
+}
+</code></pre>
+
+<p>感兴趣的同学可以试下最后的图像处理代码。记得要开启服务器哦！</p>
+<h3 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>性能测试</h3>
+<pre><code>var startTime,
+    endTime,
+    duration;
+
+function doSomething(){
+    var index = 0,
+        length = 10000000,
+        counter = 0;
+    for(; index &lt; length; index++) {
+        counter += index;
+    }
+}
+
+startTime = new Date();
+doSomething();
+
+endTime = new Date();
+duration = endTime.getTime() - startTime.getTime();
+
+alert(duration);
+</code></pre>
+
+<p>其实我们还可以利用<code>console</code>控制台让时间更精确</p>
+<pre><code>    function doSomething(length) {
+    var counter = 0,
+        index = 0;
+        console.time(&quot;Loop Timer &quot; + length);
+
+    for(; index &lt; length; index++) {
+        counter += index;
+    }
+    console.timeEnd(&quot;Loop Timer &quot; + length);
+}
+doSomething(101100)
+</code></pre>
+
+<p>千万要注意，这里的<code>Loop Timer</code>字符串一定要保持一致，不然会开启不同的计时器，不信你试试哈！</p>
+<h3 id="_12"><a name="user-content-_12" href="#_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>小结</h3>
+<p>关于文档碎片<code>(document.createDocumentFragment)</code>在有些浏览器下并没有提高性能。<br>
+关于性能还有正则表达式没有介绍，想要写好一手正则确实不容易，下次再介绍正则相关的内容吧！</p></article></body></html>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/14/图解Http笔记摘要/" itemprop="url">
                   图解Http笔记摘要
                 </a>
@@ -410,6 +2172,25 @@
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript语言精粹/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript语言精粹</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -1040,386 +2821,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/JavaScript面向对象编程读书笔记一/" itemprop="url">
-                  JavaScript面向对象编程读书笔记一
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T21:20:17+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">JS\jQuery</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/28/JavaScript面向对象编程读书笔记一/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/28/JavaScript面向对象编程读书笔记一/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://pic.baike.soso.com/p/20140126/20140126154707-1231041852.jpg" alt="image"><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/28/JavaScript面向对象编程读书笔记一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/27/给你两块表，你还能清楚现在是几点吗？/" itemprop="url">
-                  给你两块表，你还能清楚现在是几点吗？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T23:25:52+08:00" content="2016-08-27">
-              2016-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/杂谈/" itemprop="url" rel="index">
-                    <span itemprop="name">杂谈</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/27/给你两块表，你还能清楚现在是几点吗？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/给你两块表，你还能清楚现在是几点吗？/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近在学习上有所懈怠。每次学一段时间总会有一种质疑的心态，这样学习的方式是否正确？是否还有更好的学习方法？是否还有捷径可走？是否…</p>
-<p>一千个人有一千个哈姆雷特。每当心中疑惑的时候，询问他人的意见是正确的，但找得过多反而越来越迷失自己，因为你会发现，每个人的答案都那么得给人光明，而答案背后，你又是否真正看到了些什么？</p>
-<p>往往大多数，不是我们不知道该怎么做，而是花了太多时间在苦苦追寻一个答案：自己做的是否是有意义的，有前途的。</p>
-<p>当你费尽心思去寻找答案的时候，你就已经失去了最终答案，它会告诉你，根本不是如众人所说的那般美好。</p>
-<p>为什么？</p>
-<p>因为你没有花时间去证明答案是正确的，而仅仅不断在别人的身上证明答案是正确的。</p>
-<p>这个角度而言，世界上就分两类人；<br>一类人很努力得去证明自己，实现自己的价值；另一类人很努力得看别人如何证明自己，实现自己的价值是对的。</p>
-<p>迷茫的时候就想要寻找答案，究竟是谁得到了答案了呢？</p>
-<p>在成长的路上会有各种各样的答案，你所认为的答案是正确的，他人所理解的答案也是正确的。</p>
-<p>其实，这个世界上根本不需要什么答案，只要做好你认为该做的事情，时间就会给你预期的答案。</p>
-<p>如果只有一块表，你能非常明确现在是几点，但是如果有两块表，你能马上告诉我现在是几点吗？</p>
-<p>别在意，人生本来就有无数个解，就麻烦你坚持下去，坚持下去，认定就别回头的死磕精神，去找到自己的钥匙吧。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/27/你真的懂margin-0-auto吗/" itemprop="url">
-                  你真的懂margin:0 auto吗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T12:59:07+08:00" content="2016-08-27">
-              2016-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML-5-CSS-3/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML(5)/CSS(3)</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/27/你真的懂margin-0-auto吗/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/你真的懂margin-0-auto吗/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>转自玉伯曾经<a href="https://github.com/lifesinger/blog/issues/105">博客</a>。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/27/你真的懂margin-0-auto吗/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1460,7 +2866,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">49</span>
+              <span class="site-state-item-count">52</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1468,7 +2874,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1477,7 +2883,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
