@@ -1,0 +1,858 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="起因通常我们会以手动线性方式在&amp;lt;/body&amp;gt;按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。
+RequireRequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。
+R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Require进行代码文件依赖管理">
+<meta property="og:url" content="https://zaynex.github.io/2016/09/16/用Require进行代码文件依赖管理/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="起因通常我们会以手动线性方式在&amp;lt;/body&amp;gt;按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。
+RequireRequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。
+R">
+<meta property="og:updated_time" content="2016-09-16T07:42:38.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用Require进行代码文件依赖管理">
+<meta name="twitter:description" content="起因通常我们会以手动线性方式在&amp;lt;/body&amp;gt;按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。
+RequireRequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。
+R">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/09/16/用Require进行代码文件依赖管理/"/>
+
+  <title> 用Require进行代码文件依赖管理 | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                用Require进行代码文件依赖管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-16T14:02:56+08:00" content="2016-09-16">
+              2016-09-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/16/用Require进行代码文件依赖管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/16/用Require进行代码文件依赖管理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>通常我们会以手动线性方式在<code>&lt;/body&gt;</code>按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。</p>
+<h2 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require</h2><p>RequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。</p>
+<p>RequireJS库基于异步模块定义（AMD）的API。 </p>
+<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;Mailing list&lt;/title&gt;</div><div class="line">    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Lobster|Abel&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;form action=&quot;thank-you.html&quot; id=&quot;form&quot; method=&quot;post&quot;&gt;</div><div class="line">        &lt;h1&gt;Join our mailing list&lt;/h1&gt;</div><div class="line">        &lt;label for=&quot;email&quot;&gt;Enter your email address&lt;/label&gt;</div><div class="line">        &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;e.g. me@mysite.com&quot;&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Sign up&quot;&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>用户提交email的地址代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;Thank you&lt;/title&gt;</div><div class="line">    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Lobster|Abel&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;card&quot;&gt;</div><div class="line">        &lt;h1&gt;Thank you&lt;/h1&gt;</div><div class="line">        &lt;p&gt;Thank you for joining our mailing list.&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">html,</div><div class="line">body &#123;</div><div class="line">    height: 100%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">body &#123;</div><div class="line">    font-size: 62.5%;</div><div class="line">    margin: 0;</div><div class="line">    background: #32534D;</div><div class="line">    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));</div><div class="line">    background-image: -webkit-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -moz-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -ms-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -o-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">&#125;</div><div class="line"></div><div class="line">body,</div><div class="line">input &#123;</div><div class="line">    font-family: &quot;Lobster&quot;, sans-serif;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1 &#123;</div><div class="line">    font-size: 4.4em;</div><div class="line">    letter-spacing: -1px;</div><div class="line">    padding-bottom: 0.25em;</div><div class="line">&#125;</div><div class="line"></div><div class="line">form,</div><div class="line">.card &#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 100px;</div><div class="line">    bottom: 100px;</div><div class="line">    min-height: 250px;</div><div class="line">    left: 50%;</div><div class="line">    margin-left: -280px;</div><div class="line">    width: 400px;</div><div class="line">    padding: 20px 80px 80px;</div><div class="line">    border: 2px solid #333;</div><div class="line">    border-radius: 5px;</div><div class="line">    box-shadow: 5px 5px 15px #000;</div><div class="line">    background: #fff;</div><div class="line">    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eee), to(#fff));</div><div class="line">    background-image: -webkit-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -moz-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -ms-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -o-linear-gradient(top, #eee, #fff);</div><div class="line">&#125;</div><div class="line"></div><div class="line">label,</div><div class="line">input,</div><div class="line">p &#123;</div><div class="line">    display: block;</div><div class="line">    font-size: 1.8em;</div><div class="line">    width: 100%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">label,</div><div class="line">input[type=email],</div><div class="line">p &#123;</div><div class="line">    font-family: &quot;Abel&quot;, cursive;</div><div class="line">&#125;</div><div class="line"></div><div class="line">input &#123;</div><div class="line">    margin-bottom: 1em;</div><div class="line">    border: 1px solid #42261B;</div><div class="line">    border-radius: 5px;</div><div class="line">    padding: 0.25em;</div><div class="line">&#125;</div><div class="line"></div><div class="line">input[type=submit] &#123;</div><div class="line">    background: #dda;</div><div class="line">    color: #000;</div><div class="line">    font-weight: bold;</div><div class="line">    width: 103%;</div><div class="line">    font-size: 3em;</div><div class="line">    margin: 0;</div><div class="line">    box-shadow: 1px 1px 2px #000;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.error &#123;</div><div class="line">    border: 1px solid #f99;</div><div class="line">    background: #fff5f5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>在html页面内添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;scripts/require.js&quot; data-main=&quot;scripts/main&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>注意，这里的<code>data-main</code>的文件是可以省略后缀<code>js</code>的。</p>
+<h3 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h3><p>利用RequireJS提供的<code>define()</code>函数来定义模块，这个模块是其他脚本文件所依赖的代码。比如jQuery。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> define(</div><div class="line">            moduleName,//参数可选，如果不填写，则默认使用本模块所在文件的文件名</div><div class="line">            dependencies,//可选。一个数组，该数组包含此文件所需的各个依赖项目</div><div class="line">            function(parameters)&#123;</div><div class="line">            	//各依赖项成功加载后所运行的函数</div><div class="line">            	//parameters中包含的各个值来自依赖项，与dependencies参数中各个依赖形成对应关系</div><div class="line">            &#125; </div><div class="line">        );</div><div class="line"></div><div class="line">//示例</div><div class="line">define([&quot;lib/jquery-1.10.2.min&quot;], function($)&#123;</div><div class="line">	//这里放jquery加载完后要执行的模块代码</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>任何由依赖代码文件提供的返回值都会通过输入参数传入给模块函数。这些传入到模块函数的参数只能在这个模块里使用，这样就能把代码与它依赖进行封装。对于JavaScript来说，访问函数作用域之内的局部变量的速度比上一级的作用域范围去解析出变量要快一些。所以还提升了性能。</p>
+<p>但是有没有发现，我们要完整的写出jquery版本号？<br>其实我们可以给它起个别名，相应的名称映射放到主应用脚本文件上。</p>
+<h3 id="模块名称的别名"><a href="#模块名称的别名" class="headerlink" title="模块名称的别名"></a>模块名称的别名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">	paths: &#123;</div><div class="line">		&quot;jquery&quot;: &quot;lib/jquery-1.10.2&quot;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在我们只需要使用<code>jquery</code>作为依赖项名称，而不是文件自身的文件名了。</p>
+<p>我们还可以引用CDN的资源，如果用户已经缓存了，那就不用下载啦！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">    paths: &#123;</div><div class="line">        &quot;jquery&quot;: [</div><div class="line">            &quot;https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min&quot;,</div><div class="line">            // If the CDN fails, load from this local file instead</div><div class="line">            &quot;lib/jquery-1.10.2&quot;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="建立模块"><a href="#建立模块" class="headerlink" title="建立模块"></a>建立模块</h3><p>我们放了一个<code>validation-plugin.js</code>作为jQuery验证插件使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">define([&quot;jquery&quot;], function($) &#123;</div><div class="line">    $.fn.isValidEmail = function()&#123;</div><div class="line">        var isValid = true,</div><div class="line">            regExp = /\S+@S+\.\S+/;</div><div class="line"></div><div class="line">        this.each(function()&#123;</div><div class="line">            if(!regExp.test(this.value)) &#123;</div><div class="line">                isValid = false;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        return isValid;</div><div class="line">    &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="主应用脚本与所有模块实现关联"><a href="#主应用脚本与所有模块实现关联" class="headerlink" title="主应用脚本与所有模块实现关联"></a>主应用脚本与所有模块实现关联</h3><p>RequireJS提供的<code>define()</code>函数是在声明后，以便将来使用。但是我们需要主应用脚本立即执行，那就需要AMD的<code>require()</code>函数了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">    paths: &#123;</div><div class="line">        &quot;jquery&quot;: [</div><div class="line">            &quot;https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min&quot;,</div><div class="line">            // If the CDN fails, load from this local file instead</div><div class="line">            &quot;lib/jquery-1.10.2&quot;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">require([&quot;jquery&quot;, &quot;lib/validation-plugin&quot;], function($) &#123;</div><div class="line">    var $form = $(&quot;#form&quot;),</div><div class="line">        $email = $(&quot;#email&quot;);</div><div class="line"></div><div class="line">    $form.on(&quot;submit&quot;, function(e) &#123;</div><div class="line">        e.preventDefault();</div><div class="line">        if ($email.isValidEmail()) &#123;</div><div class="line">            $form.get(0).submit();</div><div class="line">        &#125; else &#123;</div><div class="line">            $email.addClass(&quot;error&quot;).focus();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $email.on(&quot;keyup&quot;, function() &#123;</div><div class="line">        $email.removeClass(&quot;error&quot;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="请求时才加载额外的脚本"><a href="#请求时才加载额外的脚本" class="headerlink" title="请求时才加载额外的脚本"></a>请求时才加载额外的脚本</h3><p>现在我们已经完成得很棒了！但我们还没有完全发挥出RequireJS的优点。<br>以上的代码是当页面加载完成后就马上加载验证插件，其实我们完成可以在用户提交表单时才加载验证插件进行表单验证。<br>这样就可以减少验证插件的加载并且增强页面加载的性能。（首次加载时，所需的下载脚本文件数减少了）</p>
+<h3 id="改进后的主应用脚本文件"><a href="#改进后的主应用脚本文件" class="headerlink" title="改进后的主应用脚本文件"></a>改进后的主应用脚本文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">require([&quot;jquery&quot;], function($)&#123;</div><div class="line">    var $form = $(&quot;#form&quot;),</div><div class="line">        $email = $(&quot;#email&quot;);</div><div class="line"></div><div class="line">    $form.on(&quot;submit&quot;, function(e)&#123;</div><div class="line">        e.preventDefault();//阻止默认事件</div><div class="line">        </div><div class="line">            //添加jQuery验证插件</div><div class="line">        require([&quot;lib/validation-plugin&quot;], function()&#123;</div><div class="line">            if ($email.isValidEmail()) &#123;</div><div class="line">                $form.get(0).submit();</div><div class="line">            &#125;else &#123;</div><div class="line">                $email.addClass(&quot;error&quot;).focus();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"></div><div class="line">    $email.on(&quot;keyup&quot;, function()&#123;</div><div class="line">        $email.removeClass(&apos;error&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>当然，如果插件脚本文件较大时，在文件下载之前是不能提交表单的，这可能会对用户体验有一定影响。我们也可以选择在表单的文本域第一次获得焦点时就下载插件，那就更完美啦！</p>
+<h3 id="RequireJS代码优化工具"><a href="#RequireJS代码优化工具" class="headerlink" title="RequireJS代码优化工具"></a>RequireJS代码优化工具</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/16/《算法第四版》排序笔记/" rel="next" title="《算法第四版》排序笔记">
+                <i class="fa fa-chevron-left"></i> 《算法第四版》排序笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/16/用Require进行代码文件依赖管理/"
+     data-title="用Require进行代码文件依赖管理"
+     data-content=""
+     data-url="https://zaynex.github.io/2016/09/16/用Require进行代码文件依赖管理/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/16/用Require进行代码文件依赖管理/"
+           data-title="用Require进行代码文件依赖管理" data-url="https://zaynex.github.io/2016/09/16/用Require进行代码文件依赖管理/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description">但行好事，莫问前程</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xi-wen-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Require"><span class="nav-number">2.</span> <span class="nav-text">Require</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起步"><span class="nav-number">2.1.</span> <span class="nav-text">起步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">2.2.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模块"><span class="nav-number">2.3.</span> <span class="nav-text">定义模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块名称的别名"><span class="nav-number">2.4.</span> <span class="nav-text">模块名称的别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立模块"><span class="nav-number">2.5.</span> <span class="nav-text">建立模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主应用脚本与所有模块实现关联"><span class="nav-number">2.6.</span> <span class="nav-text">主应用脚本与所有模块实现关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求时才加载额外的脚本"><span class="nav-number">2.7.</span> <span class="nav-text">请求时才加载额外的脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进后的主应用脚本文件"><span class="nav-number">2.8.</span> <span class="nav-text">改进后的主应用脚本文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequireJS代码优化工具"><span class="nav-number">2.9.</span> <span class="nav-text">RequireJS代码优化工具</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zaynex"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
