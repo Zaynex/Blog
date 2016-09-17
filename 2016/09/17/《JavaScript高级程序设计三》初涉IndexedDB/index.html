@@ -1,0 +1,882 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="IndexedDB,Javascript高级程序设计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《JavaScript高级程序设计三》初涉IndexedDB">
+<meta property="og:url" content="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
+<meta property="og:updated_time" content="2016-09-17T09:47:14.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《JavaScript高级程序设计三》初涉IndexedDB">
+<meta name="twitter:description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"/>
+
+  <title> 《JavaScript高级程序设计三》初涉IndexedDB | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《JavaScript高级程序设计三》初涉IndexedDB
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-17T17:44:22+08:00" content="2016-09-17">
+              2016-09-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>IndexedDB<br>索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。<br><a id="more"></a><br>特点：使用对象保存数据，而非表。</p>
+<p>兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;</div></pre></td></tr></table></figure></p>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//打开数据库，如果传入的数据库名存在则打开，否则创建该名称的数据库</div><div class="line">openRequest = IndexedDB.open(dbName);</div><div class="line">//打开数据库会返回IDBRequest对象，可以添加如下事件</div><div class="line">openRequest.onerror = function(event) &#123;</div><div class="line">	alert(&quot;Something bad to you：&quot; + event.target.errorCode);</div><div class="line">&#125;;</div><div class="line">openRequest.onsuccess = function(event) &#123;</div><div class="line">	database = event.target.result;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//当新数据库创建或者数据库版本号被修改时触发</div><div class="line">openRequest.onupgradeneeded = function (evt) &#123;</div><div class="line">        //...</div><div class="line">   &#125;;</div></pre></td></tr></table></figure>
+<p>error.target指向openRequest对象。</p>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var deleteDB = indexedDB.deleteDatabase(dbName);</div><div class="line">deleteDB.onsuccess = function (event) &#123;</div><div class="line">  // database deleted successfully</div><div class="line">&#125;;</div><div class="line">deleteDB.onerror = function (e) &#123;</div><div class="line">  console.log(&quot;Database error: &quot; + e.target.errorCode);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="创建对象存储以及索引"><a href="#创建对象存储以及索引" class="headerlink" title="创建对象存储以及索引"></a>创建对象存储以及索引</h3><p>对象存储是一个数据记录集合。要在现有数据库中创建一个新对象存储，则需要对现有数据库进行版本控制。为此，请打开要进行版本控制的数据库。除了数据库名称之外，open 方法还接受版本号作为第二个参数。如果希望创建数据库的一个新版本（也就是说，要创建或修改一个对象存储），只需打开具有现有数据库版本更高的数据库。这会调用 onupgradeneeded 事件处理函数。</p>
+<p>除了使用键来检索对象存储中的记录，还可使用代索引的字段来检索记录。对象存储可具有一个或多个索引。索引是一种特殊的对象存储，它引用包含数据的对象存储，在更改所引用的对象存储时（也就是添加、修改或删除记录时）自动更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var objectStore = thisDb.createObjectStore(tableName, &#123;keyPath: &quot;id&quot;, autoIncrement:true&#125;),//设置为主键</div><div class="line">	objectStore.createIndex(&quot;name&quot;, &quot;name&quot;, &#123;unique: false&#125;),</div><div class="line">	objectStore.createIndex(&quot;phone&quot;, &quot;phone&quot;, &#123;unique: false&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="使用事务"><a href="#使用事务" class="headerlink" title="使用事务"></a>使用事务</h3><p>所有的操作都是通过事务来完成的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var transaction = db.transaction([tableName], &quot;readWrite&quot;);//事务读写</div><div class="line">transaction.oncomplete = function(event) &#123;</div><div class="line">	console.log(&quot;All done!&quot;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">transaction.onerror = function(event) &#123;</div><div class="line">	console.dir(event);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="事务模式"><a href="#事务模式" class="headerlink" title="事务模式"></a>事务模式</h4><ul>
+<li>readonly: 提供对某个对象存储的只读访问，在查询对象存储时使用。</li>
+<li>readwrite: 提供对某个对象存储的读取和写入访问权。</li>
+<li>versionchange: 提供读取和写入访问权来修改对象存储定义，或者创建一个新的对象存储。</li>
+</ul>
+<p>默认的事务模式为 readonly。您可在任何给定时刻打开多个并发的 readonly 事务，但只能打开一个 readwrite 事务。出于此原因，只有在数据更新时才考虑使用 readwrite 事务。单独的（表示不能打开任何其他并发事务）versionchange 事务操作一个数据库或对象存储。可以在 onupgradeneeded 事件处理函数中使用 versionchange 事务创建、修改或删除一个对象存储，或者将一个索引添加到对象存储。</p>
+<p>通过<code>objectStore()</code>方法并传入存储空间的名称，就可以访问特定的存储空间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var objectStore = transaction.objectStore(tableName);//得到表里的objectSotre对象</div></pre></td></tr></table></figure></p>
+<h3 id="使用游标查询"><a href="#使用游标查询" class="headerlink" title="使用游标查询"></a>使用游标查询</h3><p><code>openCursor()</code>方法用于创建一个游标，它接受两个可选的参数，其中包括范围和方向。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var request = objectStore.openCursor();</div><div class="line">request.onsuccess = function(event)&#123;//游标遍历</div><div class="line">	var cursor = event.target.result;</div><div class="line">	if(cursor) &#123;</div><div class="line">		console.log(cursor.key);</div><div class="line">		console.dir(cursor.value);</div><div class="line">		render(&#123;key:cursor.key,name:cursor.value[&quot;name&quot;], phone:cursor.value[&apos;phone&apos;], address:cursor.value[&apos;address&apos;]&#125;);</div><div class="line"></div><div class="line">		lastCurosr = cursor.key;</div><div class="line">		cursor.continue();//取得下一位游标</div><div class="line">	&#125;else &#123;</div><div class="line">		console.log(&quot;Done the cursor&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">request.onerror = function(event) &#123;</div><div class="line">	console.dir(event);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="游标索引键范围"><a href="#游标索引键范围" class="headerlink" title="游标索引键范围"></a>游标索引键范围</h4><ul>
+<li>IDBKeyRange.bound： 返回指定范围内的所有记录。这个范围有一个下边界和上边界。它还有两个可选的参数:<code>lowerOpen</code>和<code>upperOpen</code>,这两个参数表明下边界或上边界上的记录是否应包含在范围内。</li>
+<li>IDBKeyRange.lowerBound: 超过指定的边界值范围的所有记录。此范围有一个可选的参数<code>lowerOpen</code>，表明下边界上的记录是否应包含在范围中。</li>
+<li>IDBKeyRange.upperBound: 返回指定的边界值之前的所有记录。它也有一个可选的<code>upperOpen</code>参数。</li>
+<li>IDBKeyRange.only: 仅返回与指定值匹配的记录。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var curName = document.getElementById(&quot;seartxt&quot;).value,</div><div class="line">	transaction =db.transaction([tablename],&quot;readwrite&quot;),</div><div class="line">	objectStore = transaction.objectStore(tablename),</div><div class="line">	boundKeyRange = IDBKeyRange.only(curName);</div><div class="line"></div><div class="line">objectStore.index(&quot;name&quot;).openCursor(boundKeyRange).onsuccess = function(event)&#123;</div><div class="line">    var cursor = event.target.result;</div><div class="line">    if(!cursor)&#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    var rowData = cursor.value;</div><div class="line">    console.log(rowData);</div><div class="line">    document.getElementById(&quot;result&quot;).innerHTML=&quot;&lt;caption&gt;&lt;h3&gt;学生花名册&lt;/h3&gt;&lt;/caption&gt;&lt;tr&gt;&lt;th&gt;学号&lt;/th&gt;&lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;生日&lt;/th&gt;&lt;th&gt;地址&lt;/th&gt;&lt;th&gt;删除&lt;/th&gt;&lt;/tr&gt;&quot;</div><div class="line">    render(&#123;key:cursor.key,name:cursor.value[&quot;name&quot;],date:cursor.value[&quot;date&quot;],address:cursor.value[&quot;address&quot;]&#125;);</div><div class="line">    cursor.continue();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="完整的DEMO"><a href="#完整的DEMO" class="headerlink" title="完整的DEMO"></a>完整的DEMO</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> db;</div><div class="line"><span class="keyword">var</span> arrayKeys = [],</div><div class="line">	openRequest,</div><div class="line">	lastCurosr,</div><div class="line">	indexedDB = <span class="built_in">window</span>.indexedDB || <span class="built_in">window</span>.webkitIndexedDB || <span class="built_in">window</span>.mozIndexedDB || <span class="built_in">window</span>.msIndexedDB;</div><div class="line">	dbName = <span class="string">"person"</span>,</div><div class="line">	tableName = <span class="string">"testTable"</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	openRequest = IndexedDB.open(dbName);</div><div class="line"></div><div class="line">	<span class="comment">//handle setup</span></div><div class="line">	<span class="comment">//当新数据库创建或者数据库版本号被修改时触发</span></div><div class="line">	openRequest.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"running onupgradeneeded"</span>);</div><div class="line">		<span class="keyword">var</span> thisDb = e.target.result;</div><div class="line">		<span class="built_in">console</span>.log(thisDb.version);</div><div class="line">		<span class="keyword">if</span>(!thisDb.objectStoreNames.contains(tableName)) &#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">"I need to create the objectstore"</span>);</div><div class="line">			<span class="keyword">var</span> objectStore = thisDb.createObjectStore(tableName, &#123;keyPath: <span class="string">"id"</span>, autoIncrement:<span class="literal">true</span>&#125;);<span class="comment">//设置为主键</span></div><div class="line">			objectStore.createIndex(<span class="string">"name"</span>, <span class="string">"name"</span>, &#123;unique: <span class="literal">false</span>&#125;);</div><div class="line">			objectStore.createIndex(<span class="string">"phone"</span>, <span class="string">"phone"</span>, &#123;unique: <span class="literal">false</span>&#125;); </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	openRequest.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">		db = e.target.result;</div><div class="line">		<span class="built_in">console</span>.log(de.version);</div><div class="line">		db.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">			alert(<span class="string">"database Error"</span> + event.target.errorCode);</div><div class="line">			<span class="built_in">console</span>.log(event.target);</div><div class="line">		&#125;;</div><div class="line"></div><div class="line">		<span class="keyword">if</span>(db.objectStoreNames.contains(tableName)) &#123;</div><div class="line">			<span class="built_in">console</span>.log(<span class="string">"contains table:"</span> + tableName);</div><div class="line">			<span class="keyword">var</span> transaction = db.transaction([tableName], <span class="string">"readWrite"</span>);<span class="comment">//事务读写</span></div><div class="line">			transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">				<span class="built_in">console</span>.log(<span class="string">"All done!"</span>);</div><div class="line">			&#125;;</div><div class="line"></div><div class="line">			transaction.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">				<span class="built_in">console</span>.dir(event);</div><div class="line">			&#125;;</div><div class="line"></div><div class="line">			<span class="keyword">var</span> objectStore = transaction.objectStore(tableName);<span class="comment">//得到表里的objectSotre对象</span></div><div class="line"></div><div class="line">			objectStore.openCursor().onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;<span class="comment">//游标遍历</span></div><div class="line">				<span class="keyword">var</span> cursor = event.target.result;</div><div class="line">				<span class="keyword">if</span>(cursor) &#123;</div><div class="line">					<span class="built_in">console</span>.log(cursor.key);</div><div class="line">					<span class="built_in">console</span>.dir(cursor.value);</div><div class="line">					render(&#123;key:cursor.key,name:cursor.value[<span class="string">"name"</span>], phone:cursor.value[<span class="string">'phone'</span>], address:cursor.value[<span class="string">'address'</span>]&#125;);</div><div class="line"></div><div class="line">					lastCurosr = cursor.key;</div><div class="line">					cursor.continue();</div><div class="line">				&#125;<span class="keyword">else</span> &#123;</div><div class="line">					<span class="built_in">console</span>.log(<span class="string">"Done the cursor"</span>);</div><div class="line">				&#125;</div><div class="line">			&#125;;</div><div class="line"></div><div class="line">			objectStore.openCursor().onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">				<span class="built_in">console</span>.dir(event);</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	openRequest.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="string">"Error"</span> + event);</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	            <span class="comment">//添加方法</span></div><div class="line">            <span class="built_in">document</span>.querySelector(<span class="string">"#add"</span>).addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="comment">//初始化一个学生对象</span></div><div class="line">                <span class="keyword">var</span> name = <span class="built_in">document</span>.querySelector(<span class="string">"#name"</span>).value;</div><div class="line">                <span class="keyword">var</span> date = <span class="built_in">document</span>.querySelector(<span class="string">"#date"</span>).value;</div><div class="line">                <span class="keyword">var</span> address = <span class="built_in">document</span>.querySelector(<span class="string">"#address"</span>).value;</div><div class="line">                <span class="keyword">var</span> student=&#123;<span class="string">"name"</span>:name,<span class="string">"date"</span>:date,<span class="string">"address"</span>:address&#125;;</div><div class="line">                <span class="comment">//获取一个事物</span></div><div class="line">                <span class="keyword">var</span> transaction = db.transaction([tablename],<span class="string">"readwrite"</span>);</div><div class="line">                <span class="comment">//事物回调函数的处理</span></div><div class="line">                transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"transactiono complete"</span>);</div><div class="line">                &#125;</div><div class="line">                transaction.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.dir(event);</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//通过事物得到一个objectStore对象</span></div><div class="line">                <span class="keyword">var</span> objectStore = transaction.objectStore(tablename);</div><div class="line">                objectStore.add(student);</div><div class="line">                <span class="comment">//将新添加的数据，加入到html里面展示</span></div><div class="line">                objectStore.openCursor().onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    cursor = event.target.result;</div><div class="line">                    <span class="keyword">var</span> key;</div><div class="line">                    <span class="keyword">if</span>(lastCursor==<span class="literal">null</span>)&#123;</div><div class="line">                        key=cursor.key;</div><div class="line">                        lastCursor=key;</div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        key=++lastCursor;</div><div class="line">                    &#125;</div><div class="line">                    render(&#123;key:key,name:name,date:date,address:address&#125;);</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"成功添加一条新纪录！key值："</span>+key);</div><div class="line">                    <span class="built_in">console</span>.dir(student);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">//查询数据库</span></div><div class="line">            <span class="built_in">document</span>.querySelector(<span class="string">"#seacher"</span>).addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> curName = <span class="built_in">document</span>.getElementById(<span class="string">"seartxt"</span>).value;</div><div class="line">                <span class="keyword">var</span> transaction =db.transaction([tablename],<span class="string">"readwrite"</span>);</div><div class="line">                transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"transaction complete"</span>);  </div><div class="line">                &#125;;</div><div class="line">                transaction.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.dir(event);</div><div class="line">                &#125;;</div><div class="line">                <span class="comment">//得到objectStore对象</span></div><div class="line">                <span class="keyword">var</span> objectStore = transaction.objectStore(tablename);</div><div class="line">                <span class="keyword">var</span> boundKeyRange = IDBKeyRange.only(curName); <span class="comment">//生成一个索引范围的Range对象</span></div><div class="line">                objectStore.index(<span class="string">"name"</span>).openCursor(boundKeyRange).onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="keyword">var</span> cursor = event.target.result;</div><div class="line">                    <span class="keyword">if</span>(!cursor)&#123;</div><div class="line">                        <span class="keyword">return</span>;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">var</span> rowData = cursor.value;</div><div class="line">                    <span class="built_in">console</span>.log(rowData);</div><div class="line">                    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML=<span class="string">"&lt;caption&gt;&lt;h3&gt;学生花名册&lt;/h3&gt;&lt;/caption&gt;&lt;tr&gt;&lt;th&gt;学号&lt;/th&gt;&lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;生日&lt;/th&gt;&lt;th&gt;地址&lt;/th&gt;&lt;th&gt;删除&lt;/th&gt;&lt;/tr&gt;"</span></div><div class="line">                    render(&#123;key:cursor.key,name:cursor.value[<span class="string">"name"</span>],date:cursor.value[<span class="string">"date"</span>],address:cursor.value[<span class="string">"address"</span>]&#125;);</div><div class="line">                    cursor.continue();</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">//删除数据库</span></div><div class="line">            <span class="built_in">document</span>.querySelector(<span class="string">"#deleteDatabase"</span>).addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">if</span>(confirm(<span class="string">"您确定要删除数据库吗？\n操作不可逆"</span>))&#123;</div><div class="line">                    <span class="keyword">var</span> dbname=prompt(<span class="string">"请输入数据库名称，以确认删除"</span>,<span class="string">""</span>);</div><div class="line">                    <span class="keyword">if</span>(dbname==dbName)&#123;</div><div class="line">                        <span class="keyword">var</span> deleteDB=indexedDB.deleteDatabase(dbName);</div><div class="line">                        <span class="keyword">var</span> result = <span class="built_in">document</span>.querySelector(<span class="string">"#result"</span>);</div><div class="line">                        <span class="keyword">while</span>(result.firstChild.nextSibling)&#123;</div><div class="line">                        result.removeChild(result.firstChild.nextSibling);</div><div class="line">                        &#125;                      </div><div class="line">                        <span class="built_in">window</span>.location.reload(<span class="literal">true</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125; 	</div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">deletestu</span>(<span class="params">key</span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> transaction = db.transaction([tablename],<span class="string">"readwrite"</span>);</div><div class="line">                transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"transaction complete!"</span>);</div><div class="line">                &#125;;</div><div class="line">                 </div><div class="line">                transaction.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.dir(event);</div><div class="line">                &#125;</div><div class="line">                <span class="comment">//得到objectStore对象</span></div><div class="line">                <span class="keyword">var</span> objectStore = transaction.objectStore(tablename);</div><div class="line">                <span class="comment">//接收传过来的key值</span></div><div class="line">                <span class="keyword">var</span> removeKey = <span class="built_in">parseInt</span>(key);</div><div class="line">                <span class="comment">//通过key值获取对象,在控制台打印</span></div><div class="line">                <span class="keyword">var</span> getRequest=objectStore.get(removeKey);</div><div class="line">                getRequest.onsuccess=<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                    <span class="keyword">var</span> result = getRequest.result;</div><div class="line">                    <span class="built_in">console</span>.dir(result);</div><div class="line">                &#125;;</div><div class="line">                <span class="keyword">var</span> request = objectStore.delete(removeKey);</div><div class="line">                request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"success delete record!"</span>);   </div><div class="line">                &#125;;</div><div class="line">                request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">"Error delete record:"</span>,e);   </div><div class="line">                &#125;</div><div class="line">                <span class="built_in">document</span>.getElementById(removeKey).style.display=<span class="string">"none"</span>;</div><div class="line">                 </div><div class="line">        &#125;</div><div class="line">        <span class="comment">//将从游标得到的database数据添加到html的方法</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">student</span>)</span>&#123;</div><div class="line">            <span class="comment">//接收传输的值</span></div><div class="line">            <span class="keyword">var</span> stu=student;</div><div class="line">            <span class="comment">//将结束到的josn数据变成一行表格</span></div><div class="line">            <span class="keyword">var</span> html =<span class="string">"&lt;tr id='"</span>+stu.key+<span class="string">"'&gt;&lt;td&gt;"</span>+stu.key+<span class="string">"&lt;/td&gt;&lt;td&gt;"</span>+stu.name+<span class="string">"&lt;/td&gt;&lt;td&gt;"</span>+stu.date+<span class="string">"&lt;/td&gt;&lt;td&gt;"</span>+stu.address+<span class="string">"&lt;/td&gt;&lt;td&gt;&lt;input type='button' onClick='deletestu("</span>+stu.key+<span class="string">")' value='删除' /&gt;"</span>;</div><div class="line">            <span class="comment">//将得到的表格数据，追加到结果表中去</span></div><div class="line">            <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML +=html;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<p>```<br>&lt;!doctype html&gt;</p>
+<html lang="en"><br><head><br>    <meta charset="UTF-8"><br>    <title>Document</title><br>      <style type="text/css"><br>    *{margin:0;padding:0;}<br>    #tools{<br>        color:#fff;<br>        position:fixed;<br>        width:100%;<br>        bottom:0px;<br>        left:0px;<br>        background-color:#069;<br>        height:30px;<br>        line-height:30px;<br>    }<br>    #tools:hover{<br>        height:150px;}<br>    #tools div{<br>        width:30%;<br>        float:left;<br>        text-align:center;<br>        }<br>    #tools div {<br>        display:block;<br>    }<br>    #tools div input[type=button],input[type=reset]{<br>        width:70px;<br>        background-color:#fff;<br>        color:#069;<br>        border:0;<br>        font-weight:bolder;<br>        margin-left:5px;<br>    }<br>    table{<br>        border:2px solid #ccc;<br>        margin:20px auto;<br>    }<br>    td,th{<br>        width:200px;<br>        border:1px solid #069;<br>    }<br>    </style><br></head><br> <body><br>        <table id="result" cellpadding="0" cellspacing="0"><br>            <caption><h3>学生花名册</h3></caption><br>                <tr><th>学号</th><th>姓名</th><th>生日</th><th>地址</th><th>删除</th></tr><br>        </table><br>        <div id="tools"><br>            <div id="adddiv"><br>                <h3>添加学生</h3><br>                <label for="name">姓名</label><input type="text" name="name" id="name"><br><br>                <label for="date">生日</label><input type="date" name="date" id="date"><br><br>                <label for="address">地址</label><input type="text" name="address" id="address"><br><br>                <input type="button" name="add" value="添加" id="add"><input type="reset" value="重置表单"><br>            </div><br>            <div id="seacherdiv"><br>                <h3>搜索学生姓名</h3><br>                <input type="text" id="seartxt"><input type="button" id="seacher" name="seacher" value="搜索"><br>            </div><br>            <div id="deletediv"><br>                <h3>删除数据库</h3><br>                <input type="button" name="deleteDatabase" id="deleteDatabase" value="删除数据库"><br>            </div><br>        </div><br>        <script src="imooc.js"></script><br>    </body><br></html>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/IndexedDB/" rel="tag">#IndexedDB</a>
+          
+            <a href="/tags/Javascript高级程序设计/" rel="tag">#Javascript高级程序设计</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/16/我还好，只是选择了更艰难的的路/" rel="next" title="我还好，只是选择了更艰难的路">
+                <i class="fa fa-chevron-left"></i> 我还好，只是选择了更艰难的路
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"
+     data-title="《JavaScript高级程序设计三》初涉IndexedDB"
+     data-content=""
+     data-url="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"
+           data-title="《JavaScript高级程序设计三》初涉IndexedDB" data-url="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description">但行好事，莫问前程</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">65</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xi-wen-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库"><span class="nav-number">2.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象存储以及索引"><span class="nav-number">3.</span> <span class="nav-text">创建对象存储以及索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用事务"><span class="nav-number">4.</span> <span class="nav-text">使用事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务模式"><span class="nav-number">4.1.</span> <span class="nav-text">事务模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用游标查询"><span class="nav-number">5.</span> <span class="nav-text">使用游标查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#游标索引键范围"><span class="nav-number">5.1.</span> <span class="nav-text">游标索引键范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的DEMO"><span class="nav-number">6.</span> <span class="nav-text">完整的DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">学生花名册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">添加学生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">搜索学生姓名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">删除数据库</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zaynex"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
