@@ -84,28 +84,16 @@
 
 
 
-<meta name="description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
-
-浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
-
-优点：极高的">
+<meta name="description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《JavaScript高级程序设计三》离线应用和客户端存储">
 <meta property="og:url" content="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
-
-浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
-
-优点：极高的">
-<meta property="og:updated_time" content="2016-09-18T03:16:30.632Z">
+<meta property="og:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。">
+<meta property="og:updated_time" content="2016-09-18T03:22:01.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《JavaScript高级程序设计三》离线应用和客户端存储">
-<meta name="twitter:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
-
-浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
-
-优点：极高的">
+<meta name="twitter:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。">
 
 
 
@@ -372,7 +360,7 @@
       
 
       
-        <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的</p>
+        <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。<br><a id="more"></a></p>
 <ul>
 <li>浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。</li>
 </ul>
@@ -402,7 +390,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//存储数据</div><div class="line">localStorage.setItem(&quot;name&quot;, &quot;zaynex&quot;);</div><div class="line">localStorage.book = &quot;Front End Development&quot;;</div><div class="line">//获取数据</div><div class="line">var name = localStorage.getItem(&quot;name&quot;);</div><div class="line">var book = localStorage.book;</div></pre></td></tr></table></figure>
 <h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>对于Web Storage，一般来说，存储空间大小的限制都是以每个源（协议域名和端口号）为单位的。</p>
 <p>对于localStorage和sessionStorage，大多数桌面浏览器会设置每个来源5MB的限制。Chrome和Safari对每个来源的限制是2.5MB。手机端浏览器都是2.5MB。</p>
-<h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><p>索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。<br><a id="more"></a><br>特点：使用对象保存数据，而非表。</p>
+<h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><p>索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。</p>
+<p>特点：使用对象保存数据，而非表。</p>
 <p>兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;</div></pre></td></tr></table></figure></p>
 <h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//打开数据库，如果传入的数据库名存在则打开，否则创建该名称的数据库</div><div class="line">openRequest = IndexedDB.open(dbName);</div><div class="line">//打开数据库会返回IDBRequest对象，可以添加如下事件</div><div class="line">openRequest.onerror = function(event) &#123;</div><div class="line">	alert(&quot;Something bad to you：&quot; + event.target.errorCode);</div><div class="line">&#125;;</div><div class="line">openRequest.onsuccess = function(event) &#123;</div><div class="line">	database = event.target.result;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//当新数据库创建或者数据库版本号被修改时触发</div><div class="line">openRequest.onupgradeneeded = function (evt) &#123;</div><div class="line">        //...</div><div class="line">   &#125;;</div></pre></td></tr></table></figure>
 <p>error.target指向openRequest对象。</p>
