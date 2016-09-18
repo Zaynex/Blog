@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
+<meta name="description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
+
+浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
+
+优点：极高的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《JavaScript高级程序设计三》初涉IndexedDB">
+<meta property="og:title" content="《JavaScript高级程序设计三》离线应用和客户端存储">
 <meta property="og:url" content="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
-<meta property="og:updated_time" content="2016-09-17T09:47:14.380Z">
+<meta property="og:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
+
+浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
+
+优点：极高的">
+<meta property="og:updated_time" content="2016-09-18T03:16:30.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《JavaScript高级程序设计三》初涉IndexedDB">
-<meta name="twitter:description" content="IndexedDB索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。">
+<meta name="twitter:title" content="《JavaScript高级程序设计三》离线应用和客户端存储">
+<meta name="twitter:description" content="Cookiecookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的
+
+浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。
+
+优点：极高的">
 
 
 
@@ -116,7 +128,7 @@
 
   <link rel="canonical" href="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"/>
 
-  <title> 《JavaScript高级程序设计三》初涉IndexedDB | 如是而已 </title>
+  <title> 《JavaScript高级程序设计三》离线应用和客户端存储 | 如是而已 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +301,7 @@
             
             
               
-                《JavaScript高级程序设计三》初涉IndexedDB
+                《JavaScript高级程序设计三》离线应用和客户端存储
               
             
           </h1>
@@ -360,7 +372,37 @@
       
 
       
-        <p>IndexedDB<br>索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。<br><a id="more"></a><br>特点：使用对象保存数据，而非表。</p>
+        <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的</p>
+<ul>
+<li>浏览器能存cookie数比较少。如IE8，Firefox,opera每个域可以保存的50个cookie,Safari/WebKit没有限制。一个cookie最多可以存放4096B左右的数据，出于兼容性考虑，一般不超过4095B。</li>
+</ul>
+<p>优点：极高的扩展性和可用性</p>
+<ul>
+<li>通过良好的编程，控制保存在cookie中的session对象的大小</li>
+<li>通过加密和安全传输技术（SSL），减少cookie被破解的可能性</li>
+<li>只在cookie中存放不敏感数据，即使被盗也不会有重大损失</li>
+<li>控制cookie的生命期，使之不会永远有效。偷盗者很可能拿到一个过期的cookie</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉</li>
+<li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的session信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了</li>
+<li>有些状态不可能保存在客户端。例如，为了防止重复提交表单，我们需要在服务器端保存一个计数器。如果我们把这个计数器保存在客户端，那么它起不到任何作用。</li>
+</ul>
+<h2 id="WebStorage存储机制"><a href="#WebStorage存储机制" class="headerlink" title="WebStorage存储机制"></a>WebStorage存储机制</h2><p>目的：解决Cookie带来的局限，即当数据被控制在客户端上时，无须持续将数据发回服务器。<br><code>sessionStotrage</code>，是<code>Storage</code>的实例。由于它绑定在某个服务器会话，所以当文件在本地运行时是不可用的，存储在sessionStorage中的数据只能由最初给对象存储数据的页面访问到，所以对多页面应用有限制。</p>
+<p>存储特定于某个会话的数据。</p>
+<p><code>sessionStorage</code>对象主要针对会话的小数据的存储。如果需要跨会话存储数据，需要用globalStorage。</p>
+<p><code>globalStorage</code>指定那些域可以访问数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//使用方法存储</div><div class="line">sessionStorage.setItem(&quot;name&quot;, &quot;Zaynex&quot;);</div><div class="line">//使用属性存储</div><div class="line">sessionStorage.book = &quot;Front End Development&quot;;</div></pre></td></tr></table></figure>
+<p>IE实现异步写入数据，所以在设置数据和将数据写入磁盘之间可能有些延迟。当大量数据时，IE浏览器会比其他同步写入的浏览器能更快的恢复执行，因为它会跳过实际的磁盘写入过程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//设置新数据前使用begin方法</div><div class="line">sessionStorage.begin(); </div><div class="line">sessionStorage.name = &quot;Zaynex&quot;;</div><div class="line">sessionStorage.book = &quot;Front End Development&quot;;</div><div class="line">//设置完成后调用commit方法写入磁盘</div><div class="line">sessionStorage.commit();</div><div class="line"></div><div class="line">//使用方法获取数据</div><div class="line">sessionStorage.getItem(&quot;name&quot;);</div><div class="line">//使用属性获取数据</div><div class="line">var book = sessionStorage.book;</div><div class="line"></div><div class="line"></div><div class="line">//保存数据</div><div class="line">globalStorage[&quot;worx.com&quot;].name = &quot;Zaynex&quot;;</div><div class="line">//获取数据</div><div class="line">var name = globalStorage[&quot;worx.com&quot;].name;</div><div class="line"></div><div class="line">该存储空间对于worx.com及其子域都是可访问的。</div><div class="line"></div><div class="line">globalStorage[&quot;www.worx.com&quot;].name = &quot;Zaynex&quot;;</div><div class="line">var name = globalStorage[&apos;www.worx.com&apos;].name;</div></pre></td></tr></table></figure>
+<p>该存储空间只能由来自<code>www.worx.com</code>的页面访问，其他子域不行。</p>
+<p>存储在<code>globalSotrage</code>会一直保存在磁盘上（未删除情况下），<strong>非常适合在客户端存储文档或者长期保存用户偏好的设置</strong>。</p>
+<p>localStorage在HTML5中作为持久保存客户端数据的方案取代了globalStorage。<br>要访问同一个localStorage对象，页面必须来自同一个域名，使用同种协议以及端口号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//存储数据</div><div class="line">localStorage.setItem(&quot;name&quot;, &quot;zaynex&quot;);</div><div class="line">localStorage.book = &quot;Front End Development&quot;;</div><div class="line">//获取数据</div><div class="line">var name = localStorage.getItem(&quot;name&quot;);</div><div class="line">var book = localStorage.book;</div></pre></td></tr></table></figure>
+<h3 id="限制"><a href="#限制" class="headerlink" title="限制"></a>限制</h3><p>对于Web Storage，一般来说，存储空间大小的限制都是以每个源（协议域名和端口号）为单位的。</p>
+<p>对于localStorage和sessionStorage，大多数桌面浏览器会设置每个来源5MB的限制。Chrome和Safari对每个来源的限制是2.5MB。手机端浏览器都是2.5MB。</p>
+<h2 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h2><p>索引数据库 (IndexedDB) API（作为 HTML5 的一部分）对创建具有丰富本地存储数据的数据密集型的离线 HTML5 Web 应用程序很有用。同时它还有助于本地缓存数据，使传统在线 Web 应用程序（比如移动 Web 应用程序）能够更快地运行和响应。<br><a id="more"></a><br>特点：使用对象保存数据，而非表。</p>
 <p>兼容性写法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;</div></pre></td></tr></table></figure></p>
 <h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//打开数据库，如果传入的数据库名存在则打开，否则创建该名称的数据库</div><div class="line">openRequest = IndexedDB.open(dbName);</div><div class="line">//打开数据库会返回IDBRequest对象，可以添加如下事件</div><div class="line">openRequest.onerror = function(event) &#123;</div><div class="line">	alert(&quot;Something bad to you：&quot; + event.target.errorCode);</div><div class="line">&#125;;</div><div class="line">openRequest.onsuccess = function(event) &#123;</div><div class="line">	database = event.target.result;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">//当新数据库创建或者数据库版本号被修改时触发</div><div class="line">openRequest.onupgradeneeded = function (evt) &#123;</div><div class="line">        //...</div><div class="line">   &#125;;</div></pre></td></tr></table></figure>
 <p>error.target指向openRequest对象。</p>
@@ -441,7 +483,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"
-     data-title="《JavaScript高级程序设计三》初涉IndexedDB"
+     data-title="《JavaScript高级程序设计三》离线应用和客户端存储"
      data-content=""
      data-url="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/">
   <div class="ds-share-inline">
@@ -471,7 +513,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/"
-           data-title="《JavaScript高级程序设计三》初涉IndexedDB" data-url="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/">
+           data-title="《JavaScript高级程序设计三》离线应用和客户端存储" data-url="https://zaynex.github.io/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/">
       </div>
     
   </div>
@@ -582,7 +624,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库"><span class="nav-number">2.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象存储以及索引"><span class="nav-number">3.</span> <span class="nav-text">创建对象存储以及索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用事务"><span class="nav-number">4.</span> <span class="nav-text">使用事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务模式"><span class="nav-number">4.1.</span> <span class="nav-text">事务模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用游标查询"><span class="nav-number">5.</span> <span class="nav-text">使用游标查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#游标索引键范围"><span class="nav-number">5.1.</span> <span class="nav-text">游标索引键范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的DEMO"><span class="nav-number">6.</span> <span class="nav-text">完整的DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">7.</span> <span class="nav-text">学生花名册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">8.</span> <span class="nav-text">添加学生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">9.</span> <span class="nav-text">搜索学生姓名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">10.</span> <span class="nav-text">删除数据库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie"><span class="nav-number">1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebStorage存储机制"><span class="nav-number">2.</span> <span class="nav-text">WebStorage存储机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#限制"><span class="nav-number">2.1.</span> <span class="nav-text">限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IndexedDB"><span class="nav-number">3.</span> <span class="nav-text">IndexedDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库"><span class="nav-number">3.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据库"><span class="nav-number">3.2.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建对象存储以及索引"><span class="nav-number">3.3.</span> <span class="nav-text">创建对象存储以及索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用事务"><span class="nav-number">3.4.</span> <span class="nav-text">使用事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务模式"><span class="nav-number">3.4.1.</span> <span class="nav-text">事务模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用游标查询"><span class="nav-number">3.5.</span> <span class="nav-text">使用游标查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#游标索引键范围"><span class="nav-number">3.5.1.</span> <span class="nav-text">游标索引键范围</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的DEMO"><span class="nav-number">3.6.</span> <span class="nav-text">完整的DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.7.</span> <span class="nav-text">学生花名册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.8.</span> <span class="nav-text">添加学生</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.9.</span> <span class="nav-text">搜索学生姓名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.10.</span> <span class="nav-text">删除数据库</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
