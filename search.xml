@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title><![CDATA[再来几本书]]></title>
+      <url>https://zaynex.github.io/2016/09/20/%E5%86%8D%E6%9D%A5%E5%87%A0%E6%9C%AC%E4%B9%A6/</url>
+      <content type="html"><![CDATA[<p>既然还有那么多书要看，就不要太着急了。要去就去大公司实习，去不了就留下来多看几本书，也不亏。</p>
+<p>平时应该在抓紧的项目<br>node.js相关</p>
+<ul>
+<li>node.js实战，看完之后再看node.js学习指南</li>
+<li>node.js的慕课网视频 </li>
+<li>node.js的聊天室深入改造</li>
+</ul>
+<p>javascript</p>
+<ul>
+<li>javascript DOM高级程序设计</li>
+<li>精通javascript开发</li>
+<li>web单页应用</li>
+</ul>
+<p>先把精通js这本的设计模式相关给看了，再去看javascript</p>
+<p>计算机基础</p>
+<ul>
+<li>算法第四版</li>
+<li>c语言</li>
+</ul>
+<p>linux操作系统</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[《JavaScript高级程序设计三》离线应用和客户端存储]]></title>
       <url>https://zaynex.github.io/2016/09/17/%E3%80%8AJavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%89%E3%80%8B%E5%88%9D%E6%B6%89IndexedDB/</url>
       <content type="html"><![CDATA[<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。<br><a id="more"></a></p>
@@ -111,7 +137,7 @@
     <entry>
       <title><![CDATA[用Require进行代码文件依赖管理]]></title>
       <url>https://zaynex.github.io/2016/09/16/%E7%94%A8Require%E8%BF%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86/</url>
-      <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>通常我们会以手动线性方式在<code>&lt;/body&gt;</code>按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。</p>
+      <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>通常我们会以手动线性方式在<code>&lt;/body&gt;</code>按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。<br><a id="more"></a></p>
 <h2 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require</h2><p>RequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。</p>
 <p>RequireJS库基于异步模块定义（AMD）的API。 </p>
 <h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;Mailing list&lt;/title&gt;</div><div class="line">    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Lobster|Abel&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;form action=&quot;thank-you.html&quot; id=&quot;form&quot; method=&quot;post&quot;&gt;</div><div class="line">        &lt;h1&gt;Join our mailing list&lt;/h1&gt;</div><div class="line">        &lt;label for=&quot;email&quot;&gt;Enter your email address&lt;/label&gt;</div><div class="line">        &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;e.g. me@mysite.com&quot;&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Sign up&quot;&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>

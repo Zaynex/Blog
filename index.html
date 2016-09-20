@@ -291,6 +291,126 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/20/再来几本书/" itemprop="url">
+                  再来几本书
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-20T23:38:34+08:00" content="2016-09-20">
+              2016-09-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/20/再来几本书/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/20/再来几本书/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>既然还有那么多书要看，就不要太着急了。要去就去大公司实习，去不了就留下来多看几本书，也不亏。</p>
+<p>平时应该在抓紧的项目<br>node.js相关</p>
+<ul>
+<li>node.js实战，看完之后再看node.js学习指南</li>
+<li>node.js的慕课网视频 </li>
+<li>node.js的聊天室深入改造</li>
+</ul>
+<p>javascript</p>
+<ul>
+<li>javascript DOM高级程序设计</li>
+<li>精通javascript开发</li>
+<li>web单页应用</li>
+</ul>
+<p>先把精通js这本的设计模式相关给看了，再去看javascript</p>
+<p>计算机基础</p>
+<ul>
+<li>算法第四版</li>
+<li>c语言</li>
+</ul>
+<p>linux操作系统</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/" itemprop="url">
                   《JavaScript高级程序设计三》离线应用和客户端存储
                 </a>
@@ -599,32 +719,12 @@
 
       
         
-          
-            <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>通常我们会以手动线性方式在<code>&lt;/body&gt;</code>按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。</p>
-<h2 id="Require"><a href="#Require" class="headerlink" title="Require"></a>Require</h2><p>RequireJS是一款JavaScript模块加载器，可以很好的解决以上问题。并且还有一个优点：异步加载脚本文件。</p>
-<p>RequireJS库基于异步模块定义（AMD）的API。 </p>
-<h3 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;Mailing list&lt;/title&gt;</div><div class="line">    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Lobster|Abel&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;form action=&quot;thank-you.html&quot; id=&quot;form&quot; method=&quot;post&quot;&gt;</div><div class="line">        &lt;h1&gt;Join our mailing list&lt;/h1&gt;</div><div class="line">        &lt;label for=&quot;email&quot;&gt;Enter your email address&lt;/label&gt;</div><div class="line">        &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;e.g. me@mysite.com&quot;&gt;</div><div class="line">        &lt;input type=&quot;submit&quot; value=&quot;Sign up&quot;&gt;</div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<p>用户提交email的地址代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!doctype html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;Thank you&lt;/title&gt;</div><div class="line">    &lt;link href=&quot;http://fonts.googleapis.com/css?family=Lobster|Abel&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;styles/main.css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;card&quot;&gt;</div><div class="line">        &lt;h1&gt;Thank you&lt;/h1&gt;</div><div class="line">        &lt;p&gt;Thank you for joining our mailing list.&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">html,</div><div class="line">body &#123;</div><div class="line">    height: 100%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">body &#123;</div><div class="line">    font-size: 62.5%;</div><div class="line">    margin: 0;</div><div class="line">    background: #32534D;</div><div class="line">    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));</div><div class="line">    background-image: -webkit-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -moz-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -ms-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">    background-image: -o-linear-gradient(top, #1a82f7, #2F2727);</div><div class="line">&#125;</div><div class="line"></div><div class="line">body,</div><div class="line">input &#123;</div><div class="line">    font-family: &quot;Lobster&quot;, sans-serif;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1 &#123;</div><div class="line">    font-size: 4.4em;</div><div class="line">    letter-spacing: -1px;</div><div class="line">    padding-bottom: 0.25em;</div><div class="line">&#125;</div><div class="line"></div><div class="line">form,</div><div class="line">.card &#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 100px;</div><div class="line">    bottom: 100px;</div><div class="line">    min-height: 250px;</div><div class="line">    left: 50%;</div><div class="line">    margin-left: -280px;</div><div class="line">    width: 400px;</div><div class="line">    padding: 20px 80px 80px;</div><div class="line">    border: 2px solid #333;</div><div class="line">    border-radius: 5px;</div><div class="line">    box-shadow: 5px 5px 15px #000;</div><div class="line">    background: #fff;</div><div class="line">    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#eee), to(#fff));</div><div class="line">    background-image: -webkit-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -moz-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -ms-linear-gradient(top, #eee, #fff);</div><div class="line">    background-image: -o-linear-gradient(top, #eee, #fff);</div><div class="line">&#125;</div><div class="line"></div><div class="line">label,</div><div class="line">input,</div><div class="line">p &#123;</div><div class="line">    display: block;</div><div class="line">    font-size: 1.8em;</div><div class="line">    width: 100%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">label,</div><div class="line">input[type=email],</div><div class="line">p &#123;</div><div class="line">    font-family: &quot;Abel&quot;, cursive;</div><div class="line">&#125;</div><div class="line"></div><div class="line">input &#123;</div><div class="line">    margin-bottom: 1em;</div><div class="line">    border: 1px solid #42261B;</div><div class="line">    border-radius: 5px;</div><div class="line">    padding: 0.25em;</div><div class="line">&#125;</div><div class="line"></div><div class="line">input[type=submit] &#123;</div><div class="line">    background: #dda;</div><div class="line">    color: #000;</div><div class="line">    font-weight: bold;</div><div class="line">    width: 103%;</div><div class="line">    font-size: 3em;</div><div class="line">    margin: 0;</div><div class="line">    box-shadow: 1px 1px 2px #000;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.error &#123;</div><div class="line">    border: 1px solid #f99;</div><div class="line">    background: #fff5f5;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><p>在html页面内添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;scripts/require.js&quot; data-main=&quot;scripts/main&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
-<p>注意，这里的<code>data-main</code>的文件是可以省略后缀<code>js</code>的。</p>
-<h3 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h3><p>利用RequireJS提供的<code>define()</code>函数来定义模块，这个模块是其他脚本文件所依赖的代码。比如jQuery。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> define(</div><div class="line">            moduleName,//参数可选，如果不填写，则默认使用本模块所在文件的文件名</div><div class="line">            dependencies,//可选。一个数组，该数组包含此文件所需的各个依赖项目</div><div class="line">            function(parameters)&#123;</div><div class="line">            	//各依赖项成功加载后所运行的函数</div><div class="line">            	//parameters中包含的各个值来自依赖项，与dependencies参数中各个依赖形成对应关系</div><div class="line">            &#125; </div><div class="line">        );</div><div class="line"></div><div class="line">//示例</div><div class="line">define([&quot;lib/jquery-1.10.2.min&quot;], function($)&#123;</div><div class="line">	//这里放jquery加载完后要执行的模块代码</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<p>任何由依赖代码文件提供的返回值都会通过输入参数传入给模块函数。这些传入到模块函数的参数只能在这个模块里使用，这样就能把代码与它依赖进行封装。对于JavaScript来说，访问函数作用域之内的局部变量的速度比上一级的作用域范围去解析出变量要快一些。所以还提升了性能。</p>
-<p>但是有没有发现，我们要完整的写出jquery版本号？<br>其实我们可以给它起个别名，相应的名称映射放到主应用脚本文件上。</p>
-<h3 id="模块名称的别名"><a href="#模块名称的别名" class="headerlink" title="模块名称的别名"></a>模块名称的别名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">	paths: &#123;</div><div class="line">		&quot;jquery&quot;: &quot;lib/jquery-1.10.2&quot;</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>现在我们只需要使用<code>jquery</code>作为依赖项名称，而不是文件自身的文件名了。</p>
-<p>我们还可以引用CDN的资源，如果用户已经缓存了，那就不用下载啦！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">    paths: &#123;</div><div class="line">        &quot;jquery&quot;: [</div><div class="line">            &quot;https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min&quot;,</div><div class="line">            // If the CDN fails, load from this local file instead</div><div class="line">            &quot;lib/jquery-1.10.2&quot;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="建立模块"><a href="#建立模块" class="headerlink" title="建立模块"></a>建立模块</h3><p>我们放了一个<code>validation-plugin.js</code>作为jQuery验证插件使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">define([&quot;jquery&quot;], function($) &#123;</div><div class="line">    $.fn.isValidEmail = function()&#123;</div><div class="line">        var isValid = true,</div><div class="line">            regExp = /\S+@S+\.\S+/;</div><div class="line"></div><div class="line">        this.each(function()&#123;</div><div class="line">            if(!regExp.test(this.value)) &#123;</div><div class="line">                isValid = false;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        return isValid;</div><div class="line">    &#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="主应用脚本与所有模块实现关联"><a href="#主应用脚本与所有模块实现关联" class="headerlink" title="主应用脚本与所有模块实现关联"></a>主应用脚本与所有模块实现关联</h3><p>RequireJS提供的<code>define()</code>函数是在声明后，以便将来使用。但是我们需要主应用脚本立即执行，那就需要AMD的<code>require()</code>函数了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">requirejs.config(&#123;</div><div class="line">    paths: &#123;</div><div class="line">        &quot;jquery&quot;: [</div><div class="line">            &quot;https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min&quot;,</div><div class="line">            // If the CDN fails, load from this local file instead</div><div class="line">            &quot;lib/jquery-1.10.2&quot;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">require([&quot;jquery&quot;, &quot;lib/validation-plugin&quot;], function($) &#123;</div><div class="line">    var $form = $(&quot;#form&quot;),</div><div class="line">        $email = $(&quot;#email&quot;);</div><div class="line"></div><div class="line">    $form.on(&quot;submit&quot;, function(e) &#123;</div><div class="line">        e.preventDefault();</div><div class="line">        if ($email.isValidEmail()) &#123;</div><div class="line">            $form.get(0).submit();</div><div class="line">        &#125; else &#123;</div><div class="line">            $email.addClass(&quot;error&quot;).focus();</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    $email.on(&quot;keyup&quot;, function() &#123;</div><div class="line">        $email.removeClass(&quot;error&quot;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="请求时才加载额外的脚本"><a href="#请求时才加载额外的脚本" class="headerlink" title="请求时才加载额外的脚本"></a>请求时才加载额外的脚本</h3><p>现在我们已经完成得很棒了！但我们还没有完全发挥出RequireJS的优点。<br>以上的代码是当页面加载完成后就马上加载验证插件，其实我们完成可以在用户提交表单时才加载验证插件进行表单验证。<br>这样就可以减少验证插件的加载并且增强页面加载的性能。（首次加载时，所需的下载脚本文件数减少了）</p>
-<h3 id="改进后的主应用脚本文件"><a href="#改进后的主应用脚本文件" class="headerlink" title="改进后的主应用脚本文件"></a>改进后的主应用脚本文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">require([&quot;jquery&quot;], function($)&#123;</div><div class="line">    var $form = $(&quot;#form&quot;),</div><div class="line">        $email = $(&quot;#email&quot;);</div><div class="line"></div><div class="line">    $form.on(&quot;submit&quot;, function(e)&#123;</div><div class="line">        e.preventDefault();//阻止默认事件</div><div class="line">        </div><div class="line">            //添加jQuery验证插件</div><div class="line">        require([&quot;lib/validation-plugin&quot;], function()&#123;</div><div class="line">            if ($email.isValidEmail()) &#123;</div><div class="line">                $form.get(0).submit();</div><div class="line">            &#125;else &#123;</div><div class="line">                $email.addClass(&quot;error&quot;).focus();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line"></div><div class="line">    $email.on(&quot;keyup&quot;, function()&#123;</div><div class="line">        $email.removeClass(&apos;error&apos;);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>当然，如果插件脚本文件较大时，在文件下载之前是不能提交表单的，这可能会对用户体验有一定影响。我们也可以选择在表单的文本域第一次获得焦点时就下载插件，那就更完美啦！</p>
-<h3 id="RequireJS代码优化工具"><a href="#RequireJS代码优化工具" class="headerlink" title="RequireJS代码优化工具"></a>RequireJS代码优化工具</h3>
-          
+          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>通常我们会以手动线性方式在<code>&lt;/body&gt;</code>按顺序放入需要用到的JavaScript文件。我们必须要确保各个文件列在它所依赖的文件的后面，但当数量增加时，以这种方式进行管理文件会变得越发困难，特别是在需要移除某一文件但又不能影响其依赖于此文件的情况下。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/16/用Require进行代码文件依赖管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1333,106 +1433,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/14/《算法》第四版第一章学习笔记/" itemprop="url">
-                  《算法》第四版第一章学习笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-14T21:45:08+08:00" content="2016-09-14">
-              2016-09-14
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/14/《算法》第四版第一章学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/《算法》第四版第一章学习笔记/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1478,7 +1478,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">55</span>
+              <span class="site-state-item-count">56</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
