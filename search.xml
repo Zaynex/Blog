@@ -4,6 +4,47 @@
   
     
     <entry>
+      <title><![CDATA[node.js新手开胃菜——利用cheerio做个小爬虫]]></title>
+      <url>https://zaynex.github.io/2016/09/21/%E5%9F%BA%E4%BA%8Echeerio%E7%9A%84node-js%E7%88%AC%E8%99%AB/</url>
+      <content type="html"><![CDATA[<p>这是慕课网上的一个有趣的demo，以前觉得爬虫很神奇，不过接触了之后就感觉更神奇了！<br>cheerio，你就把它当做可以跑在node.js上的jQuery吧。<br><a id="more"></a><br><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="external">中文版api介绍</a><br><a href="https://www.npmjs.com/package/cheerio" target="_blank" rel="external">英文版api介绍</a></p>
+<p>任务要求</p>
+<ul>
+<li>抓取慕课网某个课程页面的课程章节</li>
+<li>抓取慕课网上的课程章节内各个视频和介绍</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var http = require(&quot;http&quot;);</div><div class="line">var url = &apos;http://www.imooc.com/learn/348&apos;;</div><div class="line">var cheerio = require(&quot;cheerio&quot;);</div><div class="line"></div><div class="line">http.get(url, function(res)&#123;</div><div class="line">	var html = &quot;&quot;;</div><div class="line">	res.on(&apos;data&apos;,function(data)&#123;</div><div class="line">		html += data;</div><div class="line">	&#125;);</div><div class="line">	res.on(&apos;end&apos;,function()&#123;</div><div class="line">		//filterChapters过滤出我们想要的数据</div><div class="line">		var courseData = filterChapters(html);</div><div class="line"></div><div class="line">		//print..打印出过滤后的数据</div><div class="line">		printCourseInfo(courseData);</div><div class="line">	&#125;);</div><div class="line">&#125;).on(&apos;error&apos;,function()&#123;</div><div class="line">	console.log(&apos;获取课程数据出错！&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>下面是filterChapters封装代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">function filterChapters(html) &#123;</div><div class="line">	var $ = cheerio.load(html);</div><div class="line">	var chapters = $(&apos;.mod-chapters&apos;);</div><div class="line">	var courseData = [];</div><div class="line">	var chapter = &apos;&apos;;</div><div class="line">	var chapterTitle=&apos;&apos;;</div><div class="line">	var videos = &apos;&apos;;</div><div class="line">	var chapterData = &apos;&apos;;</div><div class="line">	var video = &apos;&apos;;</div><div class="line">	var videoTitle = &apos;&apos;;</div><div class="line">	var id = &apos;&apos;;</div><div class="line">	chapters.each(function(index, el) &#123;</div><div class="line">		chapter = $(this);</div><div class="line">		chapterTitle = chapter.find(&apos;strong&apos;).text();</div><div class="line">		videos = chapter.find(&apos;.video&apos;).children(&apos;li&apos;);//获取到视频源</div><div class="line">		//创建一个chapterData对象，</div><div class="line">		chapterData = &#123;</div><div class="line">			chapterTitle: chapterTitle,</div><div class="line">			videos:[]</div><div class="line">		&#125;;</div><div class="line"></div><div class="line">		videos.each(function(index, el) &#123;</div><div class="line">			video = $(this).find(&apos;.J-media-item&apos;);</div><div class="line">			videoTitle = video.text();//结果是由所有匹配元素包含的文本内容组合起来的文本（包括子节点的文本内容）这个方法对HTML和XML文档都有效。</div><div class="line">			id = video.attr(&apos;href&apos;).split(&apos;video/&apos;)[1];//设置或返回被选元素的属性值。split() 方法用于把一个字符串分割成字符串数组。</div><div class="line">			//我们要取的是video后面的元素，在数组中的索引为1，[&quot;video/&quot;, &quot;number&quot;];取number数值</div><div class="line"></div><div class="line">			chapterData.videos.push(&#123;</div><div class="line">				title:videoTitle,</div><div class="line">				id:id</div><div class="line">			&#125;);</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">	/*[&#123;</div><div class="line">		chapterTitle:&apos;&apos;,</div><div class="line">		videos:[</div><div class="line">			title:&apos;&apos;,</div><div class="line">			id:&apos;&apos;</div><div class="line">		]</div><div class="line">	&#125;]*/</div><div class="line">		courseData.push(chapterData);</div><div class="line">	&#125;);</div><div class="line">	return courseData;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>打印出信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function printCourseInfo(courseData)&#123;</div><div class="line">	var context = &apos;&apos;;</div><div class="line">	var chapterTitle = &apos;&apos;;</div><div class="line">	courseData.forEach(function(item)&#123;</div><div class="line">		chapterTitle = item.chapterTitle;</div><div class="line">		// console.log(chapterTitle+&apos;\n&apos;);</div><div class="line">		//先输出章节内容，章节内容输出完了，video</div><div class="line">		context += chapterTitle + &apos;\n&apos;;</div><div class="line">		item.videos.forEach(function(video)&#123;</div><div class="line">			// console.log(&apos; [&apos; + video.id + &apos;] &apos; +video.title+&apos;\n&apos;);</div><div class="line">			context += &apos; 【&apos;+video.id+&apos;】 &apos;+video.title+&apos;\n&apos;;</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div><div class="line">	console.log(context);</div><div class="line">	//这里先把context保存再最后输出，提高效率</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里的收获是对jQuery有更深刻的了解，对foreach循环也加深了理解。</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[在浏览器输入网址后回车发生了什么]]></title>
+      <url>https://zaynex.github.io/2016/09/21/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+      <content type="html"><![CDATA[<p>1.查看DNS缓存</p>
+<ul>
+<li>先搜索浏览器自身的DNS缓存<br>查看浏览器的缓存记录<br><code>chrome://net-internals/#dns</code></li>
+<li><p>搜索操作系统自身的NDS缓存（如果浏览器没有缓存或缓存失效）</p>
+</li>
+<li><p>读取本地的HOST文件</p>
+</li>
+</ul>
+<p>2.域名解析<br>浏览器发起DNS的一个系统调用，域名解析请求</p>
+<ul>
+<li>宽带运营商服务器查看本身缓存</li>
+<li>运营商服务器发起一个迭代DNS解析的请求<br>先去找根域寻找，根域提供顶级域的IP地址(.com)。<br>COM域名服务器提供 imooc.com 的域的DNS服务器。<br>imooc.com 域的服务器给它提供资源。</li>
+</ul>
+<ol>
+<li>TCP/IP三次握手</li>
+</ol>
+<p>4.浏览器发送HTTP请求</p>
+<p>这个ab -n1000 -c10 <a href="http://localhost:2015/命令，在window系统下，需要先用cd命令定位到你的apache安装目录的bin文件夹" target="_blank" rel="external">http://localhost:2015/命令，在window系统下，需要先用cd命令定位到你的apache安装目录的bin文件夹</a></p>
+<p>-n ：总共的请求执行数，缺省是1；<br>-c： 并发数，缺省是1；<br>-t：测试所进行的总时间，秒为单位，缺省50000s<br>-p：POST时的数据文件<br>-w: 以HTML表的格式输出结果</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[再来几本书]]></title>
       <url>https://zaynex.github.io/2016/09/20/%E5%86%8D%E6%9D%A5%E5%87%A0%E6%9C%AC%E4%B9%A6/</url>
       <content type="html"><![CDATA[<p>既然还有那么多书要看，就不要太着急了。要去就去大公司实习，去不了就留下来多看几本书，也不亏。</p>
