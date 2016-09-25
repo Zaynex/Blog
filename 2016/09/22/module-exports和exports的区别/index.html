@@ -94,7 +94,7 @@
 <meta property="og:description" content="原文：http://www.hacksparrow.com/node-js-exports-vs-module-exports.html
 你肯定非常熟悉nodejs模块中的exports对象，你可以用它创建你的模块。例如：（假设这是rocker.js文件）
 123exports.name = function() &amp;#123;    console.log(&amp;apos;My name is Le">
-<meta property="og:updated_time" content="2016-09-22T15:31:16.081Z">
+<meta property="og:updated_time" content="2016-09-23T05:14:00.715Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="module.exports和exports的区别">
 <meta name="twitter:description" content="原文：http://www.hacksparrow.com/node-js-exports-vs-module-exports.html
@@ -364,7 +364,8 @@
 <p><code>rocker</code>模块忽略了<code>exports</code>收集的name方法，返回了一个字符串“ROCK IT!”。由此可知，你的模块并不一定非得返回“实例化对象”。你的模块可以是任何合法的javascript对象–<code>boolean, number, date, JSON, string, function, array</code>等等。</p>
 <p>你的模块可以是任何你设置给它的东西。如果你没有显式的给<code>Module.exports</code>设置任何属性和方法，那么你的模块就是<code>exports</code>设置给Module.exports的属性。</p>
 <p>下面例子中，你的模块是一个类：</p>
-<p>复制代码<br>module.exports = function(name, age) {<br>    this.name = name;<br>    this.age = age;<br>    this.about = function() {<br>        console.log(this.name +’ is ‘+ this.age +’ years old’);<br>    };<br>};<br>可以这样应用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">module.exports = function(name, age) &#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">    this.about = function() &#123;</div><div class="line">        console.log(this.name +&apos; is &apos;+ this.age +&apos; years old&apos;);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>可以这样应用它：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var Rocker = require(&apos;./rocker.js&apos;);</div><div class="line">var r = new Rocker(&apos;Ozzy&apos;, 62);</div><div class="line">r.about(); // Ozzy is 62 years old</div></pre></td></tr></table></figure>
 <p>下面例子中，你的模块是一个数组：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">module.exports = [&apos;Lemmy Kilmister&apos;, &apos;Ozzy Osbourne&apos;, &apos;Ronnie James Dio&apos;, &apos;Steven Tyler&apos;, &apos;Mick Jagger&apos;];</div></pre></td></tr></table></figure>
@@ -375,7 +376,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">module.exports.name = function() &#123;</div><div class="line">    console.log(&apos;My name is Lemmy Kilmister&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>同样，<code>exports</code>是这样的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exports.name = function() &#123;</div><div class="line">    console.log(&apos;My name is Lemmy Kilmister&apos;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>请注意，这两种结果并不相同。前面已经提到<code>module.exports</code>是真正的接口，<code>exports</code>只不过是它的辅助工具。推荐使用exports导出，除非你打算从原来的“实例化对象”改变成一个类型。</p>
+<p>请注意，这两种结果并不相同。前面已经提到<code>module.exports</code>是真正的接口，<code>exports</code>只不过是它的一个全局引用。如果把<code>exports</code>设定为别的， 就打破了两者的引用关系，可是真正导出的是<code>module.exports</code>，那样<code>exports</code>就不能用了。<br>推荐使用<code>exports</code>导出，除非你打算从原来的“实例化对象”改变成一个类型。</p>
 
       
     </div>
