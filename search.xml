@@ -5,8 +5,16 @@
     
     <entry>
       <title><![CDATA[每日学习小结]]></title>
-      <url>https://zaynex.github.io/2016/09/22/%E5%86%8D%E6%9D%A5%E5%87%A0%E6%9C%AC%E4%B9%A6/</url>
-      <content type="html"><![CDATA[<p>转眼都3天了。<br>23号跟魂丢了似的，完全没状态，静不下心看书。<br>24号还是有点乱。感觉自己要静下心来去深入学习node。<br>最后再定一下路线：</p>
+      <url>https://zaynex.github.io/2016/09/27/%E5%86%8D%E6%9D%A5%E5%87%A0%E6%9C%AC%E4%B9%A6/</url>
+      <content type="html"><![CDATA[<p>—–2016-09-27</p>
+<ol>
+<li>gulp</li>
+<li>jade<br><a href="https://segmentfault.com/a/1190000000357534#articleHeader22" target="_blank" rel="external">https://segmentfault.com/a/1190000000357534#articleHeader22</a><br><a href="http://www.html2jade.org/" target="_blank" rel="external">http://www.html2jade.org/</a></li>
+<li>express<br><a href="http://www.expressjs.com.cn/guide/routing.html" target="_blank" rel="external">http://www.expressjs.com.cn/guide/routing.html</a></li>
+<li>git<br><a href="http://www.backlogtool.com/git-guide/cn/intro/intro2_4.html" target="_blank" rel="external">http://www.backlogtool.com/git-guide/cn/intro/intro2_4.html</a></li>
+</ol>
+<p>今天没有看算法也是因为被工具给卡死了，老的是视频太坑，还不如自己看官方文档。<br>这样吧，明天看到下午的时候适当注意下时间，晚上再接着看算法。千万要坚持，两个月了算法还没什么动静。<br>把freecodecamp的算法题目都做一遍，找找感觉。而且都是简单的，重要的是自己去摸索。</p>
+<p>—-2016-09-26<br>百度电面<br>—-2016-09-25<br>转眼都3天了。<br>23号跟魂丢了似的，完全没状态，静不下心看书。<br>24号还是有点乱。感觉自己要静下心来去深入学习node。<br>最后再定一下路线：</p>
 <ul>
 <li>慕课网（先把第一期过一遍，知道express是个什么鬼）<br>静不下心看书没关系，等你代码也看不懂的时候就会看书了！</li>
 <li>node.js实战</li>
@@ -39,6 +47,32 @@
 <li>c语言</li>
 </ul>
 <p>linux操作系统</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[百度电面]]></title>
+      <url>https://zaynex.github.io/2016/09/26/%E7%99%BE%E5%BA%A6%E7%94%B5%E9%9D%A2/</url>
+      <content type="html"><![CDATA[<ul>
+<li>unll与undefined</li>
+<li>基本类型引用类型</li>
+<li>call和apply</li>
+<li>面向对象</li>
+<li>git使用解决冲突</li>
+<li>图片异步加载</li>
+<li>继承是如何实现</li>
+<li>设计模式</li>
+<li>函数节流</li>
+<li>jQuery的extend</li>
+<li>http首部</li>
+<li>cookie</li>
+<li>跨域</li>
+<li>浏览器输入地址到页面呈现发生了什么</li>
+<li>npm包的要求字段</li>
+<li>gulp</li>
+<li>开源的框架和库用过哪些</li>
+</ul>
+<p>头疼，到时候再去补吧，反正知道自己是很菜就是了。<br>学得不够久，后端也刚入门。</p>
 ]]></content>
     </entry>
     
