@@ -1,0 +1,1064 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="��ǰ����git���鷳�����濴��֮�����ֳ��õ�Ҳ����Щ�����Һ�ʵ�á�">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git����">
+<meta property="og:url" content="https://zaynex.github.io/2016/09/28/Git入门/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="��ǰ����git���鷳�����濴��֮�����ֳ��õ�Ҳ����Щ�����Һ�ʵ�á�">
+<meta property="og:updated_time" content="2016-09-28T14:19:30.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git����">
+<meta name="twitter:description" content="��ǰ����git���鷳�����濴��֮�����ֳ��õ�Ҳ����Щ�����Һ�ʵ�á�">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/09/28/Git入门/"/>
+
+  <title> Git���� | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Git����
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T20:28:51+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/Git入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/Git入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>��ǰ����git���鷳�����濴��֮�����ֳ��õ�Ҳ����Щ�����Һ�ʵ�á�<br><a id="more"></a></p>
+<h3 id="�ӱ��ؽ����ֿ��ύ���ֿ�"><a href="#�ӱ��ؽ����ֿ��ύ���ֿ�" class="headerlink" title="�ӱ��ؽ����ֿ��ύ���ֿ�"></a>�ӱ��ؽ����ֿ��ύ���ֿ�</h3><ul>
+<li>git init<br>���ؽ����ֿ⡣����<code>.git</code>�ļ��У�windows��һ�㲻�ɼ���Ҳ�Ƿ�ֹ�û��޸�</li>
+<li><p>git add<br>�����ļ����ݴ���</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add demo.txt;//�����ļ�</div><div class="line">git add . // .��ʾ�����ļ�</div></pre></td></tr></table></figure>
+</li>
+<li><p>git commit<br>���ļ��ύ���ֿ�</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;��ע&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>git status<br>�鿴�ļ��ύ״�����������޸����ļ���������Ӧ��������ʾ</p>
+</li>
+<li><p>git diff<br>�鿴�����ύ���޸�֮��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff demo.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>�޸ĺ����������ύ�أ�<br>����ԭ���Ĳ���</p>
+<ul>
+<li>git add demo.txt</li>
+<li>git commit -m “�ӱ�ע���޸���ɶ��������֪��”</li>
+</ul>
+<p>###���汾����</p>
+<ul>
+<li><p>git log<br>�鿴�汾�ύ�ļ�¼��־������ʾÿ���ύ�İ汾�ţ�Ψһ��</p>
+</li>
+<li><p>git reset –hard HEAD^<br>�ص���һ���ύ�İ汾��������<code>HEAD^^</code>,�ص����ϸ��汾��</p>
+</li>
+</ul>
+<p>������������ص��ղ����µİ汾��ô�죿</p>
+<p>û��ϵ</p>
+<ul>
+<li><p>git reflog<br>�г����������������İ汾��<br>���� commit -m ������������ʾ�ص�����Ҫ�İ汾��ǰ����һ������+��ĸ�����ϣ�����Ψһ�İ汾�ű�ʶ��</p>
+</li>
+<li><p>git reset</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard 33jdjf0</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>�Ҿ�������һ�£������İ汾�ž������鿴<code>reflog</code>ʱ�İ汾��</p>
+<h3 id="���������ݴ���������"><a href="#���������ݴ���������" class="headerlink" title="���������ݴ���������"></a>���������ݴ���������</h3><p>�����������ڵ����Ͽ���������Ŀ¼�ļ���.git����Ŀ¼���⣩<br>���⻺������������Ҫ�Ƚ����汾�⣬�汾������<code>.git</code>Ŀ¼��������һ���������Ķ�����GitΪ�����Զ�������һ��<code>master</code>��֧���Լ�ָ��master��һ��ָ��<code>HEAD</code>��</p>
+<p>������ʹ��<code>git add</code>��ʱ���ǰ��ļ��ӵ�������ȥ�ˡ�<br>������<code>git commit</code>���ǰ��ݴ����������ύ����ǰ��֧�ϡ�</p>
+<h3 id="ɾ������"><a href="#ɾ������" class="headerlink" title="ɾ������"></a>ɾ������</h3><p>һ�ְ취��Ȼ���ֶ��޸ģ�Ȼ��add �� commit��<br>���������Ļ�ԭ���Ϳ��Իص���һ���汾����<code>git reset --hard HRAD</code>���������ܹ��ˡ�<br>����һ�־���<code>git checkout  -- demo.txt</code><br>������˼���ǰ�demo.txt�ڻ�������������ȫ������������Ҫע�⣺</p>
+<ol>
+<li>����<code>demo.txt</code>�޸ĺ󣬻�û�зŵ��������� ʹ�����ַ�ʽ�����Ϳ��Իص��Ͱ汾��һģһ����״̬��</li>
+<li>�����Ѿ�<code>add</code>�����������������������޸ģ�����û�ύ������������û<code>add</code>������ô�������޾ͻص����ӻ���������״̬�ˡ�</li>
+</ol>
+<ul>
+<li>git checkout<br>��������û��<code>--</code>��ô�ͻᴴ��һ����֧��ҪС�ġ�</li>
+</ul>
+<h4 id="ɾ���l�"><a href="#ɾ���l�" class="headerlink" title="ɾ���ļ�"></a>ɾ���ļ�</h4><p>һ�������£�ɾ���ļ�����ֱ�����ļ�Ŀ¼�а��ļ���ɾ�ˣ�Ҳ�������������� <code>rm demo.txt</code>ɾ���ļ���<br>ɾ����֮����<code>commit</code>һ�¡�</p>
+<p>��������û��<code>commit</code>���ּ���ɾ�ˣ���ô�ָ��أ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- demo.txt</div></pre></td></tr></table></figure></p>
+<p>�ָ����ļ���</p>
+<h3 id="�ϴ���Զ�ֿ̲���"><a href="#�ϴ���Զ�ֿ̲���" class="headerlink" title="�ϴ���Զ�ֿ̲���!"></a>�ϴ���Զ�ֿ̲���!</h3><p>��github���½�һ��repo��<br>��������https��ַ<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/zaynex/demo.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>�ѱ��ؿ����������͵�Զ�̣�ʹ�� git push���ʵ�����ǰѵ�ǰ��֧master���͵�Զ�̡�</p>
+<p>����Զ�̿��ǿյģ����ǵ�һ������master��֧ʱ�������� �Cu������Git�������ѱ��ص�master��֧�������͵�Զ���µ�master��֧�������ѱ��ص�master��֧��Զ�̵�master��֧�������������Ժ������ͻ�����ȡʱ�Ϳ��Լ���������ͳɹ��󣬿���������githubҳ���п���Զ�̿��������Ѿ��ͱ���һģһ���ˡ�</p>
+<p>����������ֻҪ���������ύ���Ϳ���ͨ���������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<h3 id="��Զ��cloneһ����L��"><a href="#��Զ��cloneһ����L��" class="headerlink" title="��Զ��cloneһ����Ŀ��"></a>��Զ��cloneһ����Ŀ��</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/zaynex/demo</div></pre></td></tr></table></figure>
+<h3 id="�����ϲ���֧"><a href="#�����ϲ���֧" class="headerlink" title="�����ϲ���֧"></a>�����ϲ���֧</h3><p>ǰ����˵����<br><code>git checkout</code>���Դ�����֧��<br>���Ǿ�������һ����֧��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b dev</div></pre></td></tr></table></figure>
+<p>����ָ������ʶ��ʵ��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch dev //�½�һ����֧</div><div class="line">git checkout dev // �л����÷�֧</div></pre></td></tr></table></figure>
+<p>ʹ��<code>git branch</code>�Ϳ��Կ�����������֧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">master</div><div class="line">*dev</div></pre></td></tr></table></figure></p>
+<p><code>*</code>��ʾ�㵱ǰ���õķ�֧</p>
+<p>�л�����֧�ĺô����ǣ��������ڷ�֧�������޸ģ����ƺ����ύ���ȶ���master��֧��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line">git merge dev</div></pre></td></tr></table></figure>
+<p><code>git merge</code>�������ںϲ�ָ����֧����ǰ��֧�ϣ��ϲ������ٲ鿴<code>demo.txt</code>���ݣ����Կ�������dev��֧�����ύ������ȫһ���ġ�</p>
+<p>ע�⵽������<code>Fast-forward</code>��Ϣ��Git�������ǣ����κϲ��ǡ�����ģʽ����Ҳ����ֱ�Ӱ�<code>master</code>ָ��<code>dev</code>�ĵ�ǰ�ύ�����Ժϲ��ٶȷǳ��졣</p>
+<p>�ϲ����ɺ������ǿ��Խ���ɾ��<code>dev</code>��֧�ˣ���������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d dev</div></pre></td></tr></table></figure></p>
+<p>�ܽ����£�<br>�鿴��֧��git branch</p>
+<p>������֧��git branch name</p>
+<p>�л���֧��git checkout name</p>
+<p>����+�л���֧��git checkout �Cb name</p>
+<p>�ϲ�ĳ��֧����ǰ��֧��git merge name</p>
+<p>ɾ����֧��git branch �Cd name</p>
+<h3 id="������ͻ"><a href="#������ͻ" class="headerlink" title="������ͻ"></a>������ͻ</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b fenzhi1//�½�һ����֧</div></pre></td></tr></table></figure>
+<p>����������֧���޸���<code>demo.txt</code>��</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add demo.txt</div><div class="line">git commit -m &quot;������������123456&quot;</div></pre></td></tr></table></figure>
+<p>ע�⣬�ղŵĲ��������ڷ�֧�ϸĵġ�</p>
+<p>���ڣ������л���master��֧��<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout master</div></pre></td></tr></table></figure></p>
+<p>Ȼ���������޸� <code>demo.txt</code>��<br>���ͺ����������˲����������ļ���</p>
+<p>Ȼ����</p>
+<ul>
+<li>git add</li>
+<li>git commit -m “��master��֧���޸���”</li>
+<li>git merge fenzhi1</li>
+</ul>
+<p>����ʱ�򣬻�˵�����и���ͻ���ύʧ�ܡ�</p>
+<ul>
+<li><p>git status<br>���ǲ鿴��״̬������ȷʵ�ļ����޸������Ρ�</p>
+</li>
+<li><p>cat demo.txt<br>�鿴��ͻ����<br>Git��&lt;&lt;&lt;&lt;&lt;&lt;&lt;��=======��&gt;&gt;&gt;&gt;&gt;&gt;&gt;���ǳ���ͬ��֧�����ݣ�����&lt;&lt;<head��ָ����֧�޸ĵ����ݣ�>&gt;&gt;&gt;&gt;fenzhi1 ��ָfenzhi1���޸ĵ����ݣ����ǿ����޸������º󱣴棺</head��ָ����֧�޸ĵ����ݣ�></p>
+</li>
+</ul>
+<p>���ļ��и�����Ӧ����ʾ�޸����հ汾�Ĵ��롣<br>���ɺ���</p>
+<ul>
+<li>git add</li>
+<li>git commit</li>
+</ul>
+<p>������</p>
+<ul>
+<li>git log<br>�鿴״̬</li>
+</ul>
+<h3 id="��֧��������"><a href="#��֧��������" class="headerlink" title="��֧��������"></a>��֧��������</h3><p>ͨ���ϲ���֧ʱ��gitһ��ʹ��<code>Fast forward</code>ģʽ��������ģʽ�£�ɾ����֧�󣬻ᶪ����֧��Ϣ������������ʹ�ô����� <code>�Cno-ff</code>������<code>Fast forward</code>ģʽ��</p>
+<ol>
+<li>����һ��dev��֧��</li>
+<li>�޸�demo.txt���ݡ�</li>
+<li>���ӵ��ݴ�����</li>
+<li>�л�������֧(master)��</li>
+<li>�ϲ�dev��֧��ʹ������ git merge �Cno-ff  -m ��ע�͡� dev</li>
+<li>�鿴��ʷ��¼</li>
+</ol>
+<ul>
+<li>git checkout -b dev</li>
+<li>git add demo.txt</li>
+<li>git commit -m “add merge”</li>
+<li>git checkout master</li>
+<li>git merge –no-ff -m “merge with no-ff” dev //�ϲ���֧���������ý�ֹģʽ</li>
+<li>git branch -d dev //ɾ����֧</li>
+<li>git branch //�·�֧�Ѿ���ɾ���ˣ��鿴��״̬</li>
+<li>git log –graph –pretty=oneline – abbrev-commit // �ҵ���ʷ��֧�����ǿ����ҵ���ɾ������ʷ��֧</li>
+</ul>
+<h3 id="bug��֧"><a href="#bug��֧" class="headerlink" title="bug��֧"></a>bug��֧</h3><p>һ�����ԣ����ǻᴴ����֧���ڷ�֧�ϸɻ�ɺ������ύ���ȶ���master��֧��<br>�����ڵ�״���ǣ����ǻ��ڿ�����֧�����Ƿ���master��֧����bugҪ�޸����������Ǿ����㶨����</p>
+<p>����Ҫ��ʱ�ٽ�һ����֧���͵������� 404bug��֧�ɡ�</p>
+<p>��ʱ�����ڷ�֧״̬�£�������Ҫ�Ȱѷ�֧���ص���</p>
+<ul>
+<li><p>git stash</p>
+</li>
+<li><p>git status<br>�鿴״̬�����ַ�֧�Ǹɾ���</p>
+</li>
+<li><p>git checkout -b issue-404<br>�����½���bug��֧��</p>
+</li>
+<li><p>git add demo.txt<br>���޸ĺú��Ĵ����ύ����ȥ</p>
+</li>
+<li><p>git commit -m “404bug�޸�”</p>
+</li>
+<li><p>git checkout master<br>�л���master��֧</p>
+</li>
+<li><p>git merge –no-ff -m ‘merge bug fix 404’ issue-404<br>�ϲ��޸�bug��֧��master��֧</p>
+</li>
+<li><p>git branch -d issue-404<br>ɾ��bug��֧</p>
+</li>
+</ul>
+<p>ok,master�ϵ�bug�޸��ˣ�<br>�����ٻص�dev��֧</p>
+<ul>
+<li><p>git checkout dev<br>������ԭ��δ���ɵĻ�</p>
+</li>
+<li><p>git status<br>���Ƿ��ַ�֧Ŀǰ�Ǹɾ��ģ�����֮ǰ���Ĵ��붼ȥ���ˣ�</p>
+</li>
+<li><p>git stash list<br>���������ڣ�ֻ��Git��stash���ݴ���ĳ���ط��ˣ�������Ҫ�ָ�һ�£�����ʹ������2��������<br>����һ��</p>
+</li>
+<li>git stash apply<br>���ַ����Ļ�������stash���������ݻ��ڣ�Ҫ��<code>git stash drop</code>ɾ����<br>��������</li>
+<li>git stash pop<br>�ظ���ͬʱҲ��stash������Ҳɾ���ˡ�</li>
+</ul>
+<h3 id="����Э��"><a href="#����Э��" class="headerlink" title="����Э��"></a>����Э��</h3><p>������Զ�̿���¡ʱ����ʵ����Git�Զ��ѱ��ص�master��֧��Զ�̵�master��֧��Ӧ�����ˣ�����Զ�̿���Ĭ��������origin��</p>
+<ol>
+<li>Ҫ�鿴Զ�̿�����Ϣ ʹ�� git remote</li>
+<li>Ҫ�鿴Զ�̿�����ϸ��Ϣ ʹ�� git remote �Cv</li>
+</ol>
+<h4 id="���ͷ�֧"><a href="#���ͷ�֧" class="headerlink" title="���ͷ�֧"></a>���ͷ�֧</h4><p>���ͷ�֧���ǰѸ÷�֧�����б����ύ��Զ�̿��У�����ʱ��Ҫָ�����ط�֧��������Git�ͻ��Ѹ÷�֧���͵�Զ�̿���Ӧ��Զ�̷�֧�ϣ�</p>
+<ul>
+<li>git push origin master<br>���԰ѱ��ص����ݸ��µ�Զ�̿��С�<br>��������Ҫ���͵�������֧������dev��֧�����ǻ���������</li>
+<li>git push origin dev</li>
+</ul>
+<p>��ôһ�������£���Щ��֧Ҫ�����أ�</p>
+<ol>
+<li>master��֧������֧������Ҫʱ����Զ��ͬ����</li>
+<li>һЩ�޸�bug��֧����Ҫ���͵�Զ��ȥ�������Ⱥϲ�������֧�ϣ�Ȼ��������֧master���͵�Զ��ȥ��</li>
+</ol>
+<h4 id="ץȡ��֧"><a href="#ץȡ��֧" class="headerlink" title="ץȡ��֧"></a>ץȡ��֧</h4><p>�������ǿ���ģ������һ��ͬ�£���������һ̨�����ϣ�ע��Ҫ��SSHkey���ӵ�github�ϣ�����ͬһ̨����������һ��Ŀ¼��¡���½�һ��Ŀ¼���ֽ�testgit2��</p>
+<p>����testgit2��clone Զ�̿⵽����</p>
+<ul>
+<li>git clone <a href="https://github.com/zaynex/testgit" target="_blank" rel="external">https://github.com/zaynex/testgit</a></li>
+</ul>
+<p>����С������Ҫ��dev��֧�����������ͱ�����Զ�̵� origin��dev��֧�������������ǿ���ʹ�����������dev��֧��</p>
+<ul>
+<li><p>git checkout -b dev origin/dev<br>����Զ��origin��dev��֧������<br>�޸�dev��֧������</p>
+</li>
+<li><p>git add demo.txt</p>
+</li>
+<li>git commit -m “dev��֧�����޸�”</li>
+<li>git push origin dev<br>�����ڵ�dev��֧���͵�Զ�̿�</li>
+</ul>
+<p>����Ҳ���Լ���dev��֧���޸��ˡ�</p>
+<ul>
+<li>git add demo.txt</li>
+<li>git commit -m “�����Լ���dev��֧�������޸�”</li>
+<li>git push origin dev</li>
+</ul>
+<p>�����ᱨ��������Ϊ����С����Ҳ��dev��֧���޸������ݡ�</p>
+<ul>
+<li>git pull<br>����git pull�����µ��ύ��origin/devץ������Ȼ���ڱ��غϲ���������ͻ�������͡�<br>�ڱ����޸ĺ����ļ�֮�������͡�<br>����<code>git pull</code>ʧ���ˡ�ԭ����û��ָ������dev��֧��Զ��origin/dev��֧�����ӣ�������ʾ������dev��origin/dev�����ӡ�</li>
+</ul>
+<p>����<code>git pull</code>�ɹ��ˡ����Ǻϲ��г�ͻ����Ҫ�ֶ������������ķ����ͷ�֧�����еĽ�����ͻ��ȫһ����</p>
+<ul>
+<li>git add</li>
+<li>git commit </li>
+<li>git push origin dev<br>�ǵ����ύ����֧��</li>
+</ul>
+<p>���ˣ�����Э������ģʽһ���������ģ�</p>
+<ol>
+<li>���ȣ�������ͼ��git push origin branch-name�����Լ����޸�.</li>
+<li>��������ʧ�ܣ�����ΪԶ�̷�֧�����ı��ظ����磬��Ҫ����git pull��ͼ�ϲ���</li>
+<li>�����ϲ��г�ͻ������Ҫ������ͻ�����ڱ����ύ������git push origin branch-name���͡�</li>
+</ol>
+<h3 id="�ܽ�"><a href="#�ܽ�" class="headerlink" title="�ܽ�"></a>�ܽ�</h3><p>�ʺ��Լ��Ĳ������õ����ϡ�hhh��</p>
+<p>mkdir��         XX (����һ����Ŀ¼ XXָĿ¼��)</p>
+<p>pwd��          ��ʾ��ǰĿ¼��·����</p>
+<p>git init          �ѵ�ǰ��Ŀ¼���ɿ��Թ�����git�ֿ⣬��������.git�ļ���</p>
+<p>git add XX       ��xx�ļ����ӵ��ݴ���ȥ��</p>
+<p>git commit �Cm ��XX��  �ύ�ļ� �Cm ��������ע�͡�</p>
+<p>git status        �鿴�ֿ�״̬</p>
+<p>git diff  XX      �鿴XX�ļ��޸�����Щ����</p>
+<p>git log          �鿴��ʷ��¼</p>
+<p>git reset  �Chard HEAD^ ���� git reset  �Chard HEAD~ ���˵���һ���汾</p>
+<pre><code>(���������˵�100���汾��ʹ��git reset �Chard HEAD~100 )
+</code></pre><p>cat XX         �鿴XX�ļ�����</p>
+<p>git reflog       �鿴��ʷ��¼�İ汾��id</p>
+<p>git checkout �� XX  ��XX�ļ��ڹ��������޸�ȫ��������</p>
+<p>git rm XX          ɾ��XX�ļ�</p>
+<p>git remote add origin <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a> ����һ��Զ�̿�</p>
+<p>git push �Cu(��һ��Ҫ��-u �Ժ�����Ҫ) origin master �ѵ�ǰmaster��֧���͵�Զ�̿�</p>
+<p>git clone <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a>  ��Զ�̿��п�¡</p>
+<p>git checkout �Cb dev  ����dev��֧ ���л���dev��֧��</p>
+<p>git branch  �鿴��ǰ���еķ�֧</p>
+<p>git checkout master �л���master��֧</p>
+<p>git merge dev    �ڵ�ǰ�ķ�֧�Ϻϲ�dev��֧</p>
+<p>git branch �Cd dev ɾ��dev��֧</p>
+<p>git branch name  ������֧</p>
+<p>git stash �ѵ�ǰ�Ĺ����������� ���Ժ��ָ��ֳ�����������</p>
+<p>git stash list �鿴���б����ص��ļ��б�</p>
+<p>git stash apply �ָ������ص��ļ����������ݲ�ɾ��</p>
+<p>git stash drop ɾ���ļ�</p>
+<p>git stash pop �ָ��ļ���ͬʱ Ҳɾ���ļ�</p>
+<p>git remote �鿴Զ�̿�����Ϣ</p>
+<p>git remote �Cv �鿴Զ�̿�����ϸ��Ϣ</p>
+<p>git push origin master  Git����master��֧���͵�Զ�̿���Ӧ��Զ�̷�֧��</p>
+<h3 id="�ο�����"><a href="#�ο�����" class="headerlink" title="�ο�����"></a>�ο�����</h3><p><a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">http://blog.jobbole.com/78960/</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/27/再来几本书/" rel="next" title="每日学习小结">
+                <i class="fa fa-chevron-left"></i> 每日学习小结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/28/Git入门/"
+     data-title="Git����"
+     data-content=""
+     data-url="https://zaynex.github.io/2016/09/28/Git入门/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/28/Git入门/"
+           data-title="Git����" data-url="https://zaynex.github.io/2016/09/28/Git入门/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description">但行好事，莫问前程</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">68</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xi-wen-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#�ӱ��ؽ����ֿ��ύ���ֿ�"><span class="nav-number">1.</span> <span class="nav-text">�ӱ��ؽ����ֿ��ύ���ֿ�</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#���������ݴ���������"><span class="nav-number">2.</span> <span class="nav-text">���������ݴ���������</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ɾ������"><span class="nav-number">3.</span> <span class="nav-text">ɾ������</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ɾ���l�"><span class="nav-number">3.1.</span> <span class="nav-text">ɾ���ļ�</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�ϴ���Զ�ֿ̲���"><span class="nav-number">4.</span> <span class="nav-text">�ϴ���Զ�ֿ̲���!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#��Զ��cloneһ����L��"><span class="nav-number">5.</span> <span class="nav-text">��Զ��cloneһ����Ŀ��</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�����ϲ���֧"><span class="nav-number">6.</span> <span class="nav-text">�����ϲ���֧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#������ͻ"><span class="nav-number">7.</span> <span class="nav-text">������ͻ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#��֧��������"><span class="nav-number">8.</span> <span class="nav-text">��֧��������</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug��֧"><span class="nav-number">9.</span> <span class="nav-text">bug��֧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#����Э��"><span class="nav-number">10.</span> <span class="nav-text">����Э��</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#���ͷ�֧"><span class="nav-number">10.1.</span> <span class="nav-text">���ͷ�֧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ץȡ��֧"><span class="nav-number">10.2.</span> <span class="nav-text">ץȡ��֧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�ܽ�"><span class="nav-number">11.</span> <span class="nav-text">�ܽ�</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�ο�����"><span class="nav-number">12.</span> <span class="nav-text">�ο�����</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zaynex"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
