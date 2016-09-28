@@ -4,6 +4,247 @@
   
     
     <entry>
+      <title><![CDATA[git入门]]></title>
+      <url>https://zaynex.github.io/2016/09/28/git%E5%85%A5%E9%97%A8-0/</url>
+      <content type="html"><![CDATA[<p>以前觉得git很麻烦，认真看了之后发现常用的也就那些，而且很实用。<br><a id="more"></a></p>
+<h3 id="从本地建立仓库提交到仓库"><a href="#从本地建立仓库提交到仓库" class="headerlink" title="从本地建立仓库提交到仓库"></a>从本地建立仓库提交到仓库</h3><ul>
+<li>git init<br>本地建立仓库。会有<code>.git</code>文件夹，windows下一般不可见。也是防止用户修改</li>
+<li><p>git add<br>添加文件到暂存区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add demo.txt;//单个文件</div><div class="line">git add . // .表示所有文件</div></pre></td></tr></table></figure>
+</li>
+<li><p>git commit<br>把文件提交到仓库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit -m &quot;备注&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>git status<br>查看文件提交状况，如果你修改了文件，会有相应的详情显示</p>
+</li>
+<li><p>git diff<br>查看本次提交的修改之处</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git diff demo.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>修改后如何重新提交呢？<br>还是原来的步骤</p>
+<ul>
+<li>git add demo.txt</li>
+<li>git commit -m “加备注，修改了啥，好让人知道”</li>
+</ul>
+<p>###　版本回退</p>
+<ul>
+<li><p>git log<br>查看版本提交的记录日志，会显示每次提交的版本号（唯一）</p>
+</li>
+<li><p>git reset –hard HEAD^<br>回到上一个提交的版本，如果是<code>HEAD^^</code>,回到上上个版本。</p>
+</li>
+</ul>
+<p>额，但是你又想回到刚才最新的版本怎么办？</p>
+<p>没关系</p>
+<ul>
+<li><p>git reflog<br>列出了所有你操作过的版本号<br>利用 commit -m 后面的文字提示回到你想要的版本。前面有一组数字+字母的组合，就是唯一的版本号标识。</p>
+</li>
+<li><p>git reset</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard 33jdjf0</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我就随便打一下，后面的版本号就是你查看<code>reflog</code>时的版本号</p>
+<h3 id="工作区和暂存区的区别"><a href="#工作区和暂存区的区别" class="headerlink" title="工作区和暂存区的区别"></a>工作区和暂存区的区别</h3><p>工作区：你在电脑上看到的所有目录文件（.git隐藏目录除外）<br>理解缓存区，我们需要先借助版本库，版本库就是<code>.git</code>目录。里面有一个缓存区的东东。Git为我们自动创建了一个<code>master</code>分支，以及指向master的一个指针<code>HEAD</code>。</p>
+<p>我们在使用<code>git add</code>的时候是把文件加到缓存区去了。<br>接下来<code>git commit</code>才是把暂存区的内容提交到当前分支上。</p>
+<h3 id="删除撤销"><a href="#删除撤销" class="headerlink" title="删除撤销"></a>删除撤销</h3><p>一种办法当然是手动修改，然后add 再 commit。<br>但是你想改回原样就可以回到上一个版本，用<code>git reset --hard HRAD</code>方法，介绍过了。<br>另外一种就是<code>git checkout  -- demo.txt</code><br>它的意思就是把demo.txt在缓存区里的内容全都撤销。这里要注意：</p>
+<ol>
+<li>如果<code>demo.txt</code>修改后，还没有放到缓存区。 使用这种方式撤销就可以回到和版本库一模一样的状态。</li>
+<li>如果已经<code>add</code>到缓存区，（后来又做了修改，但还没提交缓存区，就是没<code>add</code>），那么撤销改修就回到添加缓存区后的状态了。</li>
+</ol>
+<ul>
+<li>git checkout<br>如果后面没有<code>--</code>那么就会创建一个分支，要小心。</li>
+</ul>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p>一般情况下，删除文件可以直接在文件目录中把文件给删了，也可以在命令行中 <code>rm demo.txt</code>删掉文件。<br>删完了之后再<code>commit</code>一下。</p>
+<p>但是如果没有<code>commit</code>，手贱误删了，怎么恢复呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -- demo.txt</div></pre></td></tr></table></figure></p>
+<p>恢复该文件。</p>
+<h3 id="上传到远程仓库吧"><a href="#上传到远程仓库吧" class="headerlink" title="上传到远程仓库吧!"></a>上传到远程仓库吧!</h3><p>在github上新建一个repo。<br>复制它的https地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin https://github.com/zaynex/demo.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure></p>
+<p>把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。</p>
+<p>由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。推送成功后，可以立刻在github页面中看到远程库的内容已经和本地一模一样了。</p>
+<p>从现在起，只要本地作了提交，就可以通过如下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push origin master</div></pre></td></tr></table></figure></p>
+<h3 id="从远程clone一个项目？"><a href="#从远程clone一个项目？" class="headerlink" title="从远程clone一个项目？"></a>从远程clone一个项目？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/zaynex/demo</div></pre></td></tr></table></figure>
+<h3 id="创建合并分支"><a href="#创建合并分支" class="headerlink" title="创建合并分支"></a>创建合并分支</h3><p>前面有说过，<br><code>git checkout</code>可以创建分支。<br>我们就来创建一个分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b dev</div></pre></td></tr></table></figure>
+<p>这句指令的意识其实是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch dev //新建一个分支</div><div class="line">git checkout dev // 切换到该分支</div></pre></td></tr></table></figure>
+<p>使用<code>git branch</code>就可以看到有两个分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">master</div><div class="line">*dev</div></pre></td></tr></table></figure></p>
+<p><code>*</code>表示你当前在用的分支</p>
+<p>切换到分支的好处就是，你可以在分支上随意修改，完善后再提交到稳定的master分支。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line">git merge dev</div></pre></td></tr></table></figure>
+<p><code>git merge</code>命令用于合并指定分支到当前分支上，合并后，再查看<code>demo.txt</code>内容，可以看到，和dev分支最新提交的是完全一样的。</p>
+<p>注意到上面的<code>Fast-forward</code>信息，Git告诉我们，这次合并是“快进模式”，也就是直接把<code>master</code>指向<code>dev</code>的当前提交，所以合并速度非常快。</p>
+<p>合并完成后，我们可以接着删除<code>dev</code>分支了，操作如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -d dev</div></pre></td></tr></table></figure></p>
+<p>总结如下：<br>查看分支：git branch</p>
+<p>创建分支：git branch name</p>
+<p>切换分支：git checkout name</p>
+<p>创建+切换分支：git checkout –b name</p>
+<p>合并某分支到当前分支：git merge name</p>
+<p>删除分支：git branch –d name</p>
+<h3 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -b fenzhi1//新建一个分支</div></pre></td></tr></table></figure>
+<p>我在这个分支上修改了<code>demo.txt</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add demo.txt</div><div class="line">git commit -m &quot;啊，我添加了123456&quot;</div></pre></td></tr></table></figure>
+<p>注意，刚才的操作都是在分支上改的。</p>
+<p>现在，我们切换到master分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout master</div></pre></td></tr></table></figure></p>
+<p>然后我们再修改 <code>demo.txt</code>。<br>这就好像有两个人操作了这个文件。</p>
+<p>然后再</p>
+<ul>
+<li>git add</li>
+<li>git commit -m “在master分支上修改了”</li>
+<li>git merge fenzhi1</li>
+</ul>
+<p>这个时候，会说这里有个冲突。提交失败。</p>
+<ul>
+<li><p>git status<br>我们查看下状态，发现确实文件被修改了两次。</p>
+</li>
+<li><p>cat demo.txt<br>查看冲突内容<br>Git用&lt;&lt;&lt;&lt;&lt;&lt;&lt;，=======，&gt;&gt;&gt;&gt;&gt;&gt;&gt;标记出不同分支的内容，其中&lt;&lt;<head是指主分支修改的内容，>&gt;&gt;&gt;&gt;fenzhi1 是指fenzhi1上修改的内容，我们可以修改下如下后保存：</head是指主分支修改的内容，></p>
+</li>
+</ul>
+<p>在文件中根据相应的提示修改最终版本的代码。<br>完成后再</p>
+<ul>
+<li>git add</li>
+<li>git commit</li>
+</ul>
+<p>你可以</p>
+<ul>
+<li>git log<br>查看状态</li>
+</ul>
+<h3 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h3><p>通常合并分支时，git一般使用<code>Fast forward</code>模式，在这种模式下，删除分支后，会丢掉分支信息，现在我们来使用带参数 <code>–no-ff</code>来禁用<code>Fast forward</code>模式。</p>
+<ol>
+<li>创建一个dev分支。</li>
+<li>修改demo.txt内容。</li>
+<li>添加到暂存区。</li>
+<li>切换回主分支(master)。</li>
+<li>合并dev分支，使用命令 git merge –no-ff  -m “注释” dev</li>
+<li>查看历史记录</li>
+</ol>
+<ul>
+<li>git checkout -b dev</li>
+<li>git add demo.txt</li>
+<li>git commit -m “add merge”</li>
+<li>git checkout master</li>
+<li>git merge –no-ff -m “merge with no-ff” dev //合并分支，并且设置禁止模式</li>
+<li>git branch -d dev //删除分支</li>
+<li>git branch //新分支已经被删除了，查看下状态</li>
+<li>git log –graph –pretty=oneline – abbrev-commit // 找到历史分支，我们可以找到被删除的历史分支</li>
+</ul>
+<h3 id="bug分支"><a href="#bug分支" class="headerlink" title="bug分支"></a>bug分支</h3><p>一般而言，我们会创建分支，在分支上干活，干好了再提交到稳定的master分支。<br>但现在的状况是，我们还在开发分支，但是发现master分支上有bug要修复。现在我们就来搞定它！</p>
+<p>我们要临时再建一个分支，就当作的是 404bug分支吧。</p>
+<p>此时我们在分支状态下，所以需要先把分支隐藏掉。</p>
+<ul>
+<li><p>git stash</p>
+</li>
+<li><p>git status<br>查看状态，发现分支是干净的</p>
+</li>
+<li><p>git checkout -b issue-404<br>我们新建了bug分支。</p>
+</li>
+<li><p>git add demo.txt<br>把修改好后的代码提交到上去</p>
+</li>
+<li><p>git commit -m “404bug修复”</p>
+</li>
+<li><p>git checkout master<br>切换到master分支</p>
+</li>
+<li><p>git merge –no-ff -m ‘merge bug fix 404’ issue-404<br>合并修复bug分支到master分支</p>
+</li>
+<li><p>git branch -d issue-404<br>删除bug分支</p>
+</li>
+</ul>
+<p>ok,master上的bug修复了！<br>我们再回到dev分支</p>
+<ul>
+<li><p>git checkout dev<br>再完成原先未完成的活</p>
+</li>
+<li><p>git status<br>我们发现分支目前是干净的，咱们之前搞的代码都去哪了？</p>
+</li>
+<li><p>git stash list<br>工作区还在，只是Git把stash内容存在某个地方了，但是需要恢复一下，可以使用如下2个方法。<br>方法一：</p>
+</li>
+<li>git stash apply<br>这种方法的坏处就是stash里面的内容还在，要用<code>git stash drop</code>删除下<br>方法二：</li>
+<li>git stash pop<br>回复的同时也把stash的内容也删除了。</li>
+</ul>
+<h3 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h3><p>当你从远程库克隆时候，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且远程库的默认名称是origin。</p>
+<ol>
+<li>要查看远程库的信息 使用 git remote</li>
+<li>要查看远程库的详细信息 使用 git remote –v</li>
+</ol>
+<h4 id="推送分支"><a href="#推送分支" class="headerlink" title="推送分支"></a>推送分支</h4><p>推送分支就是把该分支上所有本地提交到远程库中，推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
+<ul>
+<li>git push origin master<br>可以把本地的内容更新到远程库中。<br>但是如果要推送到其他分支，比如dev分支，我们还是用命令</li>
+<li>git push origin dev</li>
+</ul>
+<p>那么一般情况下，那些分支要推送呢？</p>
+<ol>
+<li>master分支是主分支，因此要时刻与远程同步。</li>
+<li>一些修复bug分支不需要推送到远程去，可以先合并到主分支上，然后把主分支master推送到远程去。</li>
+</ol>
+<h4 id="抓取分支"><a href="#抓取分支" class="headerlink" title="抓取分支"></a>抓取分支</h4><p>现在我们可以模拟另外一个同事，可以在另一台电脑上（注意要把SSHkey添加到github上）或者同一台电脑上另外一个目录克隆，新建一个目录名字叫testgit2。</p>
+<p>现在testgit2下clone 远程库到本地</p>
+<ul>
+<li>git clone <a href="https://github.com/zaynex/testgit" target="_blank" rel="external">https://github.com/zaynex/testgit</a></li>
+</ul>
+<p>现在小伙伴需要在dev分支上做开发，就必须把远程的 origin的dev分支到本地来，于是可以使用命令创建本地dev分支。</p>
+<ul>
+<li><p>git checkout -b dev origin/dev<br>创建远程origin的dev分支到本地<br>修改dev分支的内容</p>
+</li>
+<li><p>git add demo.txt</p>
+</li>
+<li>git commit -m “dev分支内容修改”</li>
+<li>git push origin dev<br>把现在的dev分支推送到远程库</li>
+</ul>
+<p>而我也在自己的dev分支上修改了。</p>
+<ul>
+<li>git add demo.txt</li>
+<li>git commit -m “我在自己的dev分支上做了修改”</li>
+<li>git push origin dev</li>
+</ul>
+<p>这里会报错，是因为你的小伙伴也在dev分支上修改了内容。</p>
+<ul>
+<li>git pull<br>先用git pull把最新的提交从origin/dev抓下来，然后在本地合并，解决冲突，再推送。<br>在本地修改好了文件之后再推送。<br>但是<code>git pull</code>失败了。原因是没有指定本地dev分支与远程origin/dev分支的链接，根据提示，设置dev和origin/dev的链接。</li>
+</ul>
+<p>这下<code>git pull</code>成功了。但是合并有冲突，需要手动解决，解决的方法和分支管理中的解决冲突完全一样。</p>
+<ul>
+<li>git add</li>
+<li>git commit </li>
+<li>git push origin dev<br>记得是提交到分支上</li>
+</ul>
+<p>因此：多人协作工作模式一般是这样的：</p>
+<ol>
+<li>首先，可以试图用git push origin branch-name推送自己的修改.</li>
+<li>如果推送失败，则因为远程分支比你的本地更新早，需要先用git pull试图合并。</li>
+<li>如果合并有冲突，则需要解决冲突，并在本地提交。再用git push origin branch-name推送。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>适合自己的才是最好的资料。hhh！</p>
+<p>mkdir：         XX (创建一个空目录 XX指目录名)</p>
+<p>pwd：          显示当前目录的路径。</p>
+<p>git init          把当前的目录变成可以管理的git仓库，生成隐藏.git文件。</p>
+<p>git add XX       把xx文件添加到暂存区去。</p>
+<p>git commit –m “XX”  提交文件 –m 后面的是注释。</p>
+<p>git status        查看仓库状态</p>
+<p>git diff  XX      查看XX文件修改了那些内容</p>
+<p>git log          查看历史记录</p>
+<p>git reset  –hard HEAD^ 或者 git reset  –hard HEAD~ 回退到上一个版本</p>
+<pre><code>(如果想回退到100个版本，使用git reset –hard HEAD~100 )
+</code></pre><p>cat XX         查看XX文件内容</p>
+<p>git reflog       查看历史记录的版本号id</p>
+<p>git checkout — XX  把XX文件在工作区的修改全部撤销。</p>
+<p>git rm XX          删除XX文件</p>
+<p>git remote add origin <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a> 关联一个远程库</p>
+<p>git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库</p>
+<p>git clone <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a>  从远程库中克隆</p>
+<p>git checkout –b dev  创建dev分支 并切换到dev分支上</p>
+<p>git branch  查看当前所有的分支</p>
+<p>git checkout master 切换回master分支</p>
+<p>git merge dev    在当前的分支上合并dev分支</p>
+<p>git branch –d dev 删除dev分支</p>
+<p>git branch name  创建分支</p>
+<p>git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作</p>
+<p>git stash list 查看所有被隐藏的文件列表</p>
+<p>git stash apply 恢复被隐藏的文件，但是内容不删除</p>
+<p>git stash drop 删除文件</p>
+<p>git stash pop 恢复文件的同时 也删除文件</p>
+<p>git remote 查看远程库的信息</p>
+<p>git remote –v 查看远程库的详细信息</p>
+<p>git push origin master  Git会把master分支推送到远程库对应的远程分支上</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">http://blog.jobbole.com/78960/</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[Git����]]></title>
       <url>https://zaynex.github.io/2016/09/28/Git%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<p>��ǰ����git���鷳�����濴��֮�����ֳ��õ�Ҳ����Щ�����Һ�ʵ�á�<br><a id="more"></a></p>
