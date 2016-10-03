@@ -6,7 +6,13 @@
     <entry>
       <title><![CDATA[每日学习小结]]></title>
       <url>https://zaynex.github.io/2016/09/29/%E5%86%8D%E6%9D%A5%E5%87%A0%E6%9C%AC%E4%B9%A6/</url>
-      <content type="html"><![CDATA[<p>今天用node建了一个博客，比之前看视频什么的快多了。以后确实也要减少看视频，尽量看书或者是文档。因为其实效果还真的不如文档好。然后复习了下算法第一小节。很少看到那些大牛学一门新东西的时候是通过视频来的，那都是入门干的事情了。<br>明天的任务</p>
+      <content type="html"><![CDATA[<p>—–2016-10-3<br>转眼都10月份了。<br>今天没什么学习状态。感觉自己要学得太多，同时也没有好好去学。<br>基础还不够，看来还得重新好好规划下。</p>
+<ul>
+<li>完成前端的微专业项目（看累了就看会闲书或者是敲源码）</li>
+<li>晚上研究算法</li>
+<li>一定要做总结啊！<br>当你不知道是否正确的时候，不要犹豫，做就是了。</li>
+</ul>
+<p>—-2016-09-29<br>今天用node建了一个博客，比之前看视频什么的快多了。以后确实也要减少看视频，尽量看书或者是文档。因为其实效果还真的不如文档好。然后复习了下算法第一小节。很少看到那些大牛学一门新东西的时候是通过视频来的，那都是入门干的事情了。<br>明天的任务</p>
 <ul>
 <li>算法第二小节</li>
 <li>完善博客并整理文章</li>
@@ -57,9 +63,29 @@
     </entry>
     
     <entry>
-      <title><![CDATA[精通javascript摘录]]></title>
+      <title><![CDATA[javascript精要摘录]]></title>
       <url>https://zaynex.github.io/2016/09/29/%E7%B2%BE%E9%80%9Ajavascript%E6%91%98%E5%BD%95/</url>
-      <content type="html"><![CDATA[<p>上下文对象通过<code>this</code>来体现。 </p>
+      <content type="html"><![CDATA[<p><code>new</code>做了什么?</p>
+<p>1.创建一个空对象并且this变量引用了该对象，同时继承了该函数的原型。<br>2.属性和方法被加入到this引用的对象中。<br>3.新创建的对象由this引用，并且最后都隐式返回this。</p>
+<p>var Person = function(name){<br>    //使用对象字面量创建一个新对象<br>    //var this = {};</p>
+<pre><code>this.name = name;
+this.say = function(){
+    return &quot;I am &quot; + this.name;
+}
+//return this;
+</code></pre><p>}</p>
+<p>而 this这新对象实际上并不为空，因为它已经错 Person的原型中继承了许多成员。</p>
+<p>//var this = Object.create(Person.prototype);</p>
+<p>用new操作符创建对象时，构造函数总返回一个对象，默认情况下返回this所引用的对象。<br>如果在构造函数中并不向this添加任何属性，将返回“空”对象（空指的是除了从构造函数的原型中所继承的成员之外）</p>
+<h3 id="构造函数返回值"><a href="#构造函数返回值" class="headerlink" title="构造函数返回值"></a>构造函数返回值</h3><p>构造函数隐形返回this。但我们可以根据需要返回任意对象。</p>
+<p>var Objectmaker = function(){<br>    //这里的name属性会被忽略<br>    //因为构造函数决定返回另一个对象<br>    this.name = “This is it “;</p>
+<pre><code>var that = {};
+that.name = &quot;And that&apos;s that&quot;;
+return that;
+</code></pre><p>};</p>
+<p>var o =new Objectmaker();<br>console.log(o.name);//And that’s that</p>
+<p>function Waffle(){<br>    this.tastes = “yummy”;<br>}<br>var good_morning = new Waffle();<br>console.log(good_morning.tastes);</p>
+<p>var good_morning = Waffle();<br>console.log(window.tastes);</p>
 ]]></content>
     </entry>
     

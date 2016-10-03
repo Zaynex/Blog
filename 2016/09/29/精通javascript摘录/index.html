@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="上下文对象通过this来体现。">
+<meta name="description" content="new做了什么?
+1.创建一个空对象并且this变量引用了该对象，同时继承了该函数的原型。2.属性和方法被加入到this引用的对象中。3.新创建的对象由this引用，并且最后都隐式返回this。
+var Person = function(name){    //使用对象字面量创建一个新对象    //var this = {};
+this.name = name;
+this.say = func">
 <meta property="og:type" content="article">
-<meta property="og:title" content="精通javascript摘录">
+<meta property="og:title" content="javascript精要摘录">
 <meta property="og:url" content="https://zaynex.github.io/2016/09/29/精通javascript摘录/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="上下文对象通过this来体现。">
-<meta property="og:updated_time" content="2016-09-29T08:42:00.878Z">
+<meta property="og:description" content="new做了什么?
+1.创建一个空对象并且this变量引用了该对象，同时继承了该函数的原型。2.属性和方法被加入到this引用的对象中。3.新创建的对象由this引用，并且最后都隐式返回this。
+var Person = function(name){    //使用对象字面量创建一个新对象    //var this = {};
+this.name = name;
+this.say = func">
+<meta property="og:updated_time" content="2016-09-30T11:12:20.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="精通javascript摘录">
-<meta name="twitter:description" content="上下文对象通过this来体现。">
+<meta name="twitter:title" content="javascript精要摘录">
+<meta name="twitter:description" content="new做了什么?
+1.创建一个空对象并且this变量引用了该对象，同时继承了该函数的原型。2.属性和方法被加入到this引用的对象中。3.新创建的对象由this引用，并且最后都隐式返回this。
+var Person = function(name){    //使用对象字面量创建一个新对象    //var this = {};
+this.name = name;
+this.say = func">
 
 
 
@@ -116,7 +128,7 @@
 
   <link rel="canonical" href="https://zaynex.github.io/2016/09/29/精通javascript摘录/"/>
 
-  <title> 精通javascript摘录 | 如是而已 </title>
+  <title> javascript精要摘录 | 如是而已 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +301,7 @@
             
             
               
-                精通javascript摘录
+                javascript精要摘录
               
             
           </h1>
@@ -341,7 +353,27 @@
       
 
       
-        <p>上下文对象通过<code>this</code>来体现。 </p>
+        <p><code>new</code>做了什么?</p>
+<p>1.创建一个空对象并且this变量引用了该对象，同时继承了该函数的原型。<br>2.属性和方法被加入到this引用的对象中。<br>3.新创建的对象由this引用，并且最后都隐式返回this。</p>
+<p>var Person = function(name){<br>    //使用对象字面量创建一个新对象<br>    //var this = {};</p>
+<pre><code>this.name = name;
+this.say = function(){
+    return &quot;I am &quot; + this.name;
+}
+//return this;
+</code></pre><p>}</p>
+<p>而 this这新对象实际上并不为空，因为它已经错 Person的原型中继承了许多成员。</p>
+<p>//var this = Object.create(Person.prototype);</p>
+<p>用new操作符创建对象时，构造函数总返回一个对象，默认情况下返回this所引用的对象。<br>如果在构造函数中并不向this添加任何属性，将返回“空”对象（空指的是除了从构造函数的原型中所继承的成员之外）</p>
+<h3 id="构造函数返回值"><a href="#构造函数返回值" class="headerlink" title="构造函数返回值"></a>构造函数返回值</h3><p>构造函数隐形返回this。但我们可以根据需要返回任意对象。</p>
+<p>var Objectmaker = function(){<br>    //这里的name属性会被忽略<br>    //因为构造函数决定返回另一个对象<br>    this.name = “This is it “;</p>
+<pre><code>var that = {};
+that.name = &quot;And that&apos;s that&quot;;
+return that;
+</code></pre><p>};</p>
+<p>var o =new Objectmaker();<br>console.log(o.name);//And that’s that</p>
+<p>function Waffle(){<br>    this.tastes = “yummy”;<br>}<br>var good_morning = new Waffle();<br>console.log(good_morning.tastes);</p>
+<p>var good_morning = Waffle();<br>console.log(window.tastes);</p>
 
       
     </div>
@@ -393,7 +425,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/09/29/精通javascript摘录/"
-     data-title="精通javascript摘录"
+     data-title="javascript精要摘录"
      data-content=""
      data-url="https://zaynex.github.io/2016/09/29/精通javascript摘录/">
   <div class="ds-share-inline">
@@ -423,7 +455,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/09/29/精通javascript摘录/"
-           data-title="精通javascript摘录" data-url="https://zaynex.github.io/2016/09/29/精通javascript摘录/">
+           data-title="javascript精要摘录" data-url="https://zaynex.github.io/2016/09/29/精通javascript摘录/">
       </div>
     
   </div>
@@ -534,7 +566,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数返回值"><span class="nav-number">1.</span> <span class="nav-text">构造函数返回值</span></a></li></ol></div>
             
           </div>
         </section>
