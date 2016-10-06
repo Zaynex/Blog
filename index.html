@@ -291,6 +291,233 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/06/自定义事件/" itemprop="url">
+                  自定义事件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-06T22:36:52+08:00" content="2016-10-06">
+              2016-10-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/06/自定义事件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/自定义事件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前面试的时候被问到了自定义事件，当时没好好看，临时补救下。还是老样子，先从《高程三》的自定义拖拽案例开始说起。</p>
+<hr>
+<h2 id="什么是自定义事件"><a href="#什么是自定义事件" class="headerlink" title="什么是自定义事件"></a>什么是自定义事件</h2><p>事件是一种叫做<code>观察者</code>的设计模式，这是一种创建松散耦合代码的技术。对象可以发布事件，其他对象可以观察该对象，根据原对象不同状况作出相应的事件响应。事件是与DOM交互最常见的方式（比如鼠标悬停，按键等），但它们也可以位于非DOM中，这就需要借助自定义事件来实现。自定义事件背后的理念就是创建一个管理事件的对象，让其他对象监听那些事件。</p>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>观察者模式主要由主体和观察者组成。主题负责发布事件，同时观察者通过订阅这些事件来观察主体。<br>该模式的关键概念是主体并不知道观察者的任何事情，但观察者知道主体并能注册事件的回调函数。</p>
+<p>在涉及DOM时，DOM元素便是主体，你的事件处理代码便是观察者。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line">function EventTarget()&#123;</div><div class="line">	//用于存储事件处理程序</div><div class="line">	this.handlers = &#123;&#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">EventTarget.prototype = &#123;</div><div class="line">	constructor: EventTarget,</div><div class="line"></div><div class="line">	//注册给定类型事件处理程序</div><div class="line">	addHandler: function(type, handler)&#123;</div><div class="line">		if(typeof this.handlers[type] == &quot;undefined&quot;)&#123;</div><div class="line">			this.handlers[type] = []; </div><div class="line">		&#125;</div><div class="line">		this.handlers[type].push(handler);</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	//触发一个事件</div><div class="line">	fire: function(event) &#123;</div><div class="line">		if(!event.target) &#123;</div><div class="line">			event.target = this;</div><div class="line">		&#125;</div><div class="line">		if(this.handlers[event.type] instanceof Array)&#123;</div><div class="line">			var handlers = this.handlers[event.type];</div><div class="line">			for(var i =0, len = handlers.length; i &lt; len; i++) &#123;</div><div class="line">				handlers[i](event);</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;,</div><div class="line"></div><div class="line">	//注销某个事件类型的事件处理程序</div><div class="line">	removeHandler: function(type, handler)&#123;</div><div class="line">		if(this.handlers[type] instanceof Array) &#123;</div><div class="line">			var handlers = this.handlers[type];</div><div class="line">			for(var i = 0,len=handlers.length; i &lt; len; i++) &#123;</div><div class="line">				if(handlers[i] === handler) &#123;</div><div class="line">					break;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			handlers.splice(i, 1);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line">function handleMessage(event)&#123;</div><div class="line">	alert(&quot;message received:&quot; + event.message);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//创建新对象</div><div class="line">var target = new EventTarget();</div><div class="line">//添加事件处理程序</div><div class="line">target.addHandler(&quot;message&quot;, handleMessage);</div><div class="line">//触发事件处理程序</div><div class="line">target.fire(&#123;type:&quot;message&quot;, message: &quot;helloworld!&quot;&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;myDiv&quot; class=&quot;draggable&quot; style=&quot;position:absolute&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&quot;status&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>接下来就是我们的JS的拖拽代码了，也比较简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">var DragDrop = function()&#123;</div><div class="line">	var dragging = null;</div><div class="line">		diffX = 0;</div><div class="line">		diffY = 0;</div><div class="line">	function handlerEvent(event) &#123;</div><div class="line">               //这里的EventUtil是封装了事件对象的几个函数</div><div class="line">		event = EventUtil.getEvent(event);</div><div class="line">		var target = EventUtil.getTarget(event);</div><div class="line"></div><div class="line">		switch(event.type)&#123;</div><div class="line">			case &quot;mousedown&quot;:</div><div class="line">				if(target.className.indexOf(&quot;draggable&quot;) &gt; -1) &#123;</div><div class="line">					dragging = target;</div><div class="line">					diffX = event.clientX - target.offsetLeft;</div><div class="line">					diffY = event.clientY - target.offsetTop;</div><div class="line">				&#125;</div><div class="line">				break;</div><div class="line">			case &quot;mousemove&quot;:</div><div class="line">				if(dragging !== null) &#123;</div><div class="line">					dragging.style.left = (event.clientX-diffX) + &quot;px&quot;;</div><div class="line">					dragging.style.top = (event.clientY-diffY) + &quot;px&quot;;</div><div class="line">				&#125;</div><div class="line">				break;</div><div class="line">			case &quot;mouseup&quot;:</div><div class="line">				dragging = null;</div><div class="line">				break;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	return &#123;</div><div class="line">		enable: function()&#123;</div><div class="line">			EventUtil.addHandler(document, &quot;mousedown&quot;, handlerEvent);</div><div class="line">			EventUtil.addHandler(document, &quot;mouseup&quot;, handlerEvent);</div><div class="line">			EventUtil.addHandler(document, &quot;mousemove&quot;, handlerEvent);</div><div class="line">		&#125;,</div><div class="line">		disable: function()&#123;</div><div class="line">			EventUtil.removeHandler(document, &quot;mousedown&quot;, handlerEvent);</div><div class="line">			EventUtil.removeHandler(document, &quot;mouseup&quot;, handlerEvent);</div><div class="line">			EventUtil.removeHandler(document, &quot;mousemove&quot;, handlerEvent);</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;();</div><div class="line"></div><div class="line">DragDrop.enable();</div></pre></td></tr></table></figure>
+<p>这里主要用的是模块模式返回公有的两个API(<code>enable</code>和<code>disable</code>)。</p>
+<p>等下我们就会用自定义事件来改善拖拽函数。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/06/line-height真的垂直居中的吗？/" itemprop="url">
+                  line-height真的垂直居中的吗？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-06T11:04:46+08:00" content="2016-10-06">
+              2016-10-06
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/06/line-height真的垂直居中的吗？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/06/line-height真的垂直居中的吗？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>内容区域 content area<br>内联盒子 span a em  如果里面只有文字  匿名内联盒子<br>行框盒子 如果有换行，就是两行<br>包含盒子 </p><p></p>标签<p></p>
+<p>高度是由 line-height 决定的。<br>那默认line-height是多少呢？<br>line-height定义为两个基线的距离，一行文字如何知道行高呢？</p>
+<p>行高只是幕后黑手，高度的表现不是行高，而是内容区域和行间距。</p>
+<p>内容区域高度（context-area） + 行间距(vertical spacing) = 行高(line-height)</p>
+<p>内容区域高度只与字号和字体有关，</p>
+<p>在simsun字体下，内容区域高度等于文字的大小值。</p>
+<p>font-size:240px;<br>line-height: 360px;<br>行间距： 360px - 240px;</p>
+<p>多行文本高度就是单行本文高度的累加<br>若有inlin-block图片，则行高怎么分布？</p>
+<p>line-height:normal 跟用户的浏览器和字体有关<br>在微软雅黑字体下，chrome浏览器 line-heigth:normal为 1.32左右<br>在宋体下，chrome浏览器下，   1.14</p>
+<p>line-height:1.5<br>根据文字的font-size大小计算</p>
+<p>line-height:150%;<br>相对于设置了该 inline-height属性的元素的font-size大小计算。</p>
+<p>实现图片和多行文字垂直居中</p>
+<p>vertical-align:middle; 基线向上</p>
+<p>盒子<br>line-height:300px;<br>text-center:center;</p>
+<p>图片<br>vertical-align:middle</p>
+<p>多行文本垂直居中</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/29/再来几本书/" itemprop="url">
                   每日学习小结
                 </a>
@@ -1286,247 +1513,6 @@ return that;
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/21/浏览器输入网址后发生了什么/" itemprop="url">
-                  在浏览器输入网址后回车发生了什么
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-21T17:58:53+08:00" content="2016-09-21">
-              2016-09-21
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/21/浏览器输入网址后发生了什么/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/21/浏览器输入网址后发生了什么/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.查看DNS缓存</p>
-<ul>
-<li>先搜索浏览器自身的DNS缓存<br>查看浏览器的缓存记录<br><code>chrome://net-internals/#dns</code></li>
-<li><p>搜索操作系统自身的NDS缓存（如果浏览器没有缓存或缓存失效）</p>
-</li>
-<li><p>读取本地的HOST文件</p>
-</li>
-</ul>
-<p>2.域名解析<br>浏览器发起DNS的一个系统调用，域名解析请求</p>
-<ul>
-<li>宽带运营商服务器查看本身缓存</li>
-<li>运营商服务器发起一个迭代DNS解析的请求<br>先去找根域寻找，根域提供顶级域的IP地址(.com)。<br>COM域名服务器提供 imooc.com 的域的DNS服务器。<br>imooc.com 域的服务器给它提供资源。</li>
-</ul>
-<ol>
-<li>TCP/IP三次握手</li>
-</ol>
-<p>4.浏览器发送HTTP请求</p>
-<p>这个ab -n1000 -c10 <a href="http://localhost:2015/命令，在window系统下，需要先用cd命令定位到你的apache安装目录的bin文件夹" target="_blank" rel="external">http://localhost:2015/命令，在window系统下，需要先用cd命令定位到你的apache安装目录的bin文件夹</a></p>
-<p>-n ：总共的请求执行数，缺省是1；<br>-c： 并发数，缺省是1；<br>-t：测试所进行的总时间，秒为单位，缺省50000s<br>-p：POST时的数据文件<br>-w: 以HTML表的格式输出结果</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/" itemprop="url">
-                  《JavaScript高级程序设计三》离线应用和客户端存储
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-17T17:44:22+08:00" content="2016-09-17">
-              2016-09-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">JS\jQuery</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。每个特定的域名下最多生成cookie是有限制的。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/17/《JavaScript高级程序设计三》初涉IndexedDB/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1572,7 +1558,7 @@ return that;
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">64</span>
+              <span class="site-state-item-count">66</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
