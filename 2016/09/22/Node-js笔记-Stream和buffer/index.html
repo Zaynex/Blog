@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="文件读写12345var fs= require(&amp;quot;fs&amp;quot;);var source = fs.readFileSync(&amp;apos;logo.png&amp;apos;);fs.writeFileSync(&amp;apos;new_logo.png&amp;apos;,source);//stream是基于事件工作的
-上边的程序拷贝一些小文件没啥问题，但这种一次性把所有文件内容都读取到内存中后再一次">
+<meta name="description" content="文件读写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node.js笔记(Stream和buffer)">
 <meta property="og:url" content="https://zaynex.github.io/2016/09/22/Node-js笔记-Stream和buffer/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="文件读写12345var fs= require(&amp;quot;fs&amp;quot;);var source = fs.readFileSync(&amp;apos;logo.png&amp;apos;);fs.writeFileSync(&amp;apos;new_logo.png&amp;apos;,source);//stream是基于事件工作的
-上边的程序拷贝一些小文件没啥问题，但这种一次性把所有文件内容都读取到内存中后再一次">
-<meta property="og:updated_time" content="2016-09-23T02:03:12.016Z">
+<meta property="og:description" content="文件读写">
+<meta property="og:updated_time" content="2016-10-07T03:50:15.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js笔记(Stream和buffer)">
-<meta name="twitter:description" content="文件读写12345var fs= require(&amp;quot;fs&amp;quot;);var source = fs.readFileSync(&amp;apos;logo.png&amp;apos;);fs.writeFileSync(&amp;apos;new_logo.png&amp;apos;,source);//stream是基于事件工作的
-上边的程序拷贝一些小文件没啥问题，但这种一次性把所有文件内容都读取到内存中后再一次">
+<meta name="twitter:description" content="文件读写">
 
 
 
@@ -344,7 +341,8 @@
       
 
       
-        <h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line">var source = fs.readFileSync(&apos;logo.png&apos;);</div><div class="line"></div><div class="line">fs.writeFileSync(&apos;new_logo.png&apos;,source);</div><div class="line">//stream是基于事件工作的</div></pre></td></tr></table></figure>
+        <h3 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h3><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var fs= require(&quot;fs&quot;);</div><div class="line">var source = fs.readFileSync(&apos;logo.png&apos;);</div><div class="line"></div><div class="line">fs.writeFileSync(&apos;new_logo.png&apos;,source);</div><div class="line">//stream是基于事件工作的</div></pre></td></tr></table></figure>
 <p>上边的程序拷贝一些小文件没啥问题，但这种一次性把所有文件内容都读取到内存中后再一次性写入磁盘的方式不适合拷贝大文件，内存会爆仓。对于大文件，我们只能读一点写一点，直到完成拷贝。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line">fs.createReadStream(&apos;logo.png&apos;).pipe(fs.createWriteStream(&apos;new_logo.png&apos;));</div><div class="line">// 封装函数</div><div class="line">var fs = require(&apos;fs&apos;);</div><div class="line"></div><div class="line">function copy(src, dst) &#123;</div><div class="line">    fs.createReadStream(src).pipe(fs.createWriteStream(dst));</div><div class="line">&#125;</div><div class="line"></div><div class="line">function main(argv) &#123;</div><div class="line">    copy(argv[0], argv[1]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">main(process.argv.slice(2));</div></pre></td></tr></table></figure>
 <p><code>process</code>是一个全局变量，可通过<code>process.argv</code>获得命令行参数。由于<code>argv[0]</code>固定等于<code>NodeJS</code>执行程序的绝对路径，<code>argv[1]</code>固定等于主模块的绝对路径，因此第一个命令行参数从<code>argv[2]</code>这个位置开始。</p>
@@ -493,7 +491,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -501,7 +499,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -510,7 +508,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
