@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。具体存储位置参考地址一个 Web 页面或服务器告知浏览器按照一定规范来储存这些信息，并在随后的请求中将这些信息发送至服务器，Web 服务器就可以使用这些信息来识别不同的用户。大多数需要登录的网站在用户验证成功之后都会设置一个 cookie，只要这个 cookie 存在并可">
+<meta name="description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重新认识cookie">
+<meta property="og:title" content="HTTP Cookies 详解">
 <meta property="og:url" content="https://zaynex.github.io/2016/10/07/重新认识cookie/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。具体存储位置参考地址一个 Web 页面或服务器告知浏览器按照一定规范来储存这些信息，并在随后的请求中将这些信息发送至服务器，Web 服务器就可以使用这些信息来识别不同的用户。大多数需要登录的网站在用户验证成功之后都会设置一个 cookie，只要这个 cookie 存在并可">
-<meta property="og:updated_time" content="2016-10-07T05:34:24.024Z">
+<meta property="og:description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。">
+<meta property="og:updated_time" content="2016-10-07T06:41:54.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重新认识cookie">
-<meta name="twitter:description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。具体存储位置参考地址一个 Web 页面或服务器告知浏览器按照一定规范来储存这些信息，并在随后的请求中将这些信息发送至服务器，Web 服务器就可以使用这些信息来识别不同的用户。大多数需要登录的网站在用户验证成功之后都会设置一个 cookie，只要这个 cookie 存在并可">
+<meta name="twitter:title" content="HTTP Cookies 详解">
+<meta name="twitter:description" content="cookie是什么cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。">
 
 
 
@@ -116,7 +116,7 @@
 
   <link rel="canonical" href="https://zaynex.github.io/2016/10/07/重新认识cookie/"/>
 
-  <title> 重新认识cookie | 如是而已 </title>
+  <title> HTTP Cookies 详解 | 如是而已 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +289,7 @@
             
             
               
-                重新认识cookie
+                HTTP Cookies 详解
               
             
           </h1>
@@ -341,7 +341,7 @@
       
 
       
-        <h3 id="cookie是什么"><a href="#cookie是什么" class="headerlink" title="cookie是什么"></a>cookie是什么</h3><p>cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。<br><a href="http://www.cnblogs.com/aspnet_csharp/archive/2012/10/18/2729488.html" target="_blank" rel="external">具体存储位置参考地址</a><br>一个 Web 页面或服务器告知浏览器按照一定规范来储存这些信息，并在随后的请求中将这些信息发送至服务器，Web 服务器就可以使用这些信息来识别不同的用户。大多数需要登录的网站在用户验证成功之后都会设置一个 cookie，只要这个 cookie 存在并可以，用户就可以自由浏览这个网站的任意页面。</p>
+        <h3 id="cookie是什么"><a href="#cookie是什么" class="headerlink" title="cookie是什么"></a>cookie是什么</h3><p>cookie 就是浏览器储存在用户电脑上的一小段文本文件。cookie 是纯文本格式，不包含任何可执行的代码。<br><a id="more"></a><br><a href="http://www.cnblogs.com/aspnet_csharp/archive/2012/10/18/2729488.html" target="_blank" rel="external">具体存储位置参考地址</a><br>一个 Web 页面或服务器告知浏览器按照一定规范来储存这些信息，并在随后的请求中将这些信息发送至服务器，Web 服务器就可以使用这些信息来识别不同的用户。大多数需要登录的网站在用户验证成功之后都会设置一个 cookie，只要这个 cookie 存在并可以，用户就可以自由浏览这个网站的任意页面。</p>
 <h3 id="创建cookie"><a href="#创建cookie" class="headerlink" title="创建cookie"></a>创建cookie</h3><p>Web 服务器通过发送一个称为 Set-Cookie 的 HTTP 消息头来创建一个 cookie，Set-Cookie 消息头是一个字符串，其格式如下（中括号中的部分是可选的）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Set-Cookie: name=value[; expires=date][; domain=domain][; path=path][; secure]</div></pre></td></tr></table></figure></p>
 <p>当存在一个 cookie，并允许设置可选项，该 cookie 的值会在随后的每次请求中被发送至服务器，cookie 的值被存储在名为 Cookie 的 HTTP 消息头中，并且只包含了 cookie 的值，忽略全部设置选项。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cookie: name=value</div></pre></td></tr></table></figure></p>
 <p>通过 Set-Cookie 指定的可选项只会在浏览器端使用，而不会被发送至服务器端。发送至服务器的 cookie 的值与通过 Set-Cookie 指定的值完全一样，不会有进一步的解析或转码操作。如果请求中包含多个 cookie，它们将会被分号和空格分开，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cookie: value1; value2; name1=value1</div></pre></td></tr></table></figure></p>
@@ -415,6 +415,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/10/08/函数节流和函数去抖/" rel="prev" title="函数节流和函数去抖">
+                函数节流和函数去抖 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -429,7 +433,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/10/07/重新认识cookie/"
-     data-title="重新认识cookie"
+     data-title="HTTP Cookies 详解"
      data-content=""
      data-url="https://zaynex.github.io/2016/10/07/重新认识cookie/">
   <div class="ds-share-inline">
@@ -459,7 +463,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/10/07/重新认识cookie/"
-           data-title="重新认识cookie" data-url="https://zaynex.github.io/2016/10/07/重新认识cookie/">
+           data-title="HTTP Cookies 详解" data-url="https://zaynex.github.io/2016/10/07/重新认识cookie/">
       </div>
     
   </div>
@@ -504,7 +508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -521,7 +525,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
