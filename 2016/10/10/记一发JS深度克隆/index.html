@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="但行好事，莫问前程">
+<meta name="description" content="JS的两种数据类型基本类型（包括undefined,Null,boolean,String,Number），按值传递；引用类型（包括数组，对象），按址传递，引用类型在值传递的时候是内存中的地址。 
+克隆或者拷贝分为2种：浅度克隆： 对于基本类型为值传递，对象按照引用传递（JS中有引用传递的概念么）深度克隆：所有元素或属性均完全克隆，并于原引用类型完全独立，即，在后面修改对象的属性的时候，原对象不会">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《算法》第四版第一章学习笔记">
-<meta property="og:url" content="https://zaynex.github.io/2016/09/14/《算法》第四版第一章学习笔记/index.html">
+<meta property="og:title" content="记一发JS深度克隆">
+<meta property="og:url" content="https://zaynex.github.io/2016/10/10/记一发JS深度克隆/index.html">
 <meta property="og:site_name" content="如是而已">
-<meta property="og:description" content="但行好事，莫问前程">
-<meta property="og:updated_time" content="2016-09-14T13:45:08.916Z">
+<meta property="og:description" content="JS的两种数据类型基本类型（包括undefined,Null,boolean,String,Number），按值传递；引用类型（包括数组，对象），按址传递，引用类型在值传递的时候是内存中的地址。 
+克隆或者拷贝分为2种：浅度克隆： 对于基本类型为值传递，对象按照引用传递（JS中有引用传递的概念么）深度克隆：所有元素或属性均完全克隆，并于原引用类型完全独立，即，在后面修改对象的属性的时候，原对象不会">
+<meta property="og:updated_time" content="2016-10-10T11:10:27.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《算法》第四版第一章学习笔记">
-<meta name="twitter:description" content="但行好事，莫问前程">
+<meta name="twitter:title" content="记一发JS深度克隆">
+<meta name="twitter:description" content="JS的两种数据类型基本类型（包括undefined,Null,boolean,String,Number），按值传递；引用类型（包括数组，对象），按址传递，引用类型在值传递的时候是内存中的地址。 
+克隆或者拷贝分为2种：浅度克隆： 对于基本类型为值传递，对象按照引用传递（JS中有引用传递的概念么）深度克隆：所有元素或属性均完全克隆，并于原引用类型完全独立，即，在后面修改对象的属性的时候，原对象不会">
 
 
 
@@ -114,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="https://zaynex.github.io/2016/09/14/《算法》第四版第一章学习笔记/"/>
+  <link rel="canonical" href="https://zaynex.github.io/2016/10/10/记一发JS深度克隆/"/>
 
-  <title> 《算法》第四版第一章学习笔记 | 如是而已 </title>
+  <title> 记一发JS深度克隆 | 如是而已 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +292,7 @@
             
             
               
-                《算法》第四版第一章学习笔记
+                记一发JS深度克隆
               
             
           </h1>
@@ -301,8 +304,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-14T21:45:08+08:00" content="2016-09-14">
-              2016-09-14
+            <time itemprop="dateCreated" datetime="2016-10-10T16:57:00+08:00" content="2016-10-10">
+              2016-10-10
             </time>
           </span>
 
@@ -312,8 +315,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/14/《算法》第四版第一章学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/14/《算法》第四版第一章学习笔记/" itemprop="commentsCount"></span>
+                <a href="/2016/10/10/记一发JS深度克隆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/记一发JS深度克隆/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +344,18 @@
       
 
       
-        
+        <h2 id="JS的两种数据类型"><a href="#JS的两种数据类型" class="headerlink" title="JS的两种数据类型"></a>JS的两种数据类型</h2><p>基本类型（包括undefined,Null,boolean,String,Number），按值传递；<br>引用类型（包括数组，对象），按址传递，引用类型在值传递的时候是内存中的地址。 </p>
+<h3 id="克隆或者拷贝分为2种："><a href="#克隆或者拷贝分为2种：" class="headerlink" title="克隆或者拷贝分为2种："></a>克隆或者拷贝分为2种：</h3><p>浅度克隆： 对于基本类型为值传递，对象按照引用传递（JS中有引用传递的概念么）<br>深度克隆：所有元素或属性均完全克隆，并于原引用类型完全独立，即，在后面修改对象的属性的时候，原对象不会被修改。</p>
+<h3 id="简单数组克隆slice"><a href="#简单数组克隆slice" class="headerlink" title="简单数组克隆slice()"></a>简单数组克隆slice()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arrayObj.slice(start, [end])</div></pre></td></tr></table></figure>
+<p>slice 方法一直复制到 end 所指定的元素，但是不包括该元素。如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。如果 end 出现在 start 之前，不复制任何元素到新数组中。</p>
+<h3 id="简单数组克隆soncat"><a href="#简单数组克隆soncat" class="headerlink" title="简单数组克隆soncat()"></a>简单数组克隆soncat()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arrayObject.concat(arrayX,arrayX,......,arrayX)</div></pre></td></tr></table></figure>
+<p>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var arr = [&quot;One&quot;,&quot;Two&quot;,&quot;Three&quot;];</div><div class="line"></div><div class="line">var arrtooo = arr.concat();</div><div class="line">arrtooo[1] = &quot;set Map To&quot;;</div><div class="line">console.log(&quot;数组的原始值：&quot; + arr + &quot;&lt;br /&gt;&quot;);//Export:数组的原始值：One,Two,Three</div><div class="line">console.log(&quot;数组的新值：&quot; + arrtooo + &quot;&lt;br /&gt;&quot;);//Export:数组的新值：One,set Map To,Three</div></pre></td></tr></table></figure></p>
+<p>使用concat()和slice()的要求是 <em>数组中没有引用类型值</em>。</p>
+<h3 id="对象深度拷贝"><a href="#对象深度拷贝" class="headerlink" title="对象深度拷贝"></a>对象深度拷贝</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var a=&#123;name:&apos;yy&apos;,age:26&#125;;</div><div class="line">var b=new Object();</div><div class="line"></div><div class="line"></div><div class="line">b.name=a.name;</div><div class="line">b.age=a.age;</div><div class="line">a.name=&apos;xx&apos;;</div><div class="line">console.log(b);//Object &#123; name=&quot;yy&quot;, age=26&#125;</div><div class="line">console.log(a);//Object &#123; name=&quot;xx&quot;, age=26&#125;</div><div class="line"></div><div class="line">//简单来说，就是遍历每个对象的属性，再赋值给新的对象</div><div class="line">var deepCopy= function(source) &#123; </div><div class="line">var result=&#123;&#125;;</div><div class="line">for (var key in source) &#123;</div><div class="line">      result[key] = typeof source[key]===&quot;object&quot;? deepCoyp(source[key]): source[key];</div><div class="line">   &#125; </div><div class="line">   return result; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="全能型"><a href="#全能型" class="headerlink" title="全能型"></a>全能型</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function cloneObject(obj)&#123;</div><div class="line">    if(typeof(obj)!=&quot;object&quot; || obj === null) return obj;</div><div class="line">    var o = Obejct.prototype.string.call(obj) === &quot;[object Array]&quot;? [] : &#123;&#125;;</div><div class="line">    for(var i in obj)&#123;</div><div class="line">        if(obj.hasOwnProperty(i))&#123;</div><div class="line">            o[i] = typeof obj[i] === &quot;object&quot; ? cloneObject(obj[i]): obj[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return o;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先如果是基本类型值或者是null，则直接返回。<br>判断当前属性是否是引用类型，如果是数组或者对象，创建相应类型变量。<br>使用 hasOwnProperty() 方法，排除继承的属性。</p>
+<h3 id="JSON克隆"><a href="#JSON克隆" class="headerlink" title="JSON克隆"></a>JSON克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var s = JSON.stringify( obj ); </div><div class="line">var o = JSON.parse( s );</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -366,17 +380,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/07/JavaScript高级程序设计三之AJAX/" rel="next" title="JavaScript高级程序设计三之AJAX">
-                <i class="fa fa-chevron-left"></i> JavaScript高级程序设计三之AJAX
+              <a href="/2016/10/08/函数节流和函数去抖/" rel="next" title="函数节流和函数去抖">
+                <i class="fa fa-chevron-left"></i> 函数节流和函数去抖
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/14/JavaScript语言精粹学习笔记/" rel="prev" title="JavaScript语言精粹学习笔记">
-                JavaScript语言精粹学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -391,10 +401,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/09/14/《算法》第四版第一章学习笔记/"
-     data-title="《算法》第四版第一章学习笔记"
+        <div class="ds-share flat" data-thread-key="2016/10/10/记一发JS深度克隆/"
+     data-title="记一发JS深度克隆"
      data-content=""
-     data-url="https://zaynex.github.io/2016/09/14/《算法》第四版第一章学习笔记/">
+     data-url="https://zaynex.github.io/2016/10/10/记一发JS深度克隆/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -421,8 +431,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/14/《算法》第四版第一章学习笔记/"
-           data-title="《算法》第四版第一章学习笔记" data-url="https://zaynex.github.io/2016/09/14/《算法》第四版第一章学习笔记/">
+      <div class="ds-thread" data-thread-key="2016/10/10/记一发JS深度克隆/"
+           data-title="记一发JS深度克隆" data-url="https://zaynex.github.io/2016/10/10/记一发JS深度克隆/">
       </div>
     
   </div>
@@ -533,7 +543,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JS的两种数据类型"><span class="nav-number">1.</span> <span class="nav-text">JS的两种数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#克隆或者拷贝分为2种："><span class="nav-number">1.1.</span> <span class="nav-text">克隆或者拷贝分为2种：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单数组克隆slice"><span class="nav-number">1.2.</span> <span class="nav-text">简单数组克隆slice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单数组克隆soncat"><span class="nav-number">1.3.</span> <span class="nav-text">简单数组克隆soncat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象深度拷贝"><span class="nav-number">1.4.</span> <span class="nav-text">对象深度拷贝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全能型"><span class="nav-number">2.</span> <span class="nav-text">全能型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON克隆"><span class="nav-number">2.1.</span> <span class="nav-text">JSON克隆</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
