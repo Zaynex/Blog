@@ -291,6 +291,242 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/11/图片异步加载/" itemprop="url">
+                  图片加载的策略
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T20:58:59+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/11/图片异步加载/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/图片异步加载/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>懒加载：延迟加载图片或符合某些条件时才加载某些图片。<br>预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。<br>两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</p>
+<h3 id="懒加载（延迟加载）"><a href="#懒加载（延迟加载）" class="headerlink" title="懒加载（延迟加载）"></a>懒加载（延迟加载）</h3><p>页面打开时候，只加载第一屏数据，第二屏以上都用延迟加载，滚动的时候进行加载（如瀑布流）。这样可以显著提高页面加载速度，且更小的并发请求也可以减轻服务器的压力，而且如果用户只浏览首屏的话，还可以节省流量（手机客户端应该用的比较多，减少用户流量）。</p>
+<p>比如你看到的一些图片是有圈圈在转，一开始图片的src加载的时候是转转的圈圈（可能也就1K左右），然后根据用户的具体行为再进行图片的延迟加载。</p>
+<h3 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h3><p>预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function loadImage(url, callback)&#123;</div><div class="line">    var img = new Image();</div><div class="line">    img.src = url;</div><div class="line"></div><div class="line">    if(img.complete) &#123;//判断图片加载状态，兼容IE6。</div><div class="line">        //如果图片已经存在浏览器中，直接调用回调函数</div><div class="line">        callback.call(img);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    img.onload = function()&#123;</div><div class="line">        img.onload = null;</div><div class="line">        callback.call(img);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;http://img3.douban.com/lpic/s24418088.jpg&quot; alt=&quot;&quot; id=&quot;img&quot;&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        window.onload = function()&#123;</div><div class="line">            var img = new Image();</div><div class="line">            img.onload = function()&#123;</div><div class="line">                alert(&quot;加载完全&quot;);</div><div class="line">            &#125;</div><div class="line">            img.src = &quot;http://www.2cto.com/uploadfile/Collfiles/20141017/2014101709072456.png&quot;;</div><div class="line">            </div><div class="line">            var img = document.getElementById(&quot;img&quot;);</div><div class="line">            img.onmouseover = function()&#123;</div><div class="line">                img.src = &quot;http://www.2cto.com/uploadfile/Collfiles/20141017/2014101709072456.png&quot;;</div><div class="line">            &#125;;</div><div class="line">            img.onmouseout = function()&#123;</div><div class="line">                img.src= &quot;http://img3.douban.com/lpic/s24418088.jpg&quot;;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="国外网站的流行加载方式"><a href="#国外网站的流行加载方式" class="headerlink" title="国外网站的流行加载方式"></a>国外网站的流行加载方式</h3><p>Pinterest\Google的图片加载方式是先加载出一个与原图片相同大小与相似背景的纯色<code>DIV</code>。（利用聚合算法求出相近的背景色）<br>然后再加载完整的图片。<img src="http://img1.vued.vanthink.cn/vued058f4fcad7f61f95e7682b64178511ef.png" alt="image"><br>详情查看<a href="">演示地址</a><br>我们称之为这种效果为Color Placeholder [色彩预置]，当图片加载的时候，我们优先显示其所在容器的背景颜色（如同很多会显示一个加载的gif），由于受限于不同的图片和大小，因此相比与齐刷刷的加载gif，不同色块体验可能更好吧(至少Pinterest Google这么认为吧)。</p>
+<p>medium的做法先加载一张缩略图，给缩略图添加滤镜效果，缩略图添加完成后再加载大图。这样就给用户一种平滑过渡的效果，效果非常赞（有种毛玻璃的感觉）。<br>原作者将代码放到了<a href="http://codepen.io/jmperez/pen/yYjPER" target="_blank" rel="external">codepen</a>上,而作者也适用了CSS的blur滤镜。（代码中的图片来源需要翻墙获得）<br>为了方便演示，我直接下载下来，可以通过<a href="">演示地址</a>去查看源代码。</p>
+<p>这样做的好处是：</p>
+<ul>
+<li>延迟加载：使用JS控制图片加载可以自由的控制什么样的图片去完成加载，当所有的小图完成加载后，JS可以实现加载在所在可视区域的大图完成渲染。</li>
+<li>更好内容预置：那些缩略图很小，几乎2kb左右，再加模糊效果，这样的效果会比单纯的底色好很多。</li>
+<li>定制图片大小：Medium定制了很多不同的图片，根据用户的不同设备，从而展示出不一样大小的图片。</li>
+</ul>
+<p><a href="http://www.cnblogs.com/tugenhua0707/p/3515292.html" target="_blank" rel="external">JS图片延迟加载分析及简单的demo</a><br><a href="http://www.cnblogs.com/Leo_wl/p/3526254.html" target="_blank" rel="external">javascript图片懒加载与预加载的分析</a><br><a href="http://www.jackpu.com/shi-xian-lei-si-pinterest-de-tu-pian-yu-jia-zai-gong-neng/" target="_blank" rel="external">实现类似Pinterest 的图片预加载功能</a><br><a href="http://www.jackpu.com/medium-shi-ru-he-zuo-tu-pian-jia-zai-de/" target="_blank" rel="external">[译]Medium 是如何优化图片加载的</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/10/荷兰国旗问题/" itemprop="url">
+                  荷兰国旗问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T20:41:02+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/荷兰国旗问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/荷兰国旗问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.cnblogs.com/gnuhpc/archive/2012/12/21/2828166.html" target="_blank" rel="external">参考博客</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function exch(arr, i, j) &#123;</div><div class="line">    var t = arr[i];</div><div class="line">    arr[i] = arr[j];</div><div class="line">    arr[j] = t;</div><div class="line">&#125;</div><div class="line">function partition(items, left, right)&#123;</div><div class="line">    var pivot = items[Math.floor(right + left) / 2],</div><div class="line">        i = left,</div><div class="line">        j = right;</div><div class="line"></div><div class="line">    while(i &lt;= j) &#123;</div><div class="line">        while(items[i] &lt;pivot)&#123;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        while(items[j] &gt; pivot)&#123;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if(i &lt;= j)&#123;</div><div class="line">            exch(items, i, j);</div><div class="line">            i++;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function quickSort(items, left, right)&#123;</div><div class="line">    var index;</div><div class="line">    if(items.length &gt; 1)&#123;</div><div class="line">        index = partition(items, left, right);</div><div class="line">        if(left &lt; index - 1)&#123;</div><div class="line">            quickSort(items, left, index - 1);</div><div class="line">        &#125;</div><div class="line">        if(index &lt; right)&#123;</div><div class="line">            quickSort(items, index, right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return items;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//var result =quickSort(items, 0, items.length-1);</div></pre></td></tr></table></figure>
+<p>以上是快排的思想，三向快速排序还是没做出来，不过感觉很接近了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/记一发JS深度克隆/" itemprop="url">
                   记一发JS深度克隆
                 </a>
@@ -1192,235 +1428,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/26/百度电面/" itemprop="url">
-                  百度电面
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-26T23:16:50+08:00" content="2016-09-26">
-              2016-09-26
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/26/百度电面/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/26/百度电面/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>unll与undefined</li>
-<li>基本类型引用类型</li>
-<li>call和apply</li>
-<li>面向对象</li>
-<li>git使用解决冲突</li>
-<li>图片异步加载</li>
-<li>继承是如何实现</li>
-<li>设计模式</li>
-<li>函数节流</li>
-<li>jQuery的extend</li>
-<li>http首部</li>
-<li>cookie</li>
-<li>跨域</li>
-<li>浏览器输入地址到页面呈现发生了什么</li>
-<li>npm包的要求字段</li>
-<li>gulp</li>
-<li>开源的框架和库用过哪些</li>
-</ul>
-<p>头疼，到时候再去补吧，反正知道自己是很菜就是了。<br>学得不够久，后端也刚入门。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/module-exports和exports的区别/" itemprop="url">
-                  module.exports和exports的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T23:24:11+08:00" content="2016-09-22">
-              2016-09-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/22/module-exports和exports的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/module-exports和exports的区别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>原文：<a href="http://www.hacksparrow.com/node-js-exports-vs-module-exports.html">http://www.hacksparrow.com/node-js-exports-vs-module-exports.html</a></p>
-<p>你肯定非常熟悉<code>nodejs</code>模块中的<code>exports</code>对象，你可以用它创建你的模块。例如：（假设这是rocker.js文件）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/22/module-exports和exports的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1461,7 +1473,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">69</span>
+              <span class="site-state-item-count">71</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1478,7 +1490,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">72</span>
+                <span class="site-state-item-count">73</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
