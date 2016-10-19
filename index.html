@@ -291,6 +291,290 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/15/响应式网站初探/" itemprop="url">
+                  响应式网站初探
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-15T19:25:33+08:00" content="2016-10-15">
+              2016-10-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/15/响应式网站初探/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/15/响应式网站初探/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>响应式网站核心理念<br>（这是一种设计理念）</p>
+<ul>
+<li>flexible grid layout 弹性网格布局</li>
+<li>flexible image 弹性图片</li>
+<li>media queries 媒体查询</li>
+</ul>
+<h2 id="css3媒体查询"><a href="#css3媒体查询" class="headerlink" title="css3媒体查询"></a>css3媒体查询</h2><h3 id="逻辑操作符"><a href="#逻辑操作符" class="headerlink" title="逻辑操作符"></a>逻辑操作符</h3><ul>
+<li>only 表示仅在媒体查询匹配成功的情况下应用该指定样式。可以通过它选中的样式在老浏览器中不被使用</li>
+<li>and 操作符把多个媒体属性集合，当每个属性都为真时，查询结果才为真</li>
+<li>not 操作符表示对一条媒体查询取反结果<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@media tv and (min-width: 700px) and (orientation: landscape) &#123; ... &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>现在，上面媒体查询仅在电视媒体上，可视区域不小于700像素宽度并且是横屏时有效。</p>
+<h3 id="逗号分隔列表"><a href="#逗号分隔列表" class="headerlink" title="逗号分隔列表"></a>逗号分隔列表</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@media (min-width: 700px), handheld and (orientation: landscape) &#123; ... &#125;</div></pre></td></tr></table></figure>
+<p>媒体查询中使用逗号分隔效果等同于 or 逻辑操作符。满足任意条件即可</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries" target="_blank" rel="external">MDN CSS媒体查询</a></p>
+<h3 id="meta"><a href="#meta" class="headerlink" title="meta"></a>meta</h3><p>如果设置了 name , 它是一个文档级的元数据，将附着在整个页面上。<br>如果设置了 http-equiv , 它是一个编译指令， 即，由服务器提供的来指示页面应如何加载。<br>如果设置了  charset， 即，将对网页使用的字符集作出声明 HTML5<br>如果设置了  itemprop，将定义一个用户自定义的元数据，也因此语义声明，这个定义将对用户代理完全开放。Living Standard 未实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>ViewPort <meta>标记用于指定用户是否可以缩放Web页面，如果可以，那么缩放到的最大和最小缩放比例是什么。使用ViewPort <meta>标记还表示文档针对移动设备进行了优化。ViewPort <meta>标记的content值是由指令及其值组成的以逗号分隔的列表。</p>
+<p><a href="https://gist.github.com/Jimco/9524062" target="_blank" rel="external">完整的meta预览</a></p>
+<p>设置了viewport后还需要关注的是<code>width</code>(视口宽度)<br>移动端中<code>width</code>的不同概念</p>
+<ul>
+<li>布局视口，用户缩放不可改变，PC的网站在移动端浏览时会先按照PC端的大小进行渲染</li>
+<li>可视视口（用户缩放可以改变可视视口，默认宽度为屏幕宽度）</li>
+<li>理想视口 是移动端在浏览页面时的最佳视口，为优化手机浏览器而添加的</li>
+</ul>
+<p>理想视口就是为构建手机浏览器优化的页面而添加.<br>可视视口(visual viewport)–在手机上呈现出来的一个宽度，用户的缩放可以改变可视视口的大小，是不会改变布局视口的大小的；<br>布局视口(layout viewport)–用一个虚拟的960px的宽度把网页先布局出来，大小是不变的；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot;&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;meta http-equiv=&quot;x-ua-compatible&quot; content=&quot;ie=edge&quot; /&gt;</div><div class="line">&lt;!-- iE文档兼容性 强制使用以最新的IE浏览器进行渲染--&gt;</div></pre></td></tr></table></figure>
+<p>如果是必不可少的图片建议采用img引入，<br>如果只是装饰性的图片可以使用标签的style引入。<br>避免当用户禁用样式时屏蔽了必要的图片</p>
+<ul>
+<li><p>em<br>相对长度单位，这个单位表示元素的font-size的计算值。如果用在font-size 属性本身，它会继承父元素的font-size。<br>假设当前设置<code>font-size:0</code>， 浏览器会有一个默认的em设置<code>1em = 16px</code>;</p>
+</li>
+<li><p>rem<br>相对参照物为根元素<code>&lt;html&gt;</code>的<code>font-size</code>大小。</p>
+</li>
+<li><p>vw<br>视口宽度的 1/100。</p>
+</li>
+<li><p>px<br>与显示设备相关。<br>对于屏幕显示，通常是一个设备像素（点）的显示。<br>对于打印机和高分辨率的屏幕，一个CSS像素意味着多个设备像素，因此，每英寸的像素的数量保持在96左右。</p>
+</li>
+</ul>
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><ol>
+<li>建立404页面（4.4.html）:找不到正确页面，跳转到的页面；替换服务器上默认的错误页页面； </li>
+<li>创建robots.txt文件（机器人：给机器看的，给搜索引擎看的）：是搜索引擎访问网站时查看的第一个文件，这个文件告诉引擎什么能查看，什么不能查看；</li>
+<li>创建favicon.ico文件：网站的logo，在网站的标签上显示；</li>
+<li>创建humans.txt文件（人类：给人看的）：保存网站建设者和一些其他的有用的信息</li>
+</ol>
+<h3 id="制作过程中遇到的问题："><a href="#制作过程中遇到的问题：" class="headerlink" title="制作过程中遇到的问题："></a>制作过程中遇到的问题：</h3><h4 id="断点的单位"><a href="#断点的单位" class="headerlink" title="断点的单位"></a>断点的单位</h4><p>在媒体查询中，相对单位rem和em的基准高于html，所以与在html中设置的rem大小并不一致！这里的rem或em依然是：1rem=1em=16px，所以800/16=50rem。另外，rem兼容性不如em，故采用兼容性更好的em为媒体查询的断点单位。</p>
+<h4 id="line-block-空白符解析会产生间隙"><a href="#line-block-空白符解析会产生间隙" class="headerlink" title="line-block 空白符解析会产生间隙"></a>line-block 空白符解析会产生间隙</h4><p>解决这种问题的方式有以下几种： </p>
+<ol>
+<li>消除HTML代码中元素间的空白 </li>
+<li>设置父元素的font-size:0;（有副作用） </li>
+<li>子元素不闭合，浏览器自动补全</li>
+<li>子元素设置负边距，不同浏览器间距不一 </li>
+<li>设置子元素样式：white-space-collapsing(css4属性，兼容性不好)</li>
+</ol>
+<h4 id="媒体查询中的像素（em-pxd等）"><a href="#媒体查询中的像素（em-pxd等）" class="headerlink" title="媒体查询中的像素（em,pxd等）"></a>媒体查询中的像素（em,pxd等）</h4><p>媒体查询中设置了<code>px</code>的话是浏览器默认的样式，脱离了css设置的优先级，所以在媒体查询中<code>1em = 16px</code>。</p>
+<h4 id="chrome默认字体"><a href="#chrome默认字体" class="headerlink" title="chrome默认字体"></a>chrome默认字体</h4><p>Chrome有一个下限，中文为12px，如果设置<code>font-size=10px;line-heigh=3rem</code>，实为36px，而不是30px。</p>
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><p>清除浮动3种方法—-触发BFC（上下文格式化）即可： 1）给盒子最末尾添加带有clear:both;属性的盒子； 2）给盒子添加overflow:hidden;属性； 3）给盒子添加伪元素的类名.clearfix：after{ content:”.”; height:”0”; visible:hidden: clear:both; }; 最常采用方法： 添加类名.clearfix:before,.clearfix:after{ content:””; display-block:table; } .clearfix:after{ clear:both; }</p>
+<p>css3选择器</p>
+<p>js控制图片加载</p>
+<pre><code>//通过cookie进行设置也可以
+
+srcset
+srcset 配合 sizes
+picture
+svg
+
+浏览器默认行为
+
+&lt;img src=&quot;&quot; alt=&quot;&quot; srcset=&quot;img/480.png 480w, img/800.png 800w&quot; sizes=&quot;100vw&quot; &gt;//
+
+图片尺寸表示100%视口宽度，即使父容器宽度设置为50%，依然会按照视口宽度来进行
+
+图片格式
+</code></pre><p>1、gulp-watch：监听文件，如果文件有改动自动执行任务 2、gulp-postcss：与autoprefixer结合，自动给一些css添加前缀 3、gulp-concat：多个文件合并成一个文件 4、gulp-responsive：实现响应式图片插件</p>
+<p>margin-top下盒子 和 margin-bottom上盒子会发生叠加，产生浏览器顶端空白崩溃 :before{content:””;display:table}防止叠加</p>
+<p><header> <footer> <section> 相当于特殊的section： <nav>导航 <article>文章 html5标签新规定： <b>加粗，吸引人注意，可是没有强调的意思 <em>重点强调的文字 <i>有不同的语态语气，如有反讽的语气</i></em></b></article></nav></section></footer></header></p>
+<p>浏览器支持状态<br>use i use usage-table<br><a href="http://gs.statcounter.com/#browser-CN-monthly-201509-201609" target="_blank" rel="external">gs.statcounter.com</a><br>[x5.tencent.com] 腾讯QQ浏览器内核</p>
+<p>移动端浏览器测试： 1.如果要真机，去www.umindex.com查看各机型活跃度，针对性购买 2.云测试，www.testin.cn 3.安卓虚拟机模拟器，www.genymotion.net</p>
+<p>autoprefixer.github.io(工具转</p>
+<p>bitbug.net 将图片转化为icon图标<br>dilingor.io</p>
+<p>csshack</p>
+<p>broswerhacks </p>
+<p>html5shiv</p>
+<p>modernizer</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/13/轮播图组件/" itemprop="url">
+                  轮播图组件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-13T18:12:16+08:00" content="2016-10-13">
+              2016-10-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/13/轮播图组件/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/13/轮播图组件/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/11/图片异步加载/" itemprop="url">
                   图片加载的策略
                 </a>
@@ -1222,212 +1506,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/29/精通javascript摘录/" itemprop="url">
-                  javascript精要摘录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-29T16:41:14+08:00" content="2016-09-29">
-              2016-09-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/29/精通javascript摘录/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/29/精通javascript摘录/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><code>new</code>做了什么?<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/29/精通javascript摘录/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/28/git入门-0/" itemprop="url">
-                  git入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-28T22:39:14+08:00" content="2016-09-28">
-              2016-09-28
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/28/git入门-0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/git入门-0/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>以前觉得git很麻烦，认真看了之后发现常用的也就那些，而且很实用。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/28/git入门-0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1473,7 +1551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">73</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1490,7 +1568,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">73</span>
+                <span class="site-state-item-count">74</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
