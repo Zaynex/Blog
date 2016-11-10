@@ -1,0 +1,987 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Node.js环境搭建安装 Node.js
+小提示：从 http://node.green 上可以看到 Node.js 各个版本对 ES6 的支持情况。
+
+n 和 nvm通常我们使用稳定的 LTS 版本的 Node.js 即可，但有的情况下我们又想尝试一下新的特性，我们总不能来回安装不同版本的 Node.js 吧，这个时候我们就需要 n 或者 nvm 了。
+nvm:1curl -o- https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阅读一起学Node">
+<meta property="og:url" content="https://zaynex.github.io/2016/11/06/阅读一起学Node/index.html">
+<meta property="og:site_name" content="如是而已">
+<meta property="og:description" content="Node.js环境搭建安装 Node.js
+小提示：从 http://node.green 上可以看到 Node.js 各个版本对 ES6 的支持情况。
+
+n 和 nvm通常我们使用稳定的 LTS 版本的 Node.js 即可，但有的情况下我们又想尝试一下新的特性，我们总不能来回安装不同版本的 Node.js 吧，这个时候我们就需要 n 或者 nvm 了。
+nvm:1curl -o- https:">
+<meta property="og:updated_time" content="2016-11-09T02:16:44.893Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="阅读一起学Node">
+<meta name="twitter:description" content="Node.js环境搭建安装 Node.js
+小提示：从 http://node.green 上可以看到 Node.js 各个版本对 ES6 的支持情况。
+
+n 和 nvm通常我们使用稳定的 LTS 版本的 Node.js 即可，但有的情况下我们又想尝试一下新的特性，我们总不能来回安装不同版本的 Node.js 吧，这个时候我们就需要 n 或者 nvm 了。
+nvm:1curl -o- https:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://zaynex.github.io/2016/11/06/阅读一起学Node/"/>
+
+  <title> 阅读一起学Node | 如是而已 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?af076e316f8f5bf2f10120a932bafe01";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">如是而已</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                阅读一起学Node
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-06T10:14:57+08:00" content="2016-11-06">
+              2016-11-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/06/阅读一起学Node/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/阅读一起学Node/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Node-js环境搭建"><a href="#Node-js环境搭建" class="headerlink" title="Node.js环境搭建"></a>Node.js环境搭建</h2><h3 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h3><blockquote>
+<p>小提示：从 <a href="http://node.green" target="_blank" rel="external">http://node.green</a> 上可以看到 Node.js 各个版本对 ES6 的支持情况。</p>
+</blockquote>
+<h4 id="n-和-nvm"><a href="#n-和-nvm" class="headerlink" title="n 和 nvm"></a>n 和 nvm</h4><p>通常我们使用稳定的 LTS 版本的 Node.js 即可，但有的情况下我们又想尝试一下新的特性，我们总不能来回安装不同版本的 Node.js 吧，这个时候我们就需要 n 或者 nvm 了。</p>
+<p>nvm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash</div></pre></td></tr></table></figure></p>
+<p>切换版本时，曾经在全局安装的各种 node 模块们全都需要重新安装，因为全局模块被安装在每个 node 版本自己的沙箱中，因此它们和老版本的 node 一起被埋葬了。</p>
+<ul>
+<li>nvm 不支持 Windows。</li>
+</ul>
+<p>n:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g n</div></pre></td></tr></table></figure></p>
+<p>在安装的时候，n 会先将指定版本的 node 存储下来，然后将其复制到我们熟知的路径 /usr/local/bin，非常简单明了。</p>
+<h4 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h4><p>nrm 是一个管理 npm 源的工具。<br>通常我们会把 gem 源切到国内的淘宝镜像，这样在安装和更新一些包的时候比较快。nrm 同理，用来切换官方 npm 源和国内的 npm 源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//显示npm</div><div class="line">nrm ls</div><div class="line"></div><div class="line">//切换到cnpm,淘宝镜像，下载包会快些，如果安装过的话</div><div class="line">nrm use cnpm</div></pre></td></tr></table></figure></p>
+<h3 id="MongoDB-的安装与使用"><a href="#MongoDB-的安装与使用" class="headerlink" title="MongoDB 的安装与使用"></a>MongoDB 的安装与使用</h3><h4 id="Robomongo-和-MongoChef"><a href="#Robomongo-和-MongoChef" class="headerlink" title="Robomongo 和 MongoChef"></a>Robomongo 和 MongoChef</h4><p>Robomongo 是一个基于 Shell 的跨平台开源 MongoDB 可视化管理工具，支持 Windows、Linux 和 Mac，嵌入了 JavaScript 引擎和 MongoDB mongo，只要你会使用 mongo shell，你就会使用 Robomongo，它还提了供语法高亮、自动补全、差别视图等。</p>
+<blockquote>
+<p>小提示: MongoChef 相较于 Robomongo 更强大一些，但 Robomongo 比较轻量也能满足大部分的常规需求。</p>
+</blockquote>
+<p>我安装了<code>Robomongo</code>，需要先创建一个js文件执行，alt+Enter 执行命令。（windows）</p>
+<h2 id="Node知识点"><a href="#Node知识点" class="headerlink" title="Node知识点"></a>Node知识点</h2><h3 id="从require到AMD和CMD"><a href="#从require到AMD和CMD" class="headerlink" title="从require到AMD和CMD"></a>从require到AMD和CMD</h3><p>在node.js中，采用的是CommonJS的规范实现，通过全局方法require()引入模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a = require(&quot;http&quot;);</div></pre></td></tr></table></figure></p>
+<p>这种一种同步机制，必须加载完模块后才能执行后面语句。因为是在服务器环境下运行，所以要加载的模块就是读取磁盘的速度，所以速度快到可以忽略不计。</p>
+<p>但这种方式不使用浏览器，这主要是由于同步加载带来的弊端：</p>
+<ul>
+<li>必须依赖于加载完的模块后才能执行，加载时间长</li>
+<li>当文件过大时出现客户端假死状态</li>
+</ul>
+<p>对于浏览器而言只能采用异步加载方式，即AMD(“Asynchronous Module Definition”)。<br>采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<p>巧的是，AMD也采用require()语句加载模块。但它要求有两个参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require([module], callback);</div></pre></td></tr></table></figure></p>
+<p>第一个参数[module]，是一个数组，里面的成员就是要加载的模块；第二个参数callback，则是加载成功之后的回调函数。如果将前面的代码改写成AMD形式，就是下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">require([&apos;math&apos;], function (math) &#123;</div><div class="line">　　　　math.add(2, 3);</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure></p>
+<p>主要有两个Javascript库实现了AMD规范：<code>require.js</code>和<code>curl.js</code>。</p>
+<h3 id="require-js的用法"><a href="#require-js的用法" class="headerlink" title="require.js的用法"></a>require.js的用法</h3><p>require.js解决两个问题</p>
+<ul>
+<li>实现js文件的异步加载，避免网页失去响应；</li>
+<li>管理模块之间的依赖性，便于代码的编写和维护。</li>
+</ul>
+<h4 id="require的加载"><a href="#require的加载" class="headerlink" title="require的加载"></a>require的加载</h4><p><a href="http://requirejs.org/docs/download.html" target="_blank" rel="external">官网</a>下载最新版本，将该代码放置于<code>body</code>底部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　&lt;script src=&quot;js/require.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>然后加载自己的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p><code>data-main</code>属性的作用是，指定网页程序的主模块。在上例中，就是js目录下面的main.js，这个文件会第一个被require.js加载。由于require.js默认的文件后缀名是js，所以可以把main.js简写成main。</p>
+<h4 id="主模块的写法"><a href="#主模块的写法" class="headerlink" title="主模块的写法"></a>主模块的写法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line">　　<span class="built_in">require</span>([<span class="string">'moduleA'</span>, <span class="string">'moduleB'</span>, <span class="string">'moduleC'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">moduleA, moduleB, moduleC</span>)</span>&#123;</div><div class="line">　　　　<span class="comment">// some code here</span></div><div class="line">　　&#125;);</div><div class="line"><span class="comment">//假如加载juqery,underscore,backbone3个模块</span></div><div class="line"><span class="built_in">require</span>([<span class="string">'jquery'</span>, <span class="string">'underscore'</span>, <span class="string">'backbone'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">$, _, Backbone</span>)</span>&#123;</div><div class="line">　　　　<span class="comment">// some code here</span></div><div class="line">　　&#125;);</div></pre></td></tr></table></figure>
+<h4 id="模块的加载"><a href="#模块的加载" class="headerlink" title="模块的加载"></a>模块的加载</h4><p>主模块的依赖模块是[‘jquery’, ‘underscore’, ‘backbone’]。默认情况下，require.js假定这三个模块与main.js在同一个目录，文件名分别为jquery.js，underscore.js和backbone.js，然后自动加载。<br>使用require.config()方法，我们可以对模块的加载行为进行自定义。require.config()就写在主模块（main.js）的头部。参数就是一个对象，这个对象的paths属性指定各个模块的加载路径。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.config(&#123;</div><div class="line">　　　　paths: &#123;</div><div class="line">　　　　　　<span class="string">"jquery"</span>: <span class="string">"jquery.min"</span>,</div><div class="line">　　　　　　<span class="string">"underscore"</span>: <span class="string">"underscore.min"</span>,</div><div class="line">　　　　　　<span class="string">"backbone"</span>: <span class="string">"backbone.min"</span></div><div class="line">　　　　&#125;</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure>
+<p>如果这些模块在其他目录，比如js/lib目录，则有两种写法。一种是逐一指定路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　require.config(&#123;</div><div class="line">　　　　paths: &#123;</div><div class="line">　　　　　　&quot;jquery&quot;: &quot;lib/jquery.min&quot;,</div><div class="line">　　　　　　&quot;underscore&quot;: &quot;lib/underscore.min&quot;,</div><div class="line">　　　　　　&quot;backbone&quot;: &quot;lib/backbone.min&quot;</div><div class="line">　　　　&#125;</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure></p>
+<p>另一种则是直接改变基目录（baseUrl）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">require.config(&#123;</div><div class="line">　　　　baseUrl: &quot;js/lib&quot;,</div><div class="line">　　　　paths: &#123;</div><div class="line">            //假如jquery在另外一台主机上</div><div class="line">　　　　　　&quot;jquery&quot;: &quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min&quot;,</div><div class="line">　　　　　　&quot;underscore&quot;: &quot;underscore.min&quot;,</div><div class="line">　　　　　　&quot;backbone&quot;: &quot;backbone.min&quot;</div><div class="line">　　　　&#125;</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="AMD模块的写法"><a href="#AMD模块的写法" class="headerlink" title="AMD模块的写法"></a>AMD模块的写法</h3><p>require.js加载的模块，采用AMD规范。也就是说，模块必须按照AMD的规定来写。<br>是模块必须采用特定的define()函数来定义。如果一个模块不依赖其他模块，那么可以直接定义在define()函数之中。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// math.js</span></div><div class="line">　　define(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">　　　　<span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">x,y</span>)</span>&#123;</div><div class="line">　　　　　　<span class="keyword">return</span> x+y;</div><div class="line">　　　　&#125;;</div><div class="line">　　　　<span class="keyword">return</span> &#123;</div><div class="line">　　　　　　add: add</div><div class="line">　　　　&#125;;</div><div class="line">　　&#125;);</div><div class="line"></div><div class="line"><span class="comment">//-----加载方式</span></div><div class="line">　<span class="comment">// main.js</span></div><div class="line">　　<span class="built_in">require</span>([<span class="string">'math'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">math</span>)</span>&#123;</div><div class="line">　　　　alert(math.add(<span class="number">1</span>,<span class="number">1</span>));</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure></p>
+<p>如果这个模块还依赖其他模块，那么define()函数的第一个参数，必须是一个数组，指明该模块的依赖性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">　define([&apos;myLib&apos;], function(myLib)&#123;</div><div class="line">　　　　function foo()&#123;</div><div class="line">　　　　　　myLib.doSomething();</div><div class="line">　　　　&#125;</div><div class="line">　　　　return &#123;</div><div class="line">　　　　　　foo : foo</div><div class="line">　　　　&#125;;</div><div class="line">　　&#125;);</div></pre></td></tr></table></figure></p>
+<p><a href="http://www.ruanyifeng.com/blog/2015/05/require.html" target="_blank" rel="external">require.js源码</a></p>
+<h3 id="exports-和-module-exports"><a href="#exports-和-module-exports" class="headerlink" title="exports 和 module.exports"></a>exports 和 module.exports</h3><p>这个例子倒是很好，加深了我对引用赋值的理解<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = &#123;name: <span class="number">1</span>&#125;;</div><div class="line"><span class="keyword">var</span> b = a;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"></div><div class="line">b.name = <span class="number">2</span>;</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="built_in">console</span>.log(b);</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = &#123;name: <span class="number">3</span>&#125;;</div><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="built_in">console</span>.log(b);</div></pre></td></tr></table></figure></p>
+<p>运行结果如下<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123; name: <span class="number">1</span> &#125;</div><div class="line">&#123; name: <span class="number">1</span> &#125;</div><div class="line">&#123; name: <span class="number">2</span> &#125;</div><div class="line">&#123; name: <span class="number">2</span> &#125;</div><div class="line">&#123; name: <span class="number">2</span> &#125;</div><div class="line">&#123; name: <span class="number">3</span> &#125;</div></pre></td></tr></table></figure></p>
+<p>a 是一个对象，b 是对 a 的引用，即 a 和 b 指向同一块内存，所以前两个输出一样。当对 b 作修改时，即 a 和 b 指向同一块内存地址的内容发生了改变，所以 a 也会体现出来，所以第三四个输出一样。当 b 被覆盖时，b 指向了一块新的内存，a 还是指向原来的内存，所以最后两个输出不一样。</p>
+<ol>
+<li>module.exports 初始值为一个空对象 {}</li>
+<li>exports 是指向的 module.exports 的引用</li>
+<li>require() 返回的是 module.exports 而不是 exports</li>
+</ol>
+<p>我们经常看到这样的写法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exports = module.exports = &#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p>原理很简单：module.exports 指向新的对象时，exports 断开了与 module.exports 的引用，那么通过 exports = module.exports 让 exports 重新指向 module.exports。</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>这是个大话题，主要是用来控制异步流程的，改善回调函数。</p>
+<ul>
+<li>resolve(成功时，调用onFulfilled)</li>
+<li>reject(失败时，调用onRejected)</li>
+<li>pending(promise对象刚被创建后的初始化状态)<br><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">ES6入门</a></li>
+</ul>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>必填字段</p>
+<ul>
+<li>name</li>
+<li>version</li>
+</ul>
+<h3 id="npm-install"><a href="#npm-install" class="headerlink" title="npm install"></a>npm install</h3><ol>
+<li><code>npm i express --save/npm i express -S</code> (安装 express，同时将 “express”: “^4.14.0” 写入 dependencies )</li>
+<li><code>npm i express --save-dev/npm i express -D</code> (安装 express，同时将 “express”: “^4.14.0” 写入 devDependencies )</li>
+<li><code>npm i express --save --save-exact</code> (安装 express，同时将 “express”: “4.14.0” 写入 dependencies )</li>
+</ol>
+<p>第三种方式将固定版本号写入 dependencies，建议线上的 Node.js 应用都采取这种锁定版本号的方式，因为你不可能保证第三方模块下个小版本是没有验证 bug 的，即使是很流行的模块。</p>
+<h3 id="npm-shrinkwrap"><a href="#npm-shrinkwrap" class="headerlink" title="npm shrinkwrap"></a>npm shrinkwrap</h3><p>了彻底锁定依赖的版本，让你的应用在任何机器上安装的都是同样版本的模块（不管嵌套多少层），通过运行 npm shrinkwrap，会在当前目录下产生一个 npm-shrinkwrap.json，里面包含了通过 node_modules 计算出的模块的依赖树及版本。</p>
+<p><em>只要目录下有 npm-shrinkwrap.json 则运行 npm install 的时候会优先使用 npm-shrinkwrap.json 进行安装，没有则使用 package.json 进行安装。</em></p>
+<h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><p>req 包含了请求来的相关信息，res 则用来返回该请求的响应</p>
+<ul>
+<li><code>req.query</code>: 解析后的 url 中的 querystring，如 <code>?name=haha</code>，req.query 的值为<code>{name: &#39;haha&#39;}</code></li>
+<li><code>req.params</code>: 解析 url 中的占位符，如 <code>/:name</code>，访问 <code>/haha</code>，req.params 的值为 <code>{name: &#39;haha&#39;}</code></li>
+<li><code>req.body</code>: 解析后请求体，需使用相关的模块，如 body-parser，请求体为 <code>{&quot;name&quot;: &quot;haha&quot;}</code>，则 req.body 为 <code>{name: &#39;haha&#39;}</code></li>
+</ul>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>通过调用 <code>res.render</code> 函数渲染 ejs 模板.<br><code>res.render</code> 的作用就是将模板和数据结合生成 html，同时设置响应头中的 <code>Content-Type: text/html</code>，告诉浏览器我返回的是 html，不是纯文本，要按 html 展示。</p>
+<ol>
+<li><code>&lt;% code %&gt;</code>：运行 JavaScript 代码，不输出</li>
+<li><code>&lt;%= code %&gt;</code>：显示转义后的 HTML内容</li>
+<li><code>&lt;%- code %&gt;</code>：显示原始 HTML 内容</li>
+</ol>
+<blockquote>
+<p>注意：&lt;%= code %&gt; 和 &lt;%- code %&gt; 都可以是 JavaScript 表达式生成的字符串，当变量 code 为普通字符串时，两者没有区别。当 code 比如为 </p><h1>hello</h1> 这种字符串时，&lt;%= code %&gt; 会原样输出 <h1>hello</h1>，而 &lt;%- code %&gt; 则会显示 H1 大的 hello 字符串。<p></p>
+</blockquote>
+<p>模板拆分<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%- include(<span class="string">'header'</span>) %&gt;</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span> <span class="attr">name.toUpperCase</span>() %&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  &lt;p&gt;hello, <span class="xml"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">name</span> %&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">&lt;%- include(<span class="string">'footer'</span>) %&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="express-中间件"><a href="#express-中间件" class="headerlink" title="express 中间件"></a>express 中间件</h3><p><code>express</code>中的中间件<code>middleware</code>就是用来处理请求的，当一个中间件处理完，可以通过调用 <code>next()</code> 传递给下一个中间件，如果没有调用 <code>next()</code>，则请求不会往下传递，如内置的 <code>res.render</code> 其实就是渲染完 html 直接返回给客户端，没有调用 <code>next()</code>，从而没有传递给下一个中间件。</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><ol>
+<li><code>models</code>: 存放操作数据库的文件</li>
+<li><code>public</code>: 存放静态文件文件，如样式、图片等</li>
+<li><code>routes</code>: 存放路由文件</li>
+<li><code>views</code>: 存放模板文件</li>
+<li><code>index</code>.js: 程序主文件</li>
+<li><code>package.json</code>: 存储项目名、描述、作者、依赖等等信息</li>
+</ol>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>不管是小项目还是大项目，将配置与代码分离是一个非常好的做法。我们通常将配置写到一个配置文件里，如 config.js 或 config.json ，并放到项目的根目录下。但通常我们都会有许多环境，如本地开发环境、测试环境和线上环境等，不同的环境的配置不同，我们不可能每次部署时都要去修改引用 config.test.js 或者 config.production.js。config-lite 模块正是你需要的。</p>
+<h4 id="config-lite"><a href="#config-lite" class="headerlink" title="config-lite"></a>config-lite</h4><p>config-lite 是一个轻量的读取配置文件的模块。config-lite 会根据环境变量（<code>NODE_ENV</code>）的不同从当前执行进程目录下的 config 目录加载不同的配置文件。如果不设置 NODE_ENV，则读取默认的 default 配置文件，如果设置了 NODE_ENV，则会合并指定的配置文件和 default 配置文件作为配置，config-lite 支持 .js、.json、.node、.yml、.yaml 后缀的文件。</p>
+<p>总之，会根据你的<code>NODE_ENV=xxx node app</code> 根据<code>xxx</code>来查找文件目录里面所有的文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  port: <span class="number">3000</span>,</div><div class="line">  session: &#123;</div><div class="line">    secret: <span class="string">'myblog'</span>,</div><div class="line">    key: <span class="string">'myblog'</span>,</div><div class="line">    maxAge: <span class="number">2592000000</span></div><div class="line">  &#125;,</div><div class="line">  mongodb: <span class="string">'mongodb://localhost:27017/nblog'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>mongodb</code>: <code>mongodb</code> 的地址，nblog 为 db 名</p>
+<h3 id="RESTful-API-设计指南"><a href="#RESTful-API-设计指南" class="headerlink" title="RESTful API 设计指南"></a>RESTful API 设计指南</h3><p>这里主要介绍的是每个路由地址的跳转地址该如何设定（对此阶段并不要紧）</p>
+<h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><p>####cookie </p>
+<ul>
+<li>服务器向客户端发送 cookie。<ul>
+<li>通常使用 HTTP 协议规定的 set-cookie 头操作。</li>
+<li>规范规定 cookie 的格式为 name = value 格式，且必须包含这部分。</li>
+</ul>
+</li>
+<li>浏览器将 cookie 保存。</li>
+<li>每次请求浏览器都会将 cookie 发向服务器。<br>每个域下最多存放50个cookie.一般来说，一个cookie不超过4KB，多余的会被清除。</li>
+</ul>
+<p>cookie 虽然很方便，但是使用 cookie 有一个很大的弊端，cookie 中的所有数据在客户端就可以被修改，数据非常容易被伪造，那么一些重要的数据就不能存放在 cookie 中了，而且如果 cookie 中数据字段太多会影响传输效率。为了解决这些问题，就产生了 session，session 中的数据是保留在服务器端的。</p>
+<p>####session<br>session 的运作通过一个 <code>session_id</code> 来进行。<code>session_id</code> 通常是存放在客户端的 cookie 中，比如在 express 中，默认是 <code>connect.sid</code> 这个字段，当请求到来时，服务端检查 cookie 中保存的 <code>session_id</code> 并通过这个 <code>session_id</code> 与服务器端的 session data 关联起来，进行数据的保存和修改。</p>
+<p>session 可以存放在 1）内存、2）cookie本身、3）redis 或 memcached 等缓存中，或者4）数据库中。线上来说，缓存的方案比较常见，存数据库的话，查询效率相比前三者都太低，不推荐；cookie session 有安全性问题，下面会提到。</p>
+<p>初学者容易犯的一个错误是，忘记了 session_id 在 cookie 中的存储方式是 session cookie。即，当用户一关闭浏览器，浏览器 cookie 中的 session_id 字段就会消失。</p>
+<h3 id="webcomponent"><a href="#webcomponent" class="headerlink" title="webcomponent"></a>webcomponent</h3><p>在调用 <code>res.render</code> 的时候，express 合并（merge）了 3 处的结果后传入要渲染的模板，<code>res.render</code> 传入的对象&gt; <code>res.locals</code> 对象 &gt; <code>app.locals</code> 对象，所以 <code>app.locals</code> 和 <code>res.locals</code> 几乎没有区别，都用来渲染模板，使用上的区别在于：<code>app.locals</code> 上通常挂载常量信息（如博客名、描述、作者信息），<code>res.locals</code> 上通常挂载变量信息，即每次请求可能的值都不一样（如请求者信息，<code>res.locals.user = req.session.user</code>）。</p>
+<h3 id="Mongolass"><a href="#Mongolass" class="headerlink" title="Mongolass"></a>Mongolass</h3><p>更详细的错误信息提醒。</p>
+<h3 id="用户模型设计"><a href="#用户模型设计" class="headerlink" title="用户模型设计"></a>用户模型设计</h3><blockquote>
+<p>小提示：Mongolass 中的 model 你可以认为相当于 mongodb 中的 collection，只不过添加了插件的功能。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/24/Node学习笔记/" rel="next" title="Node学习笔记">
+                <i class="fa fa-chevron-left"></i> Node学习笔记
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/06/基于MVC的JavaScript-Web富应用开发/" rel="prev" title="基于MVC的JavaScript Web富应用开发">
+                基于MVC的JavaScript Web富应用开发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/11/06/阅读一起学Node/"
+     data-title="阅读一起学Node"
+     data-content=""
+     data-url="https://zaynex.github.io/2016/11/06/阅读一起学Node/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/06/阅读一起学Node/"
+           data-title="阅读一起学Node" data-url="https://zaynex.github.io/2016/11/06/阅读一起学Node/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zaynex" />
+          <p class="site-author-name" itemprop="name">Zaynex</p>
+          <p class="site-description motion-element" itemprop="description">但行好事，莫问前程</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">74</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zaynex" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xi-wen-zheng" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-zhihu"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js环境搭建"><span class="nav-number">1.</span> <span class="nav-text">Node.js环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-Node-js"><span class="nav-number">1.1.</span> <span class="nav-text">安装 Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#n-和-nvm"><span class="nav-number">1.1.1.</span> <span class="nav-text">n 和 nvm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nrm"><span class="nav-number">1.1.2.</span> <span class="nav-text">nrm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MongoDB-的安装与使用"><span class="nav-number">1.2.</span> <span class="nav-text">MongoDB 的安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Robomongo-和-MongoChef"><span class="nav-number">1.2.1.</span> <span class="nav-text">Robomongo 和 MongoChef</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node知识点"><span class="nav-number">2.</span> <span class="nav-text">Node知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从require到AMD和CMD"><span class="nav-number">2.1.</span> <span class="nav-text">从require到AMD和CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#require-js的用法"><span class="nav-number">2.2.</span> <span class="nav-text">require.js的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#require的加载"><span class="nav-number">2.2.1.</span> <span class="nav-text">require的加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主模块的写法"><span class="nav-number">2.2.2.</span> <span class="nav-text">主模块的写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块的加载"><span class="nav-number">2.2.3.</span> <span class="nav-text">模块的加载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD模块的写法"><span class="nav-number">2.3.</span> <span class="nav-text">AMD模块的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exports-和-module-exports"><span class="nav-number">2.4.</span> <span class="nav-text">exports 和 module.exports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">2.5.</span> <span class="nav-text">Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#package-json"><span class="nav-number">2.6.</span> <span class="nav-text">package.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-install"><span class="nav-number">2.7.</span> <span class="nav-text">npm install</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-shrinkwrap"><span class="nav-number">2.8.</span> <span class="nav-text">npm shrinkwrap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express"><span class="nav-number">3.</span> <span class="nav-text">express</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#路由"><span class="nav-number">3.1.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板"><span class="nav-number">3.2.</span> <span class="nav-text">模板</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">hello</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">hello</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#express-中间件"><span class="nav-number">0.1.</span> <span class="nav-text">express 中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录结构"><span class="nav-number">0.2.</span> <span class="nav-text">目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件"><span class="nav-number">0.2.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#config-lite"><span class="nav-number">0.2.2.</span> <span class="nav-text">config-lite</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RESTful-API-设计指南"><span class="nav-number">0.3.</span> <span class="nav-text">RESTful API 设计指南</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#会话"><span class="nav-number">0.4.</span> <span class="nav-text">会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webcomponent"><span class="nav-number">0.5.</span> <span class="nav-text">webcomponent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mongolass"><span class="nav-number">0.6.</span> <span class="nav-text">Mongolass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户模型设计"><span class="nav-number">0.7.</span> <span class="nav-text">用户模型设计</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zaynex</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zaynex"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

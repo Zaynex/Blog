@@ -90,7 +90,7 @@
 <meta property="og:url" content="https://zaynex.github.io/2016/09/28/git入门-0/index.html">
 <meta property="og:site_name" content="如是而已">
 <meta property="og:description" content="以前觉得git很麻烦，认真看了之后发现常用的也就那些，而且很实用。">
-<meta property="og:updated_time" content="2016-10-12T12:58:43.018Z">
+<meta property="og:updated_time" content="2016-11-05T14:35:35.952Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git入门">
 <meta name="twitter:description" content="以前觉得git很麻烦，认真看了之后发现常用的也就那些，而且很实用。">
@@ -543,38 +543,7 @@
 <li>如果推送失败，则因为远程分支比你的本地更新早，需要先用git pull试图合并。</li>
 <li>如果合并有冲突，则需要解决冲突，并在本地提交。再用git push origin branch-name推送。</li>
 </ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>适合自己的才是最好的资料。hhh！</p>
-<p>mkdir：         XX (创建一个空目录 XX指目录名)</p>
-<p>pwd：          显示当前目录的路径。</p>
-<p>git init          把当前的目录变成可以管理的git仓库，生成隐藏.git文件。</p>
-<p>git add XX       把xx文件添加到暂存区去。</p>
-<p>git commit –m “XX”  提交文件 –m 后面的是注释。</p>
-<p>git status        查看仓库状态</p>
-<p>git diff  XX      查看XX文件修改了那些内容</p>
-<p>git log          查看历史记录</p>
-<p>git reset  –hard HEAD^ 或者 git reset  –hard HEAD~ 回退到上一个版本</p>
-<pre><code>(如果想回退到100个版本，使用git reset –hard HEAD~100 )
-</code></pre><p>cat XX         查看XX文件内容</p>
-<p>git reflog       查看历史记录的版本号id</p>
-<p>git checkout — XX  把XX文件在工作区的修改全部撤销。</p>
-<p>git rm XX          删除XX文件</p>
-<p>git remote add origin <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a> 关联一个远程库</p>
-<p>git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库</p>
-<p>git clone <a href="https://github.com/tugenhua0707/testgit" target="_blank" rel="external">https://github.com/tugenhua0707/testgit</a>  从远程库中克隆</p>
-<p>git checkout –b dev  创建dev分支 并切换到dev分支上</p>
-<p>git branch  查看当前所有的分支</p>
-<p>git checkout master 切换回master分支</p>
-<p>git merge dev    在当前的分支上合并dev分支</p>
-<p>git branch –d dev 删除dev分支</p>
-<p>git branch name  创建分支</p>
-<p>git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作</p>
-<p>git stash list 查看所有被隐藏的文件列表</p>
-<p>git stash apply 恢复被隐藏的文件，但是内容不删除</p>
-<p>git stash drop 删除文件</p>
-<p>git stash pop 恢复文件的同时 也删除文件</p>
-<p>git remote 查看远程库的信息</p>
-<p>git remote –v 查看远程库的详细信息</p>
-<p>git push origin master  Git会把master分支推送到远程库对应的远程分支上</p>
+<h3 id="常用的操作"><a href="#常用的操作" class="headerlink" title="常用的操作"></a>常用的操作</h3><p>适合自己的才是最好的资料。hhh！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//删除文件夹下的所有 .git 文件</div><div class="line">    find . -name &quot;.git&quot; | xargs rm -Rf</div></pre></td></tr></table></figure></p>
 <h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">http://blog.jobbole.com/78960/</a></p>
 <h3 id="错误小结"><a href="#错误小结" class="headerlink" title="错误小结"></a>错误小结</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fatal: Unable to create &apos;D:/GitHub/JavaScriptdemo/.git/index.lock&apos;: File exists.</div><div class="line">Another git process seems to be running in this repository, e.g.</div><div class="line">an editor opened by &apos;git commit&apos;. Please make sure all processes</div><div class="line">are terminated then try again. If it still fails, a git process</div><div class="line">may have crashed in this repository earlier:</div><div class="line">remove the file manually to continue.</div><div class="line">//有另外一个git进程在这个仓库运行，请确保所有进程都被运行在尝试如果还是失败，那就手动移除它再继续吧</div></pre></td></tr></table></figure>
 <p><code>`
@@ -711,7 +680,7 @@ rm -f ./.git/index.lock</code></p>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">73</span>
+              <span class="site-state-item-count">77</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -719,7 +688,7 @@ rm -f ./.git/index.lock</code></p>
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -777,7 +746,7 @@ rm -f ./.git/index.lock</code></p>
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从本地建立仓库提交到仓库"><span class="nav-number">1.</span> <span class="nav-text">从本地建立仓库提交到仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作区和暂存区的区别"><span class="nav-number">2.</span> <span class="nav-text">工作区和暂存区的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除撤销"><span class="nav-number">3.</span> <span class="nav-text">删除撤销</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文件"><span class="nav-number">3.1.</span> <span class="nav-text">删除文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传到远程仓库吧"><span class="nav-number">4.</span> <span class="nav-text">上传到远程仓库吧!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从远程clone一个项目？"><span class="nav-number">5.</span> <span class="nav-text">从远程clone一个项目？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建合并分支"><span class="nav-number">6.</span> <span class="nav-text">创建合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">7.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">8.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug分支"><span class="nav-number">9.</span> <span class="nav-text">bug分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多人协作"><span class="nav-number">10.</span> <span class="nav-text">多人协作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推送分支"><span class="nav-number">10.1.</span> <span class="nav-text">推送分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抓取分支"><span class="nav-number">10.2.</span> <span class="nav-text">抓取分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">12.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误小结"><span class="nav-number">13.</span> <span class="nav-text">错误小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#从本地建立仓库提交到仓库"><span class="nav-number">1.</span> <span class="nav-text">从本地建立仓库提交到仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作区和暂存区的区别"><span class="nav-number">2.</span> <span class="nav-text">工作区和暂存区的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除撤销"><span class="nav-number">3.</span> <span class="nav-text">删除撤销</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#删除文件"><span class="nav-number">3.1.</span> <span class="nav-text">删除文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传到远程仓库吧"><span class="nav-number">4.</span> <span class="nav-text">上传到远程仓库吧!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从远程clone一个项目？"><span class="nav-number">5.</span> <span class="nav-text">从远程clone一个项目？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建合并分支"><span class="nav-number">6.</span> <span class="nav-text">创建合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决冲突"><span class="nav-number">7.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支管理策略"><span class="nav-number">8.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug分支"><span class="nav-number">9.</span> <span class="nav-text">bug分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多人协作"><span class="nav-number">10.</span> <span class="nav-text">多人协作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推送分支"><span class="nav-number">10.1.</span> <span class="nav-text">推送分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抓取分支"><span class="nav-number">10.2.</span> <span class="nav-text">抓取分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的操作"><span class="nav-number">11.</span> <span class="nav-text">常用的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">12.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误小结"><span class="nav-number">13.</span> <span class="nav-text">错误小结</span></a></li></ol></div>
             
           </div>
         </section>
