@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="如是而已">
 <meta property="og:description" content="对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的。1var person = new Obejct()；
 这段代码创建了Object引用类型的实例，然后把该实例保存在变量person中。使用的构造函数是Obejct,它只为新对象定义了默认的属性和方法。ECMAScript提供了很多原生引用类型(如Obejct)，供开发人员使用。">
-<meta property="og:updated_time" content="2016-08-08T14:25:41.370Z">
+<meta property="og:updated_time" content="2016-11-12T08:25:08.710Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript高级程序设计三第五章学习笔记">
 <meta name="twitter:description" content="对象是某个特定引用类型的实例。新对象是使用new操作符后跟一个构造函数来创建的。1var person = new Obejct()；
@@ -520,7 +520,7 @@
 </li>
 </ol>
 <p>上述代码中，callSum()在执行sum()函数时传入了this 作为 this值。（因为是在全局作用域中调用的，所以传入的是window对象）和arguments对象。</p>
-<p>在严格模式下， 未指定环境对象而调用函数，则this值不会会转化为window,除非明确把函数添加到某个对象或者调用call()或apply()，否则this值将是undefined。</p>
+<p>在严格模式下， 未指定环境对象而调用函数，则this值不会转化为window,除非明确把函数添加到某个对象或者调用call()或apply()，否则this值将是undefined。</p>
 <h4 id="call"><a href="#call" class="headerlink" title="call()"></a>call()</h4><p>call()作用和apply()相同，只是call的第二个参数要全都写出来。apply()就可以直接传数组。</p>
 <h4 id="扩充函数作用域"><a href="#扩充函数作用域" class="headerlink" title="扩充函数作用域"></a>扩充函数作用域</h4><ul>
 <li>apply()和call()强大的地方在于扩充作用域。<br>我们先来看这个例子<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">window.color = &quot;red&quot;;</div><div class="line">var o = &#123;color: &quot;blue&quot; &#125;;</div><div class="line"></div><div class="line">function sayColor()&#123;</div><div class="line">	alert(this.color);</div><div class="line">&#125;</div><div class="line"></div><div class="line">sayColor();    //red</div><div class="line">sayColor.call(this) ;   //red</div><div class="line">sayColor.call(window);  //red</div><div class="line">sayColor.call(o);  //blue</div></pre></td></tr></table></figure>
@@ -701,7 +701,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">77</span>
+              <span class="site-state-item-count">78</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
