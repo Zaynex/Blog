@@ -291,6 +291,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/15/《Pro-JavaScript》对象笔记/" itemprop="url">
+                  《Pro JavaScript》对象笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-15T20:20:10+08:00" content="2016-09-15">
+              2016-09-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS-jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">JS\jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/15/《Pro-JavaScript》对象笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/15/《Pro-JavaScript》对象笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>创建一个类，其子类也可以作为一个类被继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line">var Class = (function()&#123;</div><div class="line">	function create(classDefinition, parentPrototype) &#123;</div><div class="line">		var _NewClass = function()&#123;</div><div class="line">			if(this.initializa &amp;&amp; typeof this.initializa === &apos;function&apos;)&#123;</div><div class="line">				this.initializa.apply(this, arguments);</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		_name;</div><div class="line">		if(parentPrototype) &#123;</div><div class="line">			//如果传入父类原型，则子类继承父类的所有方法和属性，利用constructor传递</div><div class="line">			_NewClass.prototype = new parentPrototype.constructor();</div><div class="line">			for(_name in parentPrototype) &#123;</div><div class="line">				if(parentPrototype.hasOwnProperty(_name)) &#123;</div><div class="line">					_NewClass.prototype[_name] = parentPrototype[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//创建一个闭包，在闭包中返回另一个函数替代传入的函数</div><div class="line">		//将传入的函数包装起来，并为当前对象提供一个_parent()方法</div><div class="line">		//以支持父类中同名的方法的访问，就实现了对多态的继承</div><div class="line">		function ploymorph(thisFunction, parentFunction)&#123;</div><div class="line">			return function()&#123;</div><div class="line">				var output;</div><div class="line">				this._parent = parentFunction;</div><div class="line">				output = thisFunction.apply(this, arguments);</div><div class="line">				delete this._parent;</div><div class="line">				return output;</div><div class="line">			&#125;;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		//将作为参数传递的类定义 应用到新创建的类中</div><div class="line">		//覆盖所有parentPrototype中已存在的属性和方法</div><div class="line">		for(_name in classDefinition) &#123;</div><div class="line">			if(classDefinition.hasOwnProperty(_name)) &#123;</div><div class="line">				//如果正在利用多态，即创建和父类方法同名的新方法</div><div class="line">				//我们希望提供一种在子类方法中调用父类方法的简单方式</div><div class="line">				if(parentPrototype &amp;&amp; parentPrototype[_name] &amp;&amp; typeof classDefinition[_name] === &apos;function&apos;) &#123;</div><div class="line">					_NewClass.prototype[_name] = ploymorph(classDefinition[name], parentPrototype[_name]);</div><div class="line">				&#125;else &#123;</div><div class="line">					//如果不需要多态，则直接将classDefinition对象直接量中的项映射到新类的原型即可</div><div class="line">					_NewClass.prototype[_name] = classDefinition[_name];</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		_NewClass.prototype.constructor = _NewClass;</div><div class="line"></div><div class="line">		//为新创建的类自身定义个extend方法，指向私有的extend函数，这个函数定义在下面，我们通过此方法可以将当前类作为父类来创建一个子类</div><div class="line">		_NewClass.extend = extend;</div><div class="line">		return _NewClass;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	//extend和create方法相同，不过隐藏额外的参数，用来继承父类的原型</div><div class="line">	function extend(classDefinition) &#123;</div><div class="line">		return create(classDefinition, this.prototype);</div><div class="line">	&#125;</div><div class="line">	//用相同的名字将私有的create方法暴露</div><div class="line">	return &#123;</div><div class="line">		create: create</div><div class="line">	&#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">//initialize方法将成为新类的构造函数</div><div class="line">var Accomodation = Class.create(&#123;</div><div class="line">	isLocked: true,</div><div class="line">	isAlarmed: true,</div><div class="line">	lock: function()&#123;</div><div class="line">		this.isLocked = true;</div><div class="line">	&#125;</div><div class="line">	unlock: function()&#123;</div><div class="line">		this.isLocked = false;</div><div class="line">	&#125;</div><div class="line">	initialize: function()&#123;</div><div class="line">		this.unlock();</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var House = Accomodation.extend(&#123;</div><div class="line">	floor: 2,</div><div class="line">	lock: function()&#123;</div><div class="line">		//虽然正在用多态替换父类方法，但仍可以用该方法访问被替换的父类方法</div><div class="line">		this_parent();</div><div class="line">		alert(&quot;Number of floors is locked: &quot; + this.floors);</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">var myAccommodation = new Accomodation();</div><div class="line">alert(myAccommodation instanceof Accomodation);//true</div><div class="line">alert(myAccommodation instanceof House);//false</div><div class="line"></div><div class="line">var myHouse = new House();</div><div class="line">alert(myHouse.isLocked);//false,由于父类中的initalize方法所设置，该方法被House继承</div><div class="line">alert(myHouse.lock()); //Number of floors is locked: 2;</div><div class="line">alert(myHouse instanceof House);//true</div><div class="line">alert(myHouse instanceof Accomodation);//true4</div></pre></td></tr></table></figure></p>
+<h3 id="ES5的新特性"><a href="#ES5的新特性" class="headerlink" title="ES5的新特性"></a>ES5的新特性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">Object.preventExtensions();//禁止拓展对象属性方法，但可以修改原属性方法</div><div class="line">Object.isExtensible();//查看对象是否被锁定</div><div class="line">Object.freeze();//进一步锁定，使其原有属性方法都无法被修改</div><div class="line">Object.isFrozen();//对象是否被冻结</div><div class="line"></div><div class="line"></div><div class="line">var personDetails = &#123;</div><div class="line">	name: &apos;Den Oddle&apos;,</div><div class="line">	email: &quot;ok@ok.com&quot;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Object.getOwnPropertyDescriptor(personDetails, &quot;name&quot;);</div><div class="line">/*</div><div class="line">configurable:true</div><div class="line">enumerable:true</div><div class="line">value:&quot;Den Oddle&quot;</div><div class="line">writable:true</div><div class="line">__proto__:Object</div><div class="line">*/</div><div class="line"></div><div class="line">Object.defineProperty(personDetails,&quot;age&quot;, &#123;</div><div class="line">	value: 35,</div><div class="line">	writable: false,</div><div class="line">	enumerable: true,</div><div class="line">	configurable: true</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Object.defineProperties(personDetails,&#123;</div><div class="line">	ChildAge: &#123;</div><div class="line">	value: 5,</div><div class="line">	writable: false,</div><div class="line">	enumerable: true,</div><div class="line">	configurable: true</div><div class="line">	&#125;,</div><div class="line">	ChildHobby: &#123;</div><div class="line">	value: &quot;basketball&quot;,</div><div class="line">	writable: true</div><div class="line">	&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//包含某个对象上所有属性名的数组Object.keys()</div><div class="line">keys = Object.keys(personDetails);</div><div class="line">console.log(keys.join(&quot;,&quot;));//name,email,age,ChildAge</div><div class="line"></div><div class="line">fathersDetails = Object.create(personDetails);</div><div class="line"></div><div class="line">fathersDetails.newName = &apos;Zaynex&apos;;</div><div class="line">console.log(fathersDetails.name);//Den Oddle</div><div class="line">console.log(fathersDetails.newName);//Zaynex</div></pre></td></tr></table></figure>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>在构造一个新的子类来继承并扩展一个类的时候，可能需要将某个方法替换为同名的新方法，新方法和原方法功类似，但仅针对子类做改变，着就是多态。在JS中，只需重写一个函数并给它一个和原方法同样的方法即可实现多态。</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p>通过集成对已有的类进行改变或特殊化时，父类的所有属性和方法都对子类是可用的，在子类中不需要额外声明或定义任何东西就能使用所有父类的属性和方法。这种特性称为封装，子类只需要定义那些在父类的基础上新增的属性和方法即可。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>虽然没什么营养，但是代码看着还是很过瘾，日后可以回顾下。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/14/图解Http笔记摘要/" itemprop="url">
                   图解Http笔记摘要
                 </a>
@@ -1312,128 +1436,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/27/你真的懂margin-0-auto吗/" itemprop="url">
-                  你真的懂margin:0 auto吗
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-27T12:59:07+08:00" content="2016-08-27">
-              2016-08-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/HTML-5-CSS-3/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML(5)/CSS(3)</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/27/你真的懂margin-0-auto吗/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/27/你真的懂margin-0-auto吗/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>转自玉伯曾经<a href="https://github.com/lifesinger/blog/issues/105">博客</a>。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/27/你真的懂margin-0-auto吗/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1479,7 +1481,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

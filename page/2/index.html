@@ -291,6 +291,128 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/10/荷兰国旗问题/" itemprop="url">
+                  荷兰国旗问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T20:41:02+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构与算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构与算法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/10/荷兰国旗问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/荷兰国旗问题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://www.cnblogs.com/gnuhpc/archive/2012/12/21/2828166.html" target="_blank" rel="external">参考博客</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">function exch(arr, i, j) &#123;</div><div class="line">    var t = arr[i];</div><div class="line">    arr[i] = arr[j];</div><div class="line">    arr[j] = t;</div><div class="line">&#125;</div><div class="line">function partition(items, left, right)&#123;</div><div class="line">    var pivot = items[Math.floor(right + left) / 2],</div><div class="line">        i = left,</div><div class="line">        j = right;</div><div class="line"></div><div class="line">    while(i &lt;= j) &#123;</div><div class="line">        while(items[i] &lt;pivot)&#123;</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        while(items[j] &gt; pivot)&#123;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if(i &lt;= j)&#123;</div><div class="line">            exch(items, i, j);</div><div class="line">            i++;</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function quickSort(items, left, right)&#123;</div><div class="line">    var index;</div><div class="line">    if(items.length &gt; 1)&#123;</div><div class="line">        index = partition(items, left, right);</div><div class="line">        if(left &lt; index - 1)&#123;</div><div class="line">            quickSort(items, left, index - 1);</div><div class="line">        &#125;</div><div class="line">        if(index &lt; right)&#123;</div><div class="line">            quickSort(items, index, right);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return items;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//var result =quickSort(items, 0, items.length-1);</div></pre></td></tr></table></figure>
+<p>以上是快排的思想，三向快速排序还是没做出来，不过感觉很接近了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/记一发JS深度克隆/" itemprop="url">
                   记一发JS深度克隆
                 </a>
@@ -1313,110 +1435,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/module-exports和exports的区别/" itemprop="url">
-                  module.exports和exports的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T23:24:11+08:00" content="2016-09-22">
-              2016-09-22
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/22/module-exports和exports的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/module-exports和exports的区别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>原文：<a href="http://www.hacksparrow.com/node-js-exports-vs-module-exports.html">http://www.hacksparrow.com/node-js-exports-vs-module-exports.html</a></p>
-<p>你肯定非常熟悉<code>nodejs</code>模块中的<code>exports</code>对象，你可以用它创建你的模块。例如：（假设这是rocker.js文件）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/22/module-exports和exports的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1462,7 +1480,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">79</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
