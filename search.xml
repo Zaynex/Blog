@@ -7,6 +7,7 @@
       <title><![CDATA[实习一周小结]]></title>
       <url>https://zaynex.github.io/2016/11/28/%E5%AE%9E%E4%B9%A0%E4%B8%80%E5%91%A8%E5%B0%8F%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>快速学习的能力<br>定位错误，描述错误的能力<br>解决问题的能力<br>找到自己的阶段<br>致本以为能解决的需求。</p>
+<p>props是将顶层组件以属性的形式传递，获取里面的方法和变量。<br>如何将state保存到store中？<br>先通过props获取当前的参数，比如 counter<br>再将state的counter赋值给 counter<br>注意到两个counter不一样，一个是当前state里面的。</p>
 ]]></content>
     </entry>
     
