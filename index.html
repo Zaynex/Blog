@@ -348,6 +348,7 @@
 <p>聊天室的毕业设计因为window的缘故启动失败。<br>另外，还需要配置一些参数。明天再看吧。</p>
 <p>改了很多BUG。熟悉了Ant组件。</p>
 <p>parseFloat的妙用。</p>
+<p>今天没做什么事情，但是react+redux反而渐渐忘了，要补上。</p>
 
           
         
@@ -458,6 +459,14 @@
 <li>按照属性定义的先后顺序来枚举简单对象的属性</li>
 <li>如果是对象直接量，则按照对象直接量中属性出现的顺序来枚举。</li>
 </ol>
+<p>访问一个不存在的属性会返回 undefined<br>但是访问一个不存在的对象的属性就会 报错。<br>最佳方案是采用 &amp;&amp; 操作符<br>比如：<br>var len = undefined;<br>if(book) {<br>    if(book.subtitle) len = book.subtitle.length;<br>}</p>
+<p>var len = book &amp;&amp; book.subtitle &amp;&amp; book.subtitle.length</p>
+<p>delete只能删除自身属性，无法删除继承的属性，若要删除继承属性，则只能从定义原型对象上删除它。<br>其实delete只是断开了属性和宿主对象的联系，而不会去操作属性中的属性。</p>
+<p>a = {p:{x:1}};<br>b = a.p;<br>delete a.p;<br>//a.p访问无效，<br>//但是b.x = 1</p>
+<p>delete不可删除那些可配置性为false的属性（但可以删除不可拓展对象的可配置属性）</p>
+<p>var random = {<br>    get octet() {return Math.floor(Math.random()<em> 256)},<br>    get uint16() {return Math.floor(Math.random() </em> 65535)}<br>}</p>
+<p>var serialnum = {<br>    $n: 0,<br>    get next() {<br>        return this.$n++;<br>    },<br>    get next(n) {<br>        if(n &gt;= this.$n) this.$n = n;<br>        else throw “不能比当前序列小”<br>    }<br>}</p>
+<p>如果对象是不可拓展的，则可以编辑已有的自身属性，但不能添加新属性<br>如果属性是不可配置的，则不能修改它的可配置性和可枚举性<br>如果存取器属性是不可配置的，则不能修改其getter和setter方法，也不能将其转为数据属性<br>如果数据属性是不可配置的，则不能转为存取器属性</p>
 
           
         
