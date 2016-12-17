@@ -4,8 +4,58 @@
   
     
     <entry>
+      <title><![CDATA[实习一周小结]]></title>
+      <url>https://zaynex.github.io/2016/11/28/%E5%AE%9E%E4%B9%A0%E4%B8%80%E5%91%A8%E5%B0%8F%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>快速学习的能力<br>定位错误，描述错误的能力<br>解决问题的能力<br>找到自己的阶段<br>致本以为能解决的需求。</p>
+<p>props是将顶层组件以属性的形式传递，获取里面的方法和变量。<br>如何将state保存到store中？<br>先通过props获取当前的参数，比如 counter<br>再将state的counter赋值给 counter<br>注意到两个counter不一样，一个是当前state里面的。</p>
+<p>今天总算完成了第一个需求。<br>其实是自己没看仔细。<br>只要第一个选择器选择后通过action修改 store，第二个组件获取store的数值就可以了。</p>
+<p>聊天室的毕业设计因为window的缘故启动失败。<br>另外，还需要配置一些参数。明天再看吧。</p>
+<p>改了很多BUG。熟悉了Ant组件。</p>
+<p>parseFloat的妙用。</p>
+<p>今天没做什么事情，但是react+redux反而渐渐忘了，要补上。</p>
+<p>2016.12.6日<br>今天也没做什么事情。开始感到一丝的不安。想到保安还要轮流值班，我的心感到颤动，年轻的时候一定要学更多的东西，让自己更聪明，学会用脑子赚钱而不是纯粹的出卖自己的体力除非迫不得已。</p>
+<p>我也不知道为什么坐在空调房里办公的是我，而在外守夜班的却是他们，只有不断赶超别人，才算赶超自己。</p>
+<p>实现都快3周了，结果还没有正式的写过一个功能组件。要谈这三星期的收获。我居然说不出来。唯独可能比较有收获的就是git的使用吧。亲身体会了git的工作流，但是git pull 的流程个人还不是特别清楚。<br>我想最大的悲哀莫过于自己看起来很努力其实真的是在浪费时间吧。</p>
+<p>一开始可能对自己要求确实有点高了。还是得根据自己的真实需求出发学习啊。<br>所以还是得明确下规划：<br>每天必看的应该是react这本书，而不是JS权威指南，这个随时都可以翻翻，但是解决工作完成业务才是当务之急啊。<br>从明天开始，不管收获多少，都要写一点总结。要不然，你真的不知道日子是怎么过去的。</p>
+<p>2016/12/12<br>今天修改了之前遇到的BUG的一个UI。<br>设定其最大宽度和超出宽度时如何显示，css控制文字超出时省略号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow: hidden;</div><div class="line">text-overflow:ellipsis; /*文字隐藏后添加省略号*/</div><div class="line">white-space: nowrap;</div></pre></td></tr></table></figure>
+<p>前端需要把握很多细节。</p>
+<p>晚上一定要早点睡。充分的休息~</p>
+<p>2016/12/16</p>
+<ol>
+<li>let  const 的应用场景</li>
+<li>传参为数组，项目。</li>
+</ol>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[权威指南读书每日计划一]]></title>
+      <url>https://zaynex.github.io/2016/11/22/%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E8%AF%BB%E4%B9%A6%E6%AF%8F%E6%97%A5%E8%AE%A1%E5%88%92%E4%B8%80/</url>
+      <content type="html"><![CDATA[<p>img中的src属性也会发起一次get请求。不过img无法实现完整的Ajax，因为其数据交换是单向的：客户端能发送数据到服务器，但服务器的响应一直是图片导致客户端无法轻易从中获取除图片以外的其他信息。</p>
+<p>iframe：服务器创建一个包含响应内容的HTML文档，并且返回给浏览器，并在iframe中显示它。</p>
+<p>今天花了很多时间学webpack，有点得不偿失。明天做了react的todolist以及极客学院的文档就开始学新的东西。</p>
+<p>在路上的时间安排：<br>早晨：以听为主。<br>中午午休：看一会权威指南。<br>晚上回去：看电子书或者听课（根据自己的状态来）</p>
+<p>for in 只能遍历可枚举的属性，但包括通过原型上继承的属性。（JS语言核心所定义的内置方法就是不可枚举的，比如 toString ）。在ES5中也可以手动设置一个属性是否可枚举。</p>
+<p>枚举属性的顺序</p>
+<ol>
+<li>按照属性定义的先后顺序来枚举简单对象的属性</li>
+<li>如果是对象直接量，则按照对象直接量中属性出现的顺序来枚举。</li>
+</ol>
+<p>访问一个不存在的属性会返回 undefined<br>但是访问一个不存在的对象的属性就会 报错。<br>最佳方案是采用 &amp;&amp; 操作符<br>比如：<br>var len = undefined;<br>if(book) {<br>    if(book.subtitle) len = book.subtitle.length;<br>}</p>
+<p>var len = book &amp;&amp; book.subtitle &amp;&amp; book.subtitle.length</p>
+<p>delete只能删除自身属性，无法删除继承的属性，若要删除继承属性，则只能从定义原型对象上删除它。<br>其实delete只是断开了属性和宿主对象的联系，而不会去操作属性中的属性。</p>
+<p>a = {p:{x:1}};<br>b = a.p;<br>delete a.p;<br>//a.p访问无效，<br>//但是b.x = 1</p>
+<p>delete不可删除那些可配置性为false的属性（但可以删除不可拓展对象的可配置属性）</p>
+<p>var random = {<br>    get octet() {return Math.floor(Math.random()<em> 256)},<br>    get uint16() {return Math.floor(Math.random() </em> 65535)}<br>}</p>
+<p>var serialnum = {<br>    $n: 0,<br>    get next() {<br>        return this.$n++;<br>    },<br>    get next(n) {<br>        if(n &gt;= this.$n) this.$n = n;<br>        else throw “不能比当前序列小”<br>    }<br>}</p>
+<p>如果对象是不可拓展的，则可以编辑已有的自身属性，但不能添加新属性<br>如果属性是不可配置的，则不能修改它的可配置性和可枚举性<br>如果存取器属性是不可配置的，则不能修改其getter和setter方法，也不能将其转为数据属性<br>如果数据属性是不可配置的，则不能转为存取器属性</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[你不知道的JS精要]]></title>
-      <url>https://zaynex.github.io/2016/12/17/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JS%E7%B2%BE%E8%A6%81/</url>
+      <url>https://zaynex.github.io/2016/11/20/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JS%E7%B2%BE%E8%A6%81/</url>
       <content type="html"><![CDATA[<h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a>第一部分</h2><h3 id="LHS和RHS"><a href="#LHS和RHS" class="headerlink" title="LHS和RHS"></a>LHS和RHS</h3><p>当变量出现在赋值操作的左侧时会进行LHS查询，出现在右侧时会进行RHS查询。（取得他的原值）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo(a)&#123;</div><div class="line">    console.log(a+b);</div><div class="line">    b = a;</div><div class="line">&#125;</div><div class="line">foo(2);</div><div class="line">//VM102:2 Uncaught ReferenceError: b is not defined(…)</div></pre></td></tr></table></figure></p>
 <p>首先对 <code>foo</code> 进行 <code>RHS</code> 引用找到<code>foo</code>的值。以为这<code>foo()</code>函数被执行。为了给传递的参数分配值，所以会进行一次 <code>LHS</code> 查询。查询完之后再进行 <code>RHS</code> 查询。（这个参数 <code>a = 2</code>有一个隐形赋值的过程）<br><code>console.log</code>本身也会有一次引用才能执行，因此会对<code>console</code>对象进行 <code>RHS</code> 查询，检查含有<code>log</code>的方法。<br>但是在对b进行RHS查询是没找到该变量，会抛出异常。<br>当引擎执行LHS查询时，如果顶层作用域也没找到目标变量，那就会在全局作用域中创建一个具有该名称的变量，前提是程序运行在严格模式下。<br><code>ReferenceError</code>表示与作用域判别相关的错误，<code>TypeError</code>表示作用域判别成功，但操作结果不合法。</p>
 <h3 id="立即执行函数表达式"><a href="#立即执行函数表达式" class="headerlink" title="立即执行函数表达式"></a>立即执行函数表达式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">(function IIFE(global, undefined)&#123;</div><div class="line">    var a = 3;</div><div class="line">    console.log(a);</div><div class="line">    console.log(global.a);//将window全局对象通过参数传递，分清楚全局和局部变量</div><div class="line">&#125;)(window);</div><div class="line">console.log(a);</div></pre></td></tr></table></figure>
@@ -101,56 +151,6 @@
 </ul>
 <p>小例外： 如果configurable 属性为 false，但是依然可以修改 writable 为 true 到 false, 反之则不行。</p>
 <h3 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h3><p><code>for in</code> 其实遍历的是每个属性。<br><code>for of</code> 遍历的是每个属性。但只能遍历到最外层。</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[实习一周小结]]></title>
-      <url>https://zaynex.github.io/2016/11/28/%E5%AE%9E%E4%B9%A0%E4%B8%80%E5%91%A8%E5%B0%8F%E7%BB%93/</url>
-      <content type="html"><![CDATA[<p>快速学习的能力<br>定位错误，描述错误的能力<br>解决问题的能力<br>找到自己的阶段<br>致本以为能解决的需求。</p>
-<p>props是将顶层组件以属性的形式传递，获取里面的方法和变量。<br>如何将state保存到store中？<br>先通过props获取当前的参数，比如 counter<br>再将state的counter赋值给 counter<br>注意到两个counter不一样，一个是当前state里面的。</p>
-<p>今天总算完成了第一个需求。<br>其实是自己没看仔细。<br>只要第一个选择器选择后通过action修改 store，第二个组件获取store的数值就可以了。</p>
-<p>聊天室的毕业设计因为window的缘故启动失败。<br>另外，还需要配置一些参数。明天再看吧。</p>
-<p>改了很多BUG。熟悉了Ant组件。</p>
-<p>parseFloat的妙用。</p>
-<p>今天没做什么事情，但是react+redux反而渐渐忘了，要补上。</p>
-<p>2016.12.6日<br>今天也没做什么事情。开始感到一丝的不安。想到保安还要轮流值班，我的心感到颤动，年轻的时候一定要学更多的东西，让自己更聪明，学会用脑子赚钱而不是纯粹的出卖自己的体力除非迫不得已。</p>
-<p>我也不知道为什么坐在空调房里办公的是我，而在外守夜班的却是他们，只有不断赶超别人，才算赶超自己。</p>
-<p>实现都快3周了，结果还没有正式的写过一个功能组件。要谈这三星期的收获。我居然说不出来。唯独可能比较有收获的就是git的使用吧。亲身体会了git的工作流，但是git pull 的流程个人还不是特别清楚。<br>我想最大的悲哀莫过于自己看起来很努力其实真的是在浪费时间吧。</p>
-<p>一开始可能对自己要求确实有点高了。还是得根据自己的真实需求出发学习啊。<br>所以还是得明确下规划：<br>每天必看的应该是react这本书，而不是JS权威指南，这个随时都可以翻翻，但是解决工作完成业务才是当务之急啊。<br>从明天开始，不管收获多少，都要写一点总结。要不然，你真的不知道日子是怎么过去的。</p>
-<p>2016/12/12<br>今天修改了之前遇到的BUG的一个UI。<br>设定其最大宽度和超出宽度时如何显示，css控制文字超出时省略号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">overflow: hidden;</div><div class="line">text-overflow:ellipsis; /*文字隐藏后添加省略号*/</div><div class="line">white-space: nowrap;</div></pre></td></tr></table></figure>
-<p>前端需要把握很多细节。</p>
-<p>晚上一定要早点睡。充分的休息~</p>
-<p>2016/12/16</p>
-<ol>
-<li>let  const 的应用场景</li>
-<li>传参为数组，项目。</li>
-</ol>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[权威指南读书每日计划一]]></title>
-      <url>https://zaynex.github.io/2016/11/22/%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E8%AF%BB%E4%B9%A6%E6%AF%8F%E6%97%A5%E8%AE%A1%E5%88%92%E4%B8%80/</url>
-      <content type="html"><![CDATA[<p>img中的src属性也会发起一次get请求。不过img无法实现完整的Ajax，因为其数据交换是单向的：客户端能发送数据到服务器，但服务器的响应一直是图片导致客户端无法轻易从中获取除图片以外的其他信息。</p>
-<p>iframe：服务器创建一个包含响应内容的HTML文档，并且返回给浏览器，并在iframe中显示它。</p>
-<p>今天花了很多时间学webpack，有点得不偿失。明天做了react的todolist以及极客学院的文档就开始学新的东西。</p>
-<p>在路上的时间安排：<br>早晨：以听为主。<br>中午午休：看一会权威指南。<br>晚上回去：看电子书或者听课（根据自己的状态来）</p>
-<p>for in 只能遍历可枚举的属性，但包括通过原型上继承的属性。（JS语言核心所定义的内置方法就是不可枚举的，比如 toString ）。在ES5中也可以手动设置一个属性是否可枚举。</p>
-<p>枚举属性的顺序</p>
-<ol>
-<li>按照属性定义的先后顺序来枚举简单对象的属性</li>
-<li>如果是对象直接量，则按照对象直接量中属性出现的顺序来枚举。</li>
-</ol>
-<p>访问一个不存在的属性会返回 undefined<br>但是访问一个不存在的对象的属性就会 报错。<br>最佳方案是采用 &amp;&amp; 操作符<br>比如：<br>var len = undefined;<br>if(book) {<br>    if(book.subtitle) len = book.subtitle.length;<br>}</p>
-<p>var len = book &amp;&amp; book.subtitle &amp;&amp; book.subtitle.length</p>
-<p>delete只能删除自身属性，无法删除继承的属性，若要删除继承属性，则只能从定义原型对象上删除它。<br>其实delete只是断开了属性和宿主对象的联系，而不会去操作属性中的属性。</p>
-<p>a = {p:{x:1}};<br>b = a.p;<br>delete a.p;<br>//a.p访问无效，<br>//但是b.x = 1</p>
-<p>delete不可删除那些可配置性为false的属性（但可以删除不可拓展对象的可配置属性）</p>
-<p>var random = {<br>    get octet() {return Math.floor(Math.random()<em> 256)},<br>    get uint16() {return Math.floor(Math.random() </em> 65535)}<br>}</p>
-<p>var serialnum = {<br>    $n: 0,<br>    get next() {<br>        return this.$n++;<br>    },<br>    get next(n) {<br>        if(n &gt;= this.$n) this.$n = n;<br>        else throw “不能比当前序列小”<br>    }<br>}</p>
-<p>如果对象是不可拓展的，则可以编辑已有的自身属性，但不能添加新属性<br>如果属性是不可配置的，则不能修改它的可配置性和可枚举性<br>如果存取器属性是不可配置的，则不能修改其getter和setter方法，也不能将其转为数据属性<br>如果数据属性是不可配置的，则不能转为存取器属性</p>
 ]]></content>
     </entry>
     
