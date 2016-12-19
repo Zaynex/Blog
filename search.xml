@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[日记1219]]></title>
+      <url>https://zaynex.github.io/2016/12/19/%E6%97%A5%E8%AE%B01219/</url>
+      <content type="html"><![CDATA[<p>今天遇到的问题：<br>传入到后台的参数为数组时，他们需要接受的是int 类型的数组。<br>但是我是由字符串类型，所以需要遍历每个值转换成number类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;];</div><div class="line">a.map((v) =&gt; parseInt(v, 10))</div></pre></td></tr></table></figure></p>
+<p>另外，我还会取到为空字符串的数组。如果空字符串时设为数值0。<br>结果当时判断的方式时<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(b == undefined) &#123;</div><div class="line">    b = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里就是自己不仔细导致的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined == &quot;&quot; ;// false</div></pre></td></tr></table></figure></p>
+<p>空字符串到底等于什么？那就用空字符串去判断好了啊。。。</p>
+<p>undefined 一般只是全局对象的一个属性。<br>当为大写时表示一种数据类型，小写的表示是属于这种数据类型的唯一的一个值。<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a;</div></pre></td></tr></table></figure></p>
+<p>a作为window对象的属性，所以为undefined。</p>
+<blockquote>
+<p>一个未初始化的变量的值为undefined,一个没有传入实参的形参变量的值为undefined,如果一个函数什么都不返回,则该函数默认返回undefined.</p>
+</blockquote>
+<p>所以空字符串跟 undefined 是不一样的概念。<br>你用 typeof 就会发现 一个是 字符串类型 一个是  undefined</p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>node很多异步操作的API第二个参数会是回调函数，而这个回调函数的第一个参数是error是可以书写可控制的代码。但是需要用上 try() {} catch(e) {}<br>在 try() 里面进行回调函数，为可以让报错信息更直观的显示出来。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[实习一周小结]]></title>
       <url>https://zaynex.github.io/2016/11/28/%E5%AE%9E%E4%B9%A0%E4%B8%80%E5%91%A8%E5%B0%8F%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>快速学习的能力<br>定位错误，描述错误的能力<br>解决问题的能力<br>找到自己的阶段<br>致本以为能解决的需求。</p>

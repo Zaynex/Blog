@@ -291,6 +291,117 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/19/日记1219/" itemprop="url">
+                  日记1219
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T23:30:58+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/19/日记1219/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/日记1219/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今天遇到的问题：<br>传入到后台的参数为数组时，他们需要接受的是int 类型的数组。<br>但是我是由字符串类型，所以需要遍历每个值转换成number类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;];</div><div class="line">a.map((v) =&gt; parseInt(v, 10))</div></pre></td></tr></table></figure></p>
+<p>另外，我还会取到为空字符串的数组。如果空字符串时设为数值0。<br>结果当时判断的方式时<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(b == undefined) &#123;</div><div class="line">    b = 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里就是自己不仔细导致的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">undefined == &quot;&quot; ;// false</div></pre></td></tr></table></figure></p>
+<p>空字符串到底等于什么？那就用空字符串去判断好了啊。。。</p>
+<p>undefined 一般只是全局对象的一个属性。<br>当为大写时表示一种数据类型，小写的表示是属于这种数据类型的唯一的一个值。<br>比如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var a;</div></pre></td></tr></table></figure></p>
+<p>a作为window对象的属性，所以为undefined。</p>
+<blockquote>
+<p>一个未初始化的变量的值为undefined,一个没有传入实参的形参变量的值为undefined,如果一个函数什么都不返回,则该函数默认返回undefined.</p>
+</blockquote>
+<p>所以空字符串跟 undefined 是不一样的概念。<br>你用 typeof 就会发现 一个是 字符串类型 一个是  undefined</p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>node很多异步操作的API第二个参数会是回调函数，而这个回调函数的第一个参数是error是可以书写可控制的代码。但是需要用上 try() {} catch(e) {}<br>在 try() 里面进行回调函数，为可以让报错信息更直观的显示出来。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/28/实习一周小结/" itemprop="url">
                   实习一周小结
                 </a>
@@ -1696,125 +1807,11 @@ svg
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/11/图片异步加载/" itemprop="url">
-                  图片加载的策略
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T20:58:59+08:00" content="2016-10-11">
-              2016-10-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/11/图片异步加载/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/图片异步加载/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>懒加载：延迟加载图片或符合某些条件时才加载某些图片。<br>预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。<br>两种技术的本质：两者的行为是相反的，一个是提前加载，一个是迟缓甚至不加载。懒加载对服务器前端有一定的缓解压力作用，预加载则会增加服务器前端压力。</p>
-<h3 id="懒加载（延迟加载）"><a href="#懒加载（延迟加载）" class="headerlink" title="懒加载（延迟加载）"></a>懒加载（延迟加载）</h3><p>页面打开时候，只加载第一屏数据，第二屏以上都用延迟加载，滚动的时候进行加载（如瀑布流）。这样可以显著提高页面加载速度，且更小的并发请求也可以减轻服务器的压力，而且如果用户只浏览首屏的话，还可以节省流量（手机客户端应该用的比较多，减少用户流量）。</p>
-<p>比如你看到的一些图片是有圈圈在转，一开始图片的src加载的时候是转转的圈圈（可能也就1K左右），然后根据用户的具体行为再进行图片的延迟加载。</p>
-<h3 id="预加载"><a href="#预加载" class="headerlink" title="预加载"></a>预加载</h3><p>预加载：提前加载图片，当用户需要查看时可直接从本地缓存中渲染。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function loadImage(url, callback)&#123;</div><div class="line">    var img = new Image();</div><div class="line">    img.src = url;</div><div class="line"></div><div class="line">    if(img.complete) &#123;//判断图片加载状态，兼容IE6。</div><div class="line">        //如果图片已经存在浏览器中，直接调用回调函数</div><div class="line">        callback.call(img);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    img.onload = function()&#123;</div><div class="line">        img.onload = null;</div><div class="line">        callback.call(img);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;http://img3.douban.com/lpic/s24418088.jpg&quot; alt=&quot;&quot; id=&quot;img&quot;&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        window.onload = function()&#123;</div><div class="line">            var img = new Image();</div><div class="line">            img.onload = function()&#123;</div><div class="line">                alert(&quot;加载完全&quot;);</div><div class="line">            &#125;</div><div class="line">            img.src = &quot;http://www.2cto.com/uploadfile/Collfiles/20141017/2014101709072456.png&quot;;</div><div class="line">            </div><div class="line">            var img = document.getElementById(&quot;img&quot;);</div><div class="line">            img.onmouseover = function()&#123;</div><div class="line">                img.src = &quot;http://www.2cto.com/uploadfile/Collfiles/20141017/2014101709072456.png&quot;;</div><div class="line">            &#125;;</div><div class="line">            img.onmouseout = function()&#123;</div><div class="line">                img.src= &quot;http://img3.douban.com/lpic/s24418088.jpg&quot;;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &lt;/script&gt;</div></pre></td></tr></table></figure>
-<h3 id="国外网站的流行加载方式"><a href="#国外网站的流行加载方式" class="headerlink" title="国外网站的流行加载方式"></a>国外网站的流行加载方式</h3><p>Pinterest\Google的图片加载方式是先加载出一个与原图片相同大小与相似背景的纯色<code>DIV</code>。（利用聚合算法求出相近的背景色）<br>然后再加载完整的图片。<img src="http://img1.vued.vanthink.cn/vued058f4fcad7f61f95e7682b64178511ef.png" alt="image"><br>详情查看<a href="">演示地址</a><br>我们称之为这种效果为Color Placeholder [色彩预置]，当图片加载的时候，我们优先显示其所在容器的背景颜色（如同很多会显示一个加载的gif），由于受限于不同的图片和大小，因此相比与齐刷刷的加载gif，不同色块体验可能更好吧(至少Pinterest Google这么认为吧)。</p>
-<p>medium的做法先加载一张缩略图，给缩略图添加滤镜效果，缩略图添加完成后再加载大图。这样就给用户一种平滑过渡的效果，效果非常赞（有种毛玻璃的感觉）。<br>原作者将代码放到了<a href="http://codepen.io/jmperez/pen/yYjPER" target="_blank" rel="external">codepen</a>上,而作者也适用了CSS的blur滤镜。（代码中的图片来源需要翻墙获得）<br>为了方便演示，我直接下载下来，可以通过<a href="">演示地址</a>去查看源代码。</p>
-<p>这样做的好处是：</p>
-<ul>
-<li>延迟加载：使用JS控制图片加载可以自由的控制什么样的图片去完成加载，当所有的小图完成加载后，JS可以实现加载在所在可视区域的大图完成渲染。</li>
-<li>更好内容预置：那些缩略图很小，几乎2kb左右，再加模糊效果，这样的效果会比单纯的底色好很多。</li>
-<li>定制图片大小：Medium定制了很多不同的图片，根据用户的不同设备，从而展示出不一样大小的图片。</li>
-</ul>
-<p><a href="http://www.cnblogs.com/tugenhua0707/p/3515292.html" target="_blank" rel="external">JS图片延迟加载分析及简单的demo</a><br><a href="http://www.cnblogs.com/Leo_wl/p/3526254.html" target="_blank" rel="external">javascript图片懒加载与预加载的分析</a><br><a href="http://www.jackpu.com/shi-xian-lei-si-pinterest-de-tu-pian-yu-jia-zai-gong-neng/" target="_blank" rel="external">实现类似Pinterest 的图片预加载功能</a><br><a href="http://www.jackpu.com/medium-shi-ru-he-zuo-tu-pian-jia-zai-de/" target="_blank" rel="external">[译]Medium 是如何优化图片加载的</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1855,7 +1852,7 @@ svg
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">80</span>
+              <span class="site-state-item-count">81</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
