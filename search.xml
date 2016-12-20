@@ -4,6 +4,28 @@
   
     
     <entry>
+      <title><![CDATA[日记1220]]></title>
+      <url>https://zaynex.github.io/2016/12/20/%E6%97%A5%E8%AE%B01220/</url>
+      <content type="html"><![CDATA[<p>lodash 中 compact 可以去除为假的值。比如 false、””、undefined、null、 NAN 。</p>
+<p>forEach循环时对每一项执行回调函数，那些已经被删除或者从未被赋值的项将会被跳过。（但不包括为undefined）的值。</p>
+<blockquote>
+<p>没有办法中止或者跳出 forEach 循环，除了抛出一个异常。如果你需要这样，使用forEach()方法是错误的，你可以用一个简单的循环作为替代。如果您正在测试一个数组里的元素是否符合某条件，且需要返回一个布尔值，那么可使用 Array.every 或 Array.some。</p>
+</blockquote>
+<p>Array.prototype.indexOf，用于确定指定的数出现的位置。<br>还有一个是String.prototype.indexOf，效果是一样的。</p>
+<p>组件间通信<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">event.trigger(<span class="string">"eat"</span>, &#123;</div><div class="line">    <span class="comment">//..这里就是你要传或者设置的参数</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">event.on(<span class="string">"eat"</span>, callback);</div></pre></td></tr></table></figure></p>
+<p>监听事件后第二个参数的回调函数里就会得到你的触发时的数据。这就是react组件间的通信。</p>
+<p>buffer<br>表示固定分配内存的全局对象。类似于八位字节组成的数组。<br>可以对数据进行编码转换。</p>
+<p>process.argv<br>因为这个参数值包含了两个值，所以要获取真正的参数就必须要 process.argv.slice(2)</p>
+<p>__dirname 代表的是获取执行文件时该文件在文件系统中的所在目录。<br>获取当前工作目录， process.cws<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> stream = fs.createReadStream(<span class="string">'emit.js'</span>)</div><div class="line">stream.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>)</span>&#123;</div><div class="line">    <span class="comment">//处理部分内容</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">stream.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">chunk</span>)</span>&#123;</div><div class="line">    <span class="comment">//文件读取完毕</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>读取部分数据后处理部分数据，不会有太长时间的延迟。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</div><div class="line">files = fs.readdirSync(process.cwd());</div><div class="line">files.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>))</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/\.css/</span>.test(file)&#123;</div><div class="line">        fs.watchFile(process.cwd() + <span class="string">"/"</span> +file, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            conosole.log(<span class="string">"监视文件改动"</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>TCP面向链接通信。<br>TCP的主要作用，因为IP是基于数据报的传输，而数据报是独立传输，传输顺序也是无序的。当在TCP链接在内进行数据传递时，发送的IP数据会被标识该链接以及数据流顺序的信息。</p>
+<p>TCP是基于确认和超时重传来实现可靠性。</p>
+<p>转眼一个月了。如果谈到自己的收获，觉得自己在大学基本的能力还不够。<br>哎，如果再重来一次。就发现，最重要的还是思维，还不是具体的技术，如果你解决问题，分析问题的能力很强，学习能力也很强，到了社会才是真正的精英啊。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[日记1219]]></title>
       <url>https://zaynex.github.io/2016/12/19/%E6%97%A5%E8%AE%B01219/</url>
       <content type="html"><![CDATA[<p>今天遇到的问题：<br>传入到后台的参数为数组时，他们需要接受的是int 类型的数组。<br>但是我是由字符串类型，所以需要遍历每个值转换成number类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;];</div><div class="line">a.map((v) =&gt; parseInt(v, 10))</div></pre></td></tr></table></figure></p>
