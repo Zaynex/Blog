@@ -1,10 +1,5 @@
-## 注意
-[原站点](https://zaynex.github.io)不再维护，以前写的大多数都是摘抄性质的，主要参考内容就是《JavaScript高级程序设计》第三版。
+推荐的学习资源(官网文档除外)
 
-以后博客将会迁移到Issue
-
-## 关于我
-- 2016.07 从网易游戏（运营实习生）辞职自学前端
-- 2016.11 - 2017.03 滴滴出行（大数据平台）（对不起我的mentor,需求做到一半就先溜了）
-- 2017.03 - 2017.06 网易（有道事业部）（转正答辩，技术总监以表达能力欠缺的问题拒绝了我）
-- 2017.08 - 至今 [MockingBot](https://modao.cc)
+### Promise
+- [q.js-Promise库的设计思路](q.js-Promise库的设计思路)
+- [q: how promises work](https://github.com/kriskowal/q/tree/master/design)
