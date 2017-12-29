@@ -1,13 +1,22 @@
 ## 介绍
-本文主要是为了学习最近比较热门的`advanced-react-pattern`，希望借助该项目，学习一些比较使用的 React 方法，让项目精简易读。
+本文主要是为了学习最近比较热门的`advanced-react-pattern`，希望借助该项目，学习一些比较实用的 React 写法，优化自己的业务逻辑。
 
 ## 工具
 1. http-server
 2. React-dev-tool
 
 
-http-server 可以帮助我们在本地快速启动server，可以理解为静态资源服务器。
-React-dev-tool 便于我们在浏览器中查看React的结构，追踪React 数据变更。
+- http-server: 可以帮助我们在本地快速启动一个server,默认端口号是 8080，可以理解为静态资源服务器。(这只是个备选项)
+- react-dev-tool: 便于我们在浏览器中查看React的数据结构以及调试。
+
+步骤:
+```
+git clone https://github.com/kentcdodds/advanced-react-patterns
+cd advanced-react-patterns
+http-server ./
+```
+
+不过这个项目不开server也可以直接打开本地文件。
 
 
 ## 第一篇
@@ -22,7 +31,7 @@ function App() {
 }
 ```
 
-2. `defaultProps` 和 `propTypes` 推荐写在组件顶层结构。（不过有些情况下，会把定义的 propTypes 存放到指定的定义文件里）
+2. `defaultProps` 和 `propTypes` 推荐写在组件顶层结构。（不过有些做法是把定义的 propTypes 存放到指定的定义文件里（只用来定义数据结构））
 
 ```
 class Toggle extends React.Component {
@@ -53,22 +62,29 @@ constructor(props) {
 }
 ```
 
-3. this.setState 的参数
+3. 正确设置 State
+在 React 的 State 变更策略中，setState()并不会立即更新组件，而是可能会延迟，进行批处理一次性更新。
+
 this.setState 除了可以传入对象来更改 state 以外，还可以传入函数。具体的使用请参照官方文档，简单介绍如下
 ```
-this.setState( (prevState) => { /* setState */},  () => {/*在this.setState 渲染新的 state后，这个回调函数便会调用*/})
+this.setState(updater, [callback])
 ```
-第一个回调函数的好处是当我们想要基于当前 state 修改下一个 state 时，可以通过第一个回调函数的参数确保你拿到的是当前的state。
+
+`updater` 函数签名如下
+```
+(prevState, props) => stateChange
+```
+
+updater函数的的好处是当我们想要基于当前 state 修改下一个 state 时，可以通过第一个回调函数的参数确保你拿到的是原先的state。
+
+第二个 callback 表示当 setState() 执行完成之后并且组件被重新渲染之后调用。
+不过在官方文档中，这类逻辑推荐在 `componentDidUpdate` 中使用。
 
 
-
-
-
-
-
-
-
-
+### 参考资料
+1. https://reactjs.org/docs/react-component.html#setstate
+2. https://doc.react-china.org/docs/react-component.html#setstate
+3. https://github.com/kentcdodds/advanced-react-patterns
 
 
 
