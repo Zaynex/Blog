@@ -2,10 +2,6 @@
 本文主要是为了学习最近比较热门的`advanced-react-pattern`，希望借助该项目，学习一些比较实用的 React 写法，优化代码结构。
 
 ## 工具
-1. http-server
-2. React-dev-tool
-
-
 - http-server: 可以帮助我们在本地快速启动一个server,默认端口号是 8080，可以理解为静态资源服务器。(这只是个备选项)
 - react-dev-tool: 便于我们在浏览器中查看React的数据结构以及调试。
 
@@ -84,7 +80,7 @@ updater函数的的好处是当我们想要基于当前 state 修改下一个 st
 不过在官方文档中，这类逻辑推荐在 `componentDidUpdate` 中使用。
 
 ### 结语
-只要数据(props/state)变更 React 就会触发 Re-render。因此 React 会尽量让数据批处理只要更新一次即可。在使用 state 时你也无需担心会多次 re-render。React 帮我们做了进一步优化。如果想基于当前 state 修改下一个状态时，尽量使用 setState 中第一个回调函数可以确保你获得的是当前的 state。
+只要数据(props/state)变更 React 就会触发 re-render。因此 React 会尽量让数据批处理只要更新一次以提高性能。在使用 state 时你也无需担心会多次 re-render。React 帮我们做了进一步优化。如果想基于当前 state 修改下一个状态时，尽量使用 setState 中第一个回调函数可以确保你获得的是当前的 state。
 
 ### 参考资料
 1. https://reactjs.org/docs/react-component.html#setstate
