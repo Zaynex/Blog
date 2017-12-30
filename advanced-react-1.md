@@ -1,5 +1,5 @@
-## 介绍
-本文主要是为了学习最近比较热门的`advanced-react-pattern`，希望借助该项目，学习一些比较实用的 React 写法，优化自己的业务逻辑。
+## Advanced-react-pattern-1
+本文主要是为了学习最近比较热门的`advanced-react-pattern`，希望借助该项目，学习一些比较实用的 React 写法，优化代码结构。
 
 ## 工具
 1. http-server
@@ -16,11 +16,11 @@ cd advanced-react-patterns
 http-server ./
 ```
 
-不过这个项目不开server也可以直接打开本地文件。
+不过这个项目可以不用server,直接打开即可。
 
 
 ## 第一篇
-1. 如果只是纯UI渲染并且是无状态的组件，可以直接采用 function 创建组件类。
+1. 如果只是纯UI渲染并且是无状态的组件，可以直接采用纯函数创建组件类。
 ```
 function App() {
   return (
@@ -31,7 +31,9 @@ function App() {
 }
 ```
 
-2. `defaultProps` 和 `propTypes` 推荐写在组件顶层结构。（不过有些做法是把定义的 propTypes 存放到指定的定义文件里（只用来定义数据结构））
+
+### 初始化数据放在首部声明
+`defaultProps` 和 `propTypes` 推荐写在组件顶层结构。不过有些做法是把定义的 propTypes 存放到指定的定义文件里（只用来定义数据结构）
 
 ```
 class Toggle extends React.Component {
@@ -57,12 +59,13 @@ class Toggle extends React.Component {
 关于组件中方法的定义位置，如果数据比较少的情况下，可以完全不用定义 constructor。但是当数据略有些复杂的时候，也可以把一些初始化的数据放在 constructor 里定义。 例如：
 ```
 constructor(props) {
-	super(props)
-	this.state = {on: false}
+  super(props)
+  this.state = {on: false}
 }
 ```
 
-3. 正确设置 State
+
+### 正确 setState
 在 React 的 State 变更策略中，setState()并不会立即更新组件，而是可能会延迟，进行批处理一次性更新。
 
 this.setState 除了可以传入对象来更改 state 以外，还可以传入函数。具体的使用请参照官方文档，简单介绍如下
@@ -80,6 +83,8 @@ updater函数的的好处是当我们想要基于当前 state 修改下一个 st
 第二个 callback 表示当 setState() 执行完成之后并且组件被重新渲染之后调用。
 不过在官方文档中，这类逻辑推荐在 `componentDidUpdate` 中使用。
 
+### 结语
+只要数据(props/state)变更 React 就会触发 Re-render。因此 React 会尽量让数据批处理只要更新一次即可。在使用 state 时你也无需担心会多次 re-render。React 帮我们做了进一步优化。如果想基于当前 state 修改下一个状态时，尽量使用 setState 中第一个回调函数可以确保你获得的是当前的 state。
 
 ### 参考资料
 1. https://reactjs.org/docs/react-component.html#setstate
