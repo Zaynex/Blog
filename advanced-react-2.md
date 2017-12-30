@@ -52,7 +52,7 @@ class Toggle extends React.Component {
 }
 
 ```
-在实际 debug 的时候组件渲染民时最终还是被替换成 <ToggleOn> 以及 <ToggleOff>。
+在实际 debug 的时候组件渲染民时最终还是被替换成 `<ToggleOn>` 以及 `<ToggleOff>`。
 
 static 是 ES6 中 Class 定义静态方法的关键字。静态方法的好处是在基于类创建新的实例时，新的实例是不会继承静态方法的。（简单来说，不是在原型链上定义的，而是直接挂载在这个类的属性中）
 
@@ -74,7 +74,7 @@ function ToggleButton({on, toggle, ...props}) {
 通过 Static 关联组件，是有原因的。
 
 ### 使用 React.cloneElement 减少子组件相同props传递
-在 <Toggle.On> 等类似的组件中，我们发现 render 中并没有直接传入 props ，而ToggleOn 组件就是接受了props，第一个对象为 on, 第二个则是包裹的 children。
+在 `<Toggle.On>` 等类似的组件中，我们发现 render 中并没有直接传入 props ，而 ToggleOn 组件就是接受了props，第一个对象为 on, 第二个则是包裹的 children。
 
 代码产生的实际效果应该是这样的。
 ```
@@ -115,8 +115,8 @@ React.cloneElement(
 
 由于 `this.props.chidlren` 的数据类型是不确定的，可能是个 Object，也可能是 Array.官方文档推荐使用 React.Chidlren 为 children 提供特定的数据操作。
 
-### 很有可能编写的代码结构
-如果是我自己写的话，很有可能是以下结构，并且我相信大部分人一上来也是先写了这段代码。
+### 新手很有可能编写的代码结构
+如果是我自己写的话，基本就是以下结构，并且我相信大部分人一上来也是先写了这段代码，后面再开始优化。
 ```
 class Toggle extends React.Component {
   static defaultProps = {onToggle: () => {}}
@@ -144,7 +144,7 @@ function App() {
 }
 
 ```
-我们再对比下，你就会发现，通过 cloneElemnt 确实可以让我们的结构更加清晰。 而且，还可以少一个包裹的 div 标签。虽然在 React16.2中出现了 `<><>` 的Fragment 表示方法可以避免此类问题，但是假设如果还有类似的10个组件需要接受相同的 props，我们要写10遍 `on={on}`,我们应该尽量避免重复代码。
+我们再对比下就会发现，通过 cloneElemnt 确实可以让我们的结构更加清晰。 而且，还可以少一个包裹的 div 标签。虽然在 React16.2中出现了 `<><>` 的Fragment 表示可以避免此类问题，但是假设如果还有类似的10个组件需要接受相同的 props，我们要写10遍 `on={on}`,我们应该减少重复劳动。
 
 ### 分析
 如果有批量的子组件需要传递相同的props,那么使用 cloneElemnt 再好不过了。但需要注意的是，这也会给子组件传递一些不必要的数据。比如在这里的 demo 中，ToggleOn 和 ToggleOff 只需要接受 on/off 的props 即可，传入的 toggle 方法是冗余的。我们假设它又接受了与自身所需数据无关的 其他 props, 而该 props 又频繁变更，那么每一次都会得到这些 props 的组件都会 re-render 的可能。
