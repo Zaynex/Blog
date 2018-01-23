@@ -6,10 +6,10 @@ Redux 中的 connect 就是高阶组件。它接受一个组件，并返回一�
 
 ### 提取 context 传递逻辑
 
-我们会发现 ToggleOn, ToggleOff 和 ToggleButton 这几个组件全是依赖 context的。能不能有一个专门将 context 转换为 props，这样结构就会清晰很多。这是高阶组件擅长的事。
+我们会发现 ToggleOn, ToggleOff 和 ToggleButton 这几个组件全是依赖 context的。能不能有一个专门将 context 转换为 props，这样传入参数的数据结构会清晰很多。
 
 ### 高阶组件
-我们创建一个函数，可以理解为这是一个类工厂。它接受一个组件作为参数，这个函数返回一个新函数（Wrapper,其实就是一个纯函数的组件，它的职责就是将原有组件接受的数据重组，并返回新的组件），新函数接受 props 和 context。并且将 context 当做 props 一并传入到新返回的组件中。
+我们创建一个函数，它接受一个组件作为参数，这个函数返回一个新组件（Wrapper,其实就是一个纯函数组件，它的职责就是将原有组件接受的数据重组，并返回新的组件），新组件接收 props 和 context 作为参数。并且将两者统一作为传入组件的props。
 ```
 function WithToogle(Component) {
 	function Wrapper(props, context) {
@@ -24,7 +24,6 @@ function WithToogle(Component) {
 ```
 注意，我们仍需定义 contextTypes，否则 context 的数据为空对象，这个在上一节已有介绍。
 
-`...` 是ES6中的析构运算符，对于props 数据较多时，你想懒省事也可以这么写传给组件。
 
 ### 应用高阶组件
 ```
@@ -39,7 +38,7 @@ class ToggleOnWithClass extends React.Component {
   }
 }
 const ToggleOn = withToggle(ToggleOnWithClass)
-// 以上两者的区别是前者的组件名称由于是匿名函数，在debug时显示的是 <Unknown>,而后者则显示 <ToggleOnWithClass>
+// 以上两者的区别是前者的组件名称由于是匿名函数，在debug时显示的是 <Unknown>,而后者则显示 <ToggleOnWithClass>下节将继续介绍名称
 const ToggleOff = withToggle(({children, on}) => {
   return on ? null : children
 })
@@ -52,7 +51,7 @@ function ToggleOn({children}, context) {
   return on ? children : null
 }
 ```
-我们发现 context 传递的那部分逻辑已经交给 withToggle 里的 Wrapper 组件去处理了，这使得组件结构又精简了许多。
+我们发现 context 传递的那部分逻辑已经交给 withToggle 里的 Wrapper 组件去处理了，这使得组件结构精简了些。
 
 假如我们想新创建一个组件，这个组件的所有交互和原来的组件一样，我们可以借助高阶组件快速生成。
 ```
@@ -66,7 +65,7 @@ const MyToggle = withToggle(({on ,toggle}) => {
 
 
 ### 小结
-高阶组件本质就是创建一个新组件，这个组件的职责就是将一系列相似的操作抽象成相同的逻辑统一处理。
+高阶组件本质就是创建一个新的包裹组件，该组件的职责是将一系列相似的操作抽象成的逻辑统一处理，最后 render 传入的组件。
 
 ### 参考资料
 1. https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076
