@@ -1,3 +1,4 @@
+
 ## React 编写规范 
 这是本人在 墨刀 工作时编写 React 时的一些心得。
 
@@ -60,7 +61,16 @@ const needProps = handleArrayFromCached(...some props)
 ```
 
 
+### 当函数传入的数据较多时建议使用 object 形式
+```
+const fun1 = (age, name, family, address, sex, country) => {
+  // handle
+}
 
+const func(obj) => {
+  const {age, name, family, address, sex, country} = obj
+}
+```
 
 
 
