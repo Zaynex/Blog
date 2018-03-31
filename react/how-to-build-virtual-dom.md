@@ -118,8 +118,22 @@ function h(name, attributes) {
 #### key 的真实作用
 
 key 值不是当前自身节点所有状态的一个特殊标记，它存在的意义是对于其他兄弟节点，相对其他同级元素的一个特殊标识，
-比如排序/插入节点/移除节点，通过key可以起到标志作用以提高 diff 算法。
+比如我们有一个学生名单列表，初始时是按照学号排序，当我们按照考试成绩排序的时候，其实所有节点都还是和原来一样，只是位序发生变化
 
+```
+<ClassList>
+  <Stu key="2015" id="2015" point="2015">Duke</Stu>
+  <Stu key="2016" id="2016" point="2016">Villanova</Stu>
+</ClassList>
+
+//new tree
+<ClassList>
+  <Stu key="2016" id="2016" point="2016">Villanova</Stu>
+  <Stu key="2015" id="2015" point="2015">Duke</Stu>
+</ClassList>
+```
+
+此时通过 key起到标志作用以提高 diff 算法（通过key快速定位来插入节点/移除节点等操作)。
 
 ```js
 function patch(parent, element, oldNode, node) {
