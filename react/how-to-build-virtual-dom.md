@@ -114,6 +114,13 @@ function h(name, attributes) {
 3. 只是为文本节点？
 4. 节点名称一致，只需 updateElement 以及继续 patch 子代节点
 
+
+#### key 的真实作用
+
+key 值不是当前自身节点所有状态的一个特殊标记，它存在的意义是对于其他兄弟节点，相对其他同级元素的一个特殊标识，
+比如排序/插入节点/移除节点，通过key可以起到标志作用以提高 diff 算法。
+
+
 ```js
 function patch(parent, element, oldNode, node) {
   if(oldNode === newNode) {
