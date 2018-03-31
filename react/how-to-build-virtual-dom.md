@@ -207,6 +207,15 @@ function patch(parent, element, oldNode, node) {
       // 如果遍历的第一个oldNode 的 key 在 newKeyed集合中存在
       // 我们将i++
       // 第一次进来的时候肯定不会到这 怎么解释？
+
+      /**
+       * 要理解这段代码就得先看 newKeyed 是在哪里添加对象的
+       * 先往下看，回头之后会发现 newKeyd 存放的其实就是新 key
+       * 再下一次循环中我们发现 这个 key 又出现了，我们果断忽略掉
+       * key 应该是唯一的！哪怕可能用户之前赋值多了相同的key。
+       * 所以这样就能确保多个相同的key 的 dom，但只有一个能正确 patch
+       * 这也是为什么有时候在 React 中多个组件相同的key,但只会显示一个组件的缘故
+       */
       if(newKeyed[oldKey]) {
         i++
         continue
@@ -246,7 +255,7 @@ function patch(parent, element, oldNode, node) {
         }
 
         // 新 key 里面存一份
-        newKey[newKey] = children[k]
+        newKeyed[newKey] = children[k]
         k++
       }
     }
