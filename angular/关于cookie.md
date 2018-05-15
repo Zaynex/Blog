@@ -9,7 +9,9 @@
 
 ## Cookie概貌
 首先我们看下 Cookie 长啥样。
-我们看到左侧有个 Cookies。每个站点下面都有一个独立的 Cookie。书上说每个站点的 Cookie 存储空间不超过`5KB`.
+![cookie](https://github.com/Zaynex/Blog/blob/master/angular/snapshot/cookie.png?raw=true)
+
+我们看到左侧有个 Cookies。每个站点下面都有一个独立的 Cookie。书上说每个站点的 Cookie 存储空间不超过`4KB`。
 图片中心区域就是存储的Cookie。可见 Cookie 有
 - name
 - value
@@ -31,7 +33,9 @@ HttpOnly 表示该 Cookie 无法在客户端被获取，只能发送给客户端
 * 所以 document.cookie 是获取不到全部的 Cookie 的。这是避免脚本被 XSS 攻击。
 
 ### 创建Cookie
-我们使用 document.cookie 就可以拿到 Cookie ，也可以设置 Cookie . (是不是让你联想到了 getter/setter)
+我们使用 document.cookie 就可以拿到 Cookie ，也可以设置 Cookie 。
+![document cookie](https://github.com/Zaynex/Blog/blob/master/angular/snapshot/documetcookie.png?raw=true)
+
 比较有意思的是手动设置 Cookie 时并不会清除站点所有的 Cookie.
 ```
 document.cookie = 'setcookiehh=yes'
@@ -58,4 +62,3 @@ function parseCookieValue(cookieStr, name) {
 ### 结语
 似乎写的这些东西文档里都有，无非是看到了这个 Angular 里面写的这个 Cookie 方法。以后能直接用的方法都可以提出来，自己就可以撸一个库了。
 推荐阅读 -[HTTP cookies](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)
-
