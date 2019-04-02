@@ -13,7 +13,7 @@
 
 这里有一种场景。你必须要显示用户当前鼠标点击的位置。
 
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/1.png
+![demo](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/1.png)
 
 **然而这里有一些地方恶心到了我：**
 
@@ -25,7 +25,7 @@ https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/1.png
 ### Mixins
 
 Mixins 遭到了很多批评。他们把生命周期的hooks 聚集在一起去描述一种 副作用。
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/2.png
+![mixin](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/2.png)
 
 虽然封装逻辑的思想很棒，但我们最终还是从 mixin 中吸取了一些教训。
 
@@ -39,7 +39,7 @@ https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/2.png
 
 我们可以实现类似的效果，通过创建一个 `container` 来传递这些 `props` 使它变得不那么神奇。继承的主要代价就是增加了重构的难度，因此我们需要尝试 `composition`（组合）
 
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/3.png
+![high](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/3.png)
 
 当这样的代码越多，我们也越来越走向正确的道路。我们拥有所有 `mixins` 的优势。现在我们有 `<MouseRender>` 组件，它不再与 订阅的行为紧密耦合。
 
@@ -51,7 +51,7 @@ https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/3.png
 
 我们想要的是一个组件能够处理 mouse move 行为，并且有能力渲染任何我们想要的东西。
 
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/4.png
+![render](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/4.png)
 
 这些细微的差别带来一些很赞的好处
 
@@ -65,7 +65,7 @@ https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/4.png
 
 另外，它还造成了层级感的错觉。仅仅是因为组件在其他组件下嵌套并不意味着他们依赖父组件的行为。
 
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/5.png
+![nest](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/5.png)
 
 如果这里有一种方式能够拥有所有能力，并且是通过扁平化的方式就好了！
 
@@ -73,7 +73,7 @@ https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/5.png
 
 如果我们想要移除嵌套，并且把副作用都移到了顶部该怎么办？这样我们JSX 中唯一的render function 就是纯的渲染逻辑。
 
-https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/6.png
+![hook](https://github.com/zaynex/blog/raw/master/react/2019-04-02/assets/6.png)
 
 这就是我想要的。
 
