@@ -27,7 +27,7 @@ Domain 表示的是哪些主机可以接受 Cookie. path 表示指定主机下�
 
 Expire/Max-age 表示 Cookie 过期的时间和有效期。注意当设定了 Expire 之后，过期时间是以客户端的时间为准的。
 
-Secure 表明该Cookie 只能通过HTTPS协议的请求发送到客户端。从 Chrome 52 和 Firefox 52 开始，不安全的站点（http:）无法使用Cookie的 Secure 标记。
+Secure 表明该Cookie 只能通过HTTPS协议加密过的请求发送给服务端。从 Chrome 52 和 Firefox 52 开始，不安全的站点（http:）无法使用Cookie的 Secure 标记。
 
 HttpOnly 表示该 Cookie 无法在客户端被获取，只能发送给客户端。一些服务器的 Session 信息的 Cookie 不想被客户端 JS 脚本调用时，那么应该设置为 HttpOnly。
 * 所以 document.cookie 是获取不到全部的 Cookie 的。这是避免脚本被 XSS 攻击。
