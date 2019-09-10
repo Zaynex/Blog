@@ -1,15 +1,8 @@
-推荐的学习资源(官网文档除外)
+# 他山之石
 
+记录阅读过的不错的文章。
 
-### React
-- [Under-the-hood-ReactJS](https://github.com/Bogdan-Lyashenko/Under-the-hood-ReactJS)
-- [Should React use requestAnimationFrame by default](https://github.com/facebook/react/issues/11171#issuecomment-357945371)
-- [Simple React Patterns(Dealing With Side-Effects In React)](http://lucasmreis.github.io/blog/simple-react-patterns/?utm_source=mybridge&utm_medium=blog&utm_campaign=read_more)
-- [Mixins Considered Harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html])
+## 2019.09.08 - 2019.09.14
+- [React hooks: not magic, just arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
-### 中文资源
-- [Under-the-hood-ReactJS](https://github.com/xitu/Under-the-hood-ReactJS/blob/translation/README.md)
-
-### Promise
-- [q.js-Promise库的设计思路](q.js-Promise库的设计思路)
-- [q: how promises work](https://github.com/kriskowal/q/tree/master/design)
+读后感：所有 hooks 的内部原理其实是将所有的 hook 中的 值 和 setter function 分别存入到两个数组中，通过下标一一对应。

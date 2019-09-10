@@ -1,0 +1,28 @@
+# React Hooks 的原理其实很简单
+
+hooks 在官网上许多例子，使用起来也非常简单。
+但当项目写复杂了，或者引入了其他的 hooks 的时候，有时候就会产生一些奇奇怪怪的问题。
+
+
+首先，hooks 在官网上有两个重要的原则
+1. Don’t call Hooks inside loops, conditions, or nested functions（不要在 循环、判断、或嵌套函数中调用 hook）
+2. Only Call Hooks from React Functions. （只能在 React Function 中使用 Hooks）
+
+
+对于第一个原则，可能很多人会觉得疑惑，为什么 hooks 会有这样的限制？
+
+
+接下来，我们通过一个例子来演示下 hooks 是如何运行的。
+
+```
+function RenderFunctionCom() {
+	const [firstName, setFirstName] = useState("Rudi");
+  const [lastName, setLastName] = useState("Yardley");
+
+  return (
+    <Button onClick={() => setFirstName("Fred")}>Fred</Button>
+  );
+}
+```
+
+通过 hooks
