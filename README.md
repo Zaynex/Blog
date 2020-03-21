@@ -2,6 +2,19 @@
 
 记录阅读过的不错的文章。
 
+## 2020.03.21
+
+新增计划:
+
+1. 写一些关于思维导图布局 以及多种布局方式的实现， 业务中抽离出 svg 的绘制库。
+
+2. 基于 Electron 的直播客户端设计(包含通信的 sdk，crash 监控，信令同步的客户端实现以及数据持久化方案）
+
+3. canvas协同白板的设计
+
+4. 学习编译原理 
+
+
 ## 2019.09.08 - 2019.09.14
 - [React hooks: not magic, just arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
