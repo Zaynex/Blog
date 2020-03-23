@@ -2,6 +2,11 @@
 
 记录阅读过的不错的文章。
 
+## 2020.03.23
+- [Steps to Develop Global State for React With Hooks Without Context](https://blog.axlight.com/posts/steps-to-develop-global-state-for-react/)
+
+
+
 ## 2020.03.21
 
 新增计划:
