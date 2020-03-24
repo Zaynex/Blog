@@ -2,10 +2,16 @@
 
 记录阅读过的不错的文章。
 
+## 2020.03.24
+【AST】【Babel】
+- [Understanding ASTs by Building Your Own Babel Plugin](https://www.sitepoint.com/understanding-asts-building-babel-plugin/)
+ 
+关于 AST、Babel 插件，其实也没有那么深奥，后续可以按照作者的思路写一个类似 immer 的操作。
+
 ## 2020.03.23
 - [Steps to Develop Global State for React With Hooks Without Context](https://blog.axlight.com/posts/steps-to-develop-global-state-for-react/)
 
-
+不用 context 实现全局状态管理。可以少套用一层 Provider。
 
 ## 2020.03.21
 
