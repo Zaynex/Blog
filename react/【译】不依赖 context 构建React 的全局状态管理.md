@@ -1,15 +1,16 @@
 原文： [Steps to Develop Global State for React With Hooks Without Context](https://blog.axlight.com/posts/steps-to-develop-global-state-for-react/)
 
-翻译：2020.03.25
+翻译：2020.03.26
+
 
 ## 介绍
-使用 React hooks 开发非常有意思。我已经开发了几个库。其中第一个库就是用于状态管理。 它是 "react-hooks-global-state"，名字确实有些长...
+使用 React hooks 开发非常有意思。我已经开发了几个库。其中第一个库就是用于状态管理。 它是 [react-hooks-global-state](https://github.com/dai-shi/react-hooks-global-state)，名字确实有些长...
 
 最初的版本发布是在2018年10月。现在我学到了很多，并且 v1.0.0 已经发布了。
 
 https://github.com/dai-shi/react-hooks-global-state
 
-这篇文章一步一步地展示了代码的简化版本。它有助于理解这库的目的，而实际的代码用 TypeScript 会稍微有点复杂。
+这篇文章一步一步地展示了代码的简化版本。它有助于理解该库的目的，而实际的代码用 TypeScript 会稍微有点复杂。
 
 ## 步骤一：Global variable
 ```js
@@ -75,7 +76,7 @@ const useGlobalState = () => {
 
 ## 步骤三：Container
 
-通常，全局变量会直接声明在文件中。 不过我们可以把它放到函数作用域里，使其有更好的复用性（此处用上闭包）。
+通常，全局变量会直接声明在文件中。 不过我们可以把它包裹在函数作用域里，使其有更好的复用性（此处用到闭包）。
 
 ```js
 const createContainer = (initialState) => {
@@ -107,16 +108,13 @@ const createContainer = (initialState) => {
 };
 ```
 
+## 步骤四：Scoped access
+虽然我们可以创建多个 containers，但通常我们会把这些数据合并到一个全局 state 中。
+典型的全局状态的库都拥有获取部分数据的能力。比如，像 React Redux 有 selector 接口从全局 state 中获取特定的数据。
 
-We don’t go in detail about TypeScript in this post, but this form allows to annotate types of useGlobalState by inferring types of initialState.
+在此我们采用这种比较简单的方法，就是直接使用字符串的 key 值获取部分全局 state 的数据。
 
-Step 4: Scoped access
-Although we can create multiple containers, usually we put several items in a global state.
-
-Typical global state libraries have some functionality to scope only a part of the state. For example, React Redux uses selector interface to get a derived value from a global state.
-
-We take a simpler approach here, which is to use a string key of a global state. In our example, it’s like count and text.
-
+```js
 const createContainer = (initialState) => {
   let globalState = initialState;
   const listeners = Object.fromEntries(Object.keys(initialState).map(key => [key, new Set()]));
@@ -144,26 +142,34 @@ const createContainer = (initialState) => {
     useGlobalState,
   };
 };
-We omit the use of useCallback in this code for simplicity, but it’s generally recommended for a library.
+```
 
-Step 5: Functional Updates
+简单起见，这里就省略了使用 useCallback, 但通常建议给库加上。
+
+## 步骤五: Functional Updates
 React useState allows functional updates. Let’s implement this feature.
 
-  // ...
+React 的 useState 支持传入函数更新。我们来实现它。
 
-  const setGlobalState = (key, nextValue) => {
-    if (typeof nextValue === 'function') {
-      globalState = { ...globalState, [key]: nextValue(globalState[key]) };
-    } else {
-      globalState = { ...globalState, [key]: nextValue };
-    }
-    listeners[key].forEach(listener => listener());
-  };
+```js
+// ...
+const setGlobalState = (key, nextValue) => {
+  if (typeof nextValue === 'function') {
+    globalState = { ...globalState, [key]: nextValue(globalState[key]) };
+  } else {
+    globalState = { ...globalState, [key]: nextValue };
+  }
+  listeners[key].forEach(listener => listener());
+};
 
-  // ...
-Step 6: Reducer
-Those who are familiar with Redux may prefer reducer interface. React hook useReducer also has basically the same interface.
+// ...
 
+```
+
+## 步骤六: Reducer
+对于熟悉 Redux 的小伙伴可能更喜欢用 reducer。 React hook useReducer 也具备相同的功能。
+
+```js
 const createContainer = (reducer, initialState) => {
   let globalState = initialState;
   const listeners = Object.fromEntries(Object.keys(initialState).map(key => [key, new Set()]));
@@ -185,39 +191,47 @@ const createContainer = (reducer, initialState) => {
     dispatch,
   };
 };
-Step 6: Concurrent Mode
-In order to get benefits from Concurrent Mode, we need to use React state instead of an external variable. The current solution to it is to link a React state to our global state.
 
-The implementation is very tricky, but in essence we create a hook to create a state and link it.
+```
 
-  const useGlobalStateProvider = () => {
-    const [state, dispatch] = useReducer(patchedReducer, globalState);
-    useEffect(() => {
-      linkedDispatch = dispatch;
-      // ...
-    }, []);
-    const prevState = useRef(state);
-    Object.keys((key) => {
-      if (prevState.current[key] !== state[key]) {
-        // we need to pass the next value to listener
-        listeners[key].forEach(listener => listener(state[key]));
-      }
-    });
-    prevState.current = state;
-    useEffect(() => {
-      globalState = state;
-    }, [state]);
-  };
-The patchedReducer is required to allow setGlobalState to update global state. The useGlobalStateProvider hook should be used in a stable component such as an app root component.
+## 步骤六: Concurrent Mode
+为了享受 Concurrent Mode 带来的好处，我们需要使用 React state 而不是外部变量。
+目前的解决办法就是将 React state 指向到我们的全局 state。
 
-Note that this is not a well-known technique, and there might be some limitations. For instance, invoking listeners in render is not actually recommended.
+这种实现方式非常得 tricky，但本质上我们是自建了 hook 来新增一个状态连接全局数据。
 
-To support Concurrent Mode in a proper way, we would need core support. Currently, useMutableSource hook is proposed in this RFC.
+```js
+const useGlobalStateProvider = () => {
+  const [state, dispatch] = useReducer(patchedReducer, globalState);
+  useEffect(() => {
+    linkedDispatch = dispatch;
+    // ...
+  }, []);
+  const prevState = useRef(state);
+  Object.keys((key) => {
+    if (prevState.current[key] !== state[key]) {
+      // we need to pass the next value to listener
+      listeners[key].forEach(listener => listener(state[key]));
+    }
+  });
+  prevState.current = state;
+  useEffect(() => {
+    globalState = state;
+  }, [state]);
+};
+```
 
-Closing notes
-This is mostly how react-hooks-global-state is implemented. The real code in the library is a bit more complex in TypeScript, contains getGlobalState for reading global state from outside, and has limited support for Redux middleware and DevTools.
+需要使用 patchedReducer 来允许 setGlobalState 更新全局状态。 `useGlobalStateProvider` hook 应该在一个稳定的组件中使用比如根组件。
 
-Finally, I have developed some other libraries around global state and React context, as listed below.
+注意这并不项众所周知的技术，并且可能会有些限制。比如，实际上并不推荐在 render 的时候调用 listeners。
+
+为了能够合理得支持 Concurrent Mode，目前 `useMutableSource` hook 已经 RFC 中被提出。
+To support Concurrent Mode in a proper way, we would need core support. Currently, useMutableSource hook is proposed in this [RFC](https://github.com/bvaughn/rfcs/blob/useMutableSource/text/0000-use-mutable-source.md).
+
+## 尾声
+这就是 `react-hooks-global-state` 的核心实现。真正的代码是用 Typescript 编写，会显得有些复杂，包括从外部读取数据的 `getGlobalState`，并且支持部分的 Redux middleware 和 DevTools 的代码。
+
+最后，我已经开发了其他库关于全局状态和 React context，以下：
 
 https://github.com/dai-shi/reactive-react-redux
 https://github.com/dai-shi/react-tracked
