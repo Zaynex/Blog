@@ -234,5 +234,7 @@ To support Concurrent Mode in a proper way, we would need core support. Currentl
 最后，我已经开发了其他库关于全局状态和 React context，以下：
 
 https://github.com/dai-shi/reactive-react-redux
+
 https://github.com/dai-shi/react-tracked
+
 https://github.com/dai-shi/use-context-selector
