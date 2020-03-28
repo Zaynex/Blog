@@ -1,11 +1,14 @@
 # 他山之石
 
 记录阅读过的不错的文章。
+## 2020.03.28
+【工程化】【ESLint】【Typescript】
+- [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
 ## 2020.03.24
 【AST】【Babel】
 - [Understanding ASTs by Building Your Own Babel Plugin](https://www.sitepoint.com/understanding-asts-building-babel-plugin/)
- 
+
 关于 AST、Babel 插件，其实也没有那么深奥，后续可以按照作者的思路写一个类似 immer 的操作。
 
 ## 2020.03.23
@@ -23,7 +26,7 @@
 
 3. canvas协同白板的设计
 
-4. 学习编译原理 
+4. 学习编译原理
 
 
 ## 2019.09.08 - 2019.09.14
