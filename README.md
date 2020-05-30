@@ -1,6 +1,10 @@
 # 他山之石
 
 记录阅读过的不错的文章。
+## 2020.05.30
+【Canvas】
+- [提高 HTML5 画布性能] (https://www.html5rocks.com/zh/tutorials/canvas/performance/)
+
 ## 2020.03.28
 【工程化】【ESLint】【Typescript】
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
