@@ -1,12 +1,5 @@
 # 基于 Soda-Electron-SDK 构建视频会议
 
-基于 Soda Electron SDK 构建有道云会议
-
-分享人： 李文博、奚文正
-
-关键词： Electron、React、NodeJs、C++ Plugins、Video
-
-推荐人群： 对有道云会议的技术实现感兴趣的同学
 
 
 
