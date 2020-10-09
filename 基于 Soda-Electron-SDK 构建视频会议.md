@@ -192,7 +192,32 @@ Library: Rxjs , lodash, request, electron-better-ipc,electron-updater,idb-keyval
 
 
 
+视频会议客户端架构设计
+
+
+1. 客户端方案选择
+- native
+- cross-flatform 
+	a. electron
+	b. qt
+
+2. electron 架构
+
+3. electron-sdk 构建
+
+4. 渲染 webgl,canvas 如何实现视频编解码
+
+5. 音频播放（多个流，单个流，多个流的好处可以区分音量）
+
+6. 签名打包PC
+
+7. 自动更新机制以及潜在的问题
+
+8. rxjs 处理流
+
+9. 性能瓶颈
+
+
 ## Reference
 
 1. https://juejin.im/post/5de29d7be51d455f9b335efa
-2. 
