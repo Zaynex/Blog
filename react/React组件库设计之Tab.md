@@ -2,11 +2,11 @@ Tabs，即选项卡，将同一层级的内容组通过选项卡分组，并支�
 
 常见的选项卡组件如 Material-UI 一样。
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae54c1ac-35e8-40ee-a3fa-48522c21da00/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ae54c1ac-35e8-40ee-a3fa-48522c21da00/Untitled.png)
+![material-ui-tab](https://github.com/Zaynex/Blog/blob/master/react/resources/material-tab.png?raw=true)
 
 还有国产的 ant-design。
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d415fab6-fa0d-4203-a458-e75d4701d5c8/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d415fab6-fa0d-4203-a458-e75d4701d5c8/Untitled.png)
+![ant-design-tab](https://github.com/Zaynex/Blog/blob/master/react/resources/ant-tab.png?raw=true)
 
 我们将从最简单最挫的代码一步一步推到 Tabs 组件的设计，且满足常见的需求场景。
 
