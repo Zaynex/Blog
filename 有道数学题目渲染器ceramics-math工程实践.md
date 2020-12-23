@@ -85,10 +85,10 @@ function App() {
 }
 ```
 
-![俯视图]](https://pic4.zhimg.com/80/v2-6a0b462c1022d9afc1e5000e840e93d2.png)
+![俯视图](https://pic4.zhimg.com/80/v2-6a0b462c1022d9afc1e5000e840e93d2.png)
 
 针对定制化的题目组件需求，采用继承的方式来实现类型。
-![接口继承]](https://pic4.zhimg.com/80/v2-4fa6dcd2e431972a57233a7845416ad4.png)
+![接口继承](https://pic4.zhimg.com/80/v2-4fa6dcd2e431972a57233a7845416ad4.png)
 
 值得一提的是，这些注释可以基于一些 AST 的手段提炼并生成相应的说明文档。明确了所有题目的接口，上层的业务可以更快速地接入题目组件库。
 
@@ -199,3 +199,6 @@ function App() {
 - [gitlab-ci](https://docs.gitlab.com/ee/ci/yaml/)
 - [rollup](https://www.rollupjs.org/)
 - [babel](https://babeljs.io/)
+- [基于lerna和yarn workspace的monorepo工作流](https://zhuanlan.zhihu.com/p/71385053)
+- [使用lerna优雅地管理多个package](https://zhuanlan.zhihu.com/p/35237759)
+- [lerna](https://github.com/lerna/lerna)
