@@ -1,11 +1,11 @@
 # 基于 Soda-Electron-SDK 构建视频会议
 
 
-
-
 简介：
 
 本次分享将深入探索有道云会议客户端（windows/pc) 的整体架构以及工作机制（包括Soda-Electron-SDK 构建、音视频传输、媒体播放器等），以及在客户端开发中所遇到的一些问题和经验总结。
+
+
 
 
 
@@ -221,3 +221,4 @@ Library: Rxjs , lodash, request, electron-better-ipc,electron-updater,idb-keyval
 ## Reference
 
 1. https://juejin.im/post/5de29d7be51d455f9b335efa
+https://glumes.com/post/ffmpeg/understand-yuv-format/
