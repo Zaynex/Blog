@@ -118,13 +118,13 @@ function App() {
 
 ### 题板组件预览调试
 
-有很多题目都存在复杂的交互（如拖拽）和动画，包括播放音频等交互场景，仅编写单元测试是不够的。我们引入了 Storybook 作为组件的预览开发调试工具。Stroybook 在目前比较流行的响应式  UI 开发调试工具（支持多种前端框架，包括 React)，在许多 github 社区开源的组件（库）中均有应用。
+有很多题目都存在复杂的交互（如拖拽）和动画，包括播放音频等交互场景，仅编写单元测试是不够的。我们引入了 Storybook 作为组件的预览开发调试工具。Storybook 在目前比较流行的响应式  UI 开发调试工具（支持多种前端框架，包括 React)，在许多 github 社区开源的组件（库）中均有应用。
 
 ![storybook](https://pic4.zhimg.com/80/v2-8374207c325f29e96bd7ec8a037eafc4.png)
 
-这是我们项目中应用 Stroybook 开发的应用示例。如果仔细观察的话，不难发现之前编写的接口注释此时会在 Stroybook 中显示。其中的 controls 面板是可以由使用者实时调整配置的。
+这是我们项目中应用 Storybook 开发的应用示例。如果仔细观察的话，不难发现之前编写的接口注释此时会在 Storybook 中显示。其中的 controls 面板是可以由使用者实时调整配置的。
 
-当前端同学完成题目的开发后，可以发布 Stroybook 文档，产品、交互同学可以直接通过线上的地址走查 UI 交互细节。而原来则需要通过打包到客户端才能让产品测同学验收（可能需要反复打包走查），这也大幅提升了验收体验。
+当前端同学完成题目的开发后，可以发布 Storybook 文档，产品、交互同学可以直接通过线上的地址走查 UI 交互细节。而原来则需要通过打包到客户端才能让产品测同学验收（可能需要反复打包走查），这也大幅提升了验收体验。
 
 ### 题目组件模板
 
@@ -187,7 +187,7 @@ function App() {
 
 在使用 lerna 进行多包开发调试的时候，会有些问题。比如当你的组件A 依赖模块B时，B 的修改并不会使得 A 更新，需要重新本地 build 模块 B 才行。因此我们在开发时还需要为特定的模块执行 `start` 命令，对于刚接触多包管理开发的同学可能会有些不适应。目前我们将所有静态资源打包在内，文件体积较大，但后续也会有相应的措施。团队在组件的单元测试覆盖率还较低...
 
-此外，storybook 的 addons 还有很多与业务结合的空间，比如直接在 strobook 配置出题数据而无需额外开发出题系统。虽然目前有很多小问题，但团队也一直在寻找优化的方案不断迭代和完善。
+此外，Storybook 的 addons 还有很多与业务结合的空间，比如直接在 Storybook 配置出题数据而无需额外开发出题系统。虽然目前有很多小问题，但团队也一直在寻找优化的方案不断迭代和完善。
 
 以上是有道数学题目渲染器 ceramics-math 的工程实践，仓促写下难免有些遗漏，有需要改善的意见/建议欢迎提出，谢谢。
 
@@ -199,6 +199,6 @@ function App() {
 - [gitlab-ci](https://docs.gitlab.com/ee/ci/yaml/)
 - [rollup](https://www.rollupjs.org/)
 - [babel](https://babeljs.io/)
+- [lerna](https://github.com/lerna/lerna)
 - [基于lerna和yarn workspace的monorepo工作流](https://zhuanlan.zhihu.com/p/71385053)
 - [使用lerna优雅地管理多个package](https://zhuanlan.zhihu.com/p/35237759)
-- [lerna](https://github.com/lerna/lerna)
