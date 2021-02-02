@@ -102,7 +102,8 @@ function App() {
 
 ![hooks 组合](https://pic4.zhimg.com/80/v2-ac159f8c4963302651d82d9bc233980e.png)
 
-如上图所示，通过 hooks 可以实现更大程度的逻辑复用。但由于每道题目都有自身特殊的判题逻辑和交互，在具体的题目组件中使用类似 `useQuestion` 的 hooks 并不能够复用在其他组件中，它起到的效果只是将具体逻辑拆在了 hooks 里避免一个 function component 里有太多的逻辑，因此团队并没有将所有的题目都采用类似 useQuestion 的方式处理。不过也会继续探索 hooks 逻辑复用的场景。（比如简单的选择题）
+如上图所示，通过 hooks 可以实现更大程度的逻辑复用。团队将所有答题校验抽象成单独的 `useQuestion` 的hooks，它将整个做题流程整合在一起，原先可能每个题目有多个 useState，现在统一用单个 hooks，这种约束使得团队所有开发同学编写的核心逻辑高度类似也易于理解。此外，像更多底层通用的实现也被放到了 useQuestion 中，比如为了更友好得展示用户习题中的反馈，我们会根据答错次数播放不同的提示音，而累计错误次数的能力在 `useQuestion` 中实现。
+![useQuestion](https://pic4.zhimg.com/80/v2-8f5802192e176d7011ef9f1f2a69edef.png)
 
 在组件内部，可能还会依赖一些通用的 hooks 以及动画组件以及 utils 方法等，下图是一个题目组件可能需要的底层依赖。
 
